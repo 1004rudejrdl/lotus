@@ -35,7 +35,7 @@
   list-style: none; /* Remove HTML bullets */
 }
 .main_body_product :first-child li{
-  background-color: #FF5675;
+  background-color: rgba(236, 0, 140, 1);
   color: white;
   font-weight: bold;
 }
@@ -86,7 +86,7 @@
   content: '';
   position: absolute;
   width: 6px;
-  background-color: royalblue;
+  background-color: #ff6e7f;
   top: 0;
   bottom: 0;
   left: 50%;
@@ -134,9 +134,9 @@
   width: 0;
   z-index: 1;
   right: 30px;
-  border: medium solid royalblue;
+  border: medium solid #fc6767;
   border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent royalblue;
+  border-color: transparent transparent transparent #fc6767;
 }
 
 /* Add arrows to the right container (pointing left) */
@@ -148,9 +148,9 @@
   width: 0;
   z-index: 1;
   left: 30px;
-  border: medium solid royalblue;
+  border: medium solid #fc6767;
   border-width: 10px 10px 10px 0;
-  border-color: transparent royalblue transparent transparent;
+  border-color: transparent #fc6767 transparent transparent;
 }
 
 /* Fix the circle for containers on the right side */
@@ -165,10 +165,15 @@
 }
 .content {
   padding: 20px 30px;
-  background-color: royalblue;
   position: relative;
   border-radius: 6px;
   color: white;
+}
+.right .content {
+  background-image: linear-gradient(to right, rgba(252, 105, 105, 1), rgba(236, 0, 140, 1));
+}
+.left .content {
+  background-image: linear-gradient(to left, rgba(252, 105, 105, 1), rgba(236, 0, 140, 1));
 }
 @media screen and (max-width: 1300px) {
   .centerproduct{ /*식당, 숙박, 렌트카, 쇼핑*/
@@ -181,7 +186,7 @@
 }
 .content {
   padding: 10px 15px;
-  background-color: royalblue;
+  background-image: linear-gradient(to left, rgba(252, 105, 105, 1), rgba(236, 0, 140, 1));
   position: relative;
   border-radius: 6px;
   color: white;
@@ -207,9 +212,9 @@
   /* Make sure that all arrows are pointing leftwards */
   .container::before {
   left: 60px;
-  border: medium solid royalblue;
+  border: medium solid #fc6767;
   border-width: 10px 10px 10px 0;
-  border-color: transparent royalblue transparent transparent;
+  border-color: transparent #fc6767 transparent transparent;
   }
   /* Make sure all circles are at the same spot */
   .left::after, .right::after {
@@ -219,6 +224,9 @@
   /* Make all right containers behave like the left ones */
   .right {
   left: 0%;
+  }
+.left .content, .right .content{
+    background-image: linear-gradient(to right, rgba(252, 105, 105, 1), rgba(236, 0, 140, 1));
   }
   .centerproduct{ /*식당, 숙박, 렌트카, 쇼핑*/
     float: none;

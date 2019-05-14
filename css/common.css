@@ -139,7 +139,7 @@ body, h2, h3 {
 .topnav a {
   float: left;
   display: block;
-  color: black;
+  color: rgb(60,60,60);
   text-align: center;
   padding: 14px 0;
   text-decoration: none;
@@ -147,8 +147,9 @@ body, h2, h3 {
   cursor: pointer;
 }
 .topnav a:hover {
-  background-color: pink;
-  color: white;
+  background-color: rgb(243,243,243);
+  color: rgb(60,60,60);
+  font-weight: bold;
 }
 .logo a:hover {
   background-color: inherit; /* background-color: none은 안 먹힘 inherit이 먹힘 */
@@ -182,8 +183,8 @@ body, h2, h3 {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: pink;
-  color:white;
+  background-color: rgb(243,243,243);
+  color:rgb(60,60,60);
 }
 .logo{
   border: none;
@@ -212,7 +213,7 @@ body, h2, h3 {
 }
 
 .dropdown-content .header /*h2 ABOUT COMPANY*/ {
-  background: rgba(255, 0, 0, 0.62);
+  background: rgba(252, 105, 105, 1);
   padding: 16px;
   color: white;
   text-align: center;
@@ -228,27 +229,34 @@ body, h2, h3 {
 /* Create three equal columns that floats next to each other */
 .row{
   /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
-  padding-left: 300px;
+  padding-left: 450px;
 }
 .column {
   float: left;
-  color: rgb(227, 40, 40);
-  width: 280px;
-  padding: 10px;
+  /* color: rgb(227, 40, 40); */
+  /* color: rgb(232, 49, 110); */
+  color: rgb(236, 69, 102);
+  padding: 5px;
   background-color: white;
+  width: 170px;
   height: auto;
+  text-align: center;
+}
+.longer{
+  width: 220px;
 }
 .column a {
   float: none;
-  color: black;
+  color: rgb(60,60,60);
   padding: 10px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  /* text-align: left; */
+  text-align: center;
 }
 
 .column a:hover {
-  background-color: pink;
+  background-color: rgb(243,243,243);
 }
 .column h3 {
   font-size: 22px;
@@ -260,6 +268,31 @@ body, h2, h3 {
   content: "";
   display: table;
   clear: both;
+}
+
+@media screen and (max-width: 1700px) {
+  .row{
+    /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+    padding-left:375px;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .row{
+    /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+    padding-left:300px;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .row{
+    /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+    padding-left:225px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .row{
+    /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+    padding-left:75px;
+  }
 }
 @media screen and (max-width: 1400px) {
   .topnav .dropbtn a {
@@ -309,20 +342,27 @@ body, h2, h3 {
     text-align: center;
   }
   .logo img {
-    width:250px;
+    width:225px;
   }
   .dropdown > *{
     float: none;
-    overflow: hidden;
+    overflow: visible;
+  }
+  /* .dropbtn{
+    float: left;
+  } */
+  .dropdown-content .header /*h2 ABOUT COMPANY*/ {
+    padding: 8px;
+    font-size: 15px;
   }
   .dropdown-content, .column {
     width: 68%;
     height: auto;
   }
-
   .dropdown-content{
     left: 0;
     margin:0;
+    /* margin-top: 40px; */
   }
   .row{
     /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
@@ -330,12 +370,15 @@ body, h2, h3 {
   }
   .column {
     width: 100%;
+    padding: 1px;
     padding-left: 50px;
     right:  0;
+    text-align: left;
   }
-
   .column a {
+    padding: 2px;
     padding-left: 30px;
+    font-size: 15px;
   }
   /* .dd_right img {
     width:130px;

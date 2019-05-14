@@ -29,23 +29,24 @@
   padding: 10px 30px ;
   text-decoration: none;
   font-size: 25px;
-  color: rgb(227, 40, 40);
+  color: rgba(252, 105, 105, 1);
   text-align: center;
   display: block;
 }
 .sidenav :first-child {
   color: white;
   font-weight: bold;
-  background-color: rgba(227, 40, 40, 0.86);
+  background-color: rgba(252, 105, 105, 1);
 }
 
 .sidenav a:hover {
-  background-color: pink; /*서브메뉴 백그라운드*/
-  color: rgb(136, 0, 0);
+  color: rgba(252, 105, 105, 1);
+  font-weight: bold;
+  background-color: rgba(252, 105, 105, 0.2);
 }
 .sidenav :first-child:hover{
   color: white;
-  background-color: rgba(227, 40, 40, 0.86);
+  background-color: rgba(252, 105, 105, 1);
 }
 
 .main {
@@ -59,6 +60,9 @@
   clear: both;
 }
 @media screen and (max-width: 800px) {
+  .logo img {
+    width:225px;
+  }
   .dropdown .dropbtn{
     margin-top: 0;
   }
@@ -66,11 +70,11 @@
     margin-top : 0;
   }
   .sidenav{
-    margin-top: 119px;
+    margin-top: 127px;
   }
   .sidenav a {
     display: inline;
-    padding: 5px 30px ;
+    padding: 5px 30px;
     text-decoration: none;
     font-size: 20px;
   }
