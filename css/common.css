@@ -1,0 +1,487 @@
+
+/* @font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/NanumGothic/NanumGothic-Regular.eot');
+  src: url('../fonts/NanumGothic/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/NanumGothic/NanumGothic-Regular.woff2') format('woff2'),
+       url('../fonts/NanumGothic/NanumGothic-Regular.woff') format('woff'),
+       url('../fonts/NanumGothic/NanumGothic-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/NanumGothic/NanumGothic-Bold.eot');
+  src: url('../fonts/NanumGothic/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/NanumGothic/NanumGothic-Bold.woff2') format('woff2'),
+       url('../fonts/NanumGothic/NanumGothic-Bold.woff') format('woff'),
+       url('../fonts/NanumGothic/NanumGothic-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/NanumGothic/NanumGothic-ExtraBold.eot');
+  src: url('../fonts/NanumGothic/NanumGothic-ExtraBold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/NanumGothic/NanumGothic-ExtraBold.woff2') format('woff2'),
+       url('../fonts/NanumGothic/NanumGothic-ExtraBold.woff') format('woff'),
+       url('../fonts/NanumGothic/NanumGothic-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Jalnan';
+  font-style: normal;
+  src: url('../fonts/Jalnan/Jalnan.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Goyang';
+  font-style: normal;
+  src: url('../fonts/Goyang/Goyang.ttf') format('truetype');
+}
+@font-face {
+  font-family: '116angduk_honesty1.5';
+  font-style: normal;
+  src: url('../fonts/116angduk_honesty1.5/116angduk_honesty1.5.ttf') format('truetype');
+} */
+@font-face {
+  font-family: 'Binggrae';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Binggrae/Binggrae-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Binggrae';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/Binggrae/Binggrae-Bold.ttf') format('truetype');
+
+}
+/* @font-face {
+  font-family: 'BinggraeⅡ';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Binggrae/BinggraeⅡ-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'BinggraeⅡ';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/Binggrae/BinggraeⅡ-Bold.ttf') format('truetype');
+
+} */
+/* @font-face {
+  font-family: 'BinggraeTaom';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Binggrae/BinggraeTaom-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'BinggraeTaom';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/Binggrae/BinggraeTaom-Bold.ttf') format('truetype');
+
+} */
+/* @font-face {
+  font-family: 'dovemayo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/dovemayo/dovemayo-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'dovemayo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/dovemayo/dovemayo-Bold.ttf') format('truetype');
+
+} */
+
+* {
+  box-sizing: border-box;
+  /* font-family:'Nanum Gothic'; */
+  /* font-family:'Jalnan'; */
+  /* font-family:'Goyang'; */
+  /* font-family:'116angduk_honesty1.5'; */
+  /* font-family:'BinggraeⅡ'; */
+  font-family:'Binggrae';
+  /* font-family:'BinggraeTaom'; */
+  /* font-family:'dovemayo'; */
+}
+
+body, h2, h3 {
+  margin: 0;
+}
+/************************ all css end *****************************************/
+.header-top {
+  width: 100%;
+  margin: 0 auto;
+}
+.header-top img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+.bg_white { /*js통해 classList add,remove*/
+  background-color: white;
+}
+/******************* header top css end ******************************/
+.topnav {
+  overflow: visible;  /* 메가메뉴 드롭다운 보이게함 */
+}
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 0;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.topnav a:hover {
+  background-color: pink;
+  color: white;
+}
+.logo a:hover {
+  background-color: inherit; /* background-color: none은 안 먹힘 inherit이 먹힘 */
+  color: white;
+}
+.logo img {
+  width:650px;
+}
+
+/**********************top css end*********************************/
+.dropdown {
+  z-index: 5;
+}
+.dropdown > *{
+  float: left;
+  overflow: hidden;
+}
+.dd_right{
+  float: right;
+}
+.dropbtn:hover{
+  cursor: pointer;
+}
+.dropdown .dropbtn { /*메가메뉴 최상위 버튼*/
+  border: none;
+  outline: none;
+  padding: 20px 30px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: pink;
+  color:white;
+}
+.logo{
+  border: none;
+  outline: none;
+  padding: 0px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+}
+.logo a{
+  padding: 0px;
+  margin: 0;
+}
+/* .dd_right img {
+  width:200px;
+} */
+.dropdown-content {
+  /* display: contents; 메뉴펼치기 */
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  /* left: 0; 왼쪽으로 붙음*/
+  margin-top : 91px;
+  z-index: 5;
+}
+
+.dropdown-content .header /*h2 ABOUT COMPANY*/ {
+  background: rgba(255, 0, 0, 0.62);
+  padding: 16px;
+  color: white;
+  text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+  /* display: list-item; */
+  /* display:table ~~~~~~; */
+  display: block;
+  z-index: 5;
+}
+
+/* Create three equal columns that floats next to each other */
+.row{
+  /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+  padding-left: 300px;
+}
+.column {
+  float: left;
+  color: rgb(227, 40, 40);
+  width: 280px;
+  padding: 10px;
+  background-color: white;
+  height: auto;
+}
+.column a {
+  float: none;
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.column a:hover {
+  background-color: pink;
+}
+.column h3 {
+  font-size: 22px;
+  padding: 5px 10px;
+  text-shadow: 1px 1px 0.5px white;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media screen and (max-width: 1400px) {
+  .topnav .dropbtn a {
+    padding: 3px 0;
+    font-size: 17px;
+  }
+  .logo a{
+    padding: 0px;
+    margin: 0;
+  }
+  .logo img {
+    width:450px;
+  }
+  .row{
+    /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+    padding-left:150px;
+  }
+  /* .dd_right img {
+    width:140px;
+  } */
+  .dropdown-content {
+    margin-top : 66px;
+  }
+  .dropdown-content .column *{
+    font-size: 17px;
+  }
+}
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .topnav{
+    background-color: white;
+  }
+  .dropdown .dropbtn { /*메가메뉴 최상위 버튼*/
+    padding: 5px 30px;
+    background-color: inherit;
+    font: inherit;
+    margin: 0;
+  }
+  .topnav a {
+    text-align: left;
+    padding:3px 0;
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  .logo_center {
+    text-align: center;
+  }
+  .logo img {
+    width:250px;
+  }
+  .dropdown > *{
+    float: none;
+    overflow: hidden;
+  }
+  .dropdown-content, .column {
+    width: 68%;
+    height: auto;
+  }
+
+  .dropdown-content{
+    left: 0;
+    margin:0;
+  }
+  .row{
+    /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
+    padding:0;
+  }
+  .column {
+    width: 100%;
+    padding-left: 50px;
+    right:  0;
+  }
+
+  .column a {
+    padding-left: 30px;
+  }
+  /* .dd_right img {
+    width:130px;
+  } */
+}
+
+/*********************** modal signup css end ********************************/
+.icon-bar {
+  right: 0;  /* 그 방향으로 붙여버림 */
+  position: fixed;
+  width: 15%;
+  overflow: auto;
+  top: 96%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+@media screen and (max-width: 1100px) {
+  .icon-bar {
+    width: 22.5%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .icon-bar {
+    width: 30%;
+  }
+}
+
+.icon-bar a {
+  float: left;
+  width: 20%;
+  display: block;
+  text-align: center;
+  padding: 6px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+
+/****** sticky social icon bar end*********************************************************/
+#gotoTopBtn {
+  display: none;
+  float: left;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 99;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 40px;
+  background-color: red;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  padding: 6px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+#gotoTopBtn:hover {
+  background-color: #555;
+}
+/****** sticky goto top btn end *********************************************************/
+/****** main head end ******************************************************************/
+
+
+/****** footer start ******************************************************************/
+.footer_bg{
+  background-color: #dddddd;
+  width: 100%;
+}
+.footer {
+  text-align: center;
+  padding: 10px;
+}
+.footer ul{
+  padding: 0px;
+  margin: 0;
+}
+.footerlist1,.footerlist2{ /*회사소개~찾아오시는길*//*서울 강남구 ~ RESERVED*/
+  display: inline-block;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+.footerlist2 input[type=image]{ /*서울 강남구 ~ RESERVED*/
+  width: 200px;
+  height: auto;
+}
+@media screen and (max-width: 1400px) {
+  .footerlist2{/*서울 강남구 ~ RESERVED*/
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+  .footerlist2 input[type=image]{ /*서울 강남구 ~ RESERVED*/
+    width: 150px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .footerlist1 {
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+  .footerlist2{/*서울 강남구 ~ RESERVED*/
+    display:block;
+  }
+  .footerlist2 input[type=image]{ /*서울 강남구 ~ RESERVED*/
+    width: 150px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .footerlist1, .footerlist2{
+    display:block;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+  .footerlist2 input[type=image]{ /*서울 강남구 ~ RESERVED*/
+    display: none;
+  }
+}

@@ -1,0 +1,82 @@
+.topnav{
+  align-items: center;
+  background-color: white;
+}
+.dropdown .dropbtn{
+  margin-top: 41px;
+}
+.logo img {
+  width:350px;
+}
+.dropdown-content {
+  margin-top : 132px;
+}
+.main_body{
+  width: 100%;
+}
+.sidenav {
+  min-width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 200px;
+  left: 0px;
+  overflow-x: hidden;
+  padding: 8px 0;
+  background-color: white;
+}
+
+.sidenav a { /*서브메뉴 너비 조절*/
+  padding: 10px 30px ;
+  text-decoration: none;
+  font-size: 25px;
+  color: rgb(227, 40, 40);
+  text-align: center;
+  display: block;
+}
+.sidenav :first-child {
+  color: white;
+  font-weight: bold;
+  background-color: rgba(227, 40, 40, 0.86);
+}
+
+.sidenav a:hover {
+  background-color: pink; /*서브메뉴 백그라운드*/
+  color: rgb(136, 0, 0);
+}
+.sidenav :first-child:hover{
+  color: white;
+  background-color: rgba(227, 40, 40, 0.86);
+}
+
+.main {
+  max-width: 85%;
+  float: right;
+  margin-top: 200px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+.footer_bg{
+  clear: both;
+}
+@media screen and (max-width: 800px) {
+  .dropdown .dropbtn{
+    margin-top: 0;
+  }
+  .dropdown-content {
+    margin-top : 0;
+  }
+  .sidenav{
+    margin-top: 119px;
+  }
+  .sidenav a {
+    display: inline;
+    padding: 5px 30px ;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  .main {
+    margin-top: 400px;
+    float: none;
+    max-width: 100%;
+  }
+}
