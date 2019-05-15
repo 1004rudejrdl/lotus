@@ -165,7 +165,7 @@ body, h2, h3 {
 }
 .dropdown > *{
   float: left;
-  overflow: hidden;
+  overflow: visible;
 }
 .dd_right{
   float: right;
