@@ -13,7 +13,7 @@
           <div class="header">
             <h2>내게 맞는 이성찾기</h2>
           </div> <!-- header -->
-          <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
         </div> <!-- dropdown-content end -->
       </div> <!-- dropdown end -->
       <div class="dropdown">
@@ -24,18 +24,18 @@
           <div class="header">
             <h2>결정 장애를 위해 준비한 데이트 코스</h2>
           </div> <!-- header -->
-      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
         </div> <!-- dropdown-content -->
       </div> <!-- dropdown -->
       <div class="dropdown">
         <button class="dropbtn">
-          <a>쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../sh_man/sh_man_list.php?mode=man">쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content alignR">
           <div class="header">
             <h2>패션 고자를 위한 쇼핑몰</h2>
           </div> <!-- header -->
-      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
         </div> <!-- dropdown-content -->
       </div> <!-- dropdown -->
       <div class="dropdown ">
@@ -46,7 +46,7 @@
           <div class="header">
             <h2>당신의 연애 성향이 궁금하다면</h2>
           </div> <!-- header -->
-      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
         </div> <!-- dropdown-content -->
       </div> <!-- dropdown -->
       <div class="dropdown ">
@@ -57,7 +57,7 @@
           <div class="header">
             <h2>다 드루와</h2>
           </div> <!-- header -->
-      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
         </div> <!-- dropdown-content -->
       </div> <!-- dropdown -->
       <!-- <div class="dropdown dd_right">

@@ -63,7 +63,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown">
         <button class="dropbtn">
-          <a>쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="./sh_man/sh_man_list.php?mode=man">쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content alignR">
           <div class="header">

@@ -15,9 +15,9 @@
   </div> <!-- column -->
   <div class="column">
     <h3>쇼핑몰</h3>
-    <a href="../about_search_chain/search_chain.php">아우터</a>
-    <a href="../about_search_chain/search_chain.php">상의</a>
-    <a href="../about_search_chain/search_chain.php">하의</a>
+    <a href="../sh_man/sh_man_list.php?mode=man">남성의류</a>
+    <a href="../sh_man/sh_man_list.php?mode=woman">여성의류 </a>
+    <a href="../sh_man/sh_man_list.php?mode=shose">신발</a>
   </div> <!-- column -->
   <div class="column">
     <h3>테스트</h3>

@@ -6,6 +6,17 @@
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
+
+  if($_GET['mode']=="man"){
+
+  }else if($_GET['mode']=="woman"){
+
+  }else if($_GET['mode']=="shose"){
+
+  }
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,12 +38,13 @@
 <!-- main_body start -->
 <div class="main_body">
 <div id="sidenav" class="sidenav">
-  <a href="#about">추천/예약</a>
-  <a href="#services">맛집</a>
-  <a href="#clients">숙박</a>
-  <a href="#contact">렌트카</a>
+  <a href="./sh_man_list.php?mode=man">쇼핑몰</a>
+  <a href="./sh_man_list.php?mode=man">남성의류</a>
+  <a href="./sh_man_list.php?mode=woman">여성의류</a>
+  <a href="./sh_man_list.php?mode=shose">신발</a>
 </div><!-- sidenav end -->
 <div class="main">
+
   <h2>추천/예약</h2>
   <p>화면테스트</p>
   <p>화면테스트</p>
