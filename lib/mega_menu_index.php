@@ -9,9 +9,9 @@
   </div> <!-- column -->
   <div class="column">
     <h3>추천/예약</h3>
-    <a href="./about_chain/chain_intro.php">맛집</a>
+    <a href="./about_chain/chain_intro.php">맛집/체험</a>
     <a href="./about_chain/chain_inquiry.php">숙박</a>
-    <a href="./ra_car_ticket/ra_category.php">렌트카</a>
+    <a href="./ra_car_ticket/ra_car_country.php">렌트카</a>
   </div> <!-- column -->
   <div class="column">
     <h3>쇼핑몰</h3>

@@ -225,7 +225,7 @@
       </tr>
     </table> -->
     <ul>
-      <li class="centerproduct">맛집</li>
+      <li class="centerproduct">맛집/체험</li>
       <li class="centerproduct">숙박</li>
       <li class="centerproduct">렌트카</li>
       <li class="centerproduct">쇼핑</li>
