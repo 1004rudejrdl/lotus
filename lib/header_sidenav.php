@@ -40,7 +40,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a>테스트&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../tt_diag_/tt_diag_test.php">테스트&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -51,7 +51,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a>커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../cm_free_/cm_free_exhibit.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
