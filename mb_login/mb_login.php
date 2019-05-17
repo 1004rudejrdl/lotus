@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="39643103539-t0uv6g7l80uea0pcao3snjrm4sqjufu0.apps.googleusercontent.com">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/login.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript"></script>
+
   </head>
   <body>
     <div id="login_logo">
@@ -41,9 +45,23 @@
         <a href="#" class="twitter btn">
           <i class="fa fa-twitter fa-fw"></i> Login with Twitter
         </a>
-        <a href="../sns_login_api\googlelogin.php" class="google btn">
-          <i class="fa fa-google fa-fw"></i> Login with Google+
-        </a>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <script>
+        function onSignIn(googleUser) {
+          // Useful data for your client-side scripts:
+          var profile = googleUser.getBasicProfile();
+          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+          console.log('Full Name: ' + profile.getName());
+          console.log('Given Name: ' + profile.getGivenName());
+          console.log('Family Name: ' + profile.getFamilyName());
+          console.log("Image URL: " + profile.getImageUrl());
+          console.log("Email: " + profile.getEmail());
+
+          // The ID token you need to pass to your backend:
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
+        }
+      </script>
       <a href="../sns_login_api/naverlogin.php" class="naver btn"><img class="naver_icon" src="../image/naver_login_icon_green.png" alt="">   Login with Naver </a>
       <a href="javascript:loginWithKakao()" id="kakao-login-btn"></a>
       <script type='text/javascript'>
