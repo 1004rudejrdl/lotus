@@ -55,9 +55,28 @@
   margin-top: 200px;
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 10px 30px;
+  background-color: red;
 }
 .footer_bg{
   clear: both;
+}
+@media screen and (max-width: 1400px) {
+  .main {
+    max-width: 84.5%;
+    margin-left: 15%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .main {
+    max-width: 84%;
+    margin-left: 15.5%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .main {
+    max-width: 83.5%;
+    margin-left: 16%;
+  }
 }
 @media screen and (max-width: 800px) {
   .logo img {
