@@ -84,6 +84,7 @@ DB쿼리form : qurey
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="./css/free.css">
   <!-- <link rel="stylesheet" href="../css/join.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
@@ -95,12 +96,57 @@ DB쿼리form : qurey
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
 <!-- header end -->
 <!-- main_body start -->
+<div>
+  <article class="main">
+    <div class="head">
+      <h1 id="h1">모임게시판</h1>
+    </div>
+    <hr>
+    <div id="menu">
+      <form name="board_form" action="cm_gath_exhibit.php?table=<?=$table?>&mode=search" method="post">
+        <div id="form1">
+          <div id="form2">
+            <div id="form_total1">전체 <?=$totall_record?>건 :&nbsp;</div>
+            <div id="form_search2"><input type="button" id="search_button" value="검색"></div>
+            <div id="form_search1"><input type="text" name="search"></div>
+
+            <div id="form_select">
+              <select name="find">
+                <option value="subject">제목</option>
+                <option value="content">내용</option>
+                <option value="name">이름</option>
+              </select>
+            </div> <!--end of form_select-->
+          </div> <!--end of form2-->
+        </div> <!--end of form1-->
+      </form>
+      <div class="clear"></div>
+
+      <div id="list1">
+        <div id="list1_1">
+          공지사항 &nbsp;&nbsp;&nbsp;|
+        </div>
+        <div id="list2"><a href="cm_free_view.php"></a>
+
+          <div id="list_item">
+            &nbsp;&nbsp;조회&nbsp;
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div id="page" style="text-align:center;">
+
+      </div>
+    </div><!--end of menu-->
+  </article>
+</div>
 <div class="main_body">
 <div id="sidenav" class="sidenav">
-  <a href="#about">추천/예약</a>
-  <a href="#services">맛집</a>
-  <a href="#clients">숙박</a>
-  <a href="#contact">렌트카</a>
+  <a href="../cm_free_/cm_free_exhibit.php">자유게시판</a>
+  <a href="../cm_gath_/cm_gath_exhibit.php">모임</a>
+  <a href="../cm_rv_/cm_rv_exhibit.php">성공후기</a>
+  <a href="../cm_qna_/cm_qna_exhibit.php">QnA</a>
 </div><!-- sidenav end -->
 <div class="main">
   <h2>추천/예약</h2>
