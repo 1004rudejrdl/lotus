@@ -1,4 +1,4 @@
-.topnav{
+﻿.topnav{
   align-items: center;
   background-color: white;
 }
@@ -55,7 +55,6 @@
   margin-top: 200px;
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 10px 30px;
-  background-color: red;
 }
 .footer_bg{
   clear: both;
