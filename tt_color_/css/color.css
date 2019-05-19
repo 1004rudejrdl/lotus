@@ -1,0 +1,71 @@
+.color{
+  float: left;
+  text-align: center;
+  width: 25%;
+
+}
+#list1{
+  height:160px;
+  width: 160px;
+  margin-top: 100px;
+  padding: 40px;
+  border-bottom: solid 1px #eeeeee;
+  background-color: red;
+  border-radius: 80px;
+  text-align: center;
+}
+#list1 #list1_1{
+  color:white;
+  font-size: 26px;
+  margin-top: 20px;
+
+}
+#blue{
+  height:160px;
+  width: 160px;
+  margin-top: 100px;
+  padding: 40px;
+  border-bottom: solid 1px #eeeeee;
+  background-color: blue;
+  border-radius: 80px;
+  text-align: center;
+}
+#blue #blue2{
+  color:white;
+  font-size: 26px;
+  margin-top: 20px;
+}
+#yellow{
+  height:160px;
+  width: 160px;
+  margin-top: 100px;
+  padding: 40px;
+  border-bottom: solid 1px #eeeeee;
+  background-color: yellow;
+  border-radius: 80px;
+  text-align: center;
+}
+#yellow #yellow2{
+  color:white;
+  font-size: 26px;
+  margin-top: 20px;
+}
+#pink{
+  height:160px;
+  width: 160px;
+  margin-top: 100px;
+  padding: 40px;
+  border-bottom: solid 1px #eeeeee;
+  background-color: pink;
+  border-radius: 80px;
+  text-align: center;
+}
+#pink #pink2{
+  color:white;
+  font-size: 26px;
+  margin-top: 20px;
+}
+.main{
+  background-image: url("../img/love.jpg");
+  height: 1000px;
+}
