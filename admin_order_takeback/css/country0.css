@@ -1,0 +1,17 @@
+table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+tr, td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+  font-size: 16px;
+}
+td:hover{
+  background-color:#f5f5f5;
+}
+table tr .td_subjet{
+  width: 150px;
+}

@@ -179,21 +179,12 @@
   <!-- main_body start -->
   <div class="main_body">
     <div id="sidenav" class="sidenav">
-      <a>관 리 자</a>
-      <a href="../admin_mb_mt/a_mb_mt_main.php">회원/매칭 관리</a>
-      <a href="../admin_ra_cplx_exp/a_r_c_exp_main.php">맛집/체험 관리</a>
-      <a href="../admin_ra_cplx_acm/a_r_c_acm_main.php">숙박 관리</a>
-      <a href="../admin_ra_cplx_rent/a_r_c_rent_main.php">렌트카 관리</a>
-      <a href="../admin_order_takeback/a_o_takeback_main.php">반품/취소/환불 관리</a>
-      <a href="../admin_prd_qna/a_p_qna_main.php">문의/답변 관리</a>
-      <a href="../admin_authority/a_auth_main.php">권한 관리</a>
-      <a href="../admin_main_banner/a_m_banner_main.php">메인 이미지 관리</a>
-      <a href="../admin_company_information/a_c_information_main.php">회사정보 관리</a>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav_admin_link.php"; ?>
     </div><!-- sidenav end -->
 
     <div class="main">
       <div style="color:rgb(156, 156, 156);">
-         권한부여
+         권한 등록/관리
       </div>
 
       <hr size="1" width="80%" align="left">
@@ -213,15 +204,14 @@
           </tr>
           <tr>
             <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 권 한</td>
-            <td><select class="" name="admin_right" autofocus>
-              <option>선택해주세요.&nbsp;</option>
-              <option>이성 찾기.&nbsp;</option>
-              <option>추천 예약.&nbsp;</option>
-              <option>쇼핑 권한.&nbsp;</option>
-              <option>테스트 권한.&nbsp;</option>
-              <option>커뮤니티 권한.&nbsp;</option>
-              <option>멤버 권한.&nbsp;</option>
-            </select></td>
+            <td>
+              <input type="checkbox" name="auth_mb" value="auth_mb">&nbsp;멤버관리&nbsp;
+              <input type="checkbox" name="auth_mt" value="auth_mt">&nbsp;이성찾기&nbsp;
+              <input type="checkbox" name="auth_ra" value="auth_ar">&nbsp;추천/예약&nbsp;
+              <input type="checkbox" name="auth_sh" value="auth_sh">&nbsp;쇼핑몰&nbsp;
+              <input type="checkbox" name="auth_tt" value="auth_tt">&nbsp;테스트&nbsp;
+              <input type="checkbox" name="auth_commu" value="auth_commu">&nbsp;커뮤니티&nbsp;
+            </td>
           </tr>
         </table>
         <hr size="1" width="80%" align="left">
