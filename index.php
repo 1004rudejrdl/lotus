@@ -3,6 +3,7 @@
   session_start();
   // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
+  include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector_main.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
@@ -98,10 +99,10 @@
         <button class="logo"><a href="./index.php"> <img src="./main_img/lotus_logo_img2.png"></a></button>
       </div> -->
       <div class="dropdown dd_right">
-        <button class="dropbtn"><a href="./index.php">LOGIN</a></button>
+        <button class="dropbtn"><a href="./mb_login/mb_login.php">LOGIN</a></button>
       </div> <!-- dropdown -->
       <div class="dropdown dd_right">
-        <button class="dropbtn"><a href="./index.php">JOIN</a></button>
+        <button class="dropbtn"><a href="./mb_login/mb_join_form.php">JOIN</a></button>
       </div> <!-- dropdown -->
     </div> <!-- topnav end -->
     <img id="header_img" src="./main_img/lotus_main_img3.png" alt="SEA" style="width:100%;">
