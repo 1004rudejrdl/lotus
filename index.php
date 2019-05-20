@@ -3,6 +3,7 @@
   session_start();
   // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
+  include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector_main.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
