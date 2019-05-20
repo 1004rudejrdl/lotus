@@ -1,3 +1,4 @@
+<!-- 맛집/체험 관리 메인 -->
 <?php
   session_start();
 
@@ -178,100 +179,19 @@
   <!-- main_body start -->
   <div class="main_body">
     <div id="sidenav" class="sidenav">
-      <a href="#about">관 리 자</a>
-      <a href="#services">맛집 관리</a>
-      <a href="#clients">숙박 관리</a>
-      <a href="#services">렌트카 관리</a>
-      <a href="admin_a.php">권한 관리</a>
-      <a href="company_info.php">회사정보 관리</a>
-      <a href="main.php">메인 이미지 관리</a>
-      <a href="order_takeback.php">반품&환불 관리</a>
-      <a href="prd_a.php">답변내역 관리</a>
+      <a>관 리 자</a>
+      <a href="../admin_ra_cplx_exp/a_r_c_exp_main.php">맛집/체험 관리</a>
+      <a href="../admin_ra_cplx_acm/a_r_c_acm_main.php">숙박 관리</a>
+      <a href="../admin_ra_cplx_rent/a_r_c_rent_main.php">렌트카 관리</a>
+      <a href="../admin_order_takeback/a_o_takeback_main.php">반품/취소/환불 관리</a>
+      <a href="../admin_prd_qna/a_p_qna_main.php">문의/답변 관리</a>
+      <a href="../admin_authority/a_auth_main.php">권한 관리</a>
+      <a href="../admin_main_banner/a_m_banner_main.php">메인 이미지 관리</a>
+      <a href="../admin_company_information/a_c_information_main.php">회사정보 관리</a>
     </div><!-- sidenav end -->
 
     <div class="main">
-      <div style="color:rgb(156, 156, 156); width:10%;">
-        렌트카 등록
-      </div>
-      <!-- <div class=""><img style="margin-right: 1270px; opacity:0.5; width:50px; height:50px; display: inline-block; float:right;" src="./img/Rental_cars.png" alt=""></div> -->
 
-      <hr size="1" width="80%" align="left">
-      <form action="countrt_insert.php" method="post" name="country_form">
-        <table class="table1" style="width:60%;">
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 상품 번호</td>
-            <td><input type="text" name="product_num" class="div_none" placeholder="ex)20190517서울1336" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 상품 제목</td>
-            <td><input type="text" name="title" class="div_none" placeholder="ex)[롯데] 5월6월 렌터카" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 지 역</td>
-            <td><input type="text" name="area" class="div_none" placeholder="ex)서울" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 차 종</td>
-            <td><input type="text" name="model" class="div_none" placeholder="ex)아반떼, 스파크, 모닝" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 차 번 호</td>
-            <td><input type="text" name="model_num" class="div_none" placeholder="ex)서울1336" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 대여 기간</td>
-            <td><input type="text" id="datepicker1" name="datepicker1" class="div_none" placeholder="ex) 날짜를 선택해주세요." autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 반납 기간</td>
-            <td><input type="text" id="datepicker2" name="datepicker2" class="div_none" placeholder="ex) 날짜를 선택해주세요." autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 요 금</td>
-            <td><input type="text" name="Fare" class="div_none" placeholder="ex)57,000원" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 재 고</td>
-            <td><input type="text" name="stock" class="div_none" placeholder="ex)1개" autofocus></td>
-          </tr>
-          <tr>
-            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 상품 등록 날짜</td>
-            <td><input type="text" id="datepicker3" name="datepicker3" class="div_none" placeholder="ex) 날짜를 선택해주세요." autofocus></td>
-          </tr>
-          <tr>
-            <td>렌트카 이미지 미리보기</td>
-            <td><img id="profile_image3" style="width:100px;height:100px;"></td>
-          </tr>
-          <tr>
-            <td><span style="color:rgb(240, 165, 0);">*</span> 렌트카 이미지 선택</td>
-            <td><input onchange="change_img_upload3(this)" type="file" name="fileimage3" class="div_none" placeholder="ex) 날짜를 선택해주세요." autofocus></td>
-          </tr>
-          <tr>
-            <td>상품설명 이미지 미리보기</td>
-            <td><img id="profile_image1" style="width:100px;height:100px;"></td>
-          </tr>
-          <tr>
-            <td><span style="color:rgb(240, 165, 0);">*</span> 상품설명 이미지 선택</td>
-            <td><input onchange="change_img_upload1(this)" type="file" name="fileimage1" class="div_none" placeholder="ex) 날짜를 선택해주세요." autofocus></td>
-          </tr>
-          <tr>
-            <td>상품정보 이미지 미리보기</td>
-            <td><img id="profile_image2" style="width:100px;height:100px;"></td>
-          </tr>
-          <tr>
-            <td><span style="color:rgb(240, 165, 0);">*</span> 상품정보 이미지 선택</td>
-            <td><input onchange="change_img_upload2(this)" type="file" name="fileimage2" class="div_none" placeholder="ex)2019-05-22" autofocus></td>
-          </tr>
-
-
-        </table>
-
-        <hr size="1" width="80%" align="left">
-      </form>
-      <div id="btn_cancel">
-        <input id="flight_insert" type="button" onclick="check_input()" value="등  록">
-        <input id="flight_insert" type="button" onclick="clear()" value="취  소">
-      </div>
 
 
     </div> <!-- main end -->

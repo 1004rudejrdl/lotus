@@ -1,7 +1,6 @@
+<!-- 맛집/체험 관리 메인 -->
 <?php
   session_start();
-
-
 
 ?>
 <!DOCTYPE html>
@@ -13,10 +12,8 @@
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="./css/country0.css">
   <link rel="stylesheet" href="../css/header_sidenav.css">
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script type="text/javascript">
@@ -71,40 +68,54 @@
       reader.readAsDataURL(pic3.files[0]);
     }
 
-    function change_img_upload4(pic4) {
-      fileNm = $(pic4).val();
-      if (fileNm != "") {
-        var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
-        if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
-          alert("이미지파일 (.jpg, .png, .gif) 만 업로드 가능합니다.");
-          $(pic4).val("");
-          return;
-        }
-      }
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $("#profile_image4").attr("src", e.target.result);
-      }
-      reader.readAsDataURL(pic4.files[0]);
-    }
+    $.datepicker.setDefaults({
+      dateFormat: 'yy-mm-dd',
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년'
+    });
 
-    function change_img_upload5(pic5) {
-      fileNm = $(pic5).val();
-      if (fileNm != "") {
-        var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
-        if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
-          alert("이미지파일 (.jpg, .png, .gif) 만 업로드 가능합니다.");
-          $(pic5).val("");
-          return;
-        }
-      }
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $("#profile_image5").attr("src", e.target.result);
-      }
-      reader.readAsDataURL(pic5.files[0]);
-    }
+    $(function() {
+      $("#datepicker1").datepicker({
+        minDate: 0
+      });
+    });
+    $.datepicker.setDefaults({
+      dateFormat: 'yy-mm-dd',
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년'
+    });
 
+    $(function() {
+      $("#datepicker2").datepicker({
+        minDate: 1
+      });
+    });
+    $.datepicker.setDefaults({
+      dateFormat: 'yy-mm-dd',
+      prevText: '이전 달',
+      nextText: '다음 달',
+      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+      showMonthAfterYear: true,
+      yearSuffix: '년'
+    });
+
+    $(function() {
+      $("#datepicker3,#datepicker1").datepicker({
+        minDate: 0
+      });
+    });
 
     function check_input() {
 
@@ -168,83 +179,77 @@
   <!-- main_body start -->
   <div class="main_body">
     <div id="sidenav" class="sidenav">
-      <a href="#about">관 리 자</a>
-      <a href="#services">맛집 관리</a>
-      <a href="#clients">숙박 관리</a>
-      <a href="ra_car_country_admin_insert.php">렌트카 관리</a>
-      <a href="admin_a.php">권한 관리</a>
-      <a href="company_info.php">회사정보 관리</a>
-      <a href="main.php">메인 이미지 관리</a>
-      <a href="order_takeback.php">반품&환불 관리</a>
-      <a href="prd_a.php">답변내역 관리</a>
+      <a>관 리 자</a>
+      <a href="../admin_ra_cplx_exp/a_r_c_exp_main.php">맛집/체험 관리</a>
+      <a href="../admin_ra_cplx_acm/a_r_c_acm_main.php">숙박 관리</a>
+      <a href="../admin_ra_cplx_rent/a_r_c_rent_main.php">렌트카 관리</a>
+      <a href="../admin_order_takeback/a_o_takeback_main.php">반품/취소/환불 관리</a>
+      <a href="../admin_prd_qna/a_p_qna_main.php">문의/답변 관리</a>
+      <a href="../admin_authority/a_auth_main.php">권한 관리</a>
+      <a href="../admin_main_banner/a_m_banner_main.php">메인 이미지 관리</a>
+      <a href="../admin_company_information/a_c_information_main.php">회사정보 관리</a>
     </div><!-- sidenav end -->
+
     <div class="main">
       <div style="color:rgb(156, 156, 156);">
-        메인 이미지
+         반품/취소/환불
       </div>
-      <!-- <div id="server_time" style="font-size:14px"; align="center";></div> -->
-
-
 
       <hr size="1" width="80%" align="left">
       <form action="countrt_insert.php" method="post" name="country_form">
-        <table class="table1" style="width:50%;  float:left;">
+        <table class="table1" style="width:50%;">
           <tr>
-            <td style="width:210px; height:130px; text-align:center;">메인 이미지</td>
-            <td><input onchange="change_img_upload1(this)" type="file" name="main" class="div_none" placeholder="ex)20190517서울1336" autofocus></td>
-            <td style="width:100px;"><img id="profile_image1" style="width:100px;height:100px;"></td>
-          </tr>
-          <tr>
-            <td style="width:210px; height:130px; text-align:center;">서브 이미지1</td>
-            <td><input onchange="change_img_upload2(this)" type="file" name="sub1" class="div_none" placeholder="ex)[롯데] 5월6월 렌터카" autofocus></td>
-            <td style="width:100px;"><img id="profile_image2" style="width:100px;height:100px;"></td>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 주문 구분</td>
+            <td><input type="text" name="admin_id" class="div_none" placeholder="ex)" autofocus></td>
           </tr>
           <tr>
-            <td style="width:210px; height:130px; text-align:center;">서브 이미지2</td>
-            <td><input onchange="change_img_upload3(this)" type="file" name="sub2" class="div_none" placeholder="ex)서울" autofocus></td>
-            <td style="width:100px;"><img id="profile_image3" style="width:100px;height:100px;"></td>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 주문 번호</td>
+            <td><input type="text" name="admin_pass" class="div_none" placeholder="ex)" autofocus></td>
           </tr>
-            <td style="width:210px; height:130px; text-align:center;">서브 이미지3</td>
-            <td><input onchange="change_img_upload4(this)" type="file" name="sub3" class="div_none" placeholder="ex)아반떼, 스파크, 모닝" autofocus></td>
-            <td style="width:100px;"><img id="profile_image4" style="width:100px;height:100px;"></td>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 상품 이름</td>
+            <td><input type="text" name="admin_name" class="div_none" placeholder="ex)" autofocus></td>
           </tr>
-            <td style="width:210px; height:130px; text-align:center;">서브 이미지4</td>
-            <td><input onchange="change_img_upload5(this)" type="file" name="sub4" class="div_none" placeholder="ex)서울1336" autofocus></td>
-            <td style="width:100px;"><img id="profile_image5" style="width:100px;height:100px;"></td>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 상품 수량</td>
+            <td><input type="text" name="admin_name" class="div_none" placeholder="ex)" autofocus></td>
           </tr>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 상품 가격</td>
+            <td><input type="text" name="admin_name" class="div_none" placeholder="ex)" autofocus></td>
+          </tr>
+
+        </table> <br>
+        <table class="table1" style="width:50%;">
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 아 이 디</td>
+            <td><input type="text" name="admin_id" class="div_none" placeholder="ex)" autofocus></td>
+          </tr>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 배송 상태</td>
+            <td><input type="text" name="admin_pass" class="div_none" placeholder="ex)" autofocus></td>
+          </tr>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 주문 날짜</td>
+            <td><input type="text" name="admin_name" class="div_none" placeholder="ex)" autofocus></td>
+          </tr>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 반품 여부</td>
+            <td><input type="text" name="admin_name" class="div_none" placeholder="ex)" autofocus></td>
+          </tr>
+          <tr>
+            <td style="width:210px;"><span style="color:rgb(240, 165, 0);">*</span> 환불 여부</td>
+            <td><input type="text" name="admin_name" class="div_none" placeholder="ex)" autofocus></td>
+          </tr>
+
         </table>
-        <table style="width:30%; float:left;">
-          <tr>
-            <!-- <td style="width:200px;">메인 이미지 미리보기</td> -->
-
-          </tr>
-          <tr>
-            <!-- <td style="width:200px;">서브 이미지1 미리보기</td> -->
-
-          </tr>
-          <tr>
-            <!-- <td style="width:200px;">서브 이미지2 미리보기</td> -->
-
-          </tr>
-          <tr>
-            <!-- <td style="width:200px;">서브 이미지3 미리보기</td> -->
-
-          </tr>
-          <tr>
-            <!-- <td style="width:200px;">서브 이미지4 미리보기</td> -->
-
-          </tr>
-        </table>
-
-
-
-        <hr size="1" width="80%" align="left" style="background-color:rgb(199, 199, 199);">
+        <hr size="1" width="80%" align="left">
       </form>
       <div id="btn_cancel">
-        <input id="flight_insert" type="button" onclick="check_input()" value="등  록">
-        <input id="flight_insert" type="button" onclick="clear()" value="취  소">
+        <input id="flight_insert" type="button" onclick="check_input()" value="확  인">
       </div>
-
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
 
     </div> <!-- main end -->
   </div> <!-- main_body end -->
