@@ -98,10 +98,10 @@
         <button class="logo"><a href="./index.php"> <img src="./main_img/lotus_logo_img2.png"></a></button>
       </div> -->
       <div class="dropdown dd_right">
-        <button class="dropbtn"><a href="./index.php">LOGIN</a></button>
+        <button class="dropbtn"><a href="./mb_login/mb_login.php">LOGIN</a></button>
       </div> <!-- dropdown -->
       <div class="dropdown dd_right">
-        <button class="dropbtn"><a href="./index.php">JOIN</a></button>
+        <button class="dropbtn"><a href="./mb_login/mb_join_form.php">JOIN</a></button>
       </div> <!-- dropdown -->
     </div> <!-- topnav end -->
     <img id="header_img" src="./main_img/lotus_main_img3.png" alt="SEA" style="width:100%;">
