@@ -15,8 +15,8 @@
   width: 100%;
 }
 .sidenav {
-  min-width: 15%;
   position: fixed;
+  min-width: 15%;
   z-index: 1;
   top: 200px;
   left: 0px;
@@ -72,6 +72,18 @@
   }
 }
 @media screen and (max-width: 1100px) {
+  .main {
+    max-width: 83.5%;
+    margin-left: 16%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .main {
+    max-width: 83.5%;
+    margin-left: 16%;
+  }
+}
+@media screen and (max-width: 900px) {
   .main {
     max-width: 83.5%;
     margin-left: 16%;

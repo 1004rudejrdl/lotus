@@ -1,7 +1,22 @@
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {
+  sidenavFixFunc()
   scrollFunction() //goto top button
 };
+
+var footer_bg = document.getElementById("footer_bg");
+var sidenav = document.getElementById("sidenav");
+var sticky = footer_bg.offsetTop-footer_bg.offsetHeight*4;
+
+function sidenavFixFunc() {
+  // var h_sticky = sticky - footer_bg.offsetHeight*2;
+  if (window.pageYOffset < sticky) {
+    sidenav.style.display = "block";
+  } else if (window.pageYOffset > sticky) {
+    sidenav.style.display = "none";
+  }
+}
+
 //goto top button
 function scrollFunction() {
   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {

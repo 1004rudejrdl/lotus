@@ -88,6 +88,4 @@
   </div>
   <!-- sticky social icon end-->
   <!-- common effect end-->
-
-  <script src="../js/effect_common.js"></script><!-- Sticky event를 위해서 상단에 올리지 못함 -->
   <!-- header end -->

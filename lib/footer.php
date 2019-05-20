@@ -1,6 +1,6 @@
 <?php  ?>
 <!-- footer start -->
-<div class="footer_bg">
+<div id="footer_bg" class="footer_bg">
   <div class="footer">
     <ul>
       <li class="footerlist1">회사소개</li>
@@ -33,3 +33,5 @@
   </div> <!-- footer end -->
 </div>
 <!-- footer_bg end -->
+
+  <script src="../js/effect_common.js"></script><!-- Sticky event를 위해서 상단에 올리지 못함 -->

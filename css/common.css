@@ -289,6 +289,9 @@ body, h2, h3 {
   }
 }
 @media screen and (max-width: 1300px) {
+  .dropdown .dropbtn { /*메가메뉴 최상위 버튼*/
+    padding: 10px 20px;
+  }
   .row{
     /* 메뉴바 내부 에서 왼쪽여백, 이미지로 채우거나 기타 가능 */
     padding-left:75px;
