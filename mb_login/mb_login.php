@@ -49,17 +49,17 @@
     //로그인 이미지 넣을거임
   </div>
   <div class="container">
-  <form class="" action="index.html" method="post">
+  <form class="" action="./check_login.php?mode=login" method="post">
     <table class="login_table">
       <tr>
-        <td><input type="text" name="username" placeholder="Username" required> </td>
+        <td><input type="text" name="id" placeholder="Username" required> </td>
         <td rowspan="2"><input type="submit" name="" value="로그인"> </td>
       </tr>
       <tr>
         <td><input type="password" name="password" placeholder="Password" required> </td>
       </tr>
     </table>
-
+    <a href="./mb_join_form.php">회원이 아니시라면 가입하세요!</a>
   </form>
 <form action="/action_page.php">
   <div class="row">
@@ -69,6 +69,8 @@
 
     <div class="col">
       <div id="fb-login-button"class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
+      <script type="text/javascript">
+      </script>
       <a href="../sns_login_api/facebook_login.php" class="fb btn">
         <i class="fa fa-facebook fa-fw"></i> Login with Facebook
       </a>
@@ -90,6 +92,11 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+        document.getElementById('g_id').val(profile.getId());
+        var name=profile.getGivenName+profile.getGivenName;
+        document.getElementById('g_name').val(name);
+        document.getElementById('g_pic').val(profile.getImageUrl());
+        document.getElementById('g_email').val(profile.getEmail());
       }
     </script>
     <a href="../sns_login_api/naverlogin.php" class="naver btn"><img class="naver_icon" src="../image/naver_login_icon_green.png" alt="">   Login with Naver </a>
@@ -165,13 +172,17 @@ window.fbAsyncInit = function() {
 };
 
 (function(d, s, id){
+
    var js, fjs = d.getElementsByTagName(s)[0];
    if (d.getElementById(id)) {return;}
    js = d.createElement(s); js.id = id;
    js.src = "https://connect.facebook.net/en_US/sdk.js";
    fjs.parentNode.insertBefore(js, fjs);
    console.log(js.id);
- }(document, 'script', 'facebook-jssdk'));
+   document.getElementById('fb_id').val(js.id);
+ }
+ (document, 'script', 'facebook-jssdk')
+);
 </script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.3&appId=435335760594195&autoLogAppEvents=1"></script>
@@ -182,6 +193,41 @@ data-share="true"
 data-width="450"
 data-show-faces="true">
 </div>
+<form id="sns_login_form" action="./check_login.php?mode=kakao" method="post">
+  <input type="hidden" id="k_id" name="k_id" value="">
+  <input type="hidden" id="k_email" name="k_email" value="">
+  <input type="hidden" id="k_name" name="k_name" value="">
+  <input type="hidden" id="k_pic" name="k_pic" value="">
+  <input type="hidden" id="k_birth" name="k_birth" value="">
+  <input type="hidden" id="k_gender" name="k_gender" value="">
+</form>
+<form class="" action="./check_login.php?mode=naver" method="post">
+  <input type="hidden" id="n_id" name="n_id" value="">
+  <input type="hidden" id="n_email" name="n_email" value="">
+  <input type="hidden" id="n_birth" name="n_birth" value="">
+  <input type="hidden" id="n_gender" name="n_gender" value="">
+  <input type="hidden" id="n_name" name="n_name" value="">
+  <input type="hidden" id="n_pic" name="n_pic" value="">
+</form>
+<form class="" action="./check_login.php?mode=fb" method="post">
+  <input type="hidden" id="fb_id" name="fb_id" value="">
+</form>
+<form class="" action="./check_login.php?mode=google" method="post">
+  <input type="hidden" id="g_id" name="g_id" value="">
+  <input type="hidden" id="g_name" name="g_name" value="">
+  <input type="hidden" id="g_pic" name="g_pic" value="">
+  <input type="hidden" id="g_email" name="g_email" value="">
+</form>
+<form class="" action="index.html" method="post">
+
+</form>
+
+  <input type="hidden" id="n_email" name="n_email" value="">
+  <input type="hidden" id="n_gender" name="n_gender" value="">
+  <input type="hidden" id="n_id" name="n_id" value="">
+  <input type="hidden" id="n_name" name="n_name" value="">
+  <input type="hidden" id="n_profile_image" name="n_profile_image" value="">
+  <input type="hidden" id="n_birth" name="n_birth" value="">
 </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
