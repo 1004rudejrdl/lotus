@@ -35,7 +35,7 @@
 </div><!-- sidenav end -->
 <div class="main">
   <div class="free_header">
-    <p class="notice">NOTICE</p>
+    <span class="notice">NOTICE</span>
   </div>
   <div class="list_search_bar">
     <form class="board_form" action="./cm_free_exhibit.php?mode=search" method="post">
@@ -118,7 +118,7 @@
   if (!empty($_GET["mode"])&&$_GET["mode"]=="select_id_content") {
     echo '<button class="btn_write"><a href="./cm_free_exhibit.php?page=1">목록</a></button>';
   }
-    echo '<button class="btn_write"><a href="./cm_write_form.php?mode=insert_cm_free&page='.$page.'">글쓰기</a></button>';
+    echo '<button class="btn_write"><a href="./cm_free_write_form.php?mode=insert_cm_free&page='.$page.'">글쓰기</a></button>';
    ?>
    <div class="page_to">
      <a href="./cm_free_exhibit.php?page=1"><<</a>
