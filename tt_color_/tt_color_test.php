@@ -27,28 +27,28 @@
 <div class="clear"></div>
 <div class="color">
 <div id="list1">
-  <div id="list1_1" onclick="window.open('tt_color_test.php','','scrollbars=no,toolbars=no,width=200,height=230')">
+  <div id="list1_1" onclick="window.open('tt_color_red.php','','scrollbars=no,toolbars=no,width=350,height=530')">
       빨강
   </div>
   <div id="list2">
   </div>
 </div>
 <div id="blue">
-  <div id="blue2" onclick="window.open('tt_color_test.php','','scrollbars=no,toolbars=no,width=200,height=230')">
+  <div id="blue2" onclick="window.open('tt_color_blue.php','','scrollbars=no,toolbars=no,width=350,height=530')">
       파랑
   </div>
   <div id="blue3">
   </div>
 </div>
 <div id="yellow">
-  <div id="yellow2" onclick="window.open('tt_color_test.php','','scrollbars=no,toolbars=no,width=200,height=230')">
+  <div id="yellow2" onclick="window.open('tt_color_yellow.php','','scrollbars=no,toolbars=no,width=350,height=530')">
     노랑
   </div>
   <div id="yellow3">
   </div>
 </div>
 <div id="pink">
-  <div id="pink2" onclick="window.open('tt_color_test.php','','scrollbars=no,toolbars=no,width=200,height=230')">
+  <div id="pink2" onclick="window.open('tt_color_pink.php','','scrollbars=no,toolbars=no,width=350,height=530')">
     분홍
   </div>
   <div id="pink3">

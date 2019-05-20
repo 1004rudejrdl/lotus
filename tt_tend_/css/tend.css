@@ -1,0 +1,13 @@
+.main{
+  background-image: url("../img/tree.jpg");
+height: 1000px;
+}
+.animal{
+  float: left;
+  text-align: center;
+  width: 25%;
+}
+h3{
+  text-align: center;
+  color: white;
+}
