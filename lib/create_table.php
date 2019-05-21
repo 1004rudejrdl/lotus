@@ -232,7 +232,7 @@ function create_table($conn, $table_name){
           case 'prd_shop_detail' :
             $sql = "CREATE TABLE `prd_shop_detail` (
                     `shop_num` int(11) NOT NULL,
-                    `prd_num` char(20) NOT NULL,
+                    `prd_num` int NOT NULL AUTO_INCREMENT,
                     `prd_regist_day` char(20) NOT NULL,
                     `prd_name` varchar(30) NOT NULL,
                     `prd_type` char(1) NOT NULL,
