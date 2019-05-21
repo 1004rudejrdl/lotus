@@ -19,17 +19,14 @@
   <title>Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/login.css">
-  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script type="text/javascript"></script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/common.css">
   <!-- <link rel="stylesheet" href="../css/join.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
 </head>
 <body>
@@ -61,7 +58,9 @@
     </table>
     <a href="./mb_join_form.php">회원이 아니시라면 가입하세요!</a>
   </form>
-<form action="/action_page.php">
+  <form class="" action="index.html" method="post">
+
+  </form>
   <div class="row">
     <div class="vl">
       <!-- <span class="vl-innertext">or</span> -->
@@ -69,15 +68,7 @@
 
     <div class="col">
       <div id="fb-login-button"class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
-      <script type="text/javascript">
-      </script>
-      <a href="../sns_login_api/facebook_login.php" class="fb btn">
-        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-      </a>
-      <a href="#" class="twitter btn">
-        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-      </a>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -92,14 +83,14 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-        document.getElementById('g_id').val(profile.getId());
-        var name=profile.getGivenName+profile.getGivenName;
-        document.getElementById('g_name').val(name);
-        document.getElementById('g_pic').val(profile.getImageUrl());
-        document.getElementById('g_email').val(profile.getEmail());
+        document.getElementById('g_id').value=profile.getId().value;
+        var name=profile.getGivenName().value+profile.getGivenName().value;
+        document.getElementById('g_name').value=name;
+        document.getElementById('g_pic').value=profile.getImageUrl().value;
+        document.getElementById('g_email').value=profile.getEmail().value;
+        document.getElementById('google_login_form').submit();
       }
     </script>
-    <a href="../sns_login_api/naverlogin.php" class="naver btn"><img class="naver_icon" src="../image/naver_login_icon_green.png" alt="">   Login with Naver </a>
     <!-- 네이버아이디로로그인 버튼 노출 영역 -->
     <div id="naver_id_login"></div>
     <!-- //네이버아이디로로그인 버튼 노출 영역 -->
@@ -113,49 +104,7 @@
       naver_id_login.init_naver_id_login();
     </script>
     <a href="javascript:loginWithKakao()" id="kakao-login-btn"></a>
-    <script type='text/javascript'>
-      //<![CDATA[
-        // 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('b6eb0975208a93028ab8c11c89b6ed2e');
-        // 카카오 로그인 버튼을 생성합니다.
-          Kakao.Auth.createLoginButton({
-            container: '#kakao-login-btn'
-          });
-        function loginWithKakao() {
-          Kakao.Auth.loginForm({
-             success: function(authObj) {
-             Kakao.API.request({
-                url: '/v2/user/me',
-                success: function(res) {
-                    alert(JSON.stringify(res));
-                     console.log(JSON.stringify(res.id));
-                     var kid=JSON.stringify(res.id);
-                     console.log(JSON.stringify(res.kakao_account['email']));
-                     var kemail=JSON.stringify(res.kakao_account['email']);
-                     console.log(JSON.stringify(res.properties.nickname));
-                     var knick=JSON.stringify(res.properties.nickname);
-                     console.log(JSON.stringify(res.properties.profile_image));
-                     var kprofile_image=JSON.stringify(res.properties.profile_image);
-                     console.log(JSON.stringify(res.kakao_account['birthday']));
-                     var kbirthday=JSON.stringify(res.kakao_account['birthday']);
-                     console.log(JSON.stringify(res.kakao_account['gender']));
-                     var kgender=JSON.stringify(res.kakao_account['gender']);
-                      //document.
-                       //document.member_form.submit();
-                },
-                fail: function(error) {
-                  alert(JSON.stringify(error))
-                }
-              });
-              },
-           fail: function(err) {
 
-           }
-          });
-        };
-
-      //]]>
-    </script>
     </div>
 
     <div class="col">
@@ -179,7 +128,7 @@ window.fbAsyncInit = function() {
    js.src = "https://connect.facebook.net/en_US/sdk.js";
    fjs.parentNode.insertBefore(js, fjs);
    console.log(js.id);
-   document.getElementById('fb_id').val(js.id);
+
  }
  (document, 'script', 'facebook-jssdk')
 );
@@ -193,7 +142,7 @@ data-share="true"
 data-width="450"
 data-show-faces="true">
 </div>
-<form id="sns_login_form" action="./check_login.php?mode=kakao" method="post">
+<form id="kakao_login_form" action="./check_login.php?mode=kakao" method="post">
   <input type="hidden" id="k_id" name="k_id" value="">
   <input type="hidden" id="k_email" name="k_email" value="">
   <input type="hidden" id="k_name" name="k_name" value="">
@@ -201,7 +150,7 @@ data-show-faces="true">
   <input type="hidden" id="k_birth" name="k_birth" value="">
   <input type="hidden" id="k_gender" name="k_gender" value="">
 </form>
-<form class="" action="./check_login.php?mode=naver" method="post">
+<form id="naver_login_form" action="./check_login.php?mode=naver" method="post">
   <input type="hidden" id="n_id" name="n_id" value="">
   <input type="hidden" id="n_email" name="n_email" value="">
   <input type="hidden" id="n_birth" name="n_birth" value="">
@@ -209,25 +158,15 @@ data-show-faces="true">
   <input type="hidden" id="n_name" name="n_name" value="">
   <input type="hidden" id="n_pic" name="n_pic" value="">
 </form>
-<form class="" action="./check_login.php?mode=fb" method="post">
+<form id="fb_login_form" action="./check_login.php?mode=fb" method="post">
   <input type="hidden" id="fb_id" name="fb_id" value="">
 </form>
-<form class="" action="./check_login.php?mode=google" method="post">
+<form id="google_login_form" action="./check_login.php?mode=google" method="post">
   <input type="hidden" id="g_id" name="g_id" value="">
   <input type="hidden" id="g_name" name="g_name" value="">
   <input type="hidden" id="g_pic" name="g_pic" value="">
   <input type="hidden" id="g_email" name="g_email" value="">
 </form>
-<form class="" action="index.html" method="post">
-
-</form>
-
-  <input type="hidden" id="n_email" name="n_email" value="">
-  <input type="hidden" id="n_gender" name="n_gender" value="">
-  <input type="hidden" id="n_id" name="n_id" value="">
-  <input type="hidden" id="n_name" name="n_name" value="">
-  <input type="hidden" id="n_profile_image" name="n_profile_image" value="">
-  <input type="hidden" id="n_birth" name="n_birth" value="">
 </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
@@ -235,5 +174,54 @@ data-show-faces="true">
 <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/footer.php"; ?>
 <!-- footer_bg end -->
 </body>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('b6eb0975208a93028ab8c11c89b6ed2e');
+    // 카카오 로그인 버튼을 생성합니다.
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn'
+      });
+    function loginWithKakao() {
+      Kakao.Auth.loginForm({
+         success: function(authObj) {
+         Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+                alert(JSON.stringify(res));
+                 console.log(JSON.stringify(res.id));
+                 console.log(JSON.stringify(res.kakao_account['email']));
+                 console.log(JSON.stringify(res.properties.nickname));
+                 console.log(JSON.stringify(res.properties.profile_image));
+                 console.log(JSON.stringify(res.kakao_account['birthday']));
+                 console.log(JSON.stringify(res.kakao_account['gender']));
+                 // opener.kakao_login_form.k_id.value=res.id.value;
+                 // opener.kakao_login_form.k_email.value=res.kakao_account['email'].value;
+                 // opener.kakao_login_form.k_pic.value=res.properties.profile_image.value;
+                 // opener.kakao_login_form.k_birth.value=res.kakao_account['birthday'].value;
+                 // opener.kakao_login_form.k_gender.value=res.kakao_account['gender'].value;
+                 // opener.kakao_login_form.submit();
+                 // opener.form['kakao_login_form'].elements['k_id'].value=res.id;
+                 // opener.form['kakao_login_form'].elements['k_email'].value=res.kakao_account['email'];
+                 // opener.form['kakao_login_form'].elements['k_pic'].value=res.properties.profile_image;                     document.form["kakao_login_form"].elements["k_birth"].value=kbirthday;
+                 // opener.form['kakao_login_form'].elements['k_birth'].value=res.kakao_account['birthday'];
+                 // opener.form['kakao_login_form'].elements['k_gender'].value=res.kakao_account['gender'];
+                 // opener.form['kakao_login_form'].submit();
+                 location.href="./check_email.php?mode=kakao&id=";
+                 window.close();
+            },
+            fail: function(error) {
+              alert(JSON.stringify(error))
+            }
+          });
+          },
+       fail: function(err) {
+       }
+      });
+    };
+  //]]>
+</script>
 </html>

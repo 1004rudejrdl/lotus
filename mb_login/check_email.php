@@ -2,7 +2,6 @@
 <html>
 <head>
 	<meta charset=utf-8>
-	<link href=../css/join.css?ver=1 rel=stylesheet>
 </head>
 	<script>
     function check_exp(elem, exp, msg){

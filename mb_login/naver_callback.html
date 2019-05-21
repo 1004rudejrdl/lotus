@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -10,7 +10,7 @@
   // 접근 토큰 값 출력
   alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
-  naver_id_login.get_naver_userprofile("naverSignInCallback()");
+    naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
   function naverSignInCallback() {
     alert(naver_id_login.getProfileData('email'));
@@ -19,20 +19,22 @@
     alert(naver_id_login.getProfileData('name'));
     alert(naver_id_login.getProfileData('profile_image'));
     alert(naver_id_login.getProfileData('birthday'));
-    console.log('email');
-    console.log('gender');
-    console.log('id');
-    console.log('name');
-    console.log('profile_image');
-    console.log('birthday');
-    opener.document.n_email.value=naver_id_login.getProfileData('email');
-    opener.document.n_gender.value=naver_id_login.getProfileData('gender');
-    opener.document.n_id.value=naver_id_login.getProfileData('id');
-    opener.document.n_name.value=naver_id_login.getProfileData('name');
-    opener.document.n_profile_image.value=naver_id_login.getProfileData('profile_image');
-    opener.document.n_birth.value=naver_id_login.getProfileData('birthday');
-    opener.document.sns_login_form.submit();
+    // window.opener.document.naver_login_form.n_email.value=naver_id_login.getProfileData('email').value;
+    // window.opener.document.naver_login_form.n_gender.value=naver_id_login.getProfileData('gender').value;
+    // window.opener.document.naver_login_form.n_id.value=naver_id_login.getProfileData('id').value;
+    // window.opener.document.naver_login_form.n_name.value=naver_id_login.getProfileData('name').value;
+    // window.opener.document.naver_login_form.n_profile_image.value=naver_id_login.getProfileData('profile_image').value;
+    // window.opener.document.naver_login_form.n_birth.value=naver_id_login.getProfileData('birthday').value;
+    // window.opener.document.naver_login_form.submit();
+    // opener.document.getElementById('n_email').value
+    location.href="./check_email.php";
     window.close();
+    // console.log('email');
+    // console.log('gender');
+    // console.log('id');
+    // console.log('name');
+    // console.log('profile_image');
+    // console.log('birthday');
   }
 </script>
 </body>
