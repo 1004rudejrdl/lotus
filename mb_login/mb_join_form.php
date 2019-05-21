@@ -2,39 +2,30 @@
 <?php
 session_start();
 include './Sendmail.php';
-$id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
+$g_id=$fb_id=$n_id=$k_id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
 <?php
-  if(!empty($_GET['mode'])&&($_GET['mode']=="sns_join")){
-    $id=$_GET['id'];
+  if(!empty($_GET['mode'])&&($_GET['mode']=="google")){
+    $g_id=$_GET['id'];
     $fullemail=$_GET['email'];
     $email=explode('@',$fullemail);
     $name=$_GET['name'];
-    // echo "<script>document.getElementById('user_name').value=$name;
-    // document.getElementById('confirmed_email1').value=$email[0];
-    // document.getElementById('confirmed_email2').value=$email[1];</script>";
-  }else if(!empty($_GET['mode'])&&($_GET['mode']=="kakao")){
-    $id=$_GET['id'];
+  }else if(!empty($_GET['mode'])&&($_GET['mode']=="facebook")){
+    $fb_id=$_GET['id'];
     $fullemail=$_GET['email'];
     $email=explode('@',$fullemail);
-    $birth=$_GET['birth'];
-    $gender=$_GET['gender'];
-    // echo "<script>document.getElementById('user_name').value='$name';</script>";
-    // echo "<script>document.getElementById('confirmed_email1').value='$email[0]';</script>";
-    // echo "<script>document.getElementById('confirmed_email2').value='$email[1]';</script>";
-     echo "<script>if($('input[name='gender']:radio').val()!=$gender){
-       $('input[name='gender']:radio[value='male']').prop('checked',false);
-       $('input[name='gender']:radio[value='female']').prop('checked',true);
-     }</script>";
+    $name=$_GET['name'];
+  }else if(!empty($_GET['mode'])&&($_GET['mode']=="naver")){
+    $n_id=$_GET['id'];
+    $fullemail=$_GET['email'];
+    $email=explode('@',$fullemail);
+  }else if(!empty($_GET['mode'])&&($_GET['mode']=="kakao")){
+    $k_id=$_GET['id'];
+    $fullemail=$_GET['email'];
+    $email=explode('@',$fullemail);
   }
 ?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,6 +45,13 @@ $id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script type="text/javascript">
+  $(document).ready(function() {
+    if($('#confirmed_email1').value==""){
+      $('#check_button').attr("src", "./img/none_check_email.png");
+    }else{
+      $('#check_button').attr("src", "./img/check_email.png");
+    }
+  });
 $(document).ready(function() {
   $('#user_name').blur(function(event) {
     $('#profile_name').val($('#user_name').val());
@@ -67,6 +65,11 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#mem_wei').blur(function(event) {
     $('#profile_wei').val($('#mem_wei').val());
+  });
+});
+$(document).ready(function() {
+  $('#introduce_myself_text').blur(function(event) {
+    $('#introduce_myself_profile').val($('#introduce_myself_text').val());
   });
 });
 $(document).ready(function() {
@@ -172,7 +175,7 @@ reader.readAsDataURL(pic.files[0]);
   <a href="#contact">렌트카</a>
 </div><!-- sidenav end -->
 <div class="main">
-  <form name="login_form" action="index.html" method="post">
+  <form name="login_form" action="member_join.php?mode=member_join" method="post">
     <table>
       <th>로그인</th>
       <tr>
@@ -196,8 +199,8 @@ reader.readAsDataURL(pic.files[0]);
         <td colspan="3">
           <input type="text" id="confirmed_email1" name="confirmed_email1" value="<?=$email[0]?>" readonly required/>@
           <input type="text" id="confirmed_email2" name="confirmed_email2" value="<?=$email[1]?>" ReadOnly required/>
-          <a name="check_button_anchor" href="#">
-            <img name="check_button"id="check_button" src="./img/none_check_email.png" onclick="check_email()" style="height: 50px;">
+          <a id="check_button_anchor" name="check_button_anchor" href="#">
+            <img name="check_button"id="check_button" onclick="check_email()" style="height: 50px;">
           </a>
         </td>
       </tr>
@@ -269,13 +272,13 @@ reader.readAsDataURL(pic.files[0]);
         </td>
         <td>생일</td>
         <td colspan="4">
-          Date: <input type="text" id="datepicker">
+          Date: <input type="text" name="datepicker" id="datepicker">
         </td>
       </tr>
       <tr>
         <td>직업</td>
         <td colspan="4" ><select id="mem_job" name="mem_job">
-          <option value="1">무직</option>
+          <option value="1" selected>무직</option>
           <option value="2">공무원</option>
           <option value="3">학생</option>
           <option value="4">자영업</option>
@@ -293,9 +296,15 @@ reader.readAsDataURL(pic.files[0]);
     </table>
     성별 <input type="radio" name="gender" id="gender" value="male" checked="checked"> <label for="male">남성</label>
     <input type="radio" name="gender" id="gender" value="female"><label for="female">여성</label>
+    <input type="hidden" name="g_id" value="<?=$g_id?>">
+    <input type="hidden" name="fb_id" value="<?=$fb_id?>">
+    <input type="hidden" name="n_id" value="<?=$n_id?>">
+    <input type="hidden" name="k_id" value="<?=$k_id?>">
+    <input type="submit" name="button_submit" value="Log In">
+    <input type="reset" name="button_reset" value="재작성">
+    <textarea name="introduce_myself_text" rows="8" cols="80"placeholder="자신을 소개해주세요.(최대 500자)"style="resize:none;"></textarea>
   </form>
     <br>
-    <textarea name="introduce_myself_text" rows="8" cols="80"placeholder="자신을 소개해주세요.(최대 500자)"style="resize:none;"></textarea>
     <h2>프로필 미리보기</h2>
     <div class="">
       <img id="profile_image1" style="width:600px;height:450px;" >
@@ -306,8 +315,6 @@ reader.readAsDataURL(pic.files[0]);
       체중<input type="text" id="profile_wei" name="profile_wei" value="">
       성별 <input type="text" id="profile_gender" name="profile_gender" value="">
       <textarea name="introduce_myself_profile" rows="8" cols="80"style="resize:none;"></textarea>
-      <input type="submit" name="button_submit" value="Log In">
-      <input type="reset" name="button_reset" value="재작성">
     </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->

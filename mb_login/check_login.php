@@ -67,18 +67,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
   var_dump($k_email);
   $k_id=$_GET['id'];
   var_dump($k_id);
-  if($_GET['birth']=="undefined"){
-    $k_birth="undefined";
-  }else{
-    $k_birth=$_GET['birth'];
-  }
-  var_dump($k_birth);
-  if($_GET['gender']=="undefined"){
-    $k_gender="undefined";
-  }else{
-    $k_gender=$_GET['gender'];
-  }
-  var_dump($k_gender);
+
 
   //3-3) db에서 id와 pass가 모두 일치 하는 경우 값을 받아옴
   $sql="select * from member where kakao = '$k_id'";
@@ -90,7 +79,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
   // var_dump($rowcount);
   if(!$rowcount){
     echo "<script>alert('아이디가 없으므로, 회원가입창으로 이전됩니다.');
-    location.href='./mb_join_form.php?mode=naka&id=$k_id&email=$k_email&gender=$k_gender&birth=$k_birth'
+    location.href='./mb_join_form.php?mode=kakao&id=$k_id&email=$k_email'
     </script> "; //echo는 html언어. html소스만 보내주면 소스를 받은 웹브라우저가 실행(웹브라우저 html해독기가 실행) php와 관련 없음
     mysqli_close($conn);
     exit; //login.php가 끝이 남(php해석기가 해석을 더 이상 하지 않음)
@@ -104,18 +93,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
   var_dump($n_email);
   $n_id=$_GET['id'];
   var_dump($n_id);
-  if($_GET['birth']=="undefined"){
-    $n_birth="undefined";
-  }else{
-    $n_birth=$_GET['birth'];
-  }
-  var_dump($n_birth);
-  if($_GET['gender']=="undefined"){
-    $n_gender="undefined";
-  }else{
-    $n_gender=$_GET['gender'];
-  }
-  var_dump($n_gender);
+
 
   //3-3) db에서 id와 pass가 모두 일치 하는 경우 값을 받아옴
   $sql="select * from member where naver = '$n_id'";
@@ -127,7 +105,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
   // var_dump($rowcount);
   if(!$rowcount){
     echo "<script>alert('아이디가 없으므로, 회원가입창으로 이전됩니다.');
-    location.href='./mb_join_form.php?mode=naka&id=$n_id&email=$n_email&gender=$n_gender&birth=$n_birth'
+    location.href='./mb_join_form.php?mode=naver&id=$n_id&email=$n_email'
     </script> "; //echo는 html언어. html소스만 보내주면 소스를 받은 웹브라우저가 실행(웹브라우저 html해독기가 실행) php와 관련 없음
     mysqli_close($conn);
     exit; //login.php가 끝이 남(php해석기가 해석을 더 이상 하지 않음)
@@ -136,7 +114,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     // 세션값을 주려면 제일 위에 sessi on_start를 해야함
     $_SESSION['userid']=$row['id'];
   }
-}else if(isset($_GET['mode'])&&$_GET['mode']=="fb"){
+}else if(isset($_GET['mode'])&&$_GET['mode']=="facebook"){
   $fb_id=$_GET['id'];
   var_dump($fb_id);
   $fb_email=$_GET['email'];
@@ -152,7 +130,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
   // var_dump($rowcount);
   if(!$rowcount){
     echo "<script>alert('아이디가 없으므로, 회원가입창으로 이전됩니다.');
-    location.href='./mb_join_form.php?mode=sns_join&id=$fb_id&email=$fb_email&name=$fb_name'
+    location.href='./mb_join_form.php?mode=facebook&id=$fb_id&email=$fb_email&name=$fb_name'
     </script> "; //echo는 html언어. html소스만 보내주면 소스를 받은 웹브라우저가 실행(웹브라우저 html해독기가 실행) php와 관련 없음
     mysqli_close($conn);
     exit; //login.php가 끝이 남(php해석기가 해석을 더 이상 하지 않음)
@@ -177,7 +155,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
   // var_dump($rowcount);
   if(!$rowcount){
     echo "<script>alert('아이디가 없으므로, 회원가입창으로 이전됩니다.');
-    location.href='./mb_join_form.php?mode=sns_join&id=$g_id&email=$g_email&name=$g_name'
+    location.href='./mb_join_form.php?mode=google&id=$g_id&email=$g_email&name=$g_name'
     </script> "; //echo는 html언어. html소스만 보내주면 소스를 받은 웹브라우저가 실행(웹브라우저 html해독기가 실행) php와 관련 없음
     mysqli_close($conn);
     exit; //login.php가 끝이 남(php해석기가 해석을 더 이상 하지 않음)
