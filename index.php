@@ -86,7 +86,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a href="../cm_free_/cm_free_exhibit.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../cm_free/cm_free_exhibit.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
