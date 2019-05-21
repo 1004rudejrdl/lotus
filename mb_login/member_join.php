@@ -6,6 +6,7 @@ include '../lib/create_table.php';
 create_table($conn, 'member'); //낙서장 테이블 생성
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="member_join"){
+    include './upload_img.php';
     $id = test_input($_POST["id"]);
     $q_id = mysqli_real_escape_string($conn, $id);
     $sql="select * from member where id = '$q_id'";
@@ -49,7 +50,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="member_join"){
         die('Error: ' . mysqli_error($conn));
       }
       $sql="INSERT INTO member_meeting (id,job,height,weight,self_info,img,mb_type,maching,maching_day) ";
-      $sql.=" VALUES ('$id','$job','$hei','$wei','$self_info','$birth',0,null,null)";
+      $sql.=" VALUES ('$id','$job','$hei','$wei','$self_info','$upload_file',0,null,null)";
       $result = mysqli_query($conn,$sql);
       if (!$result) {
         die('Error: ' . mysqli_error($conn));
