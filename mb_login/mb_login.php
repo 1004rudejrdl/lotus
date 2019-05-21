@@ -67,7 +67,9 @@
     </div>
 
     <div class="col">
-      <div id="fb-login-button"class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
+      <a href="javascript:void(0);" onclick="fbLoginAction();" class="fb btn">
+        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+      </a>
       <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
       function onSignIn(googleUser) {
@@ -83,12 +85,14 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-        document.getElementById('g_id').value=profile.getId().value;
-        var name=profile.getGivenName().value+profile.getGivenName().value;
-        document.getElementById('g_name').value=name;
-        document.getElementById('g_pic').value=profile.getImageUrl().value;
-        document.getElementById('g_email').value=profile.getEmail().value;
-        document.getElementById('google_login_form').submit();
+        var id=profile.getId();
+        var email=profile.getEmail();
+        var name=profile.getFamilyName()+profile.getGivenName();
+        // document.getElementById('g_id').value=profile.getId().value;
+        // document.getElementById('g_name').value=name;
+        // document.getElementById('g_pic').value=profile.getImageUrl().value;
+        // document.getElementById('g_email').value=profile.getEmail().value;
+        location.href="./check_login.php?mode=google&id="+id+"&name="+name+"&email="+email;
       }
     </script>
     <!-- 네이버아이디로로그인 버튼 노출 영역 -->
@@ -111,27 +115,45 @@
 
 </div>
 <script>
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '435335760594195',
-    xfbml      : true,
-    version    : 'v3.3'
-  });
-  FB.AppEvents.logPageView();
-};
-
 (function(d, s, id){
-
    var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
+   if (d.getElementById(id))
+   return;
+   js = d.createElement(s);
+   js.id = id;
+   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8&appId=435335760594195";
    fjs.parentNode.insertBefore(js, fjs);
-   console.log(js.id);
-
- }
- (document, 'script', 'facebook-jssdk')
-);
+   }(document, 'script', 'facebook-jssdk'));
+   window.fbAsyncInit=function(){
+     FB.init({
+       appId:'{435335760594195}',
+       cookie:true,
+       xfbml:true,
+       version:'v2.8'
+     });
+     FB.getLoginStatus(function(response){
+       console.log('statusChangeCallback');
+       console.log(response);
+       if(response.status==='connected'){
+         $("#result").append("status:connected");
+       }else{
+         $("#result").append(response);
+       }
+     });
+   };
+   function fbLoginAction(){
+     FB.login(function(response){
+       var fbname;
+       var accessToken=response.authResponse.accessToken;
+       FB.api('/me?fields=id,name,age_range,birthday,gender,email',function(response){
+         var fb_data=jQuery.parseJSON(JSON.stringify(response));
+         var data="<br>fb_id:"+fb_data.id;
+         data +="<br>email:"+fb_data.email;
+         data +="<br>name:"+fb_data.name;
+         location.href="./check_login.php?mode=facebook&id="+fb_data.id+"&email="+fb_data.email+"&name="+fb_data.name;
+       });
+     },{scope:'public_profile,email'});
+   }
 </script>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.3&appId=435335760594195&autoLogAppEvents=1"></script>
@@ -177,6 +199,7 @@ data-show-faces="true">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -193,24 +216,16 @@ data-show-faces="true">
             success: function(res) {
                 alert(JSON.stringify(res));
                  console.log(JSON.stringify(res.id));
+                 var id=res.id;
                  console.log(JSON.stringify(res.kakao_account['email']));
+                 var email=res.kakao_account['email'];
                  console.log(JSON.stringify(res.properties.nickname));
                  console.log(JSON.stringify(res.properties.profile_image));
                  console.log(JSON.stringify(res.kakao_account['birthday']));
+                 var birth=res.kakao_account['birthday'];
                  console.log(JSON.stringify(res.kakao_account['gender']));
-                 // opener.kakao_login_form.k_id.value=res.id.value;
-                 // opener.kakao_login_form.k_email.value=res.kakao_account['email'].value;
-                 // opener.kakao_login_form.k_pic.value=res.properties.profile_image.value;
-                 // opener.kakao_login_form.k_birth.value=res.kakao_account['birthday'].value;
-                 // opener.kakao_login_form.k_gender.value=res.kakao_account['gender'].value;
-                 // opener.kakao_login_form.submit();
-                 // opener.form['kakao_login_form'].elements['k_id'].value=res.id;
-                 // opener.form['kakao_login_form'].elements['k_email'].value=res.kakao_account['email'];
-                 // opener.form['kakao_login_form'].elements['k_pic'].value=res.properties.profile_image;                     document.form["kakao_login_form"].elements["k_birth"].value=kbirthday;
-                 // opener.form['kakao_login_form'].elements['k_birth'].value=res.kakao_account['birthday'];
-                 // opener.form['kakao_login_form'].elements['k_gender'].value=res.kakao_account['gender'];
-                 // opener.form['kakao_login_form'].submit();
-                 location.href="./check_email.php?mode=kakao&id=";
+                 var gender=res.kakao_account['gender'];
+                 location.href="./check_login.php?mode=kakao&id="+id+"&email="+email+"&gender="+gender+"&birth="+birth;
                  window.close();
             },
             fail: function(error) {

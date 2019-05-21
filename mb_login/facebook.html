@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>facebook</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id))
+         return;
+         js = d.createElement(s);
+         js.id = id;
+         js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8&appId=435335760594195";
+         fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+         window.fbAsyncInit=function(){
+           FB.init({
+             appId:'{435335760594195}',
+             cookie:true,
+             xfbml:true,
+             version:'v2.8'
+           });
+           FB.getLoginStatus(function(response){
+             console.log('statusChangeCallback');
+             console.log(response);
+             if(response.status==='connected'){
+               $("#result").append("status:connected");
+             }else{
+               $("#result").append(response);
+             }
+           });
+         };
+         function fbLoginAction(){
+           FB.login(function(response){
+             var fbname;
+             var accessToken=response.authResponse.accessToken;
+             FB.api('/me?fields=id,name,age_range,birthday,gender,email',function(response){
+               var fb_data=jQuery.parseJSON(JSON.stringify(response));
+               var data="<br>fb_id:"+fb_data.id;
+               data +="<br>email:"+fb_data.email;
+               data +="<br>name:"+fb_data.name;
+               $("#result").append(data);
+             });
+           },{scope:'public_profile,email'});
+         }
+    </script>
+  </head>
+  <body>
+    <a href="javascript:void(0);" onclick="fbLoginAction();">facebook login</a>
+    <p id="result"></p>
+  </body>
+</html>
