@@ -24,8 +24,10 @@ function create_table($conn, $table_name){
                     `tel` char(13) NOT NULL,
                     `birth` char(8) NOT NULL,
                     `gender` char(1) NOT NULL,
-                    `post_num` char(5) NOT NULL,
-                    `post_addr` varchar(100) NOT NULL,
+                    `postcode` char(6) NOT NULL,
+                    `address` varchar(45) NOT NULL,
+                    `detailAddress` varchar(45) NOT NULL,
+                    `extraAddress` varchar(45) DEFAULT NULL,
                     `black_list` char(1) DEFAULT NULL,
                     `naver` varchar(45) DEFAULT NULL,
                     `kakao` varchar(45) DEFAULT NULL,
@@ -50,7 +52,7 @@ function create_table($conn, $table_name){
                     `weight` char(3) NOT NULL,
                     `self_info` text NOT NULL,
                     `img` varchar(100) NOT NULL,
-                    `mb_type` char(1) NOT NULL,
+                    `mb_type` char(1) NOT NULL DEFAULT '0',
                     `maching` char(10) DEFAULT NULL,
                     `maching_day` char(10) DEFAULT NULL,
                     PRIMARY KEY (`id`)
@@ -89,7 +91,10 @@ function create_table($conn, $table_name){
                     `com_type` char(6) NOT NULL,
                     `com_num` int(11) NOT NULL AUTO_INCREMENT,
                     `com_name` char(20) NOT NULL,
-                    `com_addr` varchar(100) NOT NULL,
+                    `com_postcode` char(6) NOT NULL,
+                    `com_address` varchar(45) NOT NULL,
+                    `com_detailAddress` varchar(45) NOT NULL,
+                    `com_extraAddress` varchar(45) DEFAULT NULL,
                     `com_email` varchar(45) NOT NULL,
                     `com_tel` char(11) NOT NULL,
                     `com_busi_num` char(15) NOT NULL,
@@ -107,7 +112,10 @@ function create_table($conn, $table_name){
                     `cplx_img` varchar(50) NOT NULL,
                     `cplx_list_link` varchar(100) NOT NULL,
                     `cplx_tel` char(11) NOT NULL,
-                    `cplx_addr` varchar(100) NOT NULL,
+                    `cplx_postcode` char(6) NOT NULL,
+                    `cplx_address` varchar(45) NOT NULL,
+                    `cplx_detailAddress` varchar(45) NOT NULL,
+                    `cplx_extraAddress` varchar(45) DEFAULT NULL,
                     `cplx_notice` varchar(260) DEFAULT NULL,
                     `cplx_prd_notice` text,
                     `file_name_0` varchar(50) DEFAULT NULL,
@@ -158,7 +166,10 @@ function create_table($conn, $table_name){
                     `acm_list_link` varchar(100) NOT NULL,
                     `acm_rsv_tel` char(11) NOT NULL,
                     `acm_cnc_tel` char(11) NOT NULL,
-                    `acm_addr` varchar(100) NOT NULL,
+                    `acm_postcode` char(6) NOT NULL,
+                    `acm_address` varchar(45) NOT NULL,
+                    `acm_detailAddress` varchar(45) NOT NULL,
+                    `acm_extraAddress` varchar(45) DEFAULT NULL,
                     `acm_notice` varchar(260) DEFAULT NULL,
                     `acm_prd_notice` text,
                     `acm_op` varchar(50) DEFAULT NULL,
@@ -222,9 +233,12 @@ function create_table($conn, $table_name){
                     `shop_num` int(11) NOT NULL AUTO_INCREMENT,
                     `shop_name` char(20) NOT NULL,
                     `shop_img` varchar(50) NOT NULL,
-                    `shop_list_link` varchar(50) NOT NULL,
+                    `shop_list_link` varchar(50),
                     `shop_tel` char(11) NOT NULL,
-                    `shop_addr` varchar(100) NOT NULL,
+                    `shop_postcode` char(6) NOT NULL,
+                    `shop_address` varchar(45) NOT NULL,
+                    `shop_detailAddress` varchar(45) NOT NULL,
+                    `shop_extraAddress` varchar(45) DEFAULT NULL,
                     `shop_notice` text,
                     PRIMARY KEY (`shop_num`)
                   );";
@@ -320,8 +334,11 @@ function create_table($conn, $table_name){
             break;
           case 'wish_list' :
             $sql = "CREATE TABLE `wish_list` (
-                    `prd_num` char(20) NOT NULL,
-                    `id` varchar(22) NOT NULL
+              `prd_num` char(20) NOT NULL,
+              `id` varchar(22) NOT NULL,
+              `count` char(3) DEFAULT NULL,
+              `color` char(1) DEFAULT NULL,
+              `size` char(1) DEFAULT NULL
                   );";
             break;
           case 'prd_review' :
@@ -360,14 +377,14 @@ function create_table($conn, $table_name){
             break;
           case 'prd_q' :
             $sql = "CREATE TABLE `prd_q` (
-                    `que_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `prd_num` char(20) NOT NULL,
-                    `prd_q_cont` text NOT NULL,
-                    `secret` char(1) DEFAULT NULL,
-                    `ans` char(1) NOT NULL,
-                    `bought` char(1) DEFAULT NULL,
-                    `que_day` char(20) NOT NULL,
-                    PRIMARY KEY (`que_num`)
+              `que_num` int(11) NOT NULL AUTO_INCREMENT,
+              `prd_num` char(20) NOT NULL,
+              `prd_q_cont` text NOT NULL,
+              `secret` char(1) DEFAULT NULL,
+              `ans` char(1) NOT NULL,
+              `id` varchar(22) DEFAULT NULL,
+              `que_day` char(20) NOT NULL,
+              PRIMARY KEY (`que_num`)
                   );";
             break;
           case 'prd_a' :
@@ -468,7 +485,10 @@ function create_table($conn, $table_name){
                     `com_rg_num` char(15) NOT NULL,
                     `com_name` char(15) NOT NULL,
                     `com_ceo` char(10) NOT NULL,
-                    `com_address` varchar(100) NOT NULL,
+                    `com_postcode` char(6) NOT NULL,
+                    `com_address` varchar(45) NOT NULL,
+                    `com_detailAddress` varchar(45) NOT NULL,
+                    `com_extraAddress` varchar(45) DEFAULT NULL,
                     `com_phone` char(20) NOT NULL,
                     `com_fax` char(20) NOT NULL,
                     `com_email` char(1) NOT NULL,

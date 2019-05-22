@@ -34,4 +34,7 @@
 </div>
 <!-- footer_bg end -->
 
-  <script src="../js/effect_common.js"></script><!-- Sticky event를 위해서 상단에 올리지 못함 -->
+  <!-- <script src="../js/admin_effect_common.js"></script> -->
+  <!-- Sticky event를 위해서 상단에 올리지 못함 -->
+  <script src="../js/effect_common.js"></script>
+  <!-- Sticky event를 위해서 상단에 올리지 못함 -->

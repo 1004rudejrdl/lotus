@@ -238,6 +238,7 @@
   <!-- footer start -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/footer.php"; ?>
   <!-- footer_bg end -->
-</body>
+  <!-- <script src="../js/admin_effect_common.js"></script> -->
+  <!-- Sticky event를 위해서 상단에 올리지 못함 -->
 
 </html>
