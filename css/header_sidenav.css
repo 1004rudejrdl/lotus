@@ -26,9 +26,9 @@
 }
 
 .sidenav a { /*서브메뉴 너비 조절*/
-  padding: 5px 30px ;
+  padding: 10px 30px ;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 25px;
   color: rgba(252, 105, 105, 1);
   text-align: center;
   display: block;
@@ -104,9 +104,9 @@
   }
   .sidenav a {
     display: inline;
-    padding: 2px 30px;
+    padding: 5px 30px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 20px;
   }
   .main {
     margin-top: 400px;

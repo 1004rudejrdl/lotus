@@ -6,8 +6,7 @@ window.onscroll = function() {
 
 var footer_bg = document.getElementById("footer_bg");
 var sidenav = document.getElementById("sidenav");
-// var sticky = footer_bg.offsetTop-footer_bg.offsetHeight*4;
-var sticky = footer_bg.offsetTop-sidenav.offsetHeight-footer_bg.offsetHeight;
+var sticky = footer_bg.offsetTop-footer_bg.offsetHeight*4;
 
 function sidenavFixFunc() {
   // var h_sticky = sticky - footer_bg.offsetHeight*2;
