@@ -75,7 +75,7 @@
 </div>
 
 <div class="" style="text-align:center">
-  <button type="button" name="button" onclick="history.go(-1)">계속 쇼핑하기</button>
+  <button type="button" name="button" >계속 쇼핑하기</button>
   <a href="./shopping_payment.php"> <button type="button" name="button">구매하기</button></a>
 </div>
 
