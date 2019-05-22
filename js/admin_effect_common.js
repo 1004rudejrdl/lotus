@@ -13,7 +13,7 @@ function sidenavFixFunc() {
   // var h_sticky = sticky - footer_bg.offsetHeight*2;
   if (window.pageYOffset < sticky) {
     sidenav.style.display = "block";
-  } else if (window.pageYOffset > sticky) {
+  } else if (window.pageYOffset > sticky){
     sidenav.style.display = "none";
   }
 }
