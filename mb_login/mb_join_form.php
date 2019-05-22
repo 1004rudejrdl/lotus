@@ -1,17 +1,33 @@
-﻿
-<?php
-  session_start();
-  include './Sendmail.php';
 
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
+<?php
+session_start();
+include './Sendmail.php';
+$g_id=$fb_id=$n_id=$k_id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+  if(!empty($_GET['mode'])&&($_GET['mode']=="google")){
+    $g_id=$_GET['id'];
+    $fullemail=$_GET['email'];
+    $email=explode('@',$fullemail);
+    $name=$_GET['name'];
+  }else if(!empty($_GET['mode'])&&($_GET['mode']=="facebook")){
+    $fb_id=$_GET['id'];
+    $fullemail=$_GET['email'];
+    $email=explode('@',$fullemail);
+    $name=$_GET['name'];
+  }else if(!empty($_GET['mode'])&&($_GET['mode']=="naver")){
+    $n_id=$_GET['id'];
+    $fullemail=$_GET['email'];
+    $email=explode('@',$fullemail);
+  }else if(!empty($_GET['mode'])&&($_GET['mode']=="kakao")){
+    $k_id=$_GET['id'];
+    $fullemail=$_GET['email'];
+    $email=explode('@',$fullemail);
+  }
+?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
@@ -29,7 +45,13 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script type="text/javascript">
-
+  $(document).ready(function() {
+    if($('#confirmed_email1').value==""){
+      $('#check_button').attr("src", "./img/none_check_email.png");
+    }else{
+      $('#check_button').attr("src", "./img/check_email.png");
+    }
+  });
 $(document).ready(function() {
   $('#user_name').blur(function(event) {
     $('#profile_name').val($('#user_name').val());
@@ -45,7 +67,11 @@ $(document).ready(function() {
     $('#profile_wei').val($('#mem_wei').val());
   });
 });
-
+$(document).ready(function() {
+  $('#introduce_myself_text').blur(function(event) {
+    $('#introduce_myself_profile').val($('#introduce_myself_text').val());
+  });
+});
 $(document).ready(function() {
   $('#profile_age').focus(function(event) {
     var nowage=$('#datepicker').val();
@@ -149,7 +175,7 @@ reader.readAsDataURL(pic.files[0]);
   <a href="#contact">렌트카</a>
 </div><!-- sidenav end -->
 <div class="main">
-  <form name="login_form" action="index.html" method="post">
+  <form name="login_form" action="member_join.php?mode=member_join" method="post">
     <table>
       <th>로그인</th>
       <tr>
@@ -171,10 +197,10 @@ reader.readAsDataURL(pic.files[0]);
       <tr>
         <td>이메일</td>
         <td colspan="3">
-          <input type="text" id="confirmed_email1" name="confirmed_email1" value="" readonly required/>@
-          <input type="text" id="confirmed_email2" name="confirmed_email2" value="" ReadOnly required/>
-          <a name="check_button_anchor" href="#">
-            <img name="check_button"id="check_button" src="./img/none_check_email.png" onclick="check_email()" style="height: 50px;">
+          <input type="text" id="confirmed_email1" name="confirmed_email1" value="<?=$email[0]?>" readonly required/>@
+          <input type="text" id="confirmed_email2" name="confirmed_email2" value="<?=$email[1]?>" ReadOnly required/>
+          <a id="check_button_anchor" name="check_button_anchor" href="#">
+            <img name="check_button"id="check_button" onclick="check_email()" style="height: 50px;">
           </a>
         </td>
       </tr>
@@ -182,7 +208,7 @@ reader.readAsDataURL(pic.files[0]);
         <td>프로필사진 등록</td>
         <td ><input type="file" name="user_pic_input" value="사진을 넣어주세요." onchange='change_img_upload(this)'required > </td>
         <td colspan="2">이름</td>
-        <td><input type="text" id="user_name" name="user_name" required> </td>
+        <td><input type="text" id="user_name" name="user_name" value="<?=$name?>" required> </td>
       </tr>
       <tr>
         <td>주소</td>
@@ -246,13 +272,13 @@ reader.readAsDataURL(pic.files[0]);
         </td>
         <td>생일</td>
         <td colspan="4">
-          Date: <input type="text" id="datepicker">
+          Date: <input type="text" name="datepicker" id="datepicker">
         </td>
       </tr>
       <tr>
         <td>직업</td>
         <td colspan="4" ><select id="mem_job" name="mem_job">
-          <option value="1">무직</option>
+          <option value="1" selected>무직</option>
           <option value="2">공무원</option>
           <option value="3">학생</option>
           <option value="4">자영업</option>
@@ -268,25 +294,27 @@ reader.readAsDataURL(pic.files[0]);
         <td colspan="4"><input type="text" id="mem_wei" name="mem_wei" placeholder="체중을 입력하세요"> </td>
       </tr>
     </table>
+    성별 <input type="radio" name="gender" id="gender" value="male" checked="checked"> <label for="male">남성</label>
+    <input type="radio" name="gender" id="gender" value="female"><label for="female">여성</label>
+    <input type="hidden" name="g_id" value="<?=$g_id?>">
+    <input type="hidden" name="fb_id" value="<?=$fb_id?>">
+    <input type="hidden" name="n_id" value="<?=$n_id?>">
+    <input type="hidden" name="k_id" value="<?=$k_id?>">
+    <input type="submit" name="button_submit" value="Log In">
+    <input type="reset" name="button_reset" value="재작성">
+    <textarea name="introduce_myself_text" rows="8" cols="80"placeholder="자신을 소개해주세요.(최대 500자)"style="resize:none;"></textarea>
   </form>
     <br>
-    <textarea name="introduce_myself_text" rows="8" cols="80"placeholder="자신을 소개해주세요.(최대 500자)"style="resize:none;"></textarea>
     <h2>프로필 미리보기</h2>
     <div class="">
       <img id="profile_image1" style="width:600px;height:450px;" >
       이름<input type="text" id="profile_name"  >
-
-          나이
-          <input type="text" id="profile_age" name="profile_age" value="">
-        직업
-          <input type="text" id="profile_job" name="profile_age" value="">
-      키
-          <input type="text" id="profile_hei" name="profile_age" value="">
-        체중
-          <input type="text" id="profile_wei" name="profile_age" value="">
+      나이<input type="text" id="profile_age" name="profile_age" value="">
+      직업<input type="text" id="profile_job" name="profile_job" value="">
+      키  <input type="text" id="profile_hei" name="profile_hei" value="">
+      체중<input type="text" id="profile_wei" name="profile_wei" value="">
+      성별 <input type="text" id="profile_gender" name="profile_gender" value="">
       <textarea name="introduce_myself_profile" rows="8" cols="80"style="resize:none;"></textarea>
-      <input type="submit" name="button_submit" value="Log In">
-      <input type="reset" name="button_reset" value="재작성">
     </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
