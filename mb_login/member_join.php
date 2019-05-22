@@ -37,7 +37,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="member_join"){
       $address = test_input($_POST["address"]);
       $detailAddress = test_input($_POST["detailAddress"]);
       $extraAddress = test_input($_POST["extraAddress"]);
-      $post_addr=$address.$detailAddress.$exextraAddress;
+      $post_addr=$address.$detailAddress.$extraAddress;
       $hei = test_input($_POST["mem_hei"]);
       $wei = test_input($_POST["mem_wei"]);
       $job = test_input($_POST["mem_job"]);

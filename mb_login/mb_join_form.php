@@ -105,8 +105,8 @@ console.log(age);
   });
 });
 $(document).ready(function() {
-  $('#mem_job option:selected').click(function(event) {
-    var job=$('#mem_job option:selected').val();
+  $('#mem_job option:checked').click(function(event) {
+    var job=$('#mem_job option:checked').val();
     $('#profile_job').val(job);
   });
 });
@@ -175,14 +175,14 @@ reader.readAsDataURL(pic.files[0]);
   <a href="#contact">렌트카</a>
 </div><!-- sidenav end -->
 <div class="main">
-  <form name="login_form" action="member_join.php?mode=member_join" method="post">
+  <form name="login_form" action="member_join.php?mode=member_join" method="post" enctype="multipart/form-data">
     <table>
       <th>로그인</th>
       <tr>
         <td colspan="3" rowspan="4"><img id="profile_image" style="width:430px;height:300px;" > </td>
         <td > <label id="login_table_id_label">아이디</label></td>
         <td colspan="5"><input type="text" name="id"  id="login_form_id" value="" placeholder="아이디를 입력하세요." required> </td>
-        <td><p id="ajax_respond_id"></p> </td>
+        <td><p id="ajax_respond_id" name="ajax_respond_id"></p> </td>
       </tr>
       <tr>
         <td>비밀번호</td>
@@ -294,8 +294,8 @@ reader.readAsDataURL(pic.files[0]);
         <td colspan="4"><input type="text" id="mem_wei" name="mem_wei" placeholder="체중을 입력하세요"> </td>
       </tr>
     </table>
-    성별 <input type="radio" name="gender" id="gender" value="male" checked="checked"> <label for="male">남성</label>
-    <input type="radio" name="gender" id="gender" value="female"><label for="female">여성</label>
+    성별 <input type="radio" name="gender" id="gender" value="0" checked="checked"> <label for="male">남성</label>
+    <input type="radio" name="gender" id="gender" value="1"><label for="female">여성</label>
     <input type="hidden" name="g_id" value="<?=$g_id?>">
     <input type="hidden" name="fb_id" value="<?=$fb_id?>">
     <input type="hidden" name="n_id" value="<?=$n_id?>">

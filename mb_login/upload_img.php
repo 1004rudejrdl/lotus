@@ -1,11 +1,11 @@
 <?php
 // 1. 업로드된 파일의 정보를 가져온다.
-$upfile = $_FILES['upfile'];//한개파일업로드정보(5가지정보배열로들어있음)
-$upfile_name= $_FILES['upfile']['name'];//f03.jpg
-$upfile_type= $_FILES['upfile']['type'];
-$upfile_tmp_name= $_FILES['upfile']['tmp_name'];
-$upfile_error= $_FILES['upfile']['error'];
-$upfile_size= $_FILES['upfile']['size'];
+$upfile = $_FILES['user_pic_input'];//한개파일업로드정보(5가지정보배열로들어있음)
+$upfile_name= $_FILES['user_pic_input']['name'];//f03.jpg
+$upfile_type= $_FILES['user_pic_input']['type'];
+$upfile_tmp_name= $_FILES['user_pic_input']['tmp_name'];
+$upfile_error= $_FILES['user_pic_input']['error'];
+$upfile_size= $_FILES['user_pic_input']['size'];
 
 //2. 파일명과 확장자를 구분해서 저장한다.
 $file = explode(".", $upfile_name); //파일명과 확장자구분에서 배열저장
@@ -32,7 +32,7 @@ if($upfile_size>500000000){
 }
 
 //6. 업로드된 파일 확장자를 체크한다.
-$type = explode("/", $upfile_type);
+$type = explode(".", $copied_file_name);
 switch ($type[1]) {
   case 'jpg':
   case 'jpeg':
