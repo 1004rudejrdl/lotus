@@ -1,10 +1,41 @@
 <?php
   session_start();
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
+  include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
+  include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+
+  create_table($conn, 'commu');
+  create_table($conn, 'commu_ripple');
+
+  $num=$id=$subject=$subject=$date=$hit=$secret=$page="";
+  define('SCALE', 10);
+
+  if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+    $sql="SELECT * FROM `commu` order by desc";
+
+    $find=test_input($_POST["find"]);
+    $search=test_input($_POST["search"]);
+    $q_search=mysqli_real_escape_string($conn,$search);
+
+    $sql="SELECT * FROM `commu` where $find like '%$q_search%' order by `num` desc";
+
+  }else if (isset($_GET["mode"])&&$_GET["mode"]=="select_id_content") {
+    $sql="SELECT * FROM `commu` order by num desc";
+    $writer = test_input($_POST["writer"]);
+    $sql="SELECT * FROM `commu` where id='$writer'";
+  }else{
+    $sql="SELECT * FROM `commu` order by `group_num` desc, `ord` asc";
+  }
+  $result=mysqli_query($conn,$sql);
+
+  $total_record=mysqli_num_rows($result);
+
+  $total_page=($total_record % SCALE ==0)?($total_record/SCALE):(ceil($total_record/SCALE));
+
+  $page=(isset($_GET['page'])&&!empty($_GET['page']))?(test_input($_GET['page'])):(1);
+
+  $start=($page-1)*SCALE;
+
+  $number=$total_record-$start;
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,12 +54,12 @@
 <body>
 <!-- header start -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
-  <script src="../../js/effect_common.js"></script>
+  <script src="../js/effect_common.js"></script>
 <!-- header end -->
 <!-- main_body start -->
 <div class="main_body">
 <div id="sidenav" class="sidenav">
-  <a href="../cm_free_/cm_free_exhibit.php">자유게시판</a>
+  <a href="../cm_free/cm_free_exhibit.php">자유게시판</a>
   <a href="../cm_gath_/cm_gath_exhibit.php">모임</a>
   <a href="../cm_rv_/cm_rv_exhibit.php">성공후기</a>
   <a href="../cm_qna_/cm_qna_exhibit.php">QnA</a>
