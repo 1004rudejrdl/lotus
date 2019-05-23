@@ -43,7 +43,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     $q_id = mysqli_real_escape_string($conn, $id);
     $q_pw = mysqli_real_escape_string($conn, $pw);
     //3-3) db에서 id와 pass가 모두 일치 하는 경우 값을 받아옴
-    $sql="select * from member where id = '$q_id' AND pass = '$q_pw'";
+    $sql="select * from member where id = '$q_id' AND passwd = '$q_pw'";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
