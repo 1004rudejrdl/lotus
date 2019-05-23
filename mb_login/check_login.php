@@ -60,6 +60,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
       $row=mysqli_fetch_array($result);
       // 세션값을 주려면 제일 위에 session_start를 해야함
       $_SESSION['userid']=$row['id'];
+      $_SESSION['name']=$row['name'];
       $_SESSION['gender']=$row['gender'];
     }
   }//end of  check id and pass
@@ -89,6 +90,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     // 세션값을 주려면 제일 위에 session_start를 해야함
     $_SESSION['userid']=$row['id'];
     $_SESSION['gender']=$row['gender'];
+    $_SESSION['name']=$row['name'];
   }
 }else if(isset($_GET['mode'])&&$_GET['mode']=="naver"){
   $n_email=$_GET['email'];
@@ -115,6 +117,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     $row=mysqli_fetch_array($result);
     // 세션값을 주려면 제일 위에 sessi on_start를 해야함
     $_SESSION['userid']=$row['id'];
+    $_SESSION['name']=$row['name'];
     $_SESSION['gender']=$row['gender'];
   }
 }else if(isset($_GET['mode'])&&$_GET['mode']=="facebook"){
@@ -141,6 +144,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     $row=mysqli_fetch_array($result);
     // 세션값을 주려면 제일 위에 session_start를 해야함
     $_SESSION['userid']=$row['id'];
+    $_SESSION['name']=$row['name'];
     $_SESSION['gender']=$row['gender'];
   }
 }else if(isset($_GET['mode'])&&$_GET['mode']=="google"){
@@ -167,6 +171,7 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     $row=mysqli_fetch_array($result);
     // 세션값을 주려면 제일 위에 session_start를 해야함
     $_SESSION['userid']=$row['id'];
+    $_SESSION['name']=$row['name'];
     $_SESSION['gender']=$row['gender'];
   }
 }

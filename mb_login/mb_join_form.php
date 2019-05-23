@@ -46,6 +46,19 @@ $g_id=$fb_id=$n_id=$k_id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script type="text/javascript">
   $(document).ready(function() {
+    $('#input:radio[name="gender"]').each(function() {
+      var gender=$('#input:radio[name="gender"]:checked').val();
+      var profile_gender="";
+      if(gender=='0'){
+        profile_gender='남자';
+      }else if(gender=='1'){
+        profile_gender='여자';
+      }
+      $('#profile_gender').val(profile_gender);
+    });
+  });
+
+  $(document).ready(function() {
     if($('#confirmed_email1').value==""){
       $('#check_button').attr("src", "./img/none_check_email.png");
     }else{
@@ -105,12 +118,28 @@ console.log(age);
   });
 });
 $(document).ready(function() {
-  $('#mem_job option:checked').click(function(event) {
-    var job=$('#mem_job option:checked').val();
-    $('#profile_job').val(job);
+  $('#profile_job').change(function(event) {
+
   });
 });
-
+$(document).ready(function() {
+  $('#mem_job').change(function(event) {
+    var job=$('#mem_job option:checked').val();
+    var jobbob="";
+    if(job=='1'){
+      jobbob='무직';
+    }else if(job=='2'){
+      jobbob='공무원';
+    }else if(job=='3'){
+      jobbob='학생';
+    }else if(job=='4'){
+      jobbob='자영업';
+    }else if(job=='5'){
+      jobbob='직장인';
+    }
+    $('#profile_job').val(jobbob);
+  });
+});
   function check_email(){
     window.open("./check_email.php", "IDEmail", "left=200, top=200, width=700, height=550, scrollbars=no, resizable=no");
   }
@@ -213,11 +242,11 @@ reader.readAsDataURL(pic.files[0]);
       <tr>
         <td>주소</td>
         <td colspan="4">
-          <input type="text" id="postcode" placeholder="우편번호">
+          <input type="text" name="postcode" id="postcode" placeholder="우편번호">
   <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-  <input type="text" id="address" placeholder="주소"><br>
-  <input type="text" id="detailAddress" placeholder="상세주소">
-  <input type="text" id="extraAddress" placeholder="참고항목">
+  <input type="text" name="address" id="address" placeholder="주소"><br>
+  <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" required>
+  <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">
 
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script>
@@ -294,7 +323,7 @@ reader.readAsDataURL(pic.files[0]);
         <td colspan="4"><input type="text" id="mem_wei" name="mem_wei" placeholder="체중을 입력하세요"> </td>
       </tr>
     </table>
-    성별 <input type="radio" name="gender" id="gender" value="0" checked="checked"> <label for="male">남성</label>
+    성별 <input type="radio" name="gender" id="gender" value="0" > <label for="male">남성</label>
     <input type="radio" name="gender" id="gender" value="1"><label for="female">여성</label>
     <input type="hidden" name="g_id" value="<?=$g_id?>">
     <input type="hidden" name="fb_id" value="<?=$fb_id?>">
@@ -313,7 +342,7 @@ reader.readAsDataURL(pic.files[0]);
       직업<input type="text" id="profile_job" name="profile_job" value="">
       키  <input type="text" id="profile_hei" name="profile_hei" value="">
       체중<input type="text" id="profile_wei" name="profile_wei" value="">
-      성별 <input type="text" id="profile_gender" name="profile_gender" value="">
+      <!-- 성별 <input type="text" id="profile_gender" name="profile_gender" value=""> -->
       <textarea name="introduce_myself_profile" rows="8" cols="80"style="resize:none;"></textarea>
     </div>
 </div>  <!-- main end -->
