@@ -40,13 +40,13 @@ if(mysqli_num_rows($result) == 0){
             window.history.go(-1);
           </script>";
 }else{
-    $sql = "insert into member_msg (r_id,s_id,msg_cont,read,send_time)";
+    $sql = "insert into member_msg (`r_id`,`s_id`,`msg_cont`,`read`,`send_time`)";
     $sql .= "values('$r_id', '$id', '$msg_cont',0,'$send_time')";
     mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     echo "<script>
-            window.close();
             alert('전송됐습니다.');
+            window.close();
           </script>";
 
 }

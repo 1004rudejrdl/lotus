@@ -323,7 +323,7 @@ reader.readAsDataURL(pic.files[0]);
         <td colspan="4"><input type="text" id="mem_wei" name="mem_wei" placeholder="체중을 입력하세요"> </td>
       </tr>
     </table>
-    성별 <input type="radio" name="gender" id="gender" value="0" > <label for="male">남성</label>
+    성별 <input type="radio" name="gender" id="gender" value="0" checked > <label for="male">남성</label>
     <input type="radio" name="gender" id="gender" value="1"><label for="female">여성</label>
     <input type="hidden" name="g_id" value="<?=$g_id?>">
     <input type="hidden" name="fb_id" value="<?=$fb_id?>">

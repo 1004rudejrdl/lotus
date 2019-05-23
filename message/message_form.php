@@ -2,7 +2,10 @@
 session_start();
 $id = $_SESSION['userid'];
 $name = $_SESSION['name'];
-
+$m_id="";
+if(!empty($_GET['id'])){
+  $m_id=$_GET['id'];
+}
 
 
 ?>
@@ -10,7 +13,7 @@ $name = $_SESSION['name'];
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>연愛, 꽃 피우다</title>
 
 </head>
 <body>
@@ -24,7 +27,7 @@ $name = $_SESSION['name'];
 <b>보내는 메세지</b> <br> <textarea name="msg_cont" rows="10" cols="57" style="resize:none"></textarea>
 </div>
 <div style="margin: 5px; text-align: right;">
-<b>상대방 아이디</b> : <input type="text" size="12px;" name="r_id">
+<b>상대방 아이디</b> : <input type="text" size="12px;" name="r_id" value="<?=$m_id?>">
 </div>
 <br>
 

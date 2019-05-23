@@ -1,7 +1,7 @@
 <?php
 session_start();
-$id = $_SESSION['id'];
-
+$id = $_SESSION['userid'];
+$name = $_SESSION['name'];
 include_once "../lib/db_connector.php";
 
 $mode = "receive";
@@ -15,16 +15,16 @@ if(isset($_GET['mode'])){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ya! GaJa~</title>
+<title>연愛, 꽃 피우다</title>
 <?php
 
 if($mode == "receive"){
-    $sql = "select * from member_msg where r_id = '$id' order by num desc";
-    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
+    $sql = "select * from member_msg where r_id = '$id' order by msg_num desc";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }else{
-    $sql = "select * from message where s_id = '$id' order by num desc";
-    $result = mysqli_query($con, $sql) or die(mysqli_error($con));
+    $sql = "select * from member_msg where s_id = '$id' order by msg_num desc";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $total_record = mysqli_num_rows($result); //전체 레코드 수
 }
 
@@ -60,7 +60,6 @@ $end_page= ($total_pages >= ($start_page + $pages_scale)) ? $start_page + $pages
 $number=$total_record- $start;
 
 ?>
- <link rel="stylesheet" href="../css/message.css?ver=2">
  <script>
  function message_form(){
 	    var popupX = (window.screen.width/2)-(600/2);
@@ -104,7 +103,10 @@ $number=$total_record- $start;
         $read=$row["read"];
         $send_time=$row["send_time"];
         $send_time=substr($send_time,0,10);
-
+        $s_sql="SELECT * FROM member where id ='$s_id'";
+        $s_result = mysqli_query($conn, $s_sql) or die(mysqli_error($conn));
+        $s_row=mysqli_fetch_array($s_result);
+        $s_name=$s_row['name'];
 
 
         ?>
@@ -114,7 +116,7 @@ $number=$total_record- $start;
    if($mode == "receive"){
        if($read == "0"){
            ?>
-   		<div id="list2" style="margin-top: 10px;"><b><?=$s_id."님"?></b>&nbsp<b><?="( ".$s_id." ) 에게 받은 메세지 "?></b>&nbsp</a></div>
+   		<div id="list2" style="margin-top: 10px;"><b><?=$name."님"?></b>&nbsp<b><?=$s_name."( ".$s_id." ) 에게 받은 메세지 "?></b>&nbsp</a></div>
    		<div id="list2" style="margin-top: 10px;"><a id="messageLink" href="#" onclick="chat_view('view.php?msg_num=<?=$msg_num ?>')" style="text-decoration: none; color: black;"><b><?=$msg_cont?></b></a></div>
    		<div id="list_item4" style="margin-top: 10px;" ><b><?=$send_time?> 안읽음</b></div>
    		<?php

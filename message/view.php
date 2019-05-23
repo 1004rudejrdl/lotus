@@ -1,6 +1,6 @@
 <?php
 session_start();
-$id = $_SESSION['id'];
+$id = $_SESSION['userid'];
 $name = $_SESSION['name'];
 
 include_once "../lib/db_connector.php";
@@ -8,18 +8,21 @@ include_once "../lib/db_connector.php";
 $msg_num = $_GET['msg_num'];
 
 $sql = "select * from member_msg where msg_num = '$msg_num'";
-$result = mysqli_query($con, $sql);
+$result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
-
 $s_id=$row["s_id"];
+$msg_cont=$row["msg_cont"];
+$sql = "select * from member where id = '$id'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
 $send_name=$row["name"];
 
-$msg_cont=$row["msg_cont"];
+
 
 
 
 $sql = "update msg_cont SET read = '1' where msg_num = '$msg_num'";
-mysqli_query($con, $sql);
+mysqli_query($conn, $sql);
 
 ?>
 <!DOCTYPE html>
