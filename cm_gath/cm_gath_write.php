@@ -8,9 +8,6 @@ $num = $id = $subject = $content = $day = $hit="";
 $mode = "insert";
 $id = $_SESSION['userid'];
 $board_type = "m";
-$userid = 13;
-$username = 12;
-$usernick = 11;
 
 
 if((isset($_GET["mode"])&&($_GET["mode"])=='update')

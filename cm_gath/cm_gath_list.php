@@ -1,7 +1,7 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/alert_back.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
 
 create_table($conn,'commu');//자유게시판테이블생성
@@ -13,9 +13,7 @@ $sql=$result=$total_record=$total_page=$start="";
 $row="";
 $memo_id=$memo_num=$memo_date=$memo_content="";
 $total_record=0;
-$userid = 13;
-$username = 12;
-$usernick = 11;
+$userid = $_SESSION['userid'];
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
   //제목 내용 아이디
@@ -90,8 +88,8 @@ $number = $total_record - $start;
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search" ></div>
              <div id="list_search5"><button type="submit">검색</button> </div>
-
            </div><!--end of list_search  -->
+
          </form>
          <div id="clear"> </div>
          <div id="list_top_title"><br><hr>
@@ -160,8 +158,8 @@ $number = $total_record - $start;
         &nbsp;&nbsp;&nbsp;&nbsp;▶ &nbsp;다음
         <br><br><br>
         </div>
-        <div id="button">
-          <button type="button" name="button"><a href="./cm_gath_list.php?page=<?=$page?>" id="list_page1">목  록</a></button>
+        <div id="button1">
+          <!-- <button type="button" name="button"><a href="./cm_gath_list.php?page=<=$page?>" id="list_page1">목  록</a></button> -->
 
           <?php //세션 아이디가 있으면 글쓰기 버튼을 보여준다
           if (!empty($_SESSION['userid'])) {

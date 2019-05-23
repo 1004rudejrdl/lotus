@@ -10,9 +10,7 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
 
 
 $content= $q_content = $sql= $result = $userid= $group_num = $depth="";
-$userid = 13;
-$username = 12;
-$usernick = 11;
+$userid = $_SESSION['userid'];
 $board_type = "m";
 
 
@@ -48,7 +46,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
       //파일의 실제명과 저장되는 명을 삽입한다.
       //등록된 사용자가 최근 입력한 이미지 게시판을 보여주기 ㅟ하여 num찾아서 전달하기 위한것
-      $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$detph','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,'$type[0]','$upfile_name','$copied_file_name',null,null,null,null);";
+      $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$detph','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,'$type[0]','$upfile_name',null,null,'$copied_file_name',null,null);";
 
       $result = mysqli_query($conn,$sql);
       if (!$result) {

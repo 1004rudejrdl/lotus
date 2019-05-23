@@ -2,11 +2,11 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/commu_func.php";
-include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/alert_back.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
 $num = $id = $subject = $content = $day=$hit=$q_num="";
-$userid = 13;
-$username = 12;
-$usernick = 11;
+$userid = $_SESSION['userid'];
+
+
 
 if(empty($_GET['page'])){
   $page=1;
@@ -47,6 +47,8 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       $file_type_0=$row['file_type_0'];
       $day=$row['regist_day'];
 
+
+
       //숫자 0 "" " " '0' null 0.0 $a=array() 다 비어있는거
       if (!empty($file_copied_0)&& $file_type_0 =='image' ) {
         //이미지 정보를 가져오게 하는 방법이다  width height type
@@ -73,7 +75,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
-  <!-- <link rel="stylesheet" href="/css/view.css"> -->
+  <link rel="stylesheet" href="/css/view.css">
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <link rel="stylesheet" href="./css/cm_gath_view.css">
   <script type="text/javascript" src="./js/member_form.js?var=1"></script>
@@ -94,24 +96,29 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 
       <div class="main">
        <div id="col2">
-         <div id="title">모임 게시판</div>
-         <div class="clear"> </div>
-           <div id="write_form">
-             <div class="write_line"></div>
+         <div id="title1">모임 게시판</div> <hr>
+         <div id="write_form">
+
+
+
              <div id="write_row1">
-               <div class="col1">아이디</div>
-               <div class="col2"><?=$id?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 조회 : <?=$hit?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;날짜 : <?=$day?>
-               </div>
-             </div><!--end of write_row1  -->
-             <div id="write_row2">
-               <div class="col1">제&nbsp;&nbsp;목</div>
-               <div class="col2">
+               <table id="write_table">
+                 <tr>
+                   <td id="write_row1">아이디 : <?=$id?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회 : <?=$hit?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 날짜 : <?=$day?></td>
+                 </tr>
+                 <tr>
+                   <td>&nbsp;</td><td>&nbsp;</td>
+                 </tr>
+                 <tr>
+                   <td id="write_row2">제&nbsp;&nbsp;&nbsp;목 : <input type="text" name="subject" value="<?=$subject?>" style="width:420px" readonly></td>
+                 </tr>
+                 <tr>
+                   <td></td>
+                 </tr>
+               </table> <br>
+             </div>
+           </div><!--end of write_row1  -->
 
-                 <input type="text" name="subject" value="<?=$subject?>" readonly> </div>
-
-             </div><!--end of write_row2  -->
-             <div class="write_line"></div>
              <div  id="view_content">
 
                <div class="col2">
@@ -139,11 +146,11 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                  }
 
                   ?>
-                 <?=$content?> </div>
+                  <hr>  <span id="content_span" style="background-color:rgb(237, 237, 237);"> 내&nbsp;&nbsp;&nbsp;용 : <?=$content?> </span> </div>
 
              </div><!--end of write_row3  -->
              <div class="write_line"></div>
-           </div><!--end of write_form  -->
+           </div><!--end of write_form  --> <br>
 
 <!-- ********************************* -->
 
@@ -152,24 +159,24 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 
 <!-- ********************************* -->
            <div id="write_button">
+             <button type="button" name="button"> <a href="./cm_gath_list.php?page=<?=$page?>" class="write_page1">목 록 </a></button>
 
-             <a href="./cm_gath_list.php?page=<?=$page?>">목 록 </a>
 
              <?php
                if (isset($_SESSION['userid'])) {
                  if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
 
-                   echo '<a href="./cm_gath_write.php?mode=update&num='.$num.'">수 정</a>';
+                   echo '<button type="button" name="button"><a href="./cm_gath_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a></button>';
 
-                   echo '<button onclick = "check_delete('.$num.')">삭 제</button>';
+                   echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
 
 
                  }
 
                }
                 if (!empty($_SESSION['userid'])) {
-                  echo '<a href="cm_gath_write.php?mode=response&num='.$num.'"><br>답변<br></a>';
-                  echo '<a href="cm_gath_write.php"><br>글쓰기<br></a>';
+                  echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_gath_write.php?mode=response&num='.$num.'" class="write_page1">답 변</a></button>';
+                  echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_gath_write.php" class="write_page1">글쓰기</a></button>';
                 }
               ?>
            </div><!--end of write_button  -->

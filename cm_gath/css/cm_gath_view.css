@@ -29,17 +29,12 @@ select{
 .list_header_tb{
 
 }
-.li_hd_num,.li_hd_sbj,.li_hd_writer,.li_hd_rgt_day,.li_hd_hit{
-  font-size:14px;
+.li_hd_title,.li_hd_nick,.li_hd_hit,.li_hd_id,#content_span{
+  font-size:16px;
   color:rgb(80, 80, 80);
   font-family: sans-serif;
 }
-.li_hd_num{
-  width: 100px;
-}
-.li_hd_num,.li_hd_sbj{
-  width: 550px;
-}
+
 .li_hd_writer{
   width: 150px;
 }
@@ -50,10 +45,59 @@ select{
   width: 100px;
 }
 #write_button{
-  background-color: rgb(75, 160, 249);
-  width: 80px;
+  /* background-color: rgb(75, 160, 249); */
+  /* width: 80px;
   height: 30px;
-  border-radius: 25px;
+  border-radius: 25px; */
 }
-  /* #write_button a:link { color:white; text-decoration: none; }
-  #write_button a:visited { color: white; text-decoration: none; } */
+#title1{
+  text-align: left;
+  height: 50px;
+  color:rgb(80, 80, 80); font-style:italic; font-size:30px;
+  background-color: rgb(226, 226, 226);
+}
+#write_row1,#write_row2,#write_row3{
+  font-size: 16px;
+}
+#write_row1,#write_row2,#write_row3{
+  text-align: center;
+}
+#list_title2 a:link {
+  text-decoration: none;
+  color: rgb(113, 113, 113);
+}
+
+#list_title2 a:visited {
+  text-decoration: none;
+}
+
+#list_title2 a:hover {
+  text-decoration: underline;
+}
+
+#list_title2 a:active {
+  text-decoration: underline;
+}
+.write_page1,.list_page1 a:link, a:visited {
+  font-size: 20px;
+  color: rgb(96, 96, 96);
+  text-align: center;
+  text-decoration:none;
+  text-align: right;
+}
+.list_page1,.write_page1 a:link, a:visited {
+  font-size: 20px;
+
+  text-align: right;
+  color: rgb(96, 96, 96);
+  text-align: center;
+  text-decoration:none;
+}
+#write_button{
+  
+  margin-left: 500px;
+  float: right;
+
+}
+  /* #write_button a:link { color:white; text-decoration: none; } */
+  /* #write_button a:visited { color: white; text-decoration: none; } */
