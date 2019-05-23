@@ -13,7 +13,7 @@ $file_name = $file[0];              //파일명
 $file_extension = $file[1];         //확장자
 
 // 3. 업로드 될 폴더를 지정한다.
-$upload_dir="./profile_img/";
+$upload_dir="profile_img/";
 //mkdir($upload_dir);
 
 // 4. 파일 업로드가 성공했는지 점검. 성공은 0 실패 1
