@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 function create_table($conn, $table_name){
   $flag="NO";
   $sql = "show tables from lotus_db";
@@ -411,7 +411,7 @@ function create_table($conn, $table_name){
                     `hit` int(11) NOT NULL,
                     `secret` char(1) DEFAULT NULL,
                     `no_ripple` char(1) DEFAULT NULL,
-     	      `file_type_0` char(7) DEFAULT NULL,
+                    `file_type_0` varchar(50) DEFAULT NULL,
                     `file_name_0` varchar(50) DEFAULT NULL,
                     `file_name_1` varchar(50) DEFAULT NULL,
                     `file_name_2` varchar(50) DEFAULT NULL,

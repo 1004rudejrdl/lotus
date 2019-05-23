@@ -1,0 +1,59 @@
+#board{
+  color:rgb(80, 80, 80);
+  font-size:16px;
+  margin-top: 20px;
+  text-align: center;
+  background-color: rgb(33, 33, 33);
+  width: 200px;
+  height: 30px;
+}
+#select_content{
+  color:rgb(80, 80, 80);
+  font-size:16px;
+  text-align: right;
+}
+select{
+  position: relative; width:100px; height: 40px;
+  line-height: 40px;
+  border: 1px solid #999;
+  z-index: 1;
+}
+#search_content{
+  position: relative; width:200px; height: 40px;
+  line-height: 35px;
+  border: 1px solid #999;
+  z-index: 1;
+}
+
+/* 테이블 */
+.list_header_tb{
+
+}
+.li_hd_num,.li_hd_sbj,.li_hd_writer,.li_hd_rgt_day,.li_hd_hit{
+  font-size:14px;
+  color:rgb(80, 80, 80);
+  font-family: sans-serif;
+}
+.li_hd_num{
+  width: 100px;
+}
+.li_hd_num,.li_hd_sbj{
+  width: 550px;
+}
+.li_hd_writer{
+  width: 150px;
+}
+.li_hd_rgt_day{
+  width: 150px;
+}
+.li_hd_hit{
+  width: 100px;
+}
+#write_button{
+  background-color: rgb(75, 160, 249);
+  width: 80px;
+  height: 30px;
+  border-radius: 25px;
+}
+  /* #write_button a:link { color:white; text-decoration: none; }
+  #write_button a:visited { color: white; text-decoration: none; } */

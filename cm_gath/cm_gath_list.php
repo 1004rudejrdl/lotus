@@ -1,142 +1,182 @@
-<!-- 작업순서
-1. example 폴더를 복사하고 3, 4에 해당하는 폴더명, 파일명으로 작업한다(example_main에서 header, sidenav, footer 형식이 완성된 form을 가져다가 작업할 것)
-2. sidenav 링크는 만들면서 추가한다. 각각 폴더에서 만들고
-테스트 후 나중에 한번에 링크 하는 방식으로 처리한다.
-
-3. 폴더명 4. 파일명
-(영어 단어를 줄여서 약자로 만들었음 이해 안되면 부팀장에게 물어볼 것)
-
-3. 회원(member)
-4. 회원가입 : mb_join_
-4. 로그인 : me_login_
-
-이성찾기 (meet)
-남 : meet_man_XXXX
-여 : meet_woman_XXXX
-데이트로그/회원현황 : log_gph_XXXX
-이상형 설문조사 : srv_XXXX
-
-추천예약 (rec/acm)
-맛집 : ra_rst_
-숙박 : ra_acmd_
-렌트카 : ra_car_
-
-쇼핑몰(shop)
-아우터 : sh_outer_
-상의 : sh_top_
-하의 :sh_bottom_
-
-테스트(test)
-연애진단 : tt_diag_
-성향테스트 : tt_tend_
-컬러테스트 : tt_color_
-
-커뮤니티(commu)
-자유게시판 : cm_free_
-모임 : cm_gath_
-성공후기 : cm_rv_
-
-관리자(admin) (look_project 구조 참고)
-(총관리자)(admin_)
-(admin_meet_) : admin_meet_man_ , admin_meet_woman_ .....(파일 이름 혹은 서브폴더)
-(admin_ra_)
-(admin_sh_)
-(admin_tt_)
-(admin_cm_)
-
-5. 기능에 따른 _뒤에 붙는 말
-첫화면(보통 목록이 많음)form : list,main
-보는form : view
-쓰는/수정하는form : write
-DB쿼리form : qurey
-
-예시 : ra_rst_list
-→ 맛집을 눌렀을 때 링크 되는 맛집 사진과 목록이 있는 가장 첫화면
-
-만약 더 상세한 폴더가 필요한 경우 4번을 폴더명으로 잡고 작업한다.
-예시
-회원가입(mb_join)
-가입화면 : mb_join_main
-가입쿼리문 : mb_join_qurey
-
-6. 클래스 명 등을 지을 때 겹칠 수 있으므로 만드시 상위에 링크된 css명을 확인한다
-
-7. 변수를 지을 때 의미 있게 짓는다.
-
-8. css에 header_sidenav는 웬만 하면 건들이지 않되 .sidenav a { /*서브메뉴 너비 조절*/
-부분 수정을 원하는 경우 해당 폴더에 하위로 css폴더를 만들고 그 부분을 덮어쓴다
-각자 내용을 채워 넣는 css는 그 파일명에 해당하는 css파일을 만들어서 처리한다. -->
-
-
-
 <?php
-  session_start();
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
+session_start();
+include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/alert_back.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
+
+create_table($conn,'commu');//자유게시판테이블생성
+
+
+
+define('SCALE', 10);
+$sql=$result=$total_record=$total_page=$start="";
+$row="";
+$memo_id=$memo_num=$memo_date=$memo_content="";
+$total_record=0;
+$userid = 13;
+$username = 12;
+$usernick = 11;
+
+if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+  //제목 내용 아이디
+  $find = test_input($_POST["find"]);
+  $search = test_input($_POST["search"]);
+  $q_search = mysqli_real_escape_string($conn, $search);
+  $sql = "SELECT * from `commu` where $find like '%$q_search%' order by num desc;";
+
+
+}else {
+  $sql="SELECT * from `commu` order by group_num desc";
+
+}
+$result=mysqli_query($conn,$sql);
+$total_record=mysqli_num_rows($result);//총레코드수
+//1.전체페이지, 2.디폴트페이지, 3.현재페이지 시작번호 4.보여줄리스트번호
+//1.전체페이지
+$total_page=($total_record % SCALE == 0 )?
+($total_record/SCALE):(ceil($total_record/SCALE));
+//2.페이지가 없으면 디폴트 페이지 1페이지
+
+if(!isset($_GET['page']) || empty($_GET['page'])){
+  $page=1;
+} else{
+  $page = $_GET['page'];
+}
+//3.현재페이지 시작번호계산함.
+$start=($page -1) * SCALE;
+//4. 리스트에 보여줄 번호를 최근순으로 부여함.
+$number = $total_record - $start;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <!-- <link rel="stylesheet" href="/css/view.css"> -->
+    <link rel="stylesheet" href="../css/header_sidenav.css">
+    <link rel="stylesheet" href="./css/cm_gath_list.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
+    <script src="../../js/effect_common.js"></script>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../css/common.css">
-  <!-- <link rel="stylesheet" href="../css/join.css"> -->
-  <link rel="stylesheet" href="../css/header_sidenav.css">
-  <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
-</head>
-<body>
-<!-- header start -->
-  <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
-<!-- header end -->
-<!-- main_body start -->
-<div class="main_body">
-<div id="sidenav" class="sidenav">
-  <a href="#about">추천/예약</a>
-  <a href="#services">맛집</a>
-  <a href="#clients">숙박</a>
-  <a href="#contact">렌트카</a>
-</div><!-- sidenav end -->
-<div class="main">
-  <h2>추천/예약</h2>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-  <p>화면테스트</p>
-</div>  <!-- main end -->
-</div>  <!-- main_body end -->
-<!-- footer start -->
-<?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/footer.php"; ?>
-<!-- footer_bg end -->
-</body>
+      <div class="main_body">
+        <div id="sidenav" class="sidenav">
+          <a href="../cm_free_/cm_free_exhibit.php">모임 게시판</a>
+          <a href="../cm_gath_/cm_gath_exhibit.php">자유게시판</a>
+          <a href="../cm_rv_/cm_rv_exhibit.php">성공후기</a>
+          <a href="../cm_qna_/cm_qna_exhibit.php">QnA</a>
+        </div>
+        <div class="main">
 
+          <div id="title1">
+            여기로 모여주세요.
+          </div>
+         <hr>
+
+         <form name="board_form" action="cm_gath_list.php?mode=search" method="post">
+           <div id="list_search">
+             <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
+             <div id="list_search2">선택</div>
+             <div id="list_search3">
+               <select name="find">
+                 <option value="subject">제목</option>
+                 <option value="content">내용</option>
+                 <option value="id">아이디</option>
+               </select>
+             </div><!--end of list_search3  -->
+             <div id="list_search4"><input type="text" name="search" ></div>
+             <div id="list_search5"><button type="submit">검색</button> </div>
+
+           </div><!--end of list_search  -->
+         </form>
+         <div id="clear"> </div>
+         <div id="list_top_title"><br><hr>
+           <table id="customers">
+             <tr>
+               <td id="list_title1">번호</td>
+               <td id="list_title2">제목</td>
+               <td id="list_title3">글쓴이</td>
+               <td id="list_title4">등록일</td>
+               <td id="list_title5">조회</td>
+             </tr>
+           </table>
+
+         </div><!--end of list_top_title  -->
+         <div id="list_content">
+
+
+         <?php
+          for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
+            mysqli_data_seek($result,$i);//해당된 포인트 위치로 간다
+            $row=mysqli_fetch_array($result);
+            $num=$row['num'];
+            $id=$row['id'];
+            $hit=$row['hit'];
+            $date=substr($row['regist_day'], 0,10) ;
+            $subject=$row['subject'];
+            $content=$row['content'];
+
+            $subject=str_replace("\n", "<br>",$subject);
+            $subject=str_replace(" ", "&nbsp;",$subject);
+            $depth=(int)$row['depth'];//공간을 몇 칸을 띄워야 할지
+            $space="";//depth의 앞 공간을 띄워주는 역할
+            for ($j=0; $j <$depth ; $j++) {
+              $space="&nbsp;&nbsp;".$space;
+            }
+            //$subject=nl2br($subject);
+        ?>
+            <div id="list_item">
+              <table id="customers">
+                <tr>
+                  <td id="list_title1"><?=$number?></td>
+                  <td id="list_title2"><a href="./cm_gath_view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a></td>
+                  <td id="list_title3"><?=$id?></td>
+                  <td id="list_title4"><?=$date?></td>
+                  <td id="list_title5"><?=$hit?></td>
+                </tr>
+              </table>
+            </div><!--end of list_item  -->
+
+        <?php
+            $number--;
+         }//end of for
+        ?>
+ <br><br>
+        <div id="page_button">
+        <div id="page_num"> 이전&nbsp;◀ &nbsp;&nbsp;&nbsp;&nbsp;
+        <?php
+          for ($i=1; $i <= $total_page ; $i++) {
+            if($page==$i){
+              echo "<b>&nbsp;$i&nbsp;</b>";
+            }else{
+              echo "<a href='./cm_gath_list.php?page=$i'>&nbsp;$i&nbsp;</a>";
+            }
+          }
+        ?>
+        &nbsp;&nbsp;&nbsp;&nbsp;▶ &nbsp;다음
+        <br><br><br>
+        </div>
+        <div id="button">
+          <button type="button" name="button"><a href="./cm_gath_list.php?page=<?=$page?>" id="list_page1">목  록</a></button>
+
+          <?php //세션 아이디가 있으면 글쓰기 버튼을 보여준다
+          if (!empty($_SESSION['userid'])) {
+            echo '<button type="button" name="button"><a href="./cm_gath_write.php?page=<?=$page?>" id="write_page1">글쓰기</a></button>';
+          }
+
+
+
+           ?>
+        </div>
+        </div><!--end of page_button  -->
+      </div><!--end of list_content  -->
+       </div><!--end of col2  -->
+      </div><!--end of content -->
+    </div><!--end of wrap  -->
+  </body>
 </html>
+ <!-- fieldset -->
