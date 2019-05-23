@@ -5,7 +5,7 @@
   background-color: rgb(226, 226, 226);
 }
 #list_search1{
-  margin-top: 12px;
+  /* margin-top: 12px; */
   float: left;
   width: 210px;
   opacity: 0.5;
@@ -15,8 +15,8 @@
 
 }
 #list_search2{
-  margin-left: 950px;
-  margin-top: 13px;
+  margin-left: 1000px;
+  /* margin-top: 13px; */
   float: left;
   width: 34px;
   font-size: 15px;
