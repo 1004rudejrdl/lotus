@@ -29,7 +29,7 @@ select{
 .list_header_tb{
 
 }
-.li_hd_title,.li_hd_nick,.li_hd_hit,.li_hd_id,#content_span{
+.li_hd_title,.li_hd_nick,.li_hd_hit,.li_hd_id{
   font-size:16px;
   color:rgb(80, 80, 80);
   font-family: sans-serif;
@@ -45,10 +45,10 @@ select{
   width: 100px;
 }
 #write_button{
-  /* background-color: rgb(75, 160, 249); */
-  /* width: 80px;
+  background-color: rgb(75, 160, 249);
+  width: 80px;
   height: 30px;
-  border-radius: 25px; */
+  border-radius: 25px;
 }
 #title1{
   text-align: left;
@@ -60,7 +60,11 @@ select{
   font-size: 16px;
 }
 #write_row1,#write_row2,#write_row3{
-  text-align: left;
+  text-align: center;
+}
+td{
+  border: 1px solid black;
+  width: 150px;
 }
 #list_title2 a:link {
   text-decoration: none;
@@ -78,14 +82,14 @@ select{
 #list_title2 a:active {
   text-decoration: underline;
 }
-.write_page1,.list_page1 a:link, a:visited {
+#write_page1,#list_page1 a:link, a:visited {
   font-size: 20px;
   color: rgb(96, 96, 96);
   text-align: center;
   text-decoration:none;
   text-align: right;
 }
-.list_page1,.write_page1 a:link, a:visited {
+#list_page1,#write_page1 a:link, a:visited {
   font-size: 20px;
 
   text-align: right;
@@ -93,9 +97,8 @@ select{
   text-align: center;
   text-decoration:none;
 }
-#write_button{
-
-  margin-left: 500px;
+#button{
+  margin-right: 100px;
   float: right;
 
 }

@@ -1,12 +1,10 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/commu_func.php";
-include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/commu_func.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/alert_back.php";
 $num = $id = $subject = $content = $day=$hit=$q_num="";
 $userid = $_SESSION['userid'];
-
-
 
 if(empty($_GET['page'])){
   $page=1;
@@ -75,9 +73,9 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="/css/view.css">
+  <!-- <link rel="stylesheet" href="./css/view.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
-  <link rel="stylesheet" href="./css/cm_gath_view.css">
+  <link rel="stylesheet" href="./css/cm_qna_view.css">
   <script type="text/javascript" src="./js/member_form.js?var=1"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <title></title>
@@ -85,18 +83,18 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
   <body>
     <div class="main_body">
       <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
-      <script src="../../js/effect_common.js"></script>
+      <!-- <script src="../../js/effect_common.js"></script> -->
       <div class="main_body">
         <div id="sidenav" class="sidenav">
-          <a href="../cm_gath/cm_gath_view.php">모임 게시판</a>
-          <a href="../cm_gath_/cm_gath_exhibit.php" style="color: rgba(252, 105, 105, 1);">자유게시판</a>
+          <a href="../cm_qna/cm_qna_list.php">QnA</a>
+          <a href="../cm_free/cm_free_list.php">자유게시판</a>
           <a href="../cm_rv/cm_rv_view.php">성공후기</a>
-          <a href="../cm_qna/cm_qna_view.php">QnA</a>
+          <a href="../cm_qna/cm_qna_view.php">모임게시판</a>
         </div>
 
       <div class="main">
        <div id="col2">
-         <div id="title1">모임 게시판</div> <hr>
+         <div id="title1">질문 게시판</div> <hr>
          <div id="write_form">
 
 
@@ -145,42 +143,85 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                  }
 
                   ?>
-                  <hr>  <span id="content_span" style="background-color:rgb(237, 237, 237);"> 내&nbsp;&nbsp;&nbsp;용 : <?=$content?> </span> </div>
+                 <span id="content_span" style="background-color:rgb(237, 237, 237);"> 내&nbsp;&nbsp;&nbsp;용 : <?=$content?> </span> </div>
 
              </div><!--end of write_row3  -->
-             <div class="write_line"></div>
-           </div><!--end of write_form  --> <br>
+             <!-- ********************************* -->
+             <div class="write_line"></div>  <hr>
+           </div><!--end of write_form  -->
 
 <!-- ********************************* -->
 
+<div id="ripple">
+<div id="ripple1">덧글</div>
+<div id="ripple2">
+  <?php
+    $sql="SELECT * from `commu_ripple` where parent='$q_num' ";
+    $ripple_result= mysqli_query($conn,$sql);
+    while($ripple_row=mysqli_fetch_array($ripple_result)){
+      $ripple_num=$ripple_row['num'];
+      $ripple_id=$ripple_row['id'];
+      $ripple_date=$ripple_row['regist_day'];
+      $ripple_content=$ripple_row['content'];
+      $ripple_content=str_replace("\n", "<br>",$ripple_content);
+      $ripple_content=str_replace(" ", "&nbsp;",$ripple_content);
+  ?>
+      <div id="ripple_title">
+        <ul>
+          <li style="color:rgb(101, 101, 101); font-size:16px;">아이디 : <?=$ripple_id."&nbsp;&nbsp;".$ripple_date?></li>
+          <li id="mdi_del">
+          <?php
+          $message =free_ripple_delete($ripple_id,$ripple_num,'dml_board.php',$page,$hit,$q_num);
+          echo $message;
+          ?>
+          </li>
+        </ul>
+      </div>
+      <div id="ripple_content" style="margin-left:50px; color:rgb(101, 101, 101); font-size:16px;">
+        └ <?=$ripple_content?>
+      </div>
+  <?php
+    }//end of while
+    mysqli_close($conn);
+  ?>
+  <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
+    <input type="hidden" name="parent" value="<?=$q_num?>">
+    <input type="hidden" name="page" value="<?=$page?>">
+    <input type="hidden" name="hit" value="<?=$hit?>">
+    <div id="ripple_insert">
+      <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
+
+      <div id="ripple_button"> <button type="submit" name="button">덧글 입력</button></div>
+    </div><!--end of ripple_insert -->
+  </form>
 
 
 
 <!-- ********************************* -->
-           <div id="write_button">
-             <button type="button" name="button"> <a href="./cm_gath_list.php?page=<?=$page?>" class="write_page1">목 록 </a></button>
+<br><br>
+</div><!--end of col2  -->
+       <div id="write_button">
+         <!-- <br><br><br><br> -->
+         <button type="button" name="button"> <a href="./cm_qna_list.php?page=<?=$page?>" class="write_page1">목 록 </a></button>
+
+         <?php
+         if (isset($_SESSION['userid'])) {
+           if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
+
+             echo '<button type="button" name="button"><a href="./cm_qna_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a></button>';
+
+             echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
 
 
-             <?php
-               if (isset($_SESSION['userid'])) {
-                 if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
+           }
 
-                   echo '<button type="button" name="button"><a href="./cm_gath_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a></button>';
-
-                   echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
-
-
-                 }
-
-               }
-                if (!empty($_SESSION['userid'])) {
-                  echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_gath_write.php?mode=response&num='.$num.'" class="write_page1">답 변</a></button>';
-                  echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_gath_write.php" class="write_page1">글쓰기</a></button>';
-                }
-              ?>
-           </div><!--end of write_button  -->
-
-       </div><!--end of col2  -->
+         }
+         if (!empty($_SESSION['userid'])) {
+           echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_qna_write.php?mode=response&num='.$num.'" class="write_page1">답 변</a></button>';
+           echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_qna_write.php" class="write_page1">글쓰기</a></button>';
+         }
+         ?>
+       </div><!--end of write_button  -->
       </div><!--end of content -->
     </div><!--end of wrap  -->
   </body>
