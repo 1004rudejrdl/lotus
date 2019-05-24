@@ -1,8 +1,8 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/session_call.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/session_call.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";;
-include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/alert_back.php";
 
 $num = $id = $subject = $content = $day = $hit="";
 $mode = "insert";
@@ -36,8 +36,8 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
   $hit=$row['hit'];
 
   if ($mode == "response") {
-    $subject="[답변]".$subject;
-    $content = "리플>>".$content;
+    $subject=$subject."의 [답변]";
+    // $content = $content."리플>>";
     $content=str_replace("<br>", "<br>▶",$content);
     $disabled="disabled";
   }
@@ -57,7 +57,7 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="/css/view.css">
     <link rel="stylesheet" href="../css/header_sidenav.css">
-    <link rel="stylesheet" href="./css/cm_gath_write.css">
+    <link rel="stylesheet" href="./css/cm_qna_write.css">
     <!-- <link rel="stylesheet" href="./css/cm_gath_view.css"> -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <title></title>
@@ -68,16 +68,15 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
 
       <div class="main_body">
         <div id="sidenav" class="sidenav">
-          <a href="../cm_free_/cm_free_exhibit.php">모임 게시판</a>
-          <a href="../cm_gath_/cm_gath_exhibit.php" style="color: rgba(252, 105, 105, 1);">자유게시판</a>
-          <a href="../cm_rv_/cm_rv_exhibit.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
-          <a href="../cm_qna_/cm_qna_exhibit.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
+          <a href="../cm_free_/cm_qna_list.php">QnA</a>
+          <a href="../cm_gath_/cm_free_list.php">자유게시판</a>
+          <a href="../cm_rv_/cm_rv_list.php">성공후기</a>
+          <a href="../cm_qna_/cm_gath_list.php">모임게시판</a>
         </div>
-
       <div class="main">
 
        <div id="col2">
-         <div id="title1">TOGETHER.글쓰기</div> <hr>
+         <div id="title1">질문 하기</div> <hr>
 
 
          <div class="clear"></div>
@@ -128,11 +127,6 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
                </tr>
              </table>
 
-
-
-
-
-
              <div class="clear"> </div>
 
              <div class="write_line"></div>
@@ -140,7 +134,7 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
              <div class="clear"> </div><br>
            </div><!--end of write_form  -->
            <!-- <div id="write_button"> -->
-           <button type="button" name="button"><a href="./cm_gath_list.php" id="list_page1">목 록</a></button>
+           <button type="button" name="button"><a href="./cm_qna_list.php" id="list_page1">목 록</a></button>
              <button type="submit" id="write_page1" name="button" onclick="document.getElementById('del_file').disabled=false">확 인</button>
 
            <!-- </div-- ><!--end of write_button  -->

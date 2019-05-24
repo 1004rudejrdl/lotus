@@ -1,7 +1,7 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/session_call.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/session_call.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/alert_back.php";
 
 ?>
 <meta charset="utf-8">
@@ -11,7 +11,6 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
 
 $content= $q_content = $sql= $result = $userid= $group_num = $depth="";
 $userid = $_SESSION['userid'];
-$board_type = "m";
 
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
@@ -32,21 +31,21 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     // $is_html = test_input($_POST['is_html']);
     // $is_html = (!isset($_POST['is_html']))?('n'):("y");
 
-
+    $board_type="m";
 
     $q_subject = mysqli_real_escape_string($conn, $subject);
     $q_content = mysqli_real_escape_string($conn, $content);
     $q_userid = mysqli_real_escape_string($conn, $userid);
     $regist_day=date("Y-m-d (H:i)");
 
-    $detph=0;
+    $depth=0;
     $ord=0;
 
-      include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/file_upload.php";
+      include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/file_upload.php";
 
       //파일의 실제명과 저장되는 명을 삽입한다.
       //등록된 사용자가 최근 입력한 이미지 게시판을 보여주기 ㅟ하여 num찾아서 전달하기 위한것
-      $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$detph','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,'$type[0]','$upfile_name',null,null,'$copied_file_name',null,null);";
+      $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,'$type[0]','$upfile_name',null,null,'$copied_file_name',null,null);";
 
       $result = mysqli_query($conn,$sql);
       if (!$result) {
@@ -69,7 +68,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
 
       mysqli_close($conn);
-      echo "<script> location.href='./cm_gath_view.php?num=$max_num&hit=$hit';</script>";
+      echo "<script> location.href='./cm_qna_view.php?num=$max_num&hit=$hit';</script>";
   //end of if rowcount
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
@@ -107,7 +106,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
 
     mysqli_close($conn);
-    echo "<script>location.href='./cm_gath_list.php?page=1';</script>";
+    echo "<script>location.href='./cm_qna_list.php?page=1';</script>";
 
 
 }
@@ -179,7 +178,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
 
 
 
-    echo "<script>location.href='./cm_gath_view.php?num=$num&page=1&hit=$hit';</script>";
+    echo "<script>location.href='./cm_qna_view.php?num=$num&page=1&hit=$hit';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="insert_ripple") {
   if(empty($_POST["ripple_content"])){
@@ -189,7 +188,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
   //댓글을 다는 사람은 로그인을 해야한다는 것을 말한것 이다.
   $userid=$_SESSION['userid'];
   $q_userid = mysqli_real_escape_string($conn, $userid);
-  $sql="SELECT * from `lotus_db` where id = '$q_userid'";
+  $sql = "SELECT * from `member` where id = '$q_userid'";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
@@ -200,24 +199,30 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     echo "<script>alert('없는 아이디!!');history.go(-1);</script>";
     exit;
   }else{
+
     $content = test_input($_POST["ripple_content"]);
     $page = test_input($_POST["page"]);
     $parent = test_input($_POST["parent"]);
     $hit = test_input($_POST["hit"]);
 
-    $q_usernick = mysqli_real_escape_string($conn, $_SESSION['usernick']);
-    $q_username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    // $q_usernick = mysqli_real_escape_string($conn, $_SESSION['usernick']);
+    $q_userid = mysqli_real_escape_string($conn, $_SESSION['userid']);
     $q_content = mysqli_real_escape_string($conn, $content);
     $q_parent = mysqli_real_escape_string($conn, $parent);
     $regist_day=date("Y-m-d (H:i)");
+    $group_num=0;
+    $depth=0;
+    $ord=0;
 
-    $sql="INSERT INTO `commu_ripple` VALUES (null,'$q_parent','$q_userid','$q_username', '$q_usernick','$q_content','$regist_day')";
+    $board_type="q";
+
+    $sql="INSERT INTO `commu_ripple` VALUES ('$board_type','$q_parent',null,'$group_num', '$depth','$ord','$q_userid','$q_content','$regist_day')";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
     mysqli_close($conn);
-    echo "<script>location.href='./cm_gath_view.php?num=$q_parent&page=$page&hit=$hit';</script>";
+    echo "<script>location.href='./cm_qna_view.php?num=$q_parent&page=$page&hit=$hit';</script>";
 }//end of if rowcount
 
 }//end of if insert
@@ -234,10 +239,14 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
     die('Error: ' . mysqli_error($conn));
   }
   mysqli_close($conn);
-  echo "<script>location.href='./cm_gath_view.php?num=$parent&page=$page&hit=$hit';</script>";
+  echo "<script>location.href='./cm_qna_view.php?num=$parent&page=$page&hit=$hit';</script>";
 }
+// ***********************************************
+// ***********************************************
 
 else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
+  echo "<script>alert('들어와라 좋은말로할때!');</script>";
+
   $content = trim($_POST["content"]);
   $subject = trim($_POST['subject']);
   if(empty($content) || empty($subject)){
@@ -272,8 +281,9 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
+    $board_type="m";
 
-    $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null,null,null,null);";
+    $sql = "INSERT INTO `commu` VALUES('$board_type',null,'$group_num','$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null,null,null,null);";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -287,9 +297,9 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
     $row=mysqli_fetch_array($result);
     $max_num=$row['max(num)'];
 
-    echo "<script>location.href='./cm_gath_view.php?num=$max_num&hit=$hit';</script>";
+    echo "<script>location.href='./cm_qna_view.php?num=$max_num&hit=$hit';</script>";
 }
-
 mysqli_close($conn);
+
 
 ?>

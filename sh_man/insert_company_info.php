@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 
 $company_num = trim($_POST['company_num']);
@@ -15,7 +15,7 @@ $com_addr=$com_addr1.$com_addr2;
 $com_email=$com_email1.$com_email2;
 
 
-  $sql = "INSERT INTO `com_info` VALUES('$company_num',null,'$company_name','$com_addr','$com_email','$com_tel','$com_regist_num','$com_tel_report');";
+  $sql = "INSERT INTO `com_info` VALUES('$company_num',null,'$company_name','1','1','1','1','1','1','1','1');";
 
   $result = mysqli_query($conn,$sql);
   if (!$result) {
