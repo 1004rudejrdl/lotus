@@ -88,10 +88,10 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       <script src="../../js/effect_common.js"></script>
       <div class="main_body">
         <div id="sidenav" class="sidenav">
-          <a href="../cm_gath/cm_gath_view.php">모임 게시판</a>
-          <a href="../cm_gath_/cm_gath_exhibit.php" style="color: rgba(252, 105, 105, 1);">자유게시판</a>
-          <a href="../cm_rv/cm_rv_view.php">성공후기</a>
-          <a href="../cm_qna/cm_qna_view.php">QnA</a>
+          <a href="../cm_gath/cm_gath_list.php">모임 게시판</a>
+          <a href="../cm_gath_/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유게시판</a>
+          <a href="../cm_rv/cm_rv_list.php">성공후기</a>
+          <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
         </div>
 
       <div class="main">
