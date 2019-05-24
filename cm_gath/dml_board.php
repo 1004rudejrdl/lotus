@@ -273,7 +273,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
       die('Error: ' . mysqli_error($conn));
     }
 
-    $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null);";
+    $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null,null,null,null);";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
