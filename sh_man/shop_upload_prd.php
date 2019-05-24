@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 
 
@@ -30,7 +30,7 @@ $row = mysqli_fetch_array($result);
 $company_type = $row[0];
 $company_num = $row[1];
 
-include $_SERVER['DOCUMENT_ROOT']."/lotus/sh_man/shop_register_img.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/sh_man/prd_register_img.php";
 
   $sql = "INSERT INTO `prd_shop` VALUES('$company_type','$company_num',null,'$shop_name','$copied_file_name','$shop_link','$shop_tel','$shop_addr','$shop_note');";
 
