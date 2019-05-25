@@ -2,7 +2,6 @@
 
 
 session_start();
-$session=$_SESSION['userid'];
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
 // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
@@ -12,9 +11,9 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 $prd_num=$_POST['prd_num'];
 $all_delete=$_GET['mode'];
 if ($all_delete=='all_delete') {
-  $sql="DELETE from `wish_list` where id='$session'";
+  $sql="DELETE from `wish_list` where id='세션값'";
 }else{
-  $sql="DELETE from `wish_list` where id='$session' AND prd_num='$prd_num'";
+  $sql="DELETE from `wish_list` where id='세션값' AND prd_num='$prd_num'";
 }
 
 $result = mysqli_query($conn,$sql);

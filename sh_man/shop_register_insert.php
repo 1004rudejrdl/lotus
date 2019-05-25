@@ -1,8 +1,12 @@
 <?php
-session_start();
+
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 
 
+function alert_back($data) {
+  echo "<script>alert('$data');history.go(-1);</script>";
+  exit;
+}
 
 $list_name = $_GET['mode'];
 
@@ -28,7 +32,7 @@ $company_num = $row[1];
 
 include $_SERVER['DOCUMENT_ROOT']."/lotus/sh_man/shop_register_img.php";
 
-  $sql = "INSERT INTO `prd_shop` VALUES('$company_type','$company_num',null,'$shop_name','$copied_file_name','$shop_link','$shop_tel','1','1','1','1','1');";
+  $sql = "INSERT INTO `prd_shop` VALUES('$company_type','$company_num',null,'$shop_name','$copied_file_name','$shop_link','$shop_tel','$shop_addr','$shop_note');";
 
   $result = mysqli_query($conn,$sql);
   if (!$result) {

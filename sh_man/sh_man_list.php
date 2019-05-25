@@ -7,7 +7,7 @@
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
-  $mode="insert";
+
   $sese=$type=$selected1=$selected2=$selected3=$selected4="";
   if($_GET['mode']=="man"){
     $name="남성의류";
@@ -23,7 +23,7 @@
     $type="s";
   }
 
-  $sql = "SELECT * from prd_shop_detail where prd_type = '$type' order by shop_best desc,prd_num desc;";
+  $sql = "SELECT * from prd_shop_detail where prd_type = '$type';";
   $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
   $total = mysqli_num_rows($result);
 
@@ -47,7 +47,10 @@
     }
   }
   define('SCALE', $list_count);
-  $session=$_SESSION['userid'];
+  $admin="admin";
+  if (isset($_GET['sese'])) {
+    $sese=$_GET['sese'];
+  }
   if (isset($_GET['type'])) {
     $type=$_GET['type'];
   }
@@ -99,19 +102,14 @@
 </div><!-- sidenav end -->
 <div class="main">
   <?php
-
   if (isset($_POST['prd_num'])) {
-    if (isset($_POST['update'])) {
-      $mode="update";
-    }
-    $prd_prd_num=$_POST['prd_num'];
-    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_prd_num';";
-    $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($conn));
+    $prd_num=$_POST['prd_num'];
+    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_num';";
+    $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($con));
     $row = mysqli_fetch_array($result1);
     //$row_prd_num=$row['prd_num'];
     $prd_name=$row['prd_name'];
     $prd_num=$row['prd_num'];
-    $shop_num=$row['shop_num'];
     $shop_price=$row['shop_price'];
     $shop_color=$row['shop_color'];
     $shop_size=$row['shop_size'];
@@ -127,11 +125,8 @@
       $file_copied[$i]=$row["file_copied_$i"];
     }
 
-    $sql6 = "SELECT shop_name from prd_shop where shop_num = '$shop_num';";
-    $result6 = mysqli_query($conn, $sql6) or die("실패원인 : " . mysqli_error($conn));
-    $row = mysqli_fetch_array($result6);
-    $shop_name=$row['shop_name'];
-
+    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_num';";
+    $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($con));
 
 
     $option1=$option2=$option3=$option4=$option5=$option6=$option7=$option8="";
@@ -270,10 +265,9 @@ for ($i=0; $i < 10; $i++) {
       if ($type=='regist') {
 
         ?>
-        <form class="" action="./insert_shop_prd.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
-        <input type="text" name="shop_name" value="<?=$shop_name?>" placeholder="샾이름">
+        <form class="" action="./insert_shop_prd.php" method="post" enctype="multipart/form-data">
+        <input type="text" name="shop_name" value="" placeholder="샾이름">
         <input type="text" name="prd_name" value="<?=$prd_name?>" placeholder="상품명">
-        <input type="hidden" name="prd_num" value="<?=$prd_num?>" >
         <hr>
         <select class="" name="type_m_w_s">
           <option value="m">남성의류</option>
@@ -329,57 +323,6 @@ for ($i=0; $i < 10; $i++) {
         ?>
         <?=$prd_name?>
         <span style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;">★</span>
-        <?php
-        $sql7 = "SELECT id from prd_like where prd_num = '$prd_prd_num';";
-        $result7 = mysqli_query($conn, $sql7) or die("실패원인 : " . mysqli_error($conn));
-        $total7 = mysqli_num_rows($result7);
-        $img_like='heart_notgood.png';
-        for ($i=0; $i < $total7; $i++) {
-          $row7 = mysqli_fetch_array($result7);
-          if ($row7['id']==$session) {
-            $img_like='heart_good.png';
-            break;
-          }
-        }
-
-
-        if (isset($session)) {
-          ?>
-          <span><img src="./img/<?=$img_like?>" alt="" id="insert_good" width="100"> </span>
-
-          <?php
-        }
-
-
-         ?>
-
-        <script type="text/javascript">
-        $(document).ready(function() {
-          $("#insert_good").click(function(event) {
-
-            $.ajax({
-              url: 'shopping_good_insert.php',
-              type: 'POST',
-              data: {
-                prd_num: <?=$prd_prd_num?>
-              }
-            })
-            .done(function(result) {
-              console.log(result);
-
-              console.log("success");
-              $("#insert_good").attr('src',"./img/"+result);
-
-            })
-            .fail(function() {
-              console.log("error");
-            })
-            .always(function() {
-              console.log("complete");
-            });
-          });
-        });
-        </script>
         <hr>
           <?=$shop_price?>원
         <hr>
@@ -546,28 +489,22 @@ for ($i=0; $i < 10; $i++) {
 
   <div id="Paris" class="tabcontent">
   <h3>상품평</h3>
-  <fieldset>
-    <legend>상품평 쓰기</legend>
-    <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-    <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-    <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-    <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-    <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-    <hr>
-    <textarea name="name" rows="8" cols="80"></textarea>
-    <hr>
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-    <img src="./img/number0.png" alt="" style="width:8%">
-  </fieldset>
-
+  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
+  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
+  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
+  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
+  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
+  <hr>
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
+  <img src="./img/number0.png" alt="" style="width:8%">
 
   </div>
 
@@ -680,7 +617,7 @@ for ($i=0; $i < 10; $i++) {
           var json_obj = $.parseJSON(result);
 
 
-            $("#id_day").html(json_obj[0].id+ "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" +json_obj[2].regist_day+json_obj[1].prd_q_cont );
+            $("#id_day").html(json_obj[0].id+ "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" +json_obj[1].prd_q_cont +json_obj[2].regist_day);
 
 
 
@@ -735,7 +672,7 @@ for ($i=0; $i < 10; $i++) {
 <div class="" >
   <div class="">
     <?php
-    if ($session == "admin") {
+    if ($admin == "admin") {
       ?>
       <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
         <input type="submit" name="" value="상품등록" style="float:right">
@@ -774,19 +711,9 @@ for ($i=0; $i < 10; $i++) {
           $row = mysqli_fetch_array($result);
           $prd_name=$row['prd_name'];
           $prd_num=$row['prd_num'];
-          $shop_best=$row['shop_best'];
           $shop_price=$row['shop_price'];
           $file_name_0=$row['file_name_0'];
           $file_copied_0=$row['file_copied_0'];
-          for ($j=0; $j < 10; $j++) {
-            $file_name[$j]=$row["file_name_$j"];
-            $file_copied[$j]=$row["file_copied_$j"];
-            if (!empty($file_name[$j])) {
-              $file_name_0=  $file_name[$j];
-              $file_copied_0=$file_copied[$j];
-              $j=11;
-            }
-          }
           if (!empty($file_copied_0)) {
             //이미지 정보를 가져오게 하는 방법이다  width height type
             $image_info = getimagesize("./img/".$file_copied_0);
@@ -810,25 +737,16 @@ for ($i=0; $i < 10; $i++) {
               <input type="hidden" name="prd_num" value="<?=$prd_num?>">
 
               <input type="image" name="" value="" src="./img/<?=$file_copied_0?>" style="width:50%">
-              <p><?=$prd_name?>  &nbsp&nbsp&nbsp&nbsp&nbsp
-                <?php
-                if ($shop_best=='1') {
-                  $shop_best='BEST!';
-                  echo $shop_best;
-                }
-
-                 ?>
-              </p>
+              <p><?=$prd_name?></p>
               <p><?=$shop_price?>원</p>
               <p>*****</p>
               </form>
               <?php
-              if ($session == "admin") {
+              if ($admin == "admin") {
                 ?>
                 <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
                   <input type="submit" name="" value="수정">
                   <input type="hidden" name="prd_num" value="<?=$prd_num?>">
-                  <input type="hidden" name="update" value="update">
                 </form>
 
                 <form class="" action="./shop_register_delete.php" method="post">

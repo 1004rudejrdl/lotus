@@ -7,12 +7,8 @@
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
-  if (!isset($_SESSION['userid'])) {
-    alert_back("로그인 후 이용해 주세요");
-  }
 $prd_price_sum=0;
-$session=$_SESSION['userid'];
-  $sql="SELECT prd_num from `wish_list` where id='$session'";
+  $sql="SELECT prd_num from `wish_list` where id='세션값'";
 
   $result = mysqli_query($conn,$sql);
   if (!$result) {
@@ -25,19 +21,7 @@ $session=$_SESSION['userid'];
     $prd_type[$i]=substr($prd_type_num1, 0,1);
 
   }
-  $sql1="SELECT * from `member` where id='$session'";
 
-  $result1 = mysqli_query($conn,$sql1);
-  if (!$result) {
-    die('Error: ' . mysqli_error($conn));
-  }
-  $row = mysqli_fetch_array($result1);
-  $name=$row['name'];
-  $tel=$row['tel'];
-  $email=$row['email'];
-  $address=$row['address'];
-  $detailAddress=$row['detailAddress'];
-  $extraAddress=$row['extraAddress'];
 
 
 ?>
@@ -79,15 +63,15 @@ $session=$_SESSION['userid'];
       <table style="width:100%">
         <tr>
           <td style="width:30%">이름</td>
-          <td style="width:70%"><?=$name?></td>
+          <td style="width:70%">김경덕</td>
         </tr>
         <tr>
           <td>이메일</td>
-          <td><?=$email?></td>
+          <td>1004</td>
         </tr>
         <tr>
           <td>휴대폰 번호</td>
-          <td><?=$tel?></td>
+          <td>010</td>
         </tr>
       </table>
     </div>
@@ -96,7 +80,7 @@ $session=$_SESSION['userid'];
       <table style="width:100%">
         <tr>
           <td style="width:30%">이름</td>
-          <td style="width:70%"><?=$name?></td>
+          <td style="width:70%">김경덕</td>
         </tr>
         <?php
         for ($i=0; $i < $total; $i++) {
@@ -105,7 +89,7 @@ $session=$_SESSION['userid'];
           <tr>
             <td>배송주소</td>
             <td><button type="button" name="button">배송지 변경</button><br>
-              <?=$address.$detailAddress.$extraAddress?></td>
+              서울특별시</td>
             </tr>
 
             <?php
@@ -116,11 +100,11 @@ $session=$_SESSION['userid'];
 
         <tr>
           <td>연락처</td>
-          <td><?=$tel?></td>
+          <td>010</td>
         </tr>
         <tr>
           <td>이메일</td>
-          <td><?=$email?></td>
+          <td>1004</td>
         </tr>
         <?php
         for ($i=0; $i < $total; $i++) {
