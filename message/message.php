@@ -71,10 +71,7 @@ $number=$total_record- $start;
 	    var popupY = (window.screen.height/2)-(400/2);
 	    window.open(url,'','left='+popupX+',top='+popupY+', width=500, height=400, status=no, scrollbars=no');
 	  }
- function message_close(){
-		window.close();
-		window.opener.location.reload(true);
-	}
+
  </script>
 </head>
 <body>
@@ -190,7 +187,7 @@ $number=$total_record- $start;
       if(isset($id)){
 
       ?>
-      <a href="#" onclick="message_close()" ><img src="./img/cancelemail.png" alt=""> </a>
+      <a href="../index.php"><img src="./img/cancelemail.png" alt=""> </a>
       <a href="#" onclick="message_form()" ><img src="./img/sendmail.png"></a>
 
       <?php

@@ -1,5 +1,7 @@
 <?php
-$flag=$vote_id=$id="";
+session_start();
+$match_time=$flag=$vote_id=$id="";
+$userid=$_SESSION['userid'];
 include '../lib/db_connector.php';
 if(isset($_GET["mode"]) &&$_GET["mode"]=="check"){
   $id = test_input($_GET["id"]);
@@ -7,29 +9,47 @@ if(isset($_GET["mode"]) &&$_GET["mode"]=="check"){
   $sql="SELECT*FROM member_like WHERE `id`='$id' and `vote_id`='$vote_id'";
   $result=mysqli_query($conn,$sql);
   $rowcount=mysqli_num_rows($result);
-
-  if(empty($rowcount)){
-    $sql="INSERT INTO member_like (`id`,`vote_id`)VALUES('$id','$vote_id')";
-    $result=mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
-    $sql="SELECT*FROM member_like WHERE `id`='$vote_id' and `vote_id`='$id'";
+  if($userid==$id){
+    $sql="SELECT*FROM member_like WHERE `id`='$id'";
     $result=mysqli_query($conn,$sql);
     $rowcount=mysqli_num_rows($result);
-    if(empty($rowcount)){
-      echo "좋아요를 눌렀습니다.";
-    }else{
-      $match_time=date("Y-m-d");
-      $sql="INSERT INTO member_meeting (`maching`,`maching_day`)VALUES('$id','$match_time')";
-      echo "매칭이 성사 되었습니다~♥";
-    }
-
-    //$alarm="좋아요를 눌렀습니다.";
-    //$s = '[{"alarm":"'.$alarm.'"},{"like":"0"}]';
+    $like1=$rowcount;
+    echo "본인을 추천할 수 없습니다.".$like1;
   }else{
-    //$alarm="이미 좋아요를 눌렀습니다.";
-    //$s = '[{"alarm":"'.$alarm.'"},{"like":"-1"}]';
+    if(empty($rowcount)){
+      $sql="INSERT INTO member_like (`id`,`vote_id`)VALUES('$id','$vote_id')";
+      $result=mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+      $sql="SELECT*FROM member_like WHERE `id`='$id'";
+      $result=mysqli_query($conn,$sql);
+      $rowcount=mysqli_num_rows($result);
+      $like=$rowcount;
+      $sql="SELECT*FROM member_like WHERE `id`='$vote_id' and `vote_id`='$id'";
+      $result=mysqli_query($conn,$sql);
+      $rowcount=mysqli_num_rows($result);
+      if(empty($rowcount)){
+        echo "좋아요를 눌렀습니다.".$like;
+      }else{
+        $match_time=date("Y-m-d");
+        $sql="UPDATE  member_meeting SET
+        `matching`='$vote_id',`matching_day`='$match_time'WHERE `id`='$id'";
+        $sql="UPDATE  member_meeting SET
+        `matching`='$id',`matching_day`='$match_time'WHERE `id`='$vote_id'";
+        $result=mysqli_query($conn,$sql);
+        echo "매칭이 성사 되었습니다.".$like;
+      }
 
-    echo "이미 좋아요를 눌렀습니다.";
+      //$alarm="좋아요를 눌렀습니다.";
+      //$s = '[{"alarm":"'.$alarm.'"},{"like":"0"}]';
+    }else{
+      //$alarm="이미 좋아요를 눌렀습니다.";
+      //$s = '[{"alarm":"'.$alarm.'"},{"like":"-1"}]';
+      $sql="SELECT*FROM member_like WHERE `id`='$id'";
+      $result=mysqli_query($conn,$sql);
+      $rowcount=mysqli_num_rows($result);
+      $like1=$rowcount;
+      echo "이미 좋아요를 눌렀습니다.".$like1;
 
+    }
   }
 }
 

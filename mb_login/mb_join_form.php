@@ -45,6 +45,69 @@ $g_id=$fb_id=$n_id=$k_id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#login_form_id').blur(function(event) {
+      $.ajax({
+        url: './ajax.php?mode=id',
+        type: 'POST',
+        data: {id:$('#login_form_id').val()}
+      })
+      .done(function(result) {
+        $("#ajax_respond_id").html(result);
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+    });
+  });
+  $(document).ready(function() {
+    $('#login_form_pw').blur(function(event) {
+      $.ajax({
+        url: './ajax.php?mode=pw',
+        type: 'POST',
+        data: {pw: $('#login_form_pw').val()}
+      })
+      .done(function(result) {
+        $('#confirm_pw').html(result);
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+    });
+
+    });
+
+  $(document).ready(function() {
+    $('#phone_num').blur(function(event) {
+      $.ajax({
+        url: './ajax.php?mode=phone',
+        type: 'POST',
+        data: {num: $('#phone_num').val()}
+      })
+      .done(function(result) {
+        $('#confirm_phone').html(result);
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+    });
+  });
+
   $(document).ready(function() {
     $('#input:radio[name="gender"]').each(function() {
       var gender=$('#input:radio[name="gender"]:checked').val();
@@ -59,7 +122,7 @@ $g_id=$fb_id=$n_id=$k_id=$fullemail=$email[0]=$email[1]=$name=$birth=$gender="";
   });
 
   $(document).ready(function() {
-    if($('#confirmed_email1').value==""){
+    if($('#confirmed_email1').value==null){
       $('#check_button').attr("src", "./img/none_check_email.png");
     }else{
       $('#check_button').attr("src", "./img/check_email.png");
@@ -206,7 +269,7 @@ reader.readAsDataURL(pic.files[0]);
 <div class="main">
   <form name="login_form" action="member_join.php?mode=member_join" method="post" enctype="multipart/form-data">
     <table>
-      <th>로그인</th>
+      <th>회원 가입</th>
       <tr>
         <td colspan="3" rowspan="4"><img id="profile_image" style="width:430px;height:300px;" > </td>
         <td > <label id="login_table_id_label">아이디</label></td>
@@ -315,6 +378,7 @@ reader.readAsDataURL(pic.files[0]);
         </select> </td>
         <td>핸드폰번호</td>
         <td colspan="4"><input type="text" id="phone_num" name="phone_num" placeholder="전화번호를 입력하세요"> </td>
+        <td><p id="confirm_phone"></p> </td>
       </tr>
       <tr>
         <td>키</td>
@@ -329,7 +393,7 @@ reader.readAsDataURL(pic.files[0]);
     <input type="hidden" name="fb_id" value="<?=$fb_id?>">
     <input type="hidden" name="n_id" value="<?=$n_id?>">
     <input type="hidden" name="k_id" value="<?=$k_id?>">
-    <input type="submit" name="button_submit" value="Log In">
+    <input type="submit" name="button_submit" value="회원가입하기">
     <input type="reset" name="button_reset" value="재작성">
     <textarea name="introduce_myself_text" rows="8" cols="80"placeholder="자신을 소개해주세요.(최대 500자)"style="resize:none;"></textarea>
   </form>

@@ -1,8 +1,18 @@
 <?php
 session_start();
 include "../lib/db_connector.php";
-$user_gender=$_SESSION['gender'];
-$user_id=$_SESSION['userid'];
+if (isset($_SESSION['userid'])) {
+  $user_id=$_SESSION['userid'];
+}else{
+  ?>
+  <script type="text/javascript">
+    alert("로그인 후 이용해 주세요");
+    history.go(-1);
+  </script>
+
+
+  <?php
+}
 
 
 define('SCALE', 10);
@@ -29,29 +39,27 @@ $result=mysqli_query($conn,$sql) or die('Error: '.mysqli_error($conn));
  }
 if(isset($_GET['mode'])&&$_GET['mode']=='whole'){
   $sql="SELECT * from member order by id desc";
-  $sql1="SELECT * from member_meeting order by id desc";
+  $sql1="SELECT * from member_meeting where `id`=$ order by id desc";
   //제목(subject), 내용(content), 아이디(id)
 
   $result=mysqli_query($conn,$sql);
   $result1=mysqli_query($conn,$sql1);
   $total_record=mysqli_num_rows($result);//총레코드수
 }else if(isset($_GET['mode'])&&$_GET['mode']=='male'){
-  $sql="SELECT * from member where gender IN(`0`)";
-  $sql1="SELECT * from member_meeting order by id desc";
+  $sql="SELECT * from member where `gender` ='0' or `gender`='남'";
   //제목(subject), 내용(content), 아이디(id)
 
   $result=mysqli_query($conn,$sql);
-  $result1=mysqli_query($conn,$sql1);
+
   $total_record=mysqli_num_rows($result);//총레코드수
 }else if(isset($_GET['mode'])&&$_GET['mode']=='female'){
-  $sql="SELECT * from member where gender IN(`1`)";
-  $sql1="SELECT * from member_meeting order by id desc";
+  $sql="SELECT * from member where `gender`='1' or `gender`='여'";
+  $sql1="SELECT * from member_meeting  order by id desc";
   //제목(subject), 내용(content), 아이디(id)
 
   $result=mysqli_query($conn,$sql);
   $result1=mysqli_query($conn,$sql1);
   $total_record=mysqli_num_rows($result);//총레코드수
-
 }
 
 //1.전체페이지, 2.디폴트페이지, 3.현재페이지 시작번호 4.보여줄리스트번호
@@ -96,14 +104,16 @@ $number = $total_record - $start;
           <?php
            for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
              mysqli_data_seek($result,$i);
-             mysqli_data_seek($result1,$i);
              $row=mysqli_fetch_array($result);
-             $row1=mysqli_fetch_array($result1);
              $id=$row['id'];
-             $id1=$row1['id'];
              $name=$row['name'];
              $birth=$row['birth'];
              $gender=$row['gender'];
+             $sql1="SELECT * from member_meeting where `id`='$id' order by id desc";
+             $result1=mysqli_query($conn,$sql1);
+             mysqli_data_seek($result1,$i);
+             $row1=mysqli_fetch_array($result1);
+             $id1=$row1['id'];
              $img=$row1['img'];
              $self_info=$row1['self_info'];
              $height=$row1['height'];
@@ -126,7 +136,6 @@ $number = $total_record - $start;
              $like=count($row2['id']);
              $id_like=$row2['id'];
              $vote_id=$row2['vote_id'];
-
              ?>
           <div id="list_item">
             <table class="card" style="margin:5px;">
@@ -176,9 +185,14 @@ $number = $total_record - $start;
                     }
                   })
                   .done(function(result) {
+                    var answer=result;
+                    console.log(answer);
+                    var d=answer.split('.');
+                    console.log(d);
                     $('#button_like<?=$i?>').prop('disabled', true);
-                    $('#like_num<?=$i?>').html(<?=$like?>);
-                    alert(result);
+                    $('#like_num<?=$i?>').html(d[1]);
+                    console.log(d[1]);
+                    alert(d[0]);
                     // $(".button_like").prop('disabled', true);
                     console.log("success");
                   })
