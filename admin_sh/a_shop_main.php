@@ -18,7 +18,7 @@
   $len_shop_addr="";
   $shop_addr="";
   $shop_tel="";
-
+$userid = $_SESSION['userid'];
   define('SCALE', 10);
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="order_list_com"){
@@ -191,28 +191,38 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="order_list_com"){
           <?php
           //$number--;
         }//end of for
-        mysqli_close($conn);
+
         ?>
       </table> <!-- admin_table end -->
 
       <button class="btn_write"><a href="./a_shop_w_e_d.php">샵 등록</a></button>
+      <?php
+      $sql2="SELECT * from `admin_authority` where id = '$userid';";
+      $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($conn));
+      $row2 = mysqli_fetch_array($result2);
+      $auth_shop = $row2['auth_shop'];
+      if (!empty($auth_shop)) {
+       ?>
+      <button class="btn_write"><a href="./lib/exal.php">현재 매출 다운</a></button>
       <?php //오픈용 로직이므로 불요 //세션 아이디가 있으면 글쓰기 목록을 보여주고 없으면 보여주지 않는다.
         // if(!empty($_SESSION['userid'])&&!empty($id)){
         //   echo '<button class="btn_write"><a href="./op_free_bd_wr_ed_dl.php?mode=insert_op_fbd&page='.$page.'">글쓰기</a></button>';
         // }else{
         //   alert_back('로그인 후 이용하세요');
         // }
+      }
+        mysqli_close($conn);
       ?>
       <hr class="title_hr">
       <div class="page_to" >
         <div class="page_to_in" >
-        <a href="./op_free_bd_main.php?page=1">◀◀</a>
+        <a href="./a_shop_main.php?page=1">◀◀</a>
         <?php
         if ($page>1) {
               $page_go=$page-1;
-               echo '<a class="previous" href="./op_free_bd_main.php?page='.$page_go.'">이전 ◀</a>';
+               echo '<a class="previous" href="./a_shop_main.php?page='.$page_go.'">이전 ◀</a>';
              }else {
-               echo '<a class="previous" href="./op_free_bd_main.php?page=1">이전 ◀</a>';
+               echo '<a class="previous" href="./a_shop_main.php?page=1">이전 ◀</a>';
              }
              for ($i=1; $i <= $total_page ; $i++) {
                if($page==$i){
@@ -220,20 +230,20 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="order_list_com"){
                }else{
                  //싱글쿼테이션은 문자로 인식하지 않는다
                  //더블은 문자로 인식
-                 echo "<a href='./op_free_bd_main.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                 echo "<a href='./a_shop_main.php?page=$i'>&nbsp;$i&nbsp;</a>";
                }
              }
              if ($total_page==0) {
-               echo '<a class="next" href="./op_free_bd_main.php?page=1">▶ 다음</a>';
+               echo '<a class="next" href="./a_shop_main.php?page=1">▶ 다음</a>';
              }elseif ($page+1>$total_page) {
                $page_end=$total_page;
-               echo '<a class="next" href="./op_free_bd_main.php?page='.$page_end.'">▶ 다음</a>';
+               echo '<a class="next" href="./a_shop_main.php?page='.$page_end.'">▶ 다음</a>';
              }else{
                $page_go=$page+1;
-               echo '<a class="next" href="./op_free_bd_main.php?page='.$page_go.'">▶ 다음</a>';
+               echo '<a class="next" href="./a_shop_main.php?page='.$page_go.'">▶ 다음</a>';
              }
              ?>
-          <a href="./op_free_bd_main.php?page=<?=$total_page?>">▶▶</a>
+          <a href="./a_shop_main.php?page=<?=$total_page?>">▶▶</a>
       </div> <!-- page_to in end 페이지 이동 -->
       </div> <!-- page_to end 페이지 이동 -->
       <p>&nbsp;</p>

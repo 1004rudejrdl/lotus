@@ -18,6 +18,7 @@ $like=
 $matching_day=
 $matching=
 $img="";
+$userid = $_SESSION['userid'];
 if ((isset($_GET['id'])&&!empty($_GET['id']))) {
     $id=test_input($_GET['id']);
 
@@ -211,7 +212,17 @@ if ((isset($_GET['id'])&&!empty($_GET['id']))) {
       <div class="btn_center">
         <div class="btn_submit btn_2">
           <a href="./a_mb_mt_main.php" >취 소</a>
+          <?php
+          $sql2="SELECT * from `admin_authority` where id = '$userid';";
+          $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($conn));
+          $row2 = mysqli_fetch_array($result2);
+          $auth_meeting = $row2['auth_meeting'];
+          if (!empty($auth_meeting)) {
+
+
+          ?>
           <a href='./a_mb_mt_e_d.php?id=<?=$mb_id?>' >수 정</a>
+        <?php } ?>
         </div>
       </div>
     <p>&nbsp;</p>

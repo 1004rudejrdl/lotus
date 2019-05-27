@@ -203,13 +203,13 @@
       <hr class="title_hr">
       <div class="page_to" >
         <div class="page_to_in" >
-        <a href="./op_free_bd_main.php?page=1">◀◀</a>
+        <a href="./a_c_info_main.php?page=1">◀◀</a>
         <?php
         if ($page>1) {
               $page_go=$page-1;
-               echo '<a class="previous" href="./op_free_bd_main.php?page='.$page_go.'">이전 ◀</a>';
+               echo '<a class="previous" href="./a_c_info_main.php?page='.$page_go.'">이전 ◀</a>';
              }else {
-               echo '<a class="previous" href="./op_free_bd_main.php?page=1">이전 ◀</a>';
+               echo '<a class="previous" href="./a_c_info_main.php?page=1">이전 ◀</a>';
              }
              for ($i=1; $i <= $total_page ; $i++) {
                if($page==$i){
@@ -217,20 +217,20 @@
                }else{
                  //싱글쿼테이션은 문자로 인식하지 않는다
                  //더블은 문자로 인식
-                 echo "<a href='./op_free_bd_main.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                 echo "<a href='./a_c_info_main.php?page=$i'>&nbsp;$i&nbsp;</a>";
                }
              }
              if ($total_page==0) {
-               echo '<a class="next" href="./op_free_bd_main.php?page=1">▶ 다음</a>';
+               echo '<a class="next" href="./a_c_info_main.php?page=1">▶ 다음</a>';
              }elseif ($page+1>$total_page) {
                $page_end=$total_page;
-               echo '<a class="next" href="./op_free_bd_main.php?page='.$page_end.'">▶ 다음</a>';
+               echo '<a class="next" href="./a_c_info_main.php?page='.$page_end.'">▶ 다음</a>';
              }else{
                $page_go=$page+1;
-               echo '<a class="next" href="./op_free_bd_main.php?page='.$page_go.'">▶ 다음</a>';
+               echo '<a class="next" href="./a_c_info_main.php?page='.$page_go.'">▶ 다음</a>';
              }
              ?>
-          <a href="./op_free_bd_main.php?page=<?=$total_page?>">▶▶</a>
+          <a href="./a_c_info_main.php?page=<?=$total_page?>">▶▶</a>
       </div> <!-- page_to in end 페이지 이동 -->
       </div> <!-- page_to end 페이지 이동 -->
       <p>&nbsp;</p>
