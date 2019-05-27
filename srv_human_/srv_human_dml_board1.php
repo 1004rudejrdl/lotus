@@ -1,7 +1,7 @@
 <?php
 session_start();
+$id = $_SESSION['userid'];
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
-var_dump($_POST['qwer']);
 $board = "member_type_survey";
 
 
@@ -33,8 +33,15 @@ if(!empty($_POST['composer5'])){
 }
 
 $sql="INSERT into $board(`id`,`type_height`,`type_shape`,`type_age`,`type_job`,`type_place`)
- values('test','$height','$shape','$age','$job','$place');";
+ values('$id','$height','$shape','$age','$job','$place');";
 
 $result=mysqli_query($conn,$sql) or die("실패원인: ".mysqli_error($conn));
+
+?>
+<script type="text/javascript">
+  location.href='./srv_human_result.php';
+</script>
+
+<?php
 
 ?>

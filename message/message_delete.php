@@ -1,12 +1,12 @@
 <?php
 include_once '../lib/db_connector.php';
 
-$msg_cnum = $_GET['msg_num'];
+$msg_num = $_GET['msg_num'];
 
-$sql = "delete from member_msg where msg_cnum = '$msg_cnum'";
-mysqli_query($con, $sql);
+$sql = "DELETE from member_msg where `msg_num` = '$msg_num'";
+mysqli_query($conn, $sql);
 
-mysqli_close($con);
+mysqli_close($conn);
 
 echo "<script> alert('삭제 되었습니다.'); window.close();
        window.opener.location.reload(true);

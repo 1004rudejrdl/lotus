@@ -2,7 +2,6 @@
 include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/session_call.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
-
 ?>
 <meta charset="utf-8">
 
@@ -14,10 +13,11 @@ $userid = $_SESSION['userid'];
 $board_type = "m";
 
 
+
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $content = trim($_POST["content"]);
     $subject = trim($_POST['subject']);
-    $board_type = trim($_POST["board_type"]);
+    
     if(empty($content) || empty($subject)){
       echo "<script>alert('내용입력요망!');history.go(-1);</script>";
       exit;
@@ -244,6 +244,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
     echo "<script>alert('내용입력요망!');history.go(-1);</script>";
     exit;
   }
+    $subject = test_input($_POST["board_type"]);
     $subject = test_input($_POST["subject"]);
     $content = test_input($_POST["content"]);
     $userid = test_input($userid);

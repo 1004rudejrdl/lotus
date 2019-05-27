@@ -62,7 +62,7 @@
   <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
   <script type="text/javascript">
     function check_email() {
-      window.open("./check_email.php", "IDEmail", "left=200, top=200, width=700, height=550, scrollbars=no, resizable=no");
+      window.open("./check_email.php", "IDEmail", "left=200, top=200, width=900, height=550, scrollbars=no, resizable=no");
     }
     function SetEmailTail(emailValue) {
       var email = document.all("email") // 사용자 입력
@@ -113,10 +113,11 @@
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 업체 구분</td>
             <td class="tb_cont">
-              <select name="com_type" disabled>
                 <?php if($mode=="update_com_info"&&$com_type=="e_") {?>
-                <option value="e_" selected readOnly>맛집/체험</option>
+                  <select name="com_type" disabled>
+                <option value="e_" selected >맛집/체험</option>
                 <?php }else{ ?>
+                  <select name="com_type">
                 <option value="e_">맛집/체험</option>
                 <?php
                 }
@@ -143,6 +144,11 @@
                 }
                 ?>
               </select>
+              <?php if($mode=="update_com_info") {?>
+                <span class="alret_ment">* 업종 변경은 연꽃 업체관리자의 허가가 필요합니다</span>
+              <?php
+              }
+              ?>
             </td>
           </tr>
           <tr>
@@ -211,7 +217,7 @@
                 }
 
                 function check_email() {
-                  window.open("./lib/check_email.php", "IDEmail", "left=200, top=200, width=700, height=550, scrollbars=no, resizable=no");
+                  window.open("./lib/check_email.php", "IDEmail", "left=200, top=200, width=900, height=550, scrollbars=no, resizable=no");
                 }
               </script>
             </td>
@@ -239,7 +245,7 @@
             <td class="tb_cont"><input type="text" name="com_regist_num" placeholder="ex)2016-서울마포-0505호" value="<?=$com_regist_num?>"></td>
           </tr>
         </table>
-        <hr class="title_hr"
+        <hr class="title_hr">
         <div class="btn_center">
         <?php
         if ($mode=="update_com_info") {

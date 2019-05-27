@@ -1,17 +1,16 @@
 <?php  ?>
+<script type="text/javascript">
+  function diag(){
+    window.open('../tt_diag/tt_diag_list.php','','scrollbars=no,toolbars=no,width=780,height=710');
+  }
+</script>
 <div class="row">
   <div class="column longer">
     <h3>이성찾기</h3>
-    <a href="../about_company/brandstory.php" style="color:#1565c0">남</a>
-    <a href="../about_company/ceo.php" style="color:#f64f59">여</a>
-    <a href="../about_company/com_location.php">데이트로그/회원현황</a>
+    <a href="../find_meet/meeting.php?mode=male" style="color:#1565c0">남</a>
+    <a href="../find_meet/meeting.php?mode=female" style="color:#f64f59">여</a>
+    <a href="../find_meet/match_log.php">데이트로그/회원현황</a>
     <a href="../srv_human_/srv_human_research.php">이상형 설문조사</a>
-  </div> <!-- column -->
-  <div class="column">
-    <h3>추천/예약</h3>
-    <a href="../about_chain/chain_intro.php">맛집/체험</a>
-    <a href="../about_chain/chain_inquiry.php">숙박</a>
-    <a href="../ra_car_ticket/ra_car_country.php">렌트카</a>
   </div> <!-- column -->
   <div class="column">
     <h3>쇼핑몰</h3>
@@ -21,15 +20,15 @@
   </div> <!-- column -->
   <div class="column longer">
     <h3>테스트</h3>
-    <a href="../tt_diag_/tt_diag_test.php">연애진단</a>
-    <a href="../tt_tend_/tt_tend_test.php">연애성향테스트</a>
-    <a href="../tt_color_/tt_color_test.php">컬러테스트</a>
+    <a onclick="diag()">연애진단</a>
+    <a href="../tt_tend/tt_tend_test.php">연애성향테스트</a>
+    <a href="../tt_color/tt_color_test.php">컬러테스트</a>
   </div> <!-- column end -->
   <div class="column">
     <h3>커뮤니티</h3>
-    <a href="../cm_free_/cm_free_exhibit.php">자유게시판</a>
-    <a href="../cm_gath_/cm_gath_exhibit.php">모임</a>
-    <a href="../cm_rv_/cm_rv_exhibit.php">성공후기</a>
-    <a href="../cm_qna_/cm_qna_exhibit.php">QnA</a>
+    <a href="../cm_free/cm_free_list.php">자유게시판</a>
+    <a href="../cm_gath/cm_gath_list.php">모임</a>
+    <a href="../cm_rv/cm_rv_list.php">성공후기</a>
+    <a href="../cm_qna/cm_qna_list.php">QnA</a>
   </div> <!-- column end -->
 </div> <!-- row end -->

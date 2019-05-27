@@ -2,6 +2,37 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+if (isset($_SESSION['userid'])) {
+  $user_id=$_SESSION['userid'];
+  $sql = "SELECT id from member_type_survey";
+  $result = mysqli_query($conn,$sql);
+  if (!$result) {
+    die('Error: ' . mysqli_error($conn));
+  }
+  $total = mysqli_num_rows($result);
+  for ($i=0; $i < $total; $i++) {
+    $row = mysqli_fetch_array($result);
+    $id = $row['id'];
+    if ($user_id==$id) {
+      ?>
+      <script type="text/javascript">
+        alert("이미 설문 조사를 참여 하셨습니다.");
+        location.href='./srv_human_result.php';
+      </script>
+      <?php
+      break;
+    }
+  }
+}else{
+  ?>
+  <script type="text/javascript">
+    alert("로그인 후 이용해 주세요");
+    history.go(-1);
+  </script>
+
+
+  <?php
+}
  ?>
  <!DOCTYPE html>
  <html lang="ko" dir="ltr">
@@ -49,6 +80,8 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
              //console.log(document.getElementsTagName('input')[0].value);
              // Form.action = 'srv_human_dml_board.php';
             document.research_form.submit();
+            alert("설문조사에 응해주셔서 감사합니다.");
+
          }
        </script>
      <title>이상형 설문조사</title>

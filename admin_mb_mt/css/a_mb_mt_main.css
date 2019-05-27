@@ -1,3 +1,8 @@
+input{
+  margin: 0;
+  padding:0;
+  width:140px;
+}
 .main {
   max-width: 85%;
   margin-left: 16%;
@@ -10,78 +15,42 @@
 }
 .title_hr{
   size:1;
-  width:95%;
+  width:100%;
   margin: 10px 0;
+}
+.list_search_bar {
+  padding-top: 20px;
+  width: 100%;
+}
+.list_search_bar * {
+  font-size: 14px;
+}
+.lsb_msg{
+  display: inline;
+}
+.lsb_btn_srch {
+  float: right;
+  margin-left: 5px;
+}
+.bottom_20{
+  margin-bottom: 20px;
 }
 .admin_table{
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  float: left;
-  width: 45%;
+  width: 100%;
+  margin-top: 30px;
 }
-.witdh_100{
-  width: 90%;
-}
-.mb_bottom{
-  margin-bottom: 10px;
-}
-
 tr, td{
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 10px;
   font-size: 16px;
-  width: 100%;
 }
 td:hover{
   background-color:#f5f5f5;
 }
-img {
-  max-width: 100%;
-}
-.td_subjet{
-  min-width: 200px;
-}
-.witdh_100 .td_subjet{
-  max-width: 200px;
-}
-.td_subjet_star {
-  color:rgb(240, 165, 0);
-  margin: 0 5px 0 10px;
-}
-.tb_cont input{
-  min-width: 200px;
-}
-.tb_cont textarea{
-  width: 100%;
-  resize: none;
-}
-.btn_center{
-  position:relative;
-  margin: 0 0 15% 0;
-}
-.btn_submit{
-  position:absolute;
-  left:0;
-  right:0%;
-  width: 215px;
-  margin-left:auto;
-  margin-right:auto;
-}
 
-.btn_submit button{
-  display: inline;
-  border: none;
-  background-color: rgba(252, 105, 105, 1);
-  border-radius: 5px;
-  padding: 10px 13px 13px 13px;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-}
-.btn_submit button:hover{
-  background-color: rgba(252, 105, 105, 0.85);
-}
 @media screen and (max-width: 1700px) {
   .main {
     margin-left: 17.5%;
@@ -90,11 +59,6 @@ img {
 @media screen and (max-width: 1600px) {
   .main {
     margin-left: 19.5%;
-  }
-}
-@media screen and (max-width: 1540px) {
-  .tb_container {
-    margin-bottom: 12px;
   }
 }
 @media screen and (max-width: 1500px) {
@@ -114,16 +78,6 @@ img {
 @media screen and (max-width: 1200px) {
   .main {
     margin-left: 24%;
-  }
-  .admin_table{
-    float: none;
-    width: 100%;
-  }
-  .title_hr{
-    width: 100%;
-  }
-  .btn_submit{
-    right:0;
   }
 }
 @media screen and (max-width: 1100px) {
@@ -147,7 +101,6 @@ img {
     margin-top: 450px;
     max-width: 100%;
   }
-
   .sidenav a {
     margin: 0;
     padding: 2px;
@@ -158,9 +111,75 @@ img {
   table *, .tb_container{
     font-size: 14px;
   }
-  .td_subjet_star {
-    color:rgb(240, 165, 0);
-    margin: 0 0 0 0px;
+}
+@media screen and (max-width: 800px) {
+  .list_header_tb * {
+    font-size: 15px;
   }
+}
 
+.admin_table a, .btn_write a{
+  text-decoration: none;
+  color: black;
+}
+.btn_write {
+  float:right;
+  margin: 1%;
+}
+.btn_write a {
+  color: white;
+}
+.submain_list_item:nth-child(odd) {
+  background-color: rgba(252, 105, 105, 0.05);
+}
+.submain_list_item:nth-child(even) {
+  background-color: rgba(252, 105, 105, 0.15);
+}
+.li_hd_list_num, .li_hd_num{
+  width: 7%;
+}
+.li_hd_type{
+  width: 9%;
+}
+.li_hd_id, .li_hd_tel{
+  width: 15%;
+}
+.lsb_btn_srch, .btn_write, .btn_srch{
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 1px 3px 3px 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.lsb_btn_srch:hover, .btn_write:hover, .btn_srch:hover {
+  background-color: rgba(252, 105, 105, 0.85);
+}
+.page_to a{
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  position:relative;
+  margin: 30px 0 10% 0;
+}
+.page_to_in {
+position:absolute;
+text-align: center;
+width:50%;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
 }

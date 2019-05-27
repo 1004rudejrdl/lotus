@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 function create_table($conn, $table_name){
   $flag="NO";
   $sql = "show tables from lotus_db";
@@ -37,11 +37,7 @@ function create_table($conn, $table_name){
                     UNIQUE KEY `mb_num_UNIQUE` (`mb_num`),
                     UNIQUE KEY `id_UNIQUE` (`id`),
                     UNIQUE KEY `email_UNIQUE` (`email`),
-                    UNIQUE KEY `tel_UNIQUE` (`tel`),
-                    UNIQUE KEY `sns_UNIQUE` (`naver`),
-                    UNIQUE KEY `kakao_UNIQUE` (`kakao`),
-                    UNIQUE KEY `facebook_UNIQUE` (`facebook`),
-                    UNIQUE KEY `google_UNIQUE` (`google`)
+                    UNIQUE KEY `tel_UNIQUE` (`tel`)
                   );";
             break;
           case 'member_meeting' :
@@ -53,8 +49,8 @@ function create_table($conn, $table_name){
                     `self_info` text NOT NULL,
                     `img` varchar(100) NOT NULL,
                     `mb_type` char(1) NOT NULL DEFAULT '0',
-                    `maching` char(10) DEFAULT NULL,
-                    `maching_day` char(10) DEFAULT NULL,
+                    `matching` char(10) DEFAULT NULL,
+                    `matching_day` char(10) DEFAULT NULL,
                     PRIMARY KEY (`id`)
                   );";
             break;
@@ -411,7 +407,7 @@ function create_table($conn, $table_name){
                     `hit` int(11) NOT NULL,
                     `secret` char(1) DEFAULT NULL,
                     `no_ripple` char(1) DEFAULT NULL,
-     	      `file_type_0` char(7) DEFAULT NULL,
+                    `file_type_0` char(7) DEFAULT NULL,
                     `file_name_0` varchar(50) DEFAULT NULL,
                     `file_name_1` varchar(50) DEFAULT NULL,
                     `file_name_2` varchar(50) DEFAULT NULL,
@@ -437,7 +433,7 @@ function create_table($conn, $table_name){
             break;
           case 'commu_review' :
             $sql = "CREATE TABLE `commu_review` (
-                    `maching` char(10) NOT NULL,
+                    `matching` char(10) NOT NULL,
                     `num` int(11) NOT NULL AUTO_INCREMENT,
                     `id` varchar(22) NOT NULL,
                     `subject` varchar(100) NOT NULL,

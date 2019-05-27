@@ -1,9 +1,9 @@
-﻿.topnav{
+.topnav{
   align-items: center;
   background-color: white;
 }
 .dropdown .dropbtn{
-  margin-top: 41px;
+  margin-top: 63px;
 }
 .logo img {
   width:350px;
@@ -100,7 +100,7 @@
     margin-top : 0;
   }
   .sidenav{
-    margin-top: 127px;
+    margin-top: 85px;
   }
   .sidenav a {
     display: inline;

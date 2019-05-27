@@ -3,9 +3,9 @@
 
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+$session=$_SESSION['userid'];
 
-
-$sql="SELECT prd_num,count from `wish_list` where id='세션값'";
+$sql="SELECT prd_num,count from `wish_list` where id='$session'";
 
 $result = mysqli_query($conn,$sql);
 if (!$result) {
@@ -19,14 +19,14 @@ for ($i=0; $i < $total; $i++) {
   $prd_type[$i]=substr($prd_type_num1, 0,1);
   $prd_num[$i]=substr($prd_type_num1, 1);
   $sql = "INSERT INTO `order_list`
-  VALUES('s$prd_type_num1',null,'세션값','$prd_num[$i]','$count');";
+  VALUES('s$prd_type_num1',null,'$session','$prd_num[$i]','$count');";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
   }
 
 }
-$sql = "DELETE from wish_list where id = '세션값'";
+$sql = "DELETE from wish_list where id = '$session'";
 $result=mysqli_query($conn, $sql);
 if (!$result) {
   die('Error: ' . mysqli_error($conn));

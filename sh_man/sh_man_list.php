@@ -7,7 +7,7 @@
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
-
+  $mode="insert";
   $sese=$type=$selected1=$selected2=$selected3=$selected4="";
   if($_GET['mode']=="man"){
     $name="남성의류";
@@ -23,13 +23,13 @@
     $type="s";
   }
 
-  $sql = "SELECT * from prd_shop_detail where prd_type = '$type';";
+  $sql = "SELECT * from prd_shop_detail where prd_type = '$type' order by shop_best desc,prd_num desc;";
   $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
   $total = mysqli_num_rows($result);
 
 
   $list_count=4;
-  if (isset($_POST['option_list_count'])) {
+  if (isset($_POST['option_list_count'])) {    //n개씩 보기
     $list_count=$_POST['option_list_count'];
     switch ($list_count) {
       case '4':
@@ -47,10 +47,7 @@
     }
   }
   define('SCALE', $list_count);
-  $admin="admin";
-  if (isset($_GET['sese'])) {
-    $sese=$_GET['sese'];
-  }
+  $session=$_SESSION['userid'];
   if (isset($_GET['type'])) {
     $type=$_GET['type'];
   }
@@ -85,7 +82,7 @@
   <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
@@ -102,14 +99,19 @@
 </div><!-- sidenav end -->
 <div class="main">
   <?php
-  if (isset($_POST['prd_num'])) {
-    $prd_num=$_POST['prd_num'];
-    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_num';";
-    $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($con));
+
+    if (!empty($_POST['prd_num'])  ||  isset($_POST['regist'])) {//상품 번호가 있으면 구매   등록이 있으면 수정
+      if (isset($_POST['update'])) {
+        $mode="update";
+      }
+    $prd_prd_num=$_POST['prd_num'];
+    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_prd_num';";
+    $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($conn));
     $row = mysqli_fetch_array($result1);
     //$row_prd_num=$row['prd_num'];
     $prd_name=$row['prd_name'];
     $prd_num=$row['prd_num'];
+    $shop_num=$row['shop_num'];
     $shop_price=$row['shop_price'];
     $shop_color=$row['shop_color'];
     $shop_size=$row['shop_size'];
@@ -125,8 +127,11 @@
       $file_copied[$i]=$row["file_copied_$i"];
     }
 
-    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_num';";
-    $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($con));
+    $sql6 = "SELECT shop_name from prd_shop where shop_num = '$shop_num';";
+    $result6 = mysqli_query($conn, $sql6) or die("실패원인 : " . mysqli_error($conn));
+    $row = mysqli_fetch_array($result6);
+    $shop_name=$row['shop_name'];
+
 
 
     $option1=$option2=$option3=$option4=$option5=$option6=$option7=$option8="";
@@ -265,9 +270,10 @@ for ($i=0; $i < 10; $i++) {
       if ($type=='regist') {
 
         ?>
-        <form class="" action="./insert_shop_prd.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="shop_name" value="" placeholder="샾이름">
+        <form class="" action="./insert_shop_prd.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
+        <input type="text" name="shop_name" value="<?=$shop_name?>" placeholder="샾이름">
         <input type="text" name="prd_name" value="<?=$prd_name?>" placeholder="상품명">
+        <input type="hidden" name="prd_num" value="<?=$prd_num?>" >
         <hr>
         <select class="" name="type_m_w_s">
           <option value="m">남성의류</option>
@@ -323,6 +329,57 @@ for ($i=0; $i < 10; $i++) {
         ?>
         <?=$prd_name?>
         <span style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;">★</span>
+        <?php
+        $sql7 = "SELECT id from prd_like where prd_num = '$prd_prd_num';";
+        $result7 = mysqli_query($conn, $sql7) or die("실패원인 : " . mysqli_error($conn));
+        $total7 = mysqli_num_rows($result7);
+        $img_like='heart_notgood.png';
+        for ($i=0; $i < $total7; $i++) {
+          $row7 = mysqli_fetch_array($result7);
+          if ($row7['id']==$session) {
+            $img_like='heart_good.png';
+            break;
+          }
+        }
+
+
+        if (isset($session)) {
+          ?>
+          <span><img src="./img/<?=$img_like?>" alt="" id="insert_good" width="100"> </span>
+
+          <?php
+        }
+
+
+         ?>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+          $("#insert_good").click(function(event) {
+
+            $.ajax({
+              url: 'shopping_good_insert.php',
+              type: 'POST',
+              data: {
+                prd_num: <?=$prd_prd_num?>
+              }
+            })
+            .done(function(result) {
+              console.log(result);
+
+              console.log("success");
+              $("#insert_good").attr('src',"./img/"+result);
+
+            })
+            .fail(function() {
+              console.log("error");
+            })
+            .always(function() {
+              console.log("complete");
+            });
+          });
+        });
+        </script>
         <hr>
           <?=$shop_price?>원
         <hr>
@@ -432,7 +489,7 @@ for ($i=0; $i < 10; $i++) {
         });
         </script>
         <a href="./shopping_basket.php"> <button type="button" name="button">장바구니 바로가기</button></a>
-        <a href="./shopping_payment.php"> <button type="button" name="button">바로구매</button></a>
+
         <?php
       }
        ?>
@@ -442,222 +499,7 @@ for ($i=0; $i < 10; $i++) {
     </div>
   </div>
 
-  <div class="" style="clear:both;margin-bottom:800px;" >
-    <div class="" >
 
-  <div class="tab" >
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">상품 상세</button>
-
-  </div>
-  <div class="tab">
-
-  <button class="tablinks" onclick="openCity(event, 'Paris')">상품평</button>
-
-  </div>
-  <div class="tab">
-
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')" >상품문의</button>
-  </div>
-  <div class="tab">
-
-  <button class="tablinks" onclick="openCity(event, 'Seoul')">배송/교환/반품 안내</button>
-  </div>
-
-  <div id="London" class="tabcontent">
-  <h3>필수 표기 정보</h3>
-  <table style="text-align:center">
-    <tr>
-      <td>제품소재</td>
-      <td>상세페이지 기재</td>
-      <td>색상</td>
-      <td>상세페이지 기재</td>
-    </tr>
-    <tr>
-      <td>치수</td>
-      <td>상세페이지 기재</td>
-      <td>제조자(수입자)</td>
-      <td>상세페이지 기재</td>
-    </tr>
-    <tr>
-      <td>제조국</td>
-      <td>상세페이지 기재</td>
-      <td>세탁방법 및 취급시 주의사항</td>
-      <td>상세페이지 기재</td>
-    </tr>
-  </table>
-  </div>
-
-  <div id="Paris" class="tabcontent">
-  <h3>상품평</h3>
-  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-  <p style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;display:inline;">★</p>
-  <hr>
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-  <img src="./img/number0.png" alt="" style="width:8%">
-
-  </div>
-
-  <div id="Tokyo" class="tabcontent">
-    <div class="">
-      <fieldset style=>
-        <legend>상품 문의 게시글 쓰기</legend>
-
-
-          <table style="width:100%">
-            <tr>
-              <td>문의 내용</td>
-              <td><textarea name="name" id="prd_q_cont" rows="6" cols="60"></textarea></td>
-              <td><input type="checkbox" id="secret" name="" value="1" >비밀글</td>
-            </tr>
-            <input type="hidden" id="prd_num" value="<?=$prd_num?>">
-
-          </table>
-          <div class="" style="text-align:center">
-            <input type="button" id="regist_qna" name="" value="등록하기">
-          </div>
-
-
-
-      </fieldset>
-      <div class="">
-        <?php
-        $sql2 = "SELECT * from prd_q where prd_num like '_$prd_num';";
-        $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($con));
-        $total2 = mysqli_num_rows($result2);
-        define('SCALE1', 5);
-        $total_page2=($total2 % SCALE1 == 0 )?
-        ($total2/SCALE1):(ceil($total2/SCALE1));
-
-        //2.페이지가 없으면 디폴트 페이지 1페이지
-        $page2=(isset($_GET['page'])&&!empty($_GET['page']))?(test_input($_GET['page'])):(1);
-
-        //3.현재페이지 시작번호계산함.
-        $start2=($page2 -1) * SCALE1;
-
-        //4. 리스트에 보여줄 번호를 최근순으로 부여함.
-        $number2 = $total2 - $start2;
-        ?>
-        <p id="id_day">
-
-        <?php
-        for ($i=$start2; $i < $start2+SCALE1 && $i<$total2; $i++) {
-          mysqli_data_seek($result2, $i);
-          $row = mysqli_fetch_array($result2);
-          $id=$row['id'];
-          $prd_q_cont=$row['prd_q_cont'];
-          $que_day=$row['que_day'];
-          ?>
-          <p ><?=$id?> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <?=$que_day?>
-            <br><?=$prd_q_cont?>
-          </p>
-
-
-          <?php
-        }
-         ?>
-         </p>
-         <a href="./sh_man_list.php?page=1&mode=<?=$list_name?>">◀◀</a>
-         <?php
-         if ($page2>1) {
-                $page_go2=$page2-1;
-                echo '<a class="previous" href="./sh_man_list.php?page='.$page_go2.'&mode='.$list_name.'">이전 ◀</a>';
-              }else {
-                echo '<a class="previous" href="./sh_man_list.php?page=1&mode='.$list_name.'">이전 ◀</a>';
-              }
-              for ($i=1; $i <= $total_page2 ; $i++) {
-                if($page2==$i){
-                  echo "<a>&nbsp;$i&nbsp;</a>";
-                }else{
-                  //싱글쿼테이션은 문자로 인식하지 않는다
-                  //더블은 문자로 인식
-                  echo "<a href='./sh_man_list.php?page=$i&mode=$list_name'>&nbsp;$i&nbsp;</a>";
-                }
-              }
-              if ($total_page2==0) {
-                echo '<a class="next1" href="./sh_man_list.php?page=1&mode='.$list_name.'">▶ 다음</a>';
-              }elseif ($page2+1>$total_page2) {
-                $page_end2=$total_page2;
-                echo '<a class="next1" href="./sh_man_list.php?page='.$page_end2.'&mode='.$list_name.'">▶ 다음</a>';
-              }else{
-                $page_go2=$page2+1;
-                echo '<a class="next1" href="./sh_man_list.php?page='.$page_go2.'&mode='.$list_name.'">▶ 다음</a>';
-              }
-              ?>
-           <a href="./sh_man_list.php?page=<?=$total_page2?>&mode=<?=$list_name?>">▶▶</a>
-      </div>
-    </div>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $("#regist_qna").click(function(event) {
-
-        $.ajax({
-          url: 'shop_qna.php',
-          type: 'POST',
-          data: {
-            prd_q_cont: $("#prd_q_cont").val(),
-            secret: $("#secret").val(),
-            prd_num: $("#prd_num").val()
-
-          }
-        })
-        .done(function(result) {
-          console.log("success");
-          console.log(result);
-          var json_obj = $.parseJSON(result);
-
-
-            $("#id_day").html(json_obj[0].id+ "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" +json_obj[1].prd_q_cont +json_obj[2].regist_day);
-
-
-
-        })
-        .fail(function() {
-          console.log("error");
-        })
-        .always(function() {
-          console.log("complete");
-        });
-      });
-    });
-    </script>
-  </div>
-  <div id="Seoul" class="tabcontent">
-  <h3>Seoul</h3>
-  <p>Seoul is the capital of Korea.</p>
-  </div>
-
-  <script>
-  function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-  }
-
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
-  </script>
-
-    </div>
-  </div>
 
 <?php
 }
@@ -672,14 +514,15 @@ for ($i=0; $i < 10; $i++) {
 <div class="" >
   <div class="">
     <?php
-    if ($admin == "admin") {
+    if ($session == "admin") {
       ?>
       <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
         <input type="submit" name="" value="상품등록" style="float:right">
         <input type="hidden" name="prd_num" value="">
+        <input type="hidden" name="regist" value="regist">
       </form>
-      <a href="./shop_register.php?mode=<?=$list_name?>"> <button type="button" name="button" style="float:right">샾 등록</button> </a>
-      <a href="./company_info.php?mode=<?=$list_name?>"> <button type="button" name="button" style="float:right">회사 등록</button> </a>
+      <a href="../admin_sh/a_shop_main.php?mode=<?=$list_name?>"> <button type="button" name="button" style="float:right">샾 등록</button> </a>
+      <a href="../admin_com_info/a_c_info_main.php?mode=<?=$list_name?>"> <button type="button" name="button" style="float:right">회사 등록</button> </a>
       <?php
     }
      ?>
@@ -711,9 +554,19 @@ for ($i=0; $i < 10; $i++) {
           $row = mysqli_fetch_array($result);
           $prd_name=$row['prd_name'];
           $prd_num=$row['prd_num'];
+          $shop_best=$row['shop_best'];
           $shop_price=$row['shop_price'];
           $file_name_0=$row['file_name_0'];
           $file_copied_0=$row['file_copied_0'];
+          for ($j=0; $j < 10; $j++) {
+            $file_name[$j]=$row["file_name_$j"];
+            $file_copied[$j]=$row["file_copied_$j"];
+            if (!empty($file_name[$j])) {
+              $file_name_0=  $file_name[$j];
+              $file_copied_0=$file_copied[$j];
+              $j=11;
+            }
+          }
           if (!empty($file_copied_0)) {
             //이미지 정보를 가져오게 하는 방법이다  width height type
             $image_info = getimagesize("./img/".$file_copied_0);
@@ -737,16 +590,25 @@ for ($i=0; $i < 10; $i++) {
               <input type="hidden" name="prd_num" value="<?=$prd_num?>">
 
               <input type="image" name="" value="" src="./img/<?=$file_copied_0?>" style="width:50%">
-              <p><?=$prd_name?></p>
+              <p><?=$prd_name?>  &nbsp&nbsp&nbsp&nbsp&nbsp
+                <?php
+                if ($shop_best=='1') {
+                  $shop_best='BEST!';
+                  echo $shop_best;
+                }
+
+                 ?>
+              </p>
               <p><?=$shop_price?>원</p>
               <p>*****</p>
               </form>
               <?php
-              if ($admin == "admin") {
+              if ($session == "admin") {
                 ?>
                 <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
                   <input type="submit" name="" value="수정">
                   <input type="hidden" name="prd_num" value="<?=$prd_num?>">
+                  <input type="hidden" name="update" value="update">
                 </form>
 
                 <form class="" action="./shop_register_delete.php" method="post">

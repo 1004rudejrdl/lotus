@@ -14,6 +14,7 @@ $row="";
 $memo_id=$memo_num=$memo_date=$memo_content="";
 $total_record=0;
 $userid = $_SESSION['userid'];
+$board_type="q";
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
   //제목 내용 아이디
@@ -24,7 +25,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
 
 
 }else {
-  $sql="SELECT * from `commu` order by group_num desc";
+  $sql="SELECT * from `commu` where board_type = 'q' order by group_num desc";
 
 }
 $result=mysqli_query($conn,$sql);
@@ -63,10 +64,11 @@ $number = $total_record - $start;
 
       <div class="main_body">
         <div id="sidenav" class="sidenav">
-          <a href="../cm_free_/cm_qna_list.php">QnA</a>
-          <a href="../cm_gath_/cm_free_list.php">자유 게시판</a>
-          <a href="../cm_rv_/cm_rv_list.php" >성공후기</a>
+          <a>커뮤니티</a>
+          <a href="../cm_free/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유 게시판</a>
           <a href="../cm_gath/cm_gath_list.php" style="color: rgba(252, 105, 105, 1);">모임 게시판</a>
+          <a href="../cm_rv/cm_rv_list.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
+          <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
         </div>
         <div class="main">
 
@@ -117,6 +119,7 @@ $number = $total_record - $start;
             $date=substr($row['regist_day'], 0,10) ;
             $subject=$row['subject'];
             $content=$row['content'];
+            $board_type = $row['board_type'];
 
             $subject=str_replace("\n", "<br>",$subject);
             $subject=str_replace(" ", "&nbsp;",$subject);
@@ -125,6 +128,7 @@ $number = $total_record - $start;
             for ($j=0; $j <$depth ; $j++) {
               $space="&nbsp;&nbsp;".$space;
             }
+            if ($board_type == "q") {
             //$subject=nl2br($subject);
         ?>
             <div id="list_item">
@@ -141,6 +145,7 @@ $number = $total_record - $start;
 
         <?php
             $number--;
+          }
          }//end of for
         ?>
  <br><br>

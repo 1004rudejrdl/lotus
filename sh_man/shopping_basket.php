@@ -2,13 +2,28 @@
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+
+  function alert_back($data) {
+    echo "<script>alert('$data');
+    location.href='../index.php';
+    </script>";
+
+    exit;
+  }
+
+
   // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
+  if (!isset($_SESSION['userid'])) {
+
+    alert_back("로그인 후 이용해 주세요");
+  }
+  $session=$_SESSION['userid'];
   $prd_price_sum=0;
-  $sql="SELECT * from `wish_list` where id='세션값'";
+  $sql="SELECT * from `wish_list` where id='$session'";
 
   $result = mysqli_query($conn,$sql);
   if (!$result) {

@@ -1,3 +1,11 @@
+<?php session_start(); ;
+if (!empty($_SESSION['userid'])) {
+   $id = $_SESSION['userid'];
+}else {
+   $id = "고객";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -9,7 +17,7 @@
   </head>
   <body style="width:300px;">
     <div class="top">
-      <h2>은영재님의 테스트결과입니다.</h2>
+      <h2><?=$id?>님의 테스트결과입니다.</h2>
       <b id="testfont">노란색</b>을 선택하셧군요 <br><br>
 
 모험심과 성취감을 좋아하는 당신 <br><br> 아무리 큰 역경이 있어도 끝까지 해내는 당신,<br><br>

@@ -6,8 +6,7 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
 
 create_table($conn,'commu');//자유게시판테이블생성
 
-
-
+$board_type="m";
 define('SCALE', 10);
 $sql=$result=$total_record=$total_page=$start="";
 $row="";
@@ -20,11 +19,11 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
   $find = test_input($_POST["find"]);
   $search = test_input($_POST["search"]);
   $q_search = mysqli_real_escape_string($conn, $search);
-  $sql = "SELECT * from `commu` where $find like '%$q_search%' order by num desc;";
+  $sql = "SELECT * from `commu` where $find like '%$q_search%'  order by num desc;";
 
 
 }else {
-  $sql="SELECT * from `commu` order by group_num desc";
+  $sql="SELECT * from `commu` where board_type = 'm' order by group_num desc";
 
 }
 $result=mysqli_query($conn,$sql);
@@ -63,10 +62,12 @@ $number = $total_record - $start;
 
       <div class="main_body">
         <div id="sidenav" class="sidenav">
-          <a href="../cm_gath/cm_gath_list.php">모임 게시판</a>
-          <a href="../cm_free_/cm_free_list.php">자유 게시판</a>
-          <a href="../cm_rv_/cm_rv_list.php">성공후기</a>
+          <a>커뮤니티</a>
+          <a href="../cm_free/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유 게시판</a>
+          <a href="../cm_gath/cm_gath_list.php" style="color: rgba(252, 105, 105, 1);">모임 게시판</a>
+          <a href="../cm_rv/cm_rv_list.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
           <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
+
         </div>
         <div class="main">
 
@@ -111,12 +112,14 @@ $number = $total_record - $start;
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
             mysqli_data_seek($result,$i);//해당된 포인트 위치로 간다
             $row=mysqli_fetch_array($result);
+            $board_type = $row['board_type'];
             $num=$row['num'];
             $id=$row['id'];
             $hit=$row['hit'];
             $date=substr($row['regist_day'], 0,10) ;
             $subject=$row['subject'];
             $content=$row['content'];
+
 
             $subject=str_replace("\n", "<br>",$subject);
             $subject=str_replace(" ", "&nbsp;",$subject);
@@ -126,7 +129,12 @@ $number = $total_record - $start;
               $space="&nbsp;&nbsp;".$space;
             }
             //$subject=nl2br($subject);
+            if ($board_type == "m") {
+
+
         ?>
+
+
             <div id="list_item">
               <table id="customers">
                 <tr>
@@ -138,9 +146,9 @@ $number = $total_record - $start;
                 </tr>
               </table>
             </div><!--end of list_item  -->
-
         <?php
             $number--;
+          }
          }//end of for
         ?>
  <br><br>

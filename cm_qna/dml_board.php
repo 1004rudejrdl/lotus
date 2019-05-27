@@ -11,12 +11,12 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/alert_back.php";
 
 $content= $q_content = $sql= $result = $userid= $group_num = $depth="";
 $userid = $_SESSION['userid'];
-
+$board_type="q";
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $content = trim($_POST["content"]);
     $subject = trim($_POST['subject']);
-    $board_type = trim($_POST["board_type"]);
+    
     if(empty($content) || empty($subject)){
       echo "<script>alert('내용입력요망!');history.go(-1);</script>";
       exit;
@@ -31,7 +31,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     // $is_html = test_input($_POST['is_html']);
     // $is_html = (!isset($_POST['is_html']))?('n'):("y");
 
-    $board_type="m";
+
 
     $q_subject = mysqli_real_escape_string($conn, $subject);
     $q_content = mysqli_real_escape_string($conn, $content);
@@ -245,7 +245,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
 // ***********************************************
 
 else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
-  echo "<script>alert('들어와라 좋은말로할때!');</script>";
+  // echo "<script>alert('들어와라 좋은말로할때!');</script>";
 
   $content = trim($_POST["content"]);
   $subject = trim($_POST['subject']);
@@ -281,7 +281,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
-    $board_type="m";
+    $board_type="q";
 
     $sql = "INSERT INTO `commu` VALUES('$board_type',null,'$group_num','$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null,null,null,null);";
     $result = mysqli_query($conn,$sql);

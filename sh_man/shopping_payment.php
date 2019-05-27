@@ -2,13 +2,24 @@
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+
+  function alert_back($data) {
+    echo "<script>alert('$data');location.href='../index.php';</script>";
+    exit;
+  }
+
+
   // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
   // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
   // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
+  if (!isset($_SESSION['userid'])) {
+    alert_back("로그인 후 이용해 주세요");
+  }
 $prd_price_sum=0;
-  $sql="SELECT prd_num from `wish_list` where id='세션값'";
+$session=$_SESSION['userid'];
+  $sql="SELECT prd_num from `wish_list` where id='$session'";
 
   $result = mysqli_query($conn,$sql);
   if (!$result) {
@@ -16,12 +27,24 @@ $prd_price_sum=0;
   }
   $total = mysqli_num_rows($result);
   for ($i=0; $i < $total; $i++) {
-    $row1 = mysqli_fetch_array($result);
-    $prd_type_num1=$row1['prd_num'];
+    $row3 = mysqli_fetch_array($result);
+    $prd_type_num1=$row3['prd_num'];
     $prd_type[$i]=substr($prd_type_num1, 0,1);
 
   }
+  $sql1="SELECT * from `member` where id='$session'";
 
+  $result1 = mysqli_query($conn,$sql1);
+  if (!$result) {
+    die('Error: ' . mysqli_error($conn));
+  }
+  $row = mysqli_fetch_array($result1);
+  $name=$row['name'];
+  $tel=$row['tel'];
+  $email=$row['email'];
+  $address=$row['address'];
+  $detailAddress=$row['detailAddress'];
+  $extraAddress=$row['extraAddress'];
 
 
 ?>
@@ -63,15 +86,15 @@ $prd_price_sum=0;
       <table style="width:100%">
         <tr>
           <td style="width:30%">이름</td>
-          <td style="width:70%">김경덕</td>
+          <td style="width:70%"><?=$name?></td>
         </tr>
         <tr>
           <td>이메일</td>
-          <td>1004</td>
+          <td><?=$email?></td>
         </tr>
         <tr>
           <td>휴대폰 번호</td>
-          <td>010</td>
+          <td><?=$tel?></td>
         </tr>
       </table>
     </div>
@@ -80,7 +103,7 @@ $prd_price_sum=0;
       <table style="width:100%">
         <tr>
           <td style="width:30%">이름</td>
-          <td style="width:70%">김경덕</td>
+          <td style="width:70%"><?=$name?></td>
         </tr>
         <?php
         for ($i=0; $i < $total; $i++) {
@@ -88,8 +111,8 @@ $prd_price_sum=0;
           ?>
           <tr>
             <td>배송주소</td>
-            <td><button type="button" name="button">배송지 변경</button><br>
-              서울특별시</td>
+            <td>
+              <?=$address.$detailAddress.$extraAddress?></td>
             </tr>
 
             <?php
@@ -100,11 +123,11 @@ $prd_price_sum=0;
 
         <tr>
           <td>연락처</td>
-          <td>010</td>
+          <td><?=$tel?></td>
         </tr>
         <tr>
           <td>이메일</td>
-          <td>1004</td>
+          <td><?=$email?></td>
         </tr>
         <?php
         for ($i=0; $i < $total; $i++) {
@@ -132,17 +155,17 @@ $prd_price_sum=0;
     </div>
     <div class=""><!-- for문 돌려야 하는 div -->
       <?php
-      $sql="SELECT * from `wish_list` where id='세션값'";
+      $sql="SELECT * from `wish_list` where id='$session'";
 
       $result = mysqli_query($conn,$sql);
       if (!$result) {
         die('Error: ' . mysqli_error($conn));
       }
       for ($i=0; $i < $total; $i++) {
-        $row = mysqli_fetch_array($result);
-        $prd_type_num=$row['prd_num'];
+        $row2 = mysqli_fetch_array($result);
+        $prd_type_num=$row2['prd_num'];
 
-        $prd_count=$row['count'];
+        $prd_count=$row2['count'];
         $prd_type=substr($prd_type_num, 0,1);
         $prd_num=substr($prd_type_num, 1);
         $sql1="SELECT * from `prd_shop_detail` where prd_type='$prd_type' and prd_num='$prd_num' ";
@@ -150,9 +173,9 @@ $prd_price_sum=0;
         if (!$result1) {
           die('Error: ' . mysqli_error($conn));
         }
-        $row1 = mysqli_fetch_array($result1);
-        $prd_name=$row1['prd_name'];
-        $prd_price=$row1['shop_price'];
+        $row4 = mysqli_fetch_array($result1);
+        $prd_name=$row4['prd_name'];
+        $prd_price=$row4['shop_price'];
         $prd_price=$prd_price*$prd_count;
         $prd_price_sum=$prd_price*1+$prd_price_sum*1;
 

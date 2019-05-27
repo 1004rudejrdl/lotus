@@ -1,0 +1,116 @@
+#board{
+  color:rgb(80, 80, 80);
+  font-size:16px;
+  margin-top: 20px;
+  text-align: center;
+  background-color: rgb(33, 33, 33);
+  width: 200px;
+  height: 30px;
+}
+#select_content{
+  color:rgb(80, 80, 80);
+  font-size:16px;
+  text-align: right;
+}
+select{
+  position: relative; width:100px; height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #999;
+  z-index: 1;
+}
+#search_content{
+  position: relative; width:200px; height: 40px;
+  line-height: 35px;
+  border-bottom: 1px solid #999;
+  z-index: 1;
+}
+
+/* 테이블 */
+.list_header_tb{
+
+}
+.li_hd_title,.li_hd_nick,.li_hd_hit,.li_hd_id{
+  font-size:16px;
+  color:rgb(80, 80, 80);
+  font-family: sans-serif;
+}
+
+.li_hd_writer{
+  width: 150px;
+}
+.li_hd_rgt_day{
+  width: 150px;
+}
+.li_hd_hit{
+  width: 100px;
+}
+#write_button{
+  background-color: rgb(75, 160, 249);
+  width: 80px;
+  height: 30px;
+  border-radius: 25px;
+}
+#title1{
+  text-align: left;
+
+}
+.write1{
+  border-bottom: 10px bottom red;
+  font-size: 20px;
+}
+#write_row1,#write_row2,#write_row3{
+  font-size: 16px;
+  border: none;
+}
+.subject1, .content1, .id1{
+  border-left: 1px dotted red;
+  border-right: 1px dotted red;
+}
+.td1, .td2, .td3{
+  border: none;
+}
+#write_row1,#write_row2,#write_row3{
+  text-align: center;
+}
+td{
+  border: 1px solid black;
+  width: 150px;
+}
+#list_title2 a:link {
+  text-decoration: none;
+  color: rgb(113, 113, 113);
+}
+
+#list_title2 a:visited {
+  text-decoration: none;
+}
+
+#list_title2 a:hover {
+  text-decoration: underline;
+}
+
+#list_title2 a:active {
+  text-decoration: underline;
+}
+#write_page1,#list_page1 a:link, a:visited {
+  font-size: 20px;
+  color: rgb(96, 96, 96);
+  text-align: center;
+  text-decoration:none;
+  text-align: right;
+}
+#list_page1,#write_page1 a:link, a:visited {
+  font-size: 20px;
+
+  text-align: right;
+  color: rgb(96, 96, 96);
+  text-align: center;
+  text-decoration:none;
+}
+#button{
+  margin-right: 100px;
+  float: right;
+
+}
+  /* #write_button a:link { color:white; text-decoration: none; } */
+  /* #write_button a:visited { color: white; text-decoration: none; } */

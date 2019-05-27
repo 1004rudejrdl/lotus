@@ -1,6 +1,50 @@
 <!-- 권한 관리 메인 -->
 <?php
   session_start();
+  include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+
+  define('SCALE', 10);
+
+  if(isset($_GET["mode"])&&$_GET["mode"]=="search_mb"){
+    // $sql="SELECT * from `member` order by `com_num` desc";
+    //제목(subject), 내용(content), 아이디(id)
+    $find = test_input($_POST["find"]);
+    $search = test_input($_POST["search"]);
+    $q_search = mysqli_real_escape_string($conn, $search);
+
+    $sql="SELECT * from `member` where $find like '%$q_search%' order by `mb_num` desc";
+
+  }elseif(isset($_GET["mode"])&&$_GET["mode"]=="order_list_mb"){
+    // $sql="SELECT * from `com_info` order by `com_num` desc";
+    //제목(subject), 내용(content), 아이디(id)
+      $order_list = test_input($_POST["order_list"]);
+      $order_list = mysqli_real_escape_string($conn, $order_list);
+
+      if ($order_list=="black_list") {
+        $sql="SELECT * from `member` where `$order_list` = '1' order by `name` asc";
+      }else {
+        $sql="SELECT * from `member` order by `$order_list` asc";
+      }
+  }else{
+    $sql="SELECT * from `member` order by `mb_num` desc";
+  }
+
+  $result=mysqli_query($conn,$sql);
+  $total_record=mysqli_num_rows($result);//총레코드수
+
+  //1.전체페이지, 2.디폴트페이지, 3.현재페이지 시작번호 4.보여줄리스트번호
+  //1.전체페이지
+  $total_page=($total_record % SCALE == 0 )?
+  ($total_record/SCALE):(ceil($total_record/SCALE));
+
+  //2.페이지가 없으면 디폴트 페이지 1페이지
+  $page=(isset($_GET['page'])&&!empty($_GET['page']))?(test_input($_GET['page'])):(1);
+
+  //3.현재페이지 시작번호계산함.
+  $start=($page -1) * SCALE;
+
+  //4. 리스트에 보여줄 번호를 최근순으로 부여함.
+  $number = $total_record - $start;
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,126 +73,139 @@
 
     <div class="main">
       <div class="admin_title">
-         회원/매칭 관리
+        회원/매칭 관리
       </div>
       <hr class="title_hr">
-      <form action="a_auth_qurey.php" method="post" name="a_auth_form">
-        <table class="admin_table witdh_100">
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 회원 검색&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="text" name="Recipient_id" class="div_none" placeholder="ex)" autofocus>
+      <div class="list_search_bar">
+        <div class="lsb_msg">총&nbsp;<?=$total_record?>&nbsp;명의 회원이 있습니다.</div>
+        <form name="a_mb_mt_form" action="./a_mb_mt_main.php?mode=search_mb" method="post">
+            <select name="find">
+              <option value="mb_num">회원번호</option>
+              <option value="id">연꽃아이디</option>
+              <option value="name">이름</option>
+              <option value="email">이메일</option>
+              <option value="tel">전화번호</option>
+              <option value="birth">생일</option>
+              <option value="naver">네이버아이디</option>
+              <option value="kakao">카카오아이디</option>
+              <option value="facebook">페이스북아이디</option>
+              <option value="google">구글아이디</option>
+            </select>
+            <input type="text" name="search">
+            <button class="btn_srch" type="submit">검색</button>
+        </form>
+        <form name="a_mb_mt_form" action="./a_mb_mt_main.php?mode=order_list_mb" method="post">
+            <button class="lsb_btn_srch bottom_20" name="order_list" type="submit" value="black_list">블랙리스트</button>
+            <button class="lsb_btn_srch bottom_20" name="order_list" type="submit" value="birth">생일순</button>
+            <button class="lsb_btn_srch bottom_20" name="order_list" type="submit" value="name">이름순</button>
+            <button class="lsb_btn_srch bottom_20" name="order_list" type="submit" value="id">연꽃아이디순</button>
+            <button class="lsb_btn_srch bottom_20" name="order_list" type="submit" value="mb_num">회원번호순</button>
+        </form>
+          <!-- 상단에 정렬 기능 끝 -->
+      </div>      <!-- search_mem_fbd end -->
+      <table class="admin_table">
+        <tr>
+          <td class="li_hd_list_num">번호</td>
+          <td class="li_hd_num">회원<br>번호</td>
+          <td class="li_hd_num">성별</td>
+          <td class="li_hd_id">아이디</td>
+          <td class="li_hd_type">이름</td>
+          <td class="li_hd_tel">전화번호</td>
+          <td class="li_hd_type">생일</td>
+          <td class="li_hd_num">블랙<br>리스트</td>
+        </tr><!-- fbd_list_header end  번호 제목 글쓴이 등록일 조회-->
+        <?php
+        // 저장된 레코드 순서대로 몇개씩 읽어들이고 싶다
+        // select * from table_name limit 읽을갯수 offset 읽을위치
+        // 그런데 limit과 offset을 사용시에 order by 컬럼명 desc와 같이
+        // 내림차순으로 정렬은 않되나요?
+        // select * from board_free order by b_no desc limit 10 offset 810;
+        for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
+          mysqli_data_seek($result,$i);
+          $row=mysqli_fetch_array($result);
+          $mb_num=$row['mb_num'];
+          $id=$row['id'];
+          $name=$row['name'];
+          $tel=$row['tel'];
+          $birth=$row['birth'];
+          $gender=$row['gender'];
+          $black_list=$row['black_list'];
+          ?>
+          <tr class="submain_list_item">
+          <td >
+            <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$i+1?></a>
+          </td><!-- 보여주기만 하는 번호 -->
+            <td>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$mb_num?></a>
+            </td>
+            <td>
+              <?php
+                $g=($gender=="0")?("남"):("여");
+              ?>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$g?></a>
+            </td>
+            <td>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$id?></a>
+            </td>
+            <td>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$name?></a>
+            </td>
+            <td>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$tel?></a>
+            </td>
+            <td>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$birth?></a>
+            </td>
+            <td>
+              <?php
+                $b=($black_list=='1')?('O'):('');
+              ?>
+              <a href="./a_mb_mt_v.php?id=<?=$id?>"><?=$b?></a>
             </td>
           </tr>
-        </table>
-        <table class="admin_table ">
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 회원 번호</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) jsa0jsa@naver.com"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 아 이 디</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 신 혜 지"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 네이버 아이디</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 09:00~18:00"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 카카오 아이디</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 384SB신방빌딩"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 페이스북 아이디</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 02-3495-1923"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 구글 아이디</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 미래 은행"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 이  름</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 이 메 일</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 전화번호</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 생  일</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 성  별</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 키</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 우편번호</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 우편상세주소</td>
-            <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 054-29391-232311"  autofocus></td>
-          </tr>
-          </table>
-          <table class="admin_table">
-            <tr>
-              <td class="td_subjet"><span class="td_subjet_star">*</span> 회원 구분</td>
-              <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 주식회사 lotus" autofocus></td>
-            </tr>
-            <tr>
-              <td class="td_subjet"><span class="td_subjet_star">*</span> 블랙리스트여부</td>
-              <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 김 경 덕"  autofocus></td>
-            </tr>
-            <tr>
-              <td class="td_subjet"><span class="td_subjet_star">*</span> 좋아요</td>
-              <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 성북구 신방빌딩"  autofocus></td>
-            </tr>
-            <tr>
-              <td class="td_subjet"><span class="td_subjet_star">*</span> 매칭 일자</td>
-              <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 02-3495-1923"  autofocus></td>
-            </tr>
-            <tr>
-              <td class="td_subjet"><span class="td_subjet_star">*</span> 매칭 상대</td>
-              <td class="tb_cont"><input type="text" name="product_num" class="div_none" placeholder="ex) 050-3495-1923"  autofocus></td>
-            </tr>
-          </table>
-          <table class="admin_table">
-            <tr>
-              <td colspan="2"class="td_subjet"><span class="td_subjet_star">*</span> 회원 이미지</td>
-            </tr>
-            <tr>
-              <td colspan="2"><img src="../main_img/unicon1.png" alt=""> </td>
-            </tr>
-          </table>
-          <table class="admin_table witdh_100 mb_bottom">
-            <tr>
-              <td class="td_subjet"><span class="td_subjet_star">*</span> 자기 소개</td>
-            </tr>
-            <tr>
-              <td class="tb_cont">
-                <textarea name="product_num" class="div_none" placeholder="ex) 회사소개"  autofocus rows="8"></textarea>
-              </td>
-            </tr>
-          </table>
+          <!-- list_item end -->
+          <?php
+          //$number--;
+        }//end of for
+        mysqli_close($conn);
+        ?>
+      </table> <!-- admin_table end -->
       <hr class="title_hr">
-      <div class="btn_center">
-        <div class="btn_submit">
-          <button type="reset" name="button">취 소</button>
-          <button type="submit" name="button" onclick="check_input()">수 정</button>
-          <button type="submit" name="button" onclick="check_input()">확 인</button>
-        </div>
-      </div>
-    </form>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+      <div class="page_to" >
+        <div class="page_to_in" >
+        <a href="./op_free_bd_main.php?page=1">◀◀</a>
+        <?php
+        if ($page>1) {
+              $page_go=$page-1;
+               echo '<a class="previous" href="./op_free_bd_main.php?page='.$page_go.'">이전 ◀</a>';
+             }else {
+               echo '<a class="previous" href="./op_free_bd_main.php?page=1">이전 ◀</a>';
+             }
+             for ($i=1; $i <= $total_page ; $i++) {
+               if($page==$i){
+                 echo "<a>&nbsp;$i&nbsp;</a>";
+               }else{
+                 //싱글쿼테이션은 문자로 인식하지 않는다
+                 //더블은 문자로 인식
+                 echo "<a href='./op_free_bd_main.php?page=$i'>&nbsp;$i&nbsp;</a>";
+               }
+             }
+             if ($total_page==0) {
+               echo '<a class="next" href="./op_free_bd_main.php?page=1">▶ 다음</a>';
+             }elseif ($page+1>$total_page) {
+               $page_end=$total_page;
+               echo '<a class="next" href="./op_free_bd_main.php?page='.$page_end.'">▶ 다음</a>';
+             }else{
+               $page_go=$page+1;
+               echo '<a class="next" href="./op_free_bd_main.php?page='.$page_go.'">▶ 다음</a>';
+             }
+             ?>
+          <a href="./op_free_bd_main.php?page=<?=$total_page?>">▶▶</a>
+      </div> <!-- page_to in end 페이지 이동 -->
+      </div> <!-- page_to end 페이지 이동 -->
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+
     </div> <!-- main end -->
   </div> <!-- main_body end -->
   <!-- footer start -->

@@ -7,7 +7,7 @@
       </div>
       <div class="dropdown">
         <button class="dropbtn">
-          <a>이성찾기&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../find_meet/meeting.php?mode=whole">이성찾기&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -16,17 +16,6 @@
           <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
         </div> <!-- dropdown-content end -->
       </div> <!-- dropdown end -->
-      <div class="dropdown">
-        <button class="dropbtn">
-          <a>추천/예약&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
-        </button>
-        <div class="dropdown-content">
-          <div class="header">
-            <h2>결정 장애를 위해 준비한 데이트 코스</h2>
-          </div> <!-- header -->
-      <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_sub.php"; ?>
-        </div> <!-- dropdown-content -->
-      </div> <!-- dropdown -->
       <div class="dropdown">
         <button class="dropbtn">
           <a href="../sh_man/sh_man_list.php?mode=man">쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
@@ -40,7 +29,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a href="../tt_diag_/tt_diag_test.php">테스트&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../tt_color/tt_color_test.php">테스트&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -51,7 +40,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a href="../cm_free_/cm_free_exhibit.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="../cm_free/cm_free_list.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -63,12 +52,21 @@
       <!-- <div class="dropdown dd_right">
         <button class="logo"><a href="../index.php"> <img src="../main_img/lotus_logo_img2.png"></a></button>
       </div> -->
-      <div class="dropdown dd_right">
-        <button class="dropbtn"><a href="../mb_login/mb_login.php">LOGIN</a></button>
-      </div> <!-- dropdown -->
-      <div class="dropdown dd_right">
-        <button class="dropbtn"><a href="../mb_login/mb_join_form.php">JOIN</a></button>
-      </div> <!-- dropdown -->
+      <?php if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){ ?>
+    <div class="dropdown dd_right">
+      <button class="dropbtn"><a class="username" href="../mb_login/mb_modify_form.php"><?=$_SESSION['name']?> 님</a></button>
+    </div> <!-- dropdown -->
+    <div class="dropdown dd_right">
+      <button class="dropbtn"><a href="../mb_login/logout.php">LOGOUT</a></button>
+    </div> <!-- dropdown -->
+  <?php } else {?>
+    <div class="dropdown dd_right">
+      <button class="dropbtn"><a href="../mb_login/mb_login.php">LOGIN</a></button>
+    </div> <!-- dropdown -->
+    <div class="dropdown dd_right">
+      <button class="dropbtn"><a href="../mb_login/mb_join_form.php">JOIN</a></button>
+    </div> <!-- dropdown -->
+  <?php } ?>
     </div> <!-- topnav end -->
   </div>
 

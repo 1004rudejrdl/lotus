@@ -7,7 +7,7 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_qna/lib/alert_back.php";
 $num = $id = $subject = $content = $day = $hit="";
 $mode = "insert";
 $id = $_SESSION['userid'];
-$board_type = "m";
+$board_type = "q";
 
 
 if((isset($_GET["mode"])&&($_GET["mode"])=='update')
@@ -68,10 +68,11 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
 
       <div class="main_body">
         <div id="sidenav" class="sidenav">
-          <a href="../cm_free_/cm_qna_list.php">QnA</a>
-          <a href="../cm_gath_/cm_free_list.php">자유게시판</a>
-          <a href="../cm_rv_/cm_rv_list.php">성공후기</a>
-          <a href="../cm_qna_/cm_gath_list.php">모임게시판</a>
+          <a>커뮤니티</a>
+          <a href="../cm_free/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유 게시판</a>
+          <a href="../cm_gath/cm_gath_list.php" style="color: rgba(252, 105, 105, 1);">모임 게시판</a>
+          <a href="../cm_rv/cm_rv_list.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
+          <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
         </div>
       <div class="main">
 
@@ -80,7 +81,7 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
 
 
          <div class="clear"></div>
-         <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
+         <form name="board_form" action="./dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
            <input type="hidden" name="num" value="<?=$q_num?>">
            <input type="hidden" name="hit" value="<?=$hit?>">
            <input type="hidden" name="board_type" value="<?=$board_type?>">

@@ -12,7 +12,7 @@ $sql = "show tables from lotus_db";
 $result=mysqli_query($conn,$sql) or die('Error: '.mysqli_error($conn));
 
  while ($row=mysqli_fetch_row($result)) {
-   if($row[0] ==='member'){//lotus_db 스키마에  member 테이블이 있는 경우
+   if($row[0] ==='member' || $row[0] ==='admin_authority'){//lotus_db 스키마에  member 테이블이 있는 경우
      $flag="OK";
      break;
    }
@@ -50,7 +50,13 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
     }
     $rowcount=mysqli_num_rows($result);
     // var_dump($rowcount);
-    if(!$rowcount){
+    $sql1="select * from admin_authority where id = '$q_id' AND passwd = '$q_pw'";
+    $result1 = mysqli_query($conn,$sql1);
+    if (!$result1) {
+      die('Error: ' . mysqli_error($conn));
+    }
+    $rowcount1=mysqli_num_rows($result1);
+    if(!$rowcount&& !$rowcount1){
       echo "<script>alert('로그인실패');
       history.go(-1);
       </script> "; //echo는 html언어. html소스만 보내주면 소스를 받은 웹브라우저가 실행(웹브라우저 html해독기가 실행) php와 관련 없음
@@ -58,9 +64,16 @@ if(isset($_GET['mode'])&&($_GET['mode']=="login")){
       exit; //login.php가 끝이 남(php해석기가 해석을 더 이상 하지 않음)
     }else{
       $row=mysqli_fetch_array($result);
+      $row1=mysqli_fetch_array($result1);
       // 세션값을 주려면 제일 위에 session_start를 해야함
-      $_SESSION['userid']=$row['id'];
-      $_SESSION['name']=$row['name'];
+      if (!empty($rowcount)) {
+        $_SESSION['userid']=$row['id'];
+        $_SESSION['name']=$row['name'];
+        $_SESSION['gender']=$row['gender'];
+      }else{
+        $_SESSION['userid']=$row1['id'];
+        $_SESSION['name']=$row1['name'];
+      }
     }
   }//end of  check id and pass
 }else if(isset($_GET['mode'])&&($_GET['mode']=="kakao")){

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 date_default_timezone_set("Asia/seoul");
 
 $servername = "127.0.0.1";
@@ -41,5 +41,4 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-
  ?>

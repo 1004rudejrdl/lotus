@@ -2,6 +2,22 @@
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
+  $com_type="";
+  $com_num="";
+  $shop_num="";
+  $len_shop_name="";
+  $shop_name="";
+  $len_shop_postcode="";
+  $shop_postcode="";
+  $len_shop_address="";
+  $shop_address="";
+  $len_shop_detailAddress="";
+  $shop_detailAddress="";
+  $len_shop_extraAddress="";
+  $shop_extraAddress="";
+  $len_shop_addr="";
+  $shop_addr="";
+  $shop_tel="";
 
   define('SCALE', 10);
 
@@ -110,8 +126,14 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="order_list_com"){
           $com_type=$row['com_type'];
           $com_num=$row['com_num'];
           $shop_num=$row['shop_num'];
+
           $len_shop_name=strlen($row['shop_name']);
           $shop_name=$row['shop_name'];
+
+          $len_shop_postcode=strlen($row['shop_postcode']);
+          $shop_postcode=$row['shop_postcode'];
+
+          $len_shop_address=strlen($row['shop_address']);
           $shop_address=$row['shop_address'];
 
           $len_shop_detailAddress=strlen($row['shop_detailAddress']);

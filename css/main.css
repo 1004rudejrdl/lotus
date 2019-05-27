@@ -4,6 +4,7 @@
   width: 100%;
   padding: 5%;
   height: auto;
+
   /* background-image: url("../main_img/img_header.jpg"); */
   /* background-repeat: no-repeat; */
   /* background-size: 100% 100%; */
@@ -26,7 +27,7 @@
 .main_body_product{
   max-width: 80%;
   margin: auto;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
   padding: 10px;
 }
 .main_body_product ul{
@@ -49,6 +50,7 @@
 }
 .centerproductimg{ /*식당, 숙박, 렌트카, 쇼핑*/
   width: 100%;
+  max-height:
 }
 .profile {   /* 남여 프로필카드 */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

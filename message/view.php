@@ -21,7 +21,7 @@ $send_name=$row["name"];
 
 
 
-$sql = "update msg_cont SET read = '1' where msg_num = '$msg_num'";
+$sql = "update member_msg SET `read` = '1' where `msg_num` = '$msg_num'";
 mysqli_query($conn, $sql);
 
 ?>
@@ -29,7 +29,7 @@ mysqli_query($conn, $sql);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Ya! Gaja~</title>
+<title>연愛 꽃피우다</title>
 <script type="text/javascript">
 function receive_message_close(){
 	window.close();

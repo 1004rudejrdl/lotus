@@ -1,0 +1,275 @@
+.main {
+  max-width: 85%;
+  margin-left: 16%;
+  margin-top: 200px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+.admin_title{
+  color:rgb(156, 156, 156);
+}
+.title_hr{
+  size:1;
+  width:95%;
+  margin: 10px 0;
+}
+.admin_table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  float: left;
+  width: 45%;
+}
+.alret_ment{
+  font-size: 6px;
+  color: red;
+}
+.witdh_100{
+  width: 90%;
+}
+.mb_bottom{
+  margin-bottom: 10px;
+}
+
+tr{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+  font-size: 16px;
+}
+tr td .td_subjet{
+  width: 30%;
+  min-width: 103px;
+}
+td .tb_cont{
+  width: 70%;
+}
+td:hover{
+  background-color:#f5f5f5;
+}
+.p_img{
+  text-align: center;
+}
+.p_img img {
+  max-width: 50%;
+  max-height: 300px;
+}
+#check_button{
+  width: 25px;
+  height: 25px;
+}
+.td_subjet{
+  max-width: 200px;
+}
+.witdh_100 .td_subjet{
+  max-width: 200px;
+}
+.td_subjet_star {
+  color:rgb(240, 165, 0);
+  margin: 0 5px 0 10px;
+}
+.tb_cont{
+  min-width: 200px;
+}
+.tb_cont select{
+  max-width: 200px;
+}
+.tb_cont input{
+  max-width: 200px;
+}
+.tb_cont .shorter{
+  max-width: 100px;
+}
+.tb_cont .addr {
+  margin-bottom: 5px;
+}
+
+.tb_cont textarea{
+  width: 100%;
+  resize: none;
+}
+/* The container */
+.g_container {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.g_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.g_checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.g_container:hover input ~ .g_checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.g_container input:checked ~ .g_checkmark {
+  background-color: rgba(252, 105, 105, 1);
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.g_checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.g_container input:checked ~ .g_checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.g_container .g_checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.btn_center{
+  position:relative;
+  margin: 0;
+}
+.btn_submit{
+  position:absolute;
+  left:0%;
+  right:10%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.btn_3{
+  width: 270px;
+}
+.btn_2{
+  width: 171px;
+}
+.btn_submit input, .btn_submit a{
+  display: inline;
+  border: none;
+  text-decoration: none;
+  background-color: rgba(252, 105, 105, 1);
+  border-radius: 5px;
+  padding: 10px 13px 13px 13px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+.btn_submit input:hover,.btn_submit a:hover{
+  background-color: rgba(252, 105, 105, 0.85);
+}
+.mg_bottom{
+  margin-bottom: 15%;
+}
+@media screen and (max-width: 1700px) {
+  .main {
+    margin-left: 17.5%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .main {
+    margin-left: 19.5%;
+  }
+}
+@media screen and (max-width: 1540px) {
+  .tb_container {
+    margin-bottom: 12px;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .main {
+    margin-left: 21%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .main {
+    margin-left: 22.5%;
+  }
+  .sidenav a {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .main {
+    margin-left: 24%;
+  }
+  .admin_table{
+    float: none;
+    width: 100%;
+  }
+  .title_hr{
+    width: 100%;
+  }
+  .btn_submit{
+    right:0;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .main {
+    margin-left: 25.5%;
+  }
+}
+@media screen and (max-width: 100px) {
+  .main {
+    margin-left: 27%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .main {
+    margin-left: 28.5%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+
+  .sidenav a {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidenav a:first-child {
+    padding: 2px 30px;
+  }
+  table *, .tb_container{
+    font-size: 14px;
+  }
+  .td_subjet_star {
+    color:rgb(240, 165, 0);
+    margin: 0 0 0 0px;
+  }
+
+}

@@ -56,6 +56,77 @@ td:hover{
 .tb_cont .shorter{
   min-width: 97px;
 }
+.tb_container {
+  display: inline;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.tb_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.tb_checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #ddd;
+}
+
+/* On mouse-over, add a grey background color */
+.tb_container:hover input ~ .tb_checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.tb_container input:checked ~ .tb_checkmark {
+  background-color: rgba(252, 105, 105, 1);
+}
+
+/* Create the tb_checkmark/indicator (hidden when not checked) */
+.tb_checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the tb_checkmark when checked */
+.tb_container input:checked ~ .tb_checkmark:after {
+  display: block;
+}
+
+/* Style the tb_checkmark/indicator */
+.tb_container .tb_checkmark:after {
+  left: 4px;
+  top: 3px;
+  width: 3px;
+  height: 5px;
+  border: solid white;
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.alret_ment{
+  width: 100%;
+  font-size: 6px;
+  color: red;
+}
 .btn_center{
   position:relative;
   margin: 0 0 15% 0;
@@ -122,6 +193,13 @@ td:hover{
     padding-top: 3.5px;
     padding-bottom: 3.5px;
   }
+  .alret_ment{
+    width: 100%;
+    display:block;
+    margin-top: 5px;
+    font-size: 6px;
+    color: red;
+  }
 }
 @media screen and (max-width: 1200px) {
   .main {
@@ -164,6 +242,11 @@ td:hover{
   }
   table *, .tb_container{
     font-size: 14px;
+  }
+  .alret_ment{
+    width: 100%;
+    font-size: 6px;
+    color: red;
   }
   .td_subjet_star {
     color:rgb(240, 165, 0);

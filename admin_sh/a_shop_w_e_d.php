@@ -3,17 +3,19 @@
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
   $mode="insert_prd_shop";
-  $com_type=
-  $com_num=
-  $shop_num=
-  $shop_name=
-  $shop_img=
-  $shop_list_link=
-  $shop_tel=
-  $shop_postcode=
-  $shop_address=
-  $shop_detailAddress=
-  $shop_extraAddress=
+  $com_type="";
+  $com_num="";
+  $com_name="";
+  $com_num_name="";
+  $shop_num="";
+  $shop_name="";
+  $shop_img="";
+  $shop_list_link="";
+  $shop_tel="";
+  $shop_postcode="";
+  $shop_address="";
+  $shop_detailAddress="";
+  $shop_extraAddress="";
   $shop_notice="";
   if((isset($_GET['mode'])&&!empty($_GET['mode']))&&$_GET['mode']=="update_prd_shop"){
       if ((isset($_GET['com_type'])&&!empty($_GET['com_type']))&&
@@ -23,6 +25,7 @@
           $com_type=test_input($_GET['com_type']);
           $com_num=test_input($_GET['com_num']);
           $shop_num=test_input($_GET['shop_num']);
+          $com_num_name=test_input($_GET['com_num_name']);
 
           $sql="SELECT * from `prd_shop` where `com_type` = '$com_type' and `com_num` = '$com_num' and `shop_num` = '$shop_num';";
             $result = mysqli_query($conn,$sql);
@@ -43,6 +46,8 @@
             $shop_addr=$shop_postcode." ".$shop_address." ".$shop_detailAddress." ".$shop_extraAddress;
             $shop_notice=$row['shop_notice'];
       }
+  }else {
+    $com_type="s_";
   }
 ?>
 <!DOCTYPE html>
@@ -63,8 +68,8 @@
       fileNm = $(pic).val();
       if (fileNm != "") {
         var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
-        if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
-          alert("이미지파일 (.jpg, .png, .gif) 만 업로드 가능합니다.");
+        if (!(ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif" || ext == "bmp" || ext == "pjpeg" || ext == "tiff")) {
+          alert("이미지파일 (.jpg, .jpeg, .png, .gif, .bmp, .pjpeg, .tiff) 만 업로드 가능합니다.");
           $(pic).val("");
           return;
         }
@@ -74,6 +79,15 @@
         $("#profile_image").attr("src", e.target.result);
       }
       reader.readAsDataURL(pic.files[0]);
+
+       document.getElementById("del_file").checked=true;
+       document.getElementById("del_file").disabled=true;
+    }
+    function search_com_info(type){
+      var com_type = type;
+      var popupX = (window.screen.width / 2) - (800 / 2);
+      var popupY= (window.screen.height /2) - (500 / 2);
+      window.open("../lib/a_search_com_info.php?com_type="+com_type, 'search_com_info', 'status=no, width=1500, height=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
     }
   </script>
 </head>
@@ -98,9 +112,9 @@
       </div>
       <hr class="title_hr">
       <?php if($mode=="update_prd_shop") {?>
-      <form action="./update_a_shop.php" method="post" name="prd_shop_form">
+      <form action="./update_a_shop.php" method="post" name="prd_shop_form" enctype="multipart/form-data">
       <?php }else{ ?>
-      <form action="./insert_a_shop.php" method="post" name="prd_shop_form">
+      <form action="./insert_a_shop.php" method="post" name="prd_shop_form" enctype="multipart/form-data">
       <?php } ?>
         <input type="hidden" name="mode" value="<?=$mode?>">
         <input type="hidden" name="com_type" value="<?=$com_type?>">
@@ -108,13 +122,48 @@
         <input type="hidden" name="shop_num" value="<?=$shop_num?>">
         <table class="admin_table">
           <tr>
+            <td class="td_subjet"><span class="td_subjet_star">*</span> 상위 업체 번호/상호</td>
+            <td class="tb_cont">
+              <?php
+                if ($mode=="update_prd_shop") {
+              ?>
+                <input type="text" name="com_num_name" placeholder="찾기 버튼을 눌러 검색하세요" autofocus value="<?=$com_num_name?>" readonly>
+                <span class="alret_ment">* 업종 변경은 연꽃 업체관리자의 허가가 필요합니다</span>
+              <?php
+                }else{
+              ?>
+              <input type="text" name="com_num_name" placeholder="찾기 버튼을 눌러 검색하세요" autofocus value="<?=$com_num_name?>" readonly>
+              <button type="button" onclick="search_com_info('<?=$com_type?>')" name="button">찾기</button>
+              <?php
+                }
+              ?>
+            </td>
+          </tr>
+
+          <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 샵 이름</td>
             <td class="tb_cont"><input type="text" name="shop_name" placeholder="쇼핑몰 이름 입력" autofocus value="<?=$shop_name?>"></td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 샵 대표 이미지</td>
             <td class="tb_cont tb_thumb">
-              <img id="profile_image">&nbsp;&nbsp;<input onchange="change_img_upload(this)" type="file" name="prd_shop_img"autofocus></td>
+              <?php
+                if ($mode=="update_prd_shop") {
+                  ?>
+                  <img id="profile_image" src="./img/<?=$shop_img?>">&nbsp;&nbsp;<input onchange="change_img_upload(this)" type="file" name="shop_img" autofocus value="<?=$shop_img?>">
+                  <label class="tb_container alret_ment">
+                    <input type="checkbox" id="del_file" name="del_file" value="1">
+                    <span class="tb_checkmark "></span>
+                    파일을 선택하면 기존 파일은 삭제됩니다
+                  </label>
+                </td>
+                  <?php
+                }else{
+                  ?>
+                  <img id="profile_image">&nbsp;&nbsp;<input onchange="change_img_upload(this)" type="file" name="shop_img" autofocus></td>
+                  <?php
+                }
+              ?>
             </td>
           </tr>
           <tr>
@@ -183,19 +232,19 @@
                 }
 
                 function check_email() {
-                  window.open("./lib/check_email.php", "IDEmail", "left=200, top=200, width=700, height=550, scrollbars=no, resizable=no");
+                  window.open("./lib/check_email.php", "IDEmail", "left=200, top=200, width=900, height=550, scrollbars=no, resizable=no");
                 }
               </script>
             </td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 문의번호</td>
-            <td class="tb_cont"><input type="text" name="shop_tel" placeholder="ex)-없이 입력" value="<?=$shop_tel?>"></td>
+            <td class="tb_cont"><input type="text" name="shop_tel" placeholder="- 없이 입력" value="<?=$shop_tel?>"></td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 유의사항</td>
             <td class="tb_cont">
-              <textarea name="product_num" placeholder="공지/주의/유의 사항 기타"  autofocus rows="8"><?=$shop_notice?></textarea>
+              <textarea name="shop_notice" placeholder="공지/주의/유의 사항 기타"  autofocus rows="8"><?=$shop_notice?></textarea>
             </td>
           </tr>
         </table>

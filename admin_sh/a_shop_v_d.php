@@ -2,20 +2,21 @@
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
-  $mode=
-  $com_type=
-  $com_num=
-  $com_name=
-  $com_addr=
-  $com_email=
-  $com_tel=
-  $com_busi_num=
-  $com_regist_num=
-  $shop_name=
-  $shop_img=
-  $shop_list_link=
-  $shop_tel=
-  $shop_addr=
+  $mode="";
+  $com_type="";
+  $com_num="";
+  $com_name="";
+  $com_num_name="";
+  $com_addr="";
+  $com_email="";
+  $com_tel="";
+  $com_busi_num="";
+  $com_regist_num="";
+  $shop_name="";
+  $shop_img="";
+  $shop_list_link="";
+  $shop_tel="";
+  $shop_addr="";
   $shop_notice="";
 
   if ((isset($_GET['com_type'])&&!empty($_GET['com_type']))&&
@@ -60,6 +61,8 @@
         $shop_extraAddress=$row['shop_extraAddress'];
         $shop_addr=$shop_postcode." ".$shop_address." ".$shop_detailAddress." ".$shop_extraAddress;
         $shop_notice=$row['shop_notice'];
+
+        $com_num_name=$com_num."/".$com_name;
   }
 
 ?>
@@ -131,7 +134,7 @@
         <table class="admin_table">
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 샵 대표 이미지</td>
-            <td class="tb_cont"><img src="./data/<?=$shop_img?>" alt="샵대표이미지"></td>
+            <td class="tb_cont tb_thumb"><img src="./img/<?=$shop_img?>" alt="샵대표이미지"></td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 샵 링크</td>
@@ -157,7 +160,7 @@
         <hr class="title_hr">
         <div class="btn_center">
           <div class="btn_submit btn_4">
-            <a href='a_shop_w_e_d.php?mode=update_prd_shop&com_type=<?=$com_type?>&com_num=<?=$com_num?>&shop_num=<?=$shop_num?>'>수 정</a>
+            <a href='a_shop_w_e_d.php?mode=update_prd_shop&com_type=<?=$com_type?>&com_num=<?=$com_num?>&shop_num=<?=$shop_num?>&com_num_name=<?=$com_num_name?>'>수 정</a>
             <a href='delete_a_shop.php?com_type=<?=$com_type?>&com_num=<?=$com_num?>&shop_num=<?=$shop_num?>'>삭 제</a>
           </div>
         </div>

@@ -1,3 +1,8 @@
+input{
+  margin: 0;
+  padding:0;
+  width:0;
+}
 .main {
   max-width: 85%;
   margin-left: 16%;
@@ -10,122 +15,39 @@
 }
 .title_hr{
   size:1;
-  width:80%;
+  width:100%;
   margin: 10px 0;
+}
+.list_search_bar {
+  padding-top: 20px;
+  width: 100%;
+}
+.list_search_bar * {
+  font-size: 14px;
+}
+.lsb_msg{
+  display: inline;
+}
+.lsb_btn_srch {
+  float: right;
+  margin-left: 5px;
 }
 .admin_table{
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 75%;
+  width: 100%;
+  margin-top: 30px;
 }
 tr, td{
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 10px;
   font-size: 16px;
 }
 td:hover{
   background-color:#f5f5f5;
 }
-.td_subjet{
-  width: 200px;
-}
-.td_subjet_star {
-  color:rgb(240, 165, 0);
-  margin: 0 5px 0 10px;
-}
-.tb_cont input{
-  min-width: 200px;
-}
-/* The tb_container */
-.tb_container {
-  display: inline-block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
-/* Hide the browser's default checkbox */
-.tb_container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom checkbox */
-.tb_checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #ddd;
-}
-
-/* On mouse-over, add a grey background color */
-.tb_container:hover input ~ .tb_checkmark {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.tb_container input:checked ~ .tb_checkmark {
-  background-color: rgba(252, 105, 105, 1);
-}
-
-/* Create the tb_checkmark/indicator (hidden when not checked) */
-.tb_checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the tb_checkmark when checked */
-.tb_container input:checked ~ .tb_checkmark:after {
-  display: block;
-}
-
-/* Style the tb_checkmark/indicator */
-.tb_container .tb_checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.btn_center{
-  position:relative;
-  margin: 0 0 15% 0;
-}
-.btn_submit{
-  border: none;
-  background-color: rgba(252, 105, 105, 1);
-  border-radius: 5px;
-  padding: 10px 13px 13px 13px;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-  position:absolute;
-  left:0;
-  right:20%;
-  width: 70px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.btn_submit:hover{
-  background-color: rgba(252, 105, 105, 0.85);
-}
 @media screen and (max-width: 1700px) {
   .main {
     margin-left: 17.5%;
@@ -134,11 +56,6 @@ td:hover{
 @media screen and (max-width: 1600px) {
   .main {
     margin-left: 19.5%;
-  }
-}
-@media screen and (max-width: 1540px) {
-  .tb_container {
-    margin-bottom: 12px;
   }
 }
 @media screen and (max-width: 1500px) {
@@ -181,12 +98,6 @@ td:hover{
     margin-top: 450px;
     max-width: 100%;
   }
-  .title_hr{
-    width: 100%;
-  }
-  .admin_table{
-    width: 100%;
-  }
   .sidenav a {
     margin: 0;
     padding: 2px;
@@ -197,11 +108,75 @@ td:hover{
   table *, .tb_container{
     font-size: 14px;
   }
-  .td_subjet_star {
-    color:rgb(240, 165, 0);
-    margin: 0 0 0 0px;
+}
+@media screen and (max-width: 800px) {
+  .list_header_tb * {
+    font-size: 15px;
   }
-  .btn_submit{
-    right:0;
-  }
+}
+
+.admin_table a, .btn_write a{
+  text-decoration: none;
+  color: black;
+}
+.btn_write {
+  float:right;
+  margin: 1%;
+}
+.btn_write a {
+  color: white;
+}
+.submain_list_item:nth-child(odd) {
+  background-color: rgba(252, 105, 105, 0.05);
+}
+.submain_list_item:nth-child(even) {
+  background-color: rgba(252, 105, 105, 0.15);
+}
+.li_hd_list_num, .li_hd_num{
+  width: 7%;
+}
+.li_hd_type{
+  width: 9%;
+}
+.li_hd_name{
+  width: 15%;
+}
+.lsb_btn_srch, .btn_write{
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 1px 3px 3px 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.lsb_btn_srch:hover, .btn_write:hover {
+  background-color: rgba(252, 105, 105, 0.85);
+}
+.page_to a{
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  position:relative;
+  margin: 30px 0 10% 0;
+}
+.page_to_in {
+position:absolute;
+text-align: center;
+width:50%;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
 }
