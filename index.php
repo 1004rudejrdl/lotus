@@ -31,6 +31,11 @@
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <!-- <script type="text/javascript" src="./js/sign_update_check_ajax_main.js?ver=1"></script> -->
 </head>
+<script type="text/javascript">
+  function color_test(){
+    window.open('./tt_color/tt_color_list.php','','scrollbars=no,toolbars=no,width=350,height=530');
+  }
+</script>
 
 <body>
   <!-- header start -->
@@ -42,7 +47,7 @@
       </div>
       <div class="dropdown">
         <button class="dropbtn">
-          <a>이성찾기&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="./find_meet/meeting.php?mode=whole">이성찾기&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -51,17 +56,6 @@
           <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
         </div> <!-- dropdown-content end -->
       </div> <!-- dropdown end -->
-      <div class="dropdown">
-        <button class="dropbtn">
-          <a>추천/예약&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
-        </button>
-        <div class="dropdown-content">
-          <div class="header">
-            <h2>결정 장애를 위해 준비한 데이트 코스</h2>
-          </div> <!-- header -->
-<?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
-        </div> <!-- dropdown-content -->
-      </div> <!-- dropdown -->
       <div class="dropdown">
         <button class="dropbtn">
           <a href="./sh_man/sh_man_list.php?mode=man">쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
@@ -75,7 +69,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a href="../tt_diag_/tt_diag_test.php">테스트&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="./tt_color/tt_color_test.php">테스트&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -86,7 +80,7 @@
       </div> <!-- dropdown -->
       <div class="dropdown ">
         <button class="dropbtn">
-          <a href="../cm_free/cm_free_exhibit.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="./cm_free/cm_free_list.php">커뮤니티&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
@@ -98,12 +92,37 @@
       <!-- <div class="dropdown dd_right">
         <button class="logo"><a href="./index.php"> <img src="./main_img/lotus_logo_img2.png"></a></button>
       </div> -->
+
+      <?php if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){?>
+      <div class="dropdown dd_right">
+        <?php
+        $is_admin = substr($_SESSION['userid'], 0, 5);
+        if($is_admin=="admin"){
+          ?>
+          <button class="dropbtn"><a class="username" href="./admin_authority/a_auth_main.php">관리자 <?=$_SESSION['name']?> 님</a></button>
+          <?php
+        }else{
+          ?>
+          <button class="dropbtn"><a class="username" href="./message/message.php" ><?=$_SESSION['name']?> 님</a></button>
+          <?php
+        }
+        ?>
+      </div> <!-- dropdown -->
+      <div class="dropdown dd_right">
+        <button class="dropbtn"><a href="./mb_login/logout.php">LOGOUT</a></button>
+      </div> <!-- dropdown -->
+
+<?php } else {?>
+
       <div class="dropdown dd_right">
         <button class="dropbtn"><a href="./mb_login/mb_login.php">LOGIN</a></button>
       </div> <!-- dropdown -->
       <div class="dropdown dd_right">
         <button class="dropbtn"><a href="./mb_login/mb_join_form.php">JOIN</a></button>
       </div> <!-- dropdown -->
+
+<?php } ?>
+
     </div> <!-- topnav end -->
     <img id="header_img" src="./main_img/lotus_main_img3.png" alt="SEA" style="width:100%;">
   </div>
@@ -128,11 +147,8 @@
   <script src="./js/effect_common.js"></script><!-- Sticky event를 위해서 상단에 올리지 못함 -->
   <script src="./js/main.js"></script><!-- Sticky event를 위해서 상단에 올리지 못함 -->
   <!-- header end -->
-
   <!-- main_body start -->
 <div class="main_body">
-  <p>window.open으로 가면 창계속 열리니까 href로 가는걸로 하져</p>
-  <p>로그인이나 조인같은 애들은 필요하면 따로열고여</p>
   <div class="main_body_center">
     <table>      <!-- 그림, 남프, 여프, 로그 -->
       <tr>
@@ -142,62 +158,71 @@
 
         <td rowspan="2">
           <!-- <img src="./main_img/img_header.png" alt="" style="width:100%;"> -->
+<?php
+$sql="SELECT * FROM member_meeting where matching_day != '' limit 4";
+$result=mysqli_query($conn,$sql);
+$total_record=mysqli_num_rows($result);
+$left_right = "right";
+?>
 <div class="br_st_text">
   <div class="timeline">
-    <div class="container left">
-      <div class="content">
-        <h2>2017</h2>
-        <p>2017 회사연혁</p>
-        <p>2017 회사연혁</p>
-      </div>
-    </div>
-    <div class="container right">
-      <div class="content">
-        <h2>2016</h2>
-        <p>2016 회사연혁</p>
-        <p>2016 회사연혁</p>
-      </div>
-    </div>
-    <div class="container left">
-      <div class="content">
-        <h2>2015</h2>
-        <p>2015 회사연혁</p>
-        <p>2015 회사연혁</p>
-      </div>
-    </div>
-    <div class="container right">
-      <div class="content">
-        <h2>2012</h2>
-        <p>2012 회사연혁</p>
-        <p>2012 회사연혁</p>
-      </div>
-    </div>
-    <div class="container left">
-      <div class="content">
-        <h2>2017</h2>
-        <p>2017 회사연혁</p>
-        <p>2017 회사연혁</p>
-      </div>
-    </div>
-    <div class="container right">
-      <div class="content">
-        <h2>2016</h2>
-        <p>2016 회사연혁</p>
-        <p>2016 회사연혁</p>
-      </div>
-    </div>
+
+
+<?php
+for ($i = 0; $i < 4 ; $i++){
+  mysqli_data_seek($result,$i);
+  $row=mysqli_fetch_array($result);
+  $id=$row['id'];
+  $matching=$row['matching'];
+  $matching_day=$row['matching_day'];
+  if ($left_right=="left") {
+    $left_right="right";
+  }else{
+    $left_right="left";
+  }
+ ?>
+ <div class="container <?=$left_right?>">
+   <div class="content">
+     <h2><?= $matching_day?></h2>
+     <p><?=$id?> ♥ <?=$matching?></p>
+   </div>
+ </div>
+
+ <?php
+
+ }//end of for
+ ?>
+
   </div>
 </div>
         </td>
       </tr>
+      <?php
+        $sql1 = "SELECT * from member m inner join member_meeting mm on m.id = mm.id where gender = '0' or  gender = '남' limit 1";
+        $result1=mysqli_query($conn,$sql1) or die('Error: '.mysqli_error($conn));
+        $row1=mysqli_fetch_array($result1);
+
+        $id_m=$row1['id'];
+        $img_m=$row1['img'];
+
+
+        $sql2 = "SELECT * from member m inner join member_meeting mm on m.id = mm.id where gender = '1' or  gender = '여' limit 1";
+        $result2=mysqli_query($conn,$sql2) or die('Error: '.mysqli_error($conn));
+        $row2=mysqli_fetch_array($result2);
+
+        $id_f=$row2['id'];
+        $img_f=$row2['img'];
+
+       ?>
+
       <tr>
         <td>
           <!-- <img src="./main_img/img_header.png" alt="" style="width:100%;"> -->
           <div class="profile">             <!-- 남여 프로필카드 -->
-            <img src="./main_img/img_header.png" alt="Avatar" style="width:100%">
+            <img src="./mb_login/<?=$img_m?>" alt="Avatar" width="400" height="200">
             <div class="profile_container">
-              <h4><b>John Doe</b></h4>
-              <p>Architect & Engineer</p>
+              <h4><b>최근 가입 남성 id : <?=$id_m?></b></h4>
+
             </div>
           </div>
 
@@ -205,15 +230,23 @@
         <td>
           <!-- <img src="./main_img/img_header.png" alt="" style="width:100%;"> -->
           <div class="profile">             <!-- 남여 프로필카드 -->
-            <img src="./main_img/img_header.png" alt="Avatar" style="width:100%">
+            <img src="./mb_login/<?=$img_f?>" alt="Avatar" width="400" height="200">
             <div class="profile_container">
-              <h4><b>John Doe</b></h4>
-              <p>Architect & Engineer</p>
+              <h4><b>최근 가입 여성 id : <?=$id_f?></b></h4>
+
             </div>
           </div>
         </td>
 
       </tr>
+
+
+
+
+
+
+
+
     </table>       <!-- 그림, 남프, 여프, 로그 -->
   </div>  <!-- main_body_center end -->
   <div class="main_body_product"> <!-- 식당, 숙박, 렌트카, 쇼핑 -->
@@ -225,17 +258,66 @@
         <td><img src="./main_img/img_header.png" class="centerproductimg"></td>
       </tr>
     </table> -->
+
+    <?php
+    //$sql = "SELECT shop_best,file_copied_0 from prd_shop_detail where prd_type = '$type' order by shop_best desc,prd_num desc;";
+    $sql = "SELECT * from prd_shop_detail order by shop_best desc,prd_num desc limit 4;";
+    $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
+    $total = mysqli_num_rows($result);
+
+    for ($i=0; $i < 4; $i++) {
+      $row = mysqli_fetch_array($result);
+      $shop_best[$i]=$row['shop_best'];
+      $prd_num[$i]=$row['prd_num'];
+      $prd_type[$i]=$row['prd_type'];
+      $file_copied_0[$i]=$row['file_copied_0'];
+      $prd_name[$i]=$row['prd_name'];
+      ?>
+      <?php
+    }
+     ?>
     <ul>
-      <li class="centerproduct">맛집/체험</li>
-      <li class="centerproduct">숙박</li>
-      <li class="centerproduct">렌트카</li>
-      <li class="centerproduct">쇼핑</li>
+      <?php
+      for ($i=0; $i < 4; $i++) {
+        if (!empty($shop_best[$i])) {
+        ?>
+        <li class="centerproduct"><?=$prd_name[$i]?></li>
+        <?php
+      }else {
+        ?>
+        <li class="centerproduct">상품 없음</li>
+        <?php
+      }
+      } ?>
     </ul>
-    <ul>
-      <li class="centerproduct"><a href="#"><img src="./main_img/img_header.png" class="centerproductimg"></a></li>
-      <li class="centerproduct"><a href="#"><img src="./main_img/img_header.png" class="centerproductimg"></a></li>
-      <li class="centerproduct"><a href="#"><img src="./main_img/img_header.png" class="centerproductimg"></a></li>
-      <li class="centerproduct"><a href="#"><img src="./main_img/img_header.png" class="centerproductimg"></a></li>
+    <ul><?php
+    for ($i=0; $i < 4; $i++) {
+      if (!empty($shop_best[$i])) {
+        switch ($prd_type[$i]) {
+          case 'm':
+            $list_name="man";
+            break;
+          case 'w':
+            $list_name="woman";
+            break;
+          case 's':
+            $list_name="shose";
+            break;
+        }
+      ?>
+      <form class="" action="./sh_man/sh_man_list.php?mode=<?=$list_name?>&page=1" method="post">
+      <input type="hidden" name="prd_num" value="<?=$prd_num[$i]?>">
+    <li class="centerproduct"><input type="image" name="" value="" src="./sh_man/img/<?=$file_copied_0[$i]?>" class="centerproductimg"></li>
+    </form>
+
+      <?php
+    }else {?>
+
+      <li class="centerproduct"><a href="#"><img src="./main_img/lotus_logo_img.png" class="centerproductimg"></a></li>
+      <?php
+    }
+    } ?>
+
     </ul>
   </div> <!-- 식당, 숙박, 렌트카, 쇼핑 end -->
 
