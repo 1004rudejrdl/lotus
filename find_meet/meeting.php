@@ -173,9 +173,6 @@ $number = $total_record - $start;
         <tr>
           <td><button class="button" onclick="javascript:send_mail('<?=$id?>');">Contact</button></td>
         </tr>
-        <tr>
-          <td>회원번호 <?=$number?></td>
-        </tr>
       </table>
       <script type="text/javascript">
         function like(m) {
@@ -216,9 +213,8 @@ $number = $total_record - $start;
         });
       </script>
       <?php
-                 $number--;
-              }//end of for
-             ?>
+        }//end of for
+       ?>
       <input type="hidden" class="vote_user" id="vote_user" name="vote_user" value="<?=$user_id?>">
       <hr class="title_hr">
       <div class="page_to">

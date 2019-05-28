@@ -49,7 +49,7 @@ function create_table($conn, $table_name){
                     `self_info` text NOT NULL,
                     `img` varchar(100) NOT NULL,
                     `mb_type` char(1) NOT NULL DEFAULT '0',
-                    `matching` char(10) DEFAULT NULL,
+                    `matching` varchar(22) DEFAULT NULL,
                     `matching_day` char(10) DEFAULT NULL,
                     PRIMARY KEY (`id`)
                   );";

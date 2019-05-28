@@ -4,16 +4,6 @@
   width: 100%;
   padding: 5%;
   height: auto;
-
-  /* background-image: url("../main_img/img_header.jpg"); */
-  /* background-repeat: no-repeat; */
-  /* background-size: 100% 100%; */
-}
-.main_body table {
-  border-collapse: collapse;
-}
-.main_body table td {
-  /* border: 1px solid red; */
 }
 .main_body_center{
   max-width: 80%;
@@ -21,10 +11,141 @@
   margin-bottom: 30px;
   padding: 10px;
 }
-.td_pic_pro{
+.main_body_center>*{
+  float: left;
+}
+.main_body_center table {
+  border-collapse: collapse;
+}
+.main_body_center table td {
+  text-align: center;
+}
+.width_60{
   width: 60%;
 }
+.width_40{
+  width: 40%;
+}
+.width_30{
+  width: 30%;
+}
+.m_pr{
+  background-color: rgba(167, 238, 255, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.f_pr{
+  background-color: rgba(255, 145, 220, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.profile {   /* 남여 프로필카드 */
+  transition: 0.3s;
+  width: 100%;
+}
+.profile:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.profile_img{
+  min-height: 300px;
+  text-align: center;
+  vertical-align :bottom;
+}
+.profile img{
+  padding: 10px 10px 0px 10px;
+  max-width: 100%;
+  max-height: 300px;
+  margin: auto 0;
+}
+.profile_container {
+  padding: 2px 16px;
+  color: #3e3e3e;
+}
+
+.container {
+  padding: 2px 16px;
+}
+/* ************************ */
+.br_st_text{
+  padding: 10px;
+  width: 100%;
+  z-index: 1;
+  /* border: 1px solid green; */
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: auto;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #ff6e7f;
+  top: 0;
+  bottom: 0;
+  left: 31px;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+  position: relative;
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+}
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -16px;
+  background-color: white;
+  border: 4px solid #FF9F55;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Add arrows to the left container (pointing right) */
+.container::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 60px;
+  border: medium solid rgba(237, 66, 100, 0.9);
+  border-width: 10px 10px 10px 0;
+  border-color: transparent rgba(237, 66, 100, 0.9) transparent transparent;
+}
+
+.left::after, .right::after {
+left: 15px;
+}
+
+/* The actual content */
+.content *{
+  padding:0;
+  margin: 0;
+}
+.content {
+  padding: 20px 30px;
+  position: relative;
+  border-radius: 6px;
+  color: white;
+}
+.left .content, .right .content{
+    background-image: linear-gradient(to right, rgba(237, 66, 100, 0.9), #f2709c);
+  }
 .main_body_product{
+  clear: both;
   max-width: 80%;
   margin: auto;
   margin-bottom: 20%;
@@ -52,134 +173,12 @@
   width: 100%;
   max-height:
 }
-.profile {   /* 남여 프로필카드 */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;
-}
-
-.profile:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.profile_container {
-  padding: 2px 16px;
-}
-.container {
-  padding: 2px 16px;
-}
-/* ************************ */
-.br_st_text{
-  padding: 10px;
-  width: 100%;
-  z-index: 1;
-  /* border: 1px solid green; */
-}
-
-/* The actual timeline (the vertical ruler) */
-.timeline {
-  position: relative;
-  max-width: auto;
-  margin: 0 auto;
-}
-
-/* The actual timeline (the vertical ruler) */
-.timeline::after {
-  content: '';
-  position: absolute;
-  width: 6px;
-  background-color: #ff6e7f;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -3px;
-}
-
-/* Container around content */
-.container {
-  position: relative;
-  width: 50%;
-}
-
-/* The circles on the timeline */
-.container::after {
-  content: '';
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  right: -17px;
-  background-color: white;
-  border: 4px solid #FF9F55;
-  top: 15px;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-/* Place the container to the left */
-.left {
-  padding: 10px 40px 0px 0px;
-  left: 0;
-}
-
-/* Place the container to the right */
-.right {
-  padding: 10px 0px 0px 40px;
-  left: 50%;
-}
-
-/* Add arrows to the left container (pointing right) */
-.left::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  right: 30px;
-  border: medium solid rgba(237, 66, 100, 0.9);
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent rgba(237, 66, 100, 0.9);
-}
-
-/* Add arrows to the right container (pointing left) */
-.right::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  left: 30px;
-  border: medium solid rgba(237, 66, 100, 0.9);
-  border-width: 10px 10px 10px 0;
-  border-color: transparent rgba(237, 66, 100, 0.9) transparent transparent;
-}
-
-/* Fix the circle for containers on the right side */
-.right::after {
-  left: -16px;
-}
-
-/* The actual content */
-.content *{
-  padding:0;
-  margin: 0;
-}
-.content {
-  padding: 20px 30px;
-  position: relative;
-  border-radius: 6px;
-  color: white;
-}
-.right .content {
-  background-image: linear-gradient(to right, rgba(237, 66, 100, 0.9), #f2709c);
-}
-.left .content {
-  background-image: linear-gradient(to left, rgba(237, 66, 100, 0.9), #f2709c);
-}
 @media screen and (max-width: 1300px) {
   .centerproduct{ /*식당, 숙박, 렌트카, 쇼핑*/
     font-size: 22px;
+  }
+  .content {
+    padding: 10px 15px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -196,43 +195,114 @@
 }
 /* Media queries - Responsive timeline on screens less than 600px wide */
 @media screen and (max-width: 800px) {
+  .main_body{
+    margin-top: 50px;
+    margin-bottom: 80%;
+  }
   .main_body_center,.main_body_product{
     max-width: 100%;
   }
+  .main_body_center>*{
+    float: none;
+    width: 100%;
+  }
   /* Place the timelime to the left */
   .timeline::after {
-  left: 31px;
+    left: 50%;
   }
 
   /* Full-width containers */
   .container {
-  width: 100%;
-  padding-left: 70px;
-  padding-right: 25px;
+  position: relative;
+  width: 50%;
+  padding-left: 0;
+  padding-right: 0;
   }
 
-  /* Make sure that all arrows are pointing leftwards */
-  .container::before {
-  left: 60px;
-  border: medium solid rgba(237, 66, 100, 0.9);
-  border-width: 10px 10px 10px 0;
-  border-color: transparent rgba(237, 66, 100, 0.9) transparent transparent;
-  }
-  /* Make sure all circles are at the same spot */
-  .left::after, .right::after {
-  left: 15px;
+  /* Place the container to the left */
+  .left {
+    padding: 10px 40px 0px 0px;
+    text-align: right;
   }
 
-  /* Make all right containers behave like the left ones */
+  /* Place the container to the right */
   .right {
-  left: 0%;
+    padding: 10px 0px 0px 40px;
+    left: 50%;
   }
-.left .content, .right .content{
+  /* Add arrows to the left container (pointing right) */
+  .left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    margin-left: 100%;
+    left: -40px;
+    border: medium solid rgba(237, 66, 100, 0.9);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent rgba(237, 66, 100, 0.9);
+  }
+  /* Add arrows to the right container (pointing left) */
+  .right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid rgba(237, 66, 100, 0.9);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent rgba(237, 66, 100, 0.9) transparent transparent;
+  }
+  /* Fix the circle for containers on the right side */
+  .right::after {
+    left: -16px;
+  }
+  .left::after {
+    /* 컨테이너에 생성되므로 컨테이너 만큼 마진을 줘야함 absolute이므로 위에 보임 */
+    margin-left: 100%;
+    left: -16px;
+  }
+  .right .content {
     background-image: linear-gradient(to right, rgba(237, 66, 100, 0.9), #f2709c);
   }
+  .left .content {
+    background-image: linear-gradient(to left, rgba(237, 66, 100, 0.9), #f2709c);
+  }
   .centerproduct{ /*식당, 숙박, 렌트카, 쇼핑*/
-    float: none;
-    width: 100%;
+    width: 50%;
     font-size: 22px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .profile_container h4{
+    padding: 0;
+    font-size: 11px;
+  }
+  .profile_img{
+    min-height: 180px;
+    text-align: center;
+    vertical-align :bottom;
+  }
+  .profile img{
+    padding: 10px 10px 0px 10px;
+    max-width: 100%;
+    max-height: 180px;
+    margin: auto 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  .profile_container h4{
+    font-size: 6px;
+  }
+  .profile_img{
+    min-height: 140px;
+  }
+  .profile img{
+    padding: 5px 5px 0px 5px;
+    max-height: 140px;
   }
 }

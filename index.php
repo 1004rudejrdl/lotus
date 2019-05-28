@@ -25,11 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/common.css">
-  <!-- <link rel="stylesheet" href="./css/join.css"> -->
   <link rel="stylesheet" href="./css/main.css">
-  <!-- <script type="text/javascript" src="./js/sign_update_check_html.js?ver=1" ></script> -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <!-- <script type="text/javascript" src="./js/sign_update_check_ajax_main.js?ver=1"></script> -->
 </head>
 <script type="text/javascript">
   function color_test(){
@@ -89,9 +86,6 @@
 <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
         </div> <!-- dropdown-content -->
       </div> <!-- dropdown -->
-      <!-- <div class="dropdown dd_right">
-        <button class="logo"><a href="./index.php"> <img src="./main_img/lotus_logo_img2.png"></a></button>
-      </div> -->
 
       <?php if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){?>
       <div class="dropdown dd_right">
@@ -150,51 +144,10 @@
   <!-- main_body start -->
 <div class="main_body">
   <div class="main_body_center">
-    <table>      <!-- 그림, 남프, 여프, 로그 -->
+    <table class="width_60">      <!-- 그림, 남프, 여프, 로그 -->
       <tr>
-        <td colspan="2" class="td_pic_pro">
+        <td colspan="2">
           <img src="./main_img/lotus_main_img.png" alt="" style="width:100%;">
-        </td>
-
-        <td rowspan="2">
-          <!-- <img src="./main_img/img_header.png" alt="" style="width:100%;"> -->
-<?php
-$sql="SELECT * FROM member_meeting where matching_day != '' limit 4";
-$result=mysqli_query($conn,$sql);
-$total_record=mysqli_num_rows($result);
-$left_right = "right";
-?>
-<div class="br_st_text">
-  <div class="timeline">
-
-
-<?php
-for ($i = 0; $i < 4 ; $i++){
-  mysqli_data_seek($result,$i);
-  $row=mysqli_fetch_array($result);
-  $id=$row['id'];
-  $matching=$row['matching'];
-  $matching_day=$row['matching_day'];
-  if ($left_right=="left") {
-    $left_right="right";
-  }else{
-    $left_right="left";
-  }
- ?>
- <div class="container <?=$left_right?>">
-   <div class="content">
-     <h2><?= $matching_day?></h2>
-     <p><?=$id?> ♥ <?=$matching?></p>
-   </div>
- </div>
-
- <?php
-
- }//end of for
- ?>
-
-  </div>
-</div>
         </td>
       </tr>
       <?php
@@ -212,52 +165,69 @@ for ($i = 0; $i < 4 ; $i++){
 
         $id_f=$row2['id'];
         $img_f=$row2['img'];
-
        ?>
-
       <tr>
-        <td>
-          <!-- <img src="./main_img/img_header.png" alt="" style="width:100%;"> -->
+        <td class="width_30 m_pr">
           <div class="profile">             <!-- 남여 프로필카드 -->
-            <img src="./mb_login/<?=$img_m?>" alt="Avatar" width="400" height="200">
-            <div class="profile_container">
-              <h4><b>최근 가입 남성 id : <?=$id_m?></b></h4>
-
+            <div class="profile_img">
+              <img src="./mb_login/<?=$img_m?>" alt="<?=$id_m?>">
             </div>
-          </div>
-
-        </td>
-        <td>
-          <!-- <img src="./main_img/img_header.png" alt="" style="width:100%;"> -->
-          <div class="profile">             <!-- 남여 프로필카드 -->
-            <img src="./mb_login/<?=$img_f?>" alt="Avatar" width="400" height="200">
             <div class="profile_container">
-              <h4><b>최근 가입 여성 id : <?=$id_f?></b></h4>
-
+              <h4><b>최근 가입 남성</b></h4>
+              <h4><b><?=$id_m?></b></h4>
             </div>
           </div>
         </td>
-
+        <td class="width_30 f_pr">
+          <div class="profile ">             <!-- 남여 프로필카드 -->
+            <div class="profile_img">
+              <img src="./mb_login/<?=$img_f?>" alt="<?=$id_f?>">
+            </div>
+            <div class="profile_container">
+              <h4><b>최근 가입 여성</h4>
+              <h4><b><?=$id_f?></b></h4>
+            </div>
+          </div>
+        </td>
       </tr>
-
-
-
-
-
-
-
-
     </table>       <!-- 그림, 남프, 여프, 로그 -->
+    <div class="width_40">
+      <?php
+      $sql="SELECT * FROM member_meeting where matching_day != '' order by `matching_day` desc limit 8";
+      $result=mysqli_query($conn,$sql);
+      $total_record=mysqli_num_rows($result);
+      $left_right = "right";
+      ?>
+      <div class="br_st_text">
+        <div class="timeline">
+      <?php
+      for ($i = 0; $i < $total_record ; $i++){
+        mysqli_data_seek($result,$i);
+        $row=mysqli_fetch_array($result);
+        $id=$row['id'];
+        $matching=$row['matching'];
+        $matching_day=$row['matching_day'];
+        if ($left_right=="left") {
+          $left_right="right";
+        }else{
+          $left_right="left";
+        }
+       ?>
+       <div class="container <?=$left_right?>">
+         <div class="content">
+           <h4><?= $matching_day?></h4>
+           <p><?=$id?> ♥ <?=$matching?></p>
+         </div>
+       </div>
+       <?php
+       }//end of for
+       ?>
+        </div><!-- timeline end -->
+      </div><!-- br_st_text -->
+    </div>
   </div>  <!-- main_body_center end -->
+
   <div class="main_body_product"> <!-- 식당, 숙박, 렌트카, 쇼핑 -->
-    <!-- <table>
-      <tr>
-        <td><img src="./main_img/img_header.png" class="centerproductimg"></td>
-        <td><img src="./main_img/img_header.png" class="centerproductimg"></td>
-        <td><img src="./main_img/img_header.png" class="centerproductimg"></td>
-        <td><img src="./main_img/img_header.png" class="centerproductimg"></td>
-      </tr>
-    </table> -->
 
     <?php
     //$sql = "SELECT shop_best,file_copied_0 from prd_shop_detail where prd_type = '$type' order by shop_best desc,prd_num desc;";
@@ -313,7 +283,7 @@ for ($i = 0; $i < 4 ; $i++){
       <?php
     }else {?>
 
-      <li class="centerproduct"><a href="#"><img src="./main_img/lotus_logo_img.png" class="centerproductimg"></a></li>
+      <li class="centerproduct"><a href="#"><img src="./main_img/no_prd.png" class="centerproductimg"></a></li>
       <?php
     }
     } ?>
@@ -357,7 +327,6 @@ for ($i = 0; $i < 4 ; $i++){
   </div> <!-- footer end -->
 </div>
 <!-- footer_bg end -->
-  <!-- <script type="text/javascript" src="./js/main.js"></script> -->
 </body>
 
 </html>

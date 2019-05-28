@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../lib/db_connector.php';
-$sql="SELECT * FROM member_meeting where matching_day != ''";
+$sql="SELECT * FROM member_meeting where matching_day != '' order by `matching_day` desc limit 8";
 $result=mysqli_query($conn,$sql);
 $total_record=mysqli_num_rows($result);
 $left_right = "right";
