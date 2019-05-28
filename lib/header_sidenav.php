@@ -52,21 +52,57 @@
       <!-- <div class="dropdown dd_right">
         <button class="logo"><a href="../index.php"> <img src="../main_img/lotus_logo_img2.png"></a></button>
       </div> -->
-      <?php if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){ ?>
-    <div class="dropdown dd_right">
-      <button class="dropbtn"><a class="username" href="../mb_login/mb_modify_form.php"><?=$_SESSION['name']?> 님</a></button>
-    </div> <!-- dropdown -->
-    <div class="dropdown dd_right">
-      <button class="dropbtn"><a href="../mb_login/logout.php">LOGOUT</a></button>
-    </div> <!-- dropdown -->
-  <?php } else {?>
-    <div class="dropdown dd_right">
-      <button class="dropbtn"><a href="../mb_login/mb_login.php">LOGIN</a></button>
-    </div> <!-- dropdown -->
-    <div class="dropdown dd_right">
-      <button class="dropbtn"><a href="../mb_login/mb_join_form.php">JOIN</a></button>
-    </div> <!-- dropdown -->
-  <?php } ?>
+
+
+
+
+
+
+
+
+
+      <?php if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){?>
+      <div class="dropdown dd_right">
+        <?php
+        $is_admin = substr($_SESSION['userid'], 0, 5);
+        if($is_admin=="admin"){
+          ?>
+          <button class="dropbtn"><a class="username" href="../admin_authority/a_auth_main.php">관리자 <?=$_SESSION['name']?> 님</a></button>
+          <?php
+        }else{
+          ?>
+          <button class="dropbtn"><a class="username" href="../message/message.php" ><?=$_SESSION['name']?> 님</a></button>
+          <?php
+        }
+        ?>
+      </div> <!-- dropdown -->
+      <div class="dropdown dd_right">
+        <button class="dropbtn"><a href="../mb_login/logout.php">LOGOUT</a></button>
+      </div> <!-- dropdown -->
+
+<?php } else {?>
+
+      <div class="dropdown dd_right">
+        <button class="dropbtn"><a href="../mb_login/mb_login.php">LOGIN</a></button>
+      </div> <!-- dropdown -->
+      <div class="dropdown dd_right">
+        <button class="dropbtn"><a href="../mb_login/mb_join_form.php">JOIN</a></button>
+      </div> <!-- dropdown -->
+
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div> <!-- topnav end -->
   </div>
 

@@ -206,14 +206,20 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
          <button type="button" name="button"> <a href="./cm_rv_list.php?page=<?=$page?>" class="write_page1">목 록 </a></button>
 
          <?php
+         $sql2="SELECT * from `admin_authority` where id = '$userid';";
+         $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($conn));
+         $row2 = mysqli_fetch_array($result2);
+         $auth_commu = $row2['auth_commu'];
          if (isset($_SESSION['userid'])) {
-           if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
+           if($_SESSION['userid']==$id){
 
              echo '<button type="button" name="button"><a href="./cm_rv_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a></button>';
 
              echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
 
 
+           }else if (!empty($auth_commu)) {
+             echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
            }
 
          }

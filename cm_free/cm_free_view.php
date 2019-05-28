@@ -7,7 +7,6 @@ $num = $id = $subject = $content = $day=$hit=$q_num="";
 $userid = $_SESSION['userid'];
 
 
-
 if(empty($_GET['page'])){
   $page=1;
 } else{
@@ -185,7 +184,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
         </div>
     <?php
       }//end of while
-      mysqli_close($conn);
+
     ?>
     <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
       <input type="hidden" name="parent" value="<?=$q_num?>">
@@ -208,21 +207,24 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
            <button type="button" name="button"> <a href="./cm_free_list.php?page=<?=$page?>" class="write_page1">목 록 </a></button>
 
            <?php
+           //$sql="SELECT * from `commu_ripple` where parent='$q_num' ";
+           $sql2="SELECT * from `admin_authority` where id = '$userid';";
+           $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($conn));
+           $row2 = mysqli_fetch_array($result2);
+           $auth_commu = $row2['auth_commu'];
            if (isset($_SESSION['userid'])) {
-             if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
-
+             if($_SESSION['userid']==$id){
                echo '<button type="button" name="button"><a href="./cm_free_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a></button>';
-
                echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
-
-
+             }else if (!empty($auth_commu)) {
+               echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
              }
-
            }
            if (!empty($_SESSION['userid'])) {
              echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_free_write.php?mode=response&num='.$num.'" class="write_page1">답 변</a></button>';
              echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_free_write.php" class="write_page1">글쓰기</a></button>';
            }
+           mysqli_close($conn);
            ?>
          </div><!--end of write_button  -->
         </div><!--end of content -->

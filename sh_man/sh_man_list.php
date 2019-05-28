@@ -26,7 +26,7 @@
   $sql = "SELECT * from prd_shop_detail where prd_type = '$type' order by shop_best desc,prd_num desc;";
   $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
   $total = mysqli_num_rows($result);
-
+  $userid = $_SESSION['userid'];
 
   $list_count=4;
   if (isset($_POST['option_list_count'])) {    //n개씩 보기
@@ -514,7 +514,11 @@ for ($i=0; $i < 10; $i++) {
 <div class="" >
   <div class="">
     <?php
-    if ($session == "admin") {
+    $sql8="SELECT * from `admin_authority` where id = '$userid';";
+    $result8 = mysqli_query($conn, $sql8) or die("실패원인 : " . mysqli_error($conn));
+    $row8 = mysqli_fetch_array($result8);
+    $auth_shop = $row8['auth_shop'];
+    if (!empty($auth_shop)) {
       ?>
       <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
         <input type="submit" name="" value="상품등록" style="float:right">
