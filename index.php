@@ -1,22 +1,6 @@
-<!-- https://tympanus.net/codrops/2013/06/26/expanding-search-bar-deconstructed/ -->
-<?php
+﻿<?php
   session_start();
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector_main.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
-  // create_table($conn,'membership');//이력서 제출 테이블 생성
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +41,7 @@
         <button class="dropbtn">
           <a href="./sh_man/sh_man_list.php?mode=man">쇼핑몰&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
-        <div class="dropdown-content alignR">
+        <div class="dropdown-content">
           <div class="header">
             <h2>패션 고자를 위한 쇼핑몰</h2>
           </div> <!-- header -->
@@ -151,7 +135,7 @@
         </td>
       </tr>
       <?php
-        $sql1 = "SELECT * from member m inner join member_meeting mm on m.id = mm.id where gender = '0' or  gender = '남' limit 1";
+        $sql1 = "SELECT * from member m inner join member_meeting mm on m.id = mm.id where gender = '0' or  gender = '남' order by `mb_num` desc limit 1";
         $result1=mysqli_query($conn,$sql1) or die('Error: '.mysqli_error($conn));
         $row1=mysqli_fetch_array($result1);
 
@@ -159,7 +143,7 @@
         $img_m=$row1['img'];
 
 
-        $sql2 = "SELECT * from member m inner join member_meeting mm on m.id = mm.id where gender = '1' or  gender = '여' limit 1";
+        $sql2 = "SELECT * from member m inner join member_meeting mm on m.id = mm.id where gender = '1' or  gender = '여' order by `mb_num` desc limit 1";
         $result2=mysqli_query($conn,$sql2) or die('Error: '.mysqli_error($conn));
         $row2=mysqli_fetch_array($result2);
 
