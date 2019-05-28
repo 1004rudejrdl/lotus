@@ -76,9 +76,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
-  <!-- <link rel="stylesheet" href="../css/join.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <link rel="stylesheet" href="./css/list.css">
+  <link rel="stylesheet" href="./css/shop_list.css">
   <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
@@ -506,51 +506,42 @@ for ($i=0; $i < 10; $i++) {
 }
 ?>
 
-
-
-
 <!-- *************리스트************* -->
 
-<div class="" >
-  <div class="">
-    <?php
-    $sql8="SELECT * from `admin_authority` where id = '$userid';";
-    $result8 = mysqli_query($conn, $sql8) or die("실패원인 : " . mysqli_error($conn));
-    $row8 = mysqli_fetch_array($result8);
-    $auth_shop = $row8['auth_shop'];
-    if (!empty($auth_shop)) {
-      ?>
-      <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
-        <input type="submit" name="" value="상품등록" style="float:right">
-        <input type="hidden" name="prd_num" value="">
-        <input type="hidden" name="regist" value="regist">
+<div class="prd_list" >
+  <div class="ord_rg_prd">
+    <div class="list_menu_option">
+      <form action="./sh_man_list.php?mode=<?=$list_name?>" method="post">
+        <input type="hidden" name="prd_num" value="<?=$prd_num?>">
+        <input type="submit" name="" value="보기">
+        <select class="" name="option_list_count">
+          <option value="4" <?=$selected1?>>4개씩</option>
+          <option value="12" <?=$selected2?>>12개씩</option>
+          <option value="24" <?=$selected3?>>24개씩</option>
+          <option value="48" <?=$selected4?>>48개씩</option>
+        </select>
       </form>
-      <a href="../admin_sh/a_shop_main.php?mode=<?=$list_name?>"> <button type="button" name="button" style="float:right">샾 등록</button> </a>
-      <a href="../admin_com_info/a_c_info_main.php?mode=<?=$list_name?>"> <button type="button" name="button" style="float:right">회사 등록</button> </a>
+    </div>    <!-- list_menu_option end -->
+    <div class="btn_rg_prd">
       <?php
-    }
-     ?>
-
-    <h1><?=$name?></h1>
-  </div>
-  <div class="">
-    <ul class="list_menu_ul">
-
-      <li class="list_menu_option">
-        <form class="" action="./sh_man_list.php?mode=<?=$list_name?>" method="post">
-          <input type="hidden" name="prd_num" value="<?=$prd_num?>">
-          <select class="" name="option_list_count">
-            <option value="4" <?=$selected1?>>4개씩</option>
-            <option value="12" <?=$selected2?>>12개씩</option>
-            <option value="24" <?=$selected3?>>24개씩</option>
-            <option value="48" <?=$selected4?>>48개씩</option>
-            <input type="submit" name="" value="보기">
-          </select>
+      $sql8="SELECT * from `admin_authority` where id = '$userid';";
+      $result8 = mysqli_query($conn, $sql8) or die("실패원인 : " . mysqli_error($conn));
+      $row8 = mysqli_fetch_array($result8);
+      $auth_shop = $row8['auth_shop'];
+      if (!empty($auth_shop)) {
+        ?>
+        <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
+          <input type="submit" name="" value="상품등록" style="float:right">
+          <input type="hidden" name="prd_num" value="">
+          <input type="hidden" name="regist" value="regist">
         </form>
+        <?php
+      }
+      ?>
+    </div>    <!-- btn_rg_prd end -->
+  </div>  <!-- ord_rg_prd end -->
 
-      </li>
-    </ul>
-    <div class="" style="width:100%; clear:both">
+  <div class="body_prd_list">
       <ul>
         <?php
         for ($i=$start; $i < $start+$list_count && $i<$total; $i++) {
@@ -560,6 +551,7 @@ for ($i=0; $i < 10; $i++) {
           $prd_num=$row['prd_num'];
           $shop_best=$row['shop_best'];
           $shop_price=$row['shop_price'];
+          $shop_stock=$row['shop_stock'];
           $file_name_0=$row['file_name_0'];
           $file_copied_0=$row['file_copied_0'];
           for ($j=0; $j < 10; $j++) {
@@ -583,101 +575,102 @@ for ($i=0; $i < 10; $i++) {
             $image_height = 0;
             $image_type = "";
           }
-
           ?>
 
-          <li class="list_menu" style="width:24%">
-            <div class="">
-              <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&page=<?=$page?>" method="post">
-
-
-              <input type="hidden" name="prd_num" value="<?=$prd_num?>">
-
-              <input type="image" name="" value="" src="./img/<?=$file_copied_0?>" style="width:50%">
-              <p><?=$prd_name?>  &nbsp&nbsp&nbsp&nbsp&nbsp
+          <li class="prd_list_cont">
+            <form action="./sh_man_list.php?mode=<?=$list_name?>&page=<?=$page?>" method="post">
+              <div class="p_li_img">
+                <input type="hidden" name="prd_num" value="<?=$prd_num?>">
+                <input type="image" name="" value="" src="./img/<?=$file_copied_0?>">
+              </div>
+              <div class="prd_best">
                 <?php
                 if ($shop_best=='1') {
-                  $shop_best='BEST!';
-                  echo $shop_best;
+                  ?>
+                  <span class="prd_emph">★</span>
+                  <span>BEST</span>
+                  <span class="prd_emph">★</span>
+                  <?php
+                } else {
+                  ?>
+                  <div class="hei_17px"></div>
+                  <?php
                 }
+                ?>
+              </div>
+              <div class="prd_price">
+                <?=$shop_price?>원
+              </div>
+              <div class="prd_name">
+                <?=$prd_name?>
+              </div>
+              <div class="prd_info">
+                재고 : <?=$shop_stock?>
+              </div>
+            </form>
 
-                 ?>
-              </p>
-              <p><?=$shop_price?>원</p>
-              <p>*****</p>
-              </form>
               <?php
               if ($session == "admin") {
-                ?>
+              ?>
+              <div class="btn_admin">
                 <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
-                  <input type="submit" name="" value="수정">
+                  <input class="admin_btn" type="submit" name="" value="수정">
                   <input type="hidden" name="prd_num" value="<?=$prd_num?>">
                   <input type="hidden" name="update" value="update">
                 </form>
-
                 <form class="" action="./shop_register_delete.php" method="post">
                   <input type="hidden" name="prd_num" value="<?=$prd_num?>">
                   <input type="hidden" name="list_name" value="<?=$list_name?>">
-                  <input type="submit" name="" value="삭제">
+                  <input class="admin_btn" type="submit" name="" value="삭제">
                 </form>
-                <?php
+              </div>
+              <?php
               }
               ?>
-
-            </div>
           </li>
-
-
           <?php
         }
          ?>
-
       </ul>
-    </div>
-  </div>
-
-
-
-</div>
-
-<div class="page_to" >
-  <div class="page_to_in" >
-
-
-  <a href="./sh_man_list.php?page=1&mode=<?=$list_name?>">◀◀</a>
-  <?php
-  if ($page>1) {
-         $page_go=$page-1;
-         echo '<a class="previous" href="./sh_man_list.php?page='.$page_go.'&mode='.$list_name.'">이전 ◀</a>';
-       }else {
-         echo '<a class="previous" href="./sh_man_list.php?page=1&mode='.$list_name.'">이전 ◀</a>';
-       }
-       for ($i=1; $i <= $total_page ; $i++) {
-         if($page==$i){
-           echo "<a>&nbsp;$i&nbsp;</a>";
-         }else{
-           //싱글쿼테이션은 문자로 인식하지 않는다
-           //더블은 문자로 인식
-           echo "<a href='./sh_man_list.php?page=$i&mode=$list_name'>&nbsp;$i&nbsp;</a>";
-         }
-       }
-       if ($total_page==0) {
-         echo '<a class="next1" href="./sh_man_list.php?page=1&mode='.$list_name.'">▶ 다음</a>';
-       }elseif ($page+1>$total_page) {
-         $page_end=$total_page;
-         echo '<a class="next1" href="./sh_man_list.php?page='.$page_end.'&mode='.$list_name.'">▶ 다음</a>';
-       }else{
-         $page_go=$page+1;
-         echo '<a class="next1" href="./sh_man_list.php?page='.$page_go.'&mode='.$list_name.'">▶ 다음</a>';
-       }
-       ?>
+  </div>  <!-- body_prd_list end -->
+</div><!-- prd_list end -->
+<hr class="title_hr">
+<div class="page_to">
+  <div class="page_to_in">
+    <a href="./sh_man_list.php?page=1&mode=<?=$list_name?>">◀◀</a>
+    <?php
+         if ($page>1) {
+               $page_go=$page-1;
+                echo '<a class="previous" href="./sh_man_list.php?page='.$page_go.'&mode='.$list_name.'">이전 ◀</a>';
+              }else {
+                echo '<a class="previous" href="./sh_man_list.php?page=1&mode='.$list_name.'">이전 ◀</a>';
+              }
+              for ($i=1; $i <= $total_page ; $i++) {
+                if($page==$i){
+                  echo "<a>&nbsp;$i&nbsp;</a>";
+                }else{
+                  //싱글쿼테이션은 문자로 인식하지 않는다
+                  //더블은 문자로 인식
+                  echo "<a href='./op_free_bd_main.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                }
+              }
+              if ($total_page==0) {
+                echo '<a class="next" href="./sh_man_list.php?page=1&mode='.$list_name.'">▶ 다음</a>';
+              }elseif ($page+1>$total_page) {
+                $page_end=$total_page;
+                echo '<a class="next" href="./sh_man_list.php?page='.$page_end.'&mode='.$list_name.'">▶ 다음</a>';
+              }else{
+                $page_go=$page+1;
+                echo '<a class="next" href="./sh_man_list.php?page='.$page_go.'&mode='.$list_name.'">▶ 다음</a>';
+              }
+              ?>
     <a href="./sh_man_list.php?page=<?=$total_page?>&mode=<?=$list_name?>">▶▶</a>
-      </div>
+  </div> <!-- page_to in end 페이지 이동 -->
 </div> <!-- page_to end 페이지 이동 -->
-
-
-</div>  <!-- main end -->
-</div>  <!-- main_body end -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div> <!-- main end -->
+</div> <!-- main_body end -->
 <!-- footer start -->
 <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/footer.php"; ?>
 <!-- footer_bg end -->

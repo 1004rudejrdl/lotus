@@ -52,7 +52,7 @@
     margin-left: 25.5%;
   }
 }
-@media screen and (max-width: 100px) {
+@media screen and (max-width: 1000px) {
   .main {
     margin-left: 27%;
   }

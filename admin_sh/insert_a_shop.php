@@ -33,7 +33,7 @@ $shop_notice = trim($_POST['shop_notice']);
 
   mysqli_close($conn);
 
-  //echo "<script>location.href='./a_shop_main.php';</script>";
+  echo "<script>location.href='./a_shop_main.php';</script>";
 
 
  ?>

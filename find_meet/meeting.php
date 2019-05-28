@@ -90,8 +90,8 @@ $number = $total_record - $start;
   <div id="main_body" class="main_body">
     <div id="sidenav" class="sidenav">
       <a href="./meeting.php?mode=whole">연인찾기</a>
-      <a href="./meeting.php?mode=male">남</a>
-      <a href="./meeting.php?mode=female">여</a>
+      <a href="./meeting.php?mode=male" style="color:#1565c0">남</a>
+      <a href="./meeting.php?mode=female"style="color:#f64f59">여</a>
       <a href="./match_log.php">데이트로그/회원현황</a>
       <a href="../srv_human_/srv_human_research.php">이상형 설문조사</a>
     </div><!-- sidenav end -->

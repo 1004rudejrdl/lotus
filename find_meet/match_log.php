@@ -36,13 +36,15 @@ $number = $total_record - $start;
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
   <!-- header end -->
   <!-- main_body start -->
-  <div class="main_body">
+  <div id="main_body" class="main_body">
     <div id="sidenav" class="sidenav">
-      <a href="#about">추천/예약</a>
-      <a href="#services">맛집</a>
-      <a href="#clients">숙박</a>
-      <a href="#contact">렌트카</a>
+      <a href="./meeting.php?mode=whole">연인찾기</a>
+      <a href="./meeting.php?mode=male" style="color:#1565c0">남</a>
+      <a href="./meeting.php?mode=female"style="color:#f64f59">여</a>
+      <a href="./match_log.php">데이트로그/회원현황</a>
+      <a href="../srv_human_/srv_human_research.php">이상형 설문조사</a>
     </div><!-- sidenav end -->
+
     <div class="main">
       <div class="admin_title">
         데이트 로그
