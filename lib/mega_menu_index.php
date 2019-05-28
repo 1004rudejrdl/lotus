@@ -6,7 +6,7 @@
 </script>
 <div class="row">
   <div class="column longer">
-    <h3>이성찾기</h3>
+    <h3>연인찾기</h3>
     <a href="./find_meet/meeting.php?mode=male" style="color:#1565c0">남</a>
     <a href="./find_meet/meeting.php?mode=female" style="color:#f64f59">여</a>
     <a href="./find_meet/match_log.php">데이트로그/회원현황</a>

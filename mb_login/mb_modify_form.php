@@ -210,7 +210,7 @@ $img=$row1['img'];
   <div id="main_body" class="main_body">
     <div id="sidenav" class="sidenav">
       <a href="#">연애, 꽃피우다</a>
-      <a href="#">이성찾기</a>
+      <a href="#">연인찾기</a>
       <a href="#">쇼핑몰</a>
       <a href="#">테스트</a>
       <a href="#">커뮤니티</a>

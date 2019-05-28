@@ -134,7 +134,7 @@
                 ?>
                 <span class="tb_checkmark"></span>
               </label>
-              <label class="tb_container">&nbsp;이성찾기&nbsp;
+              <label class="tb_container">&nbsp;연인찾기&nbsp;
                 <?php
                 if ($mode=="update_a_auth"&&!empty($auth_meeting)) {
                 ?>

@@ -47,11 +47,11 @@
       </div>
       <div class="dropdown">
         <button class="dropbtn">
-          <a href="./find_meet/meeting.php?mode=whole">이성찾기&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+          <a href="./find_meet/meeting.php?mode=whole">연인찾기&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
         </button>
         <div class="dropdown-content">
           <div class="header">
-            <h2>내게 맞는 이성찾기</h2>
+            <h2>내게 맞는 연인찾기</h2>
           </div> <!-- header -->
           <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/mega_menu_index.php"; ?>
         </div> <!-- dropdown-content end -->

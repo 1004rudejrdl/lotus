@@ -81,7 +81,7 @@
           <td class="li_hd_type">아이디</td>
           <td class="li_hd_name">이름</td>
           <td class="li_hd_type">회원관리</td>
-          <td class="li_hd_type">이성찾기</td>
+          <td class="li_hd_type">연인찾기</td>
           <td class="li_hd_type">추천/예약</td>
           <td class="li_hd_type">쇼핑몰</td>
           <td class="li_hd_type">테스트</td>
