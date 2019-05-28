@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 include "../lib/db_connector.php";
 if (isset($_SESSION['userid'])) {
@@ -36,23 +36,18 @@ $result=mysqli_query($conn,$sql) or die('Error: '.mysqli_error($conn));
  }
 
 if(isset($_GET['mode'])&&$_GET['mode']=='whole'){
-  $sql="SELECT * from member order by id desc";
-  $sql1="SELECT * from member_meeting where `id`=$ order by id desc";
+  $sql="SELECT * from member order by `mb_num` desc";
   $result=mysqli_query($conn,$sql);
-  $result1=mysqli_query($conn,$sql1);
   $total_record=mysqli_num_rows($result);//총레코드수
 }else if(isset($_GET['mode'])&&$_GET['mode']=='male'){
-  $sql="SELECT * from member where `gender` ='0' or `gender`='남'";
+  $sql="SELECT * from member where `gender` ='0' or `gender`='남' order by `mb_num` desc";
   $result=mysqli_query($conn,$sql);
   $total_record=mysqli_num_rows($result);//총레코드수
 }else if(isset($_GET['mode'])&&$_GET['mode']=='female'){
-  $sql="SELECT * from member where `gender`='1' or `gender`='여'";
-  $sql1="SELECT * from member_meeting  order by id desc";
+  $sql="SELECT * from member where `gender`='1' or `gender`='여' order by `mb_num` desc";
   $result=mysqli_query($conn,$sql);
-  $result1=mysqli_query($conn,$sql1);
   $total_record=mysqli_num_rows($result);//총레코드수
 }
-
 //1.전체페이지
 $total_page=($total_record % SCALE == 0 )?
 ($total_record/SCALE):(ceil($total_record/SCALE));
