@@ -1,0 +1,136 @@
+.admin_title{
+  color:rgb(156, 156, 156);
+}
+.main {
+  max-width: 85%;
+  margin-left: 16%;
+  margin-top: 200px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+@media screen and (max-width: 1700px) {
+  .main {
+    margin-left: 17.5%;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .main {
+    margin-left: 19.5%;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .main {
+    margin-left: 21%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .main {
+    margin-left: 22.5%;
+  }
+  .sidenav a {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .main {
+    margin-left: 24%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .main {
+    margin-left: 25.5%;
+  }
+}
+@media screen and (max-width: 100px) {
+  .main {
+    margin-left: 27%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .main {
+    margin-left: 28.5%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+  .sidenav a {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidenav a:first-child {
+    padding: 2px 30px;
+  }
+  table *, .tb_container{
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .list_header_tb * {
+    font-size: 15px;
+  }
+}
+.page_to a{
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  position:relative;
+  margin: 30px 0 10% 0;
+}
+.page_to_in {
+position:absolute;
+text-align: center;
+width:50%;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
+}
+
+/*↓↓↓↓↓↓↓↓↓↓↓meeting↓↓↓↓↓↓↓↓↓↓↓↓*/
+table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin: 30px 5px ;
+  width: 200px;
+}
+tr, td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  color: black;
+}
+.mt_img img{
+  max-width: 100%;
+  max-height: 150px;
+  overflow: hidden;
+}
+table button {
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 100%;
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+table button:hover {
+  background-color: rgba(252, 105, 105, 0.85);
+}

@@ -1,0 +1,19 @@
+a{
+display: inline;
+border: none;
+text-decoration: none;
+background-color: rgba(252, 105, 105, 1);
+border-radius: 5px;
+padding: 10px 13px 13px 13px;
+font-size: 16px;
+cursor: pointer;
+color: white;
+margin: 1px;
+}
+a:hover{
+background-color: rgba(252, 105, 105, 0.85);
+}
+.btn_center{
+margin: 30px auto;
+text-align: center;
+}

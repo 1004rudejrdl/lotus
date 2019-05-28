@@ -3,7 +3,7 @@
   background-color: white;
 }
 .dropdown .dropbtn{
-  margin-top: 63px;
+  margin-top: 41px;
 }
 .logo img {
   width:350px;
@@ -26,7 +26,7 @@
 }
 
 .sidenav a { /*서브메뉴 너비 조절*/
-  padding: 5px 30px ;
+  padding: 15px 30px ;
   text-decoration: none;
   font-size: 22px;
   color: rgba(252, 105, 105, 1);

@@ -1,86 +1,25 @@
-.color{
-  padding-right: 25%;
+@font-face {
+  font-family: 'Binggrae';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/Binggrae/Binggrae-Regular.ttf') format('truetype');
 }
-
-
-.color *{
-  float: right;
+@font-face {
+  font-family: 'Binggrae';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/Binggrae/Binggrae-Bold.ttf') format('truetype');
+}
+* {
+  box-sizing: border-box;
+  font-family:'Binggrae';
+}
+.main {
+  max-width: 85%;
+  margin-left: 16%;
+  margin-top: 210px;
+  padding: 10px 30px;
   text-align: center;
-}
-.color>div>div{
-  width: 100%;
-}
-.con_title{
-  width: 100%;
-  text-align: center;
-  padding-top: 50px;
-  color: white;
-  text-shadow: 1px 1px 2px black, 0 0 25px pink, 0 0 5px darkblue;
-}
-#list1{
-  height:160px;
-  width: 160px;
-  margin: 15px;
-  padding: 40px;
-  border-bottom: solid 1px #eeeeee;
-  background-color: red;
-  border-radius: 80px;
-  text-align: center;
-}
-#list1 #list1_1{
-  color:white;
-  text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkblue;
-  font-size: 26px;
-  margin-top: 20px;
-
-}
-#blue{
-  height:160px;
-  width: 160px;
-  margin: 15px;
-  padding: 40px;
-  border-bottom: solid 1px #eeeeee;
-  background-color: blue;
-  border-radius: 80px;
-  text-align: center;
-}
-#blue #blue2{
-  color:white;
-  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-  font-size: 26px;
-  margin-top: 20px;
-}
-#yellow{
-  height:160px;
-  width: 160px;
-  margin: 15px;
-  padding: 40px;
-  border-bottom: solid 1px #eeeeee;
-  background-color: yellow;
-  border-radius: 80px;
-  text-align: center;
-}
-#yellow #yellow2{
-  color:white;
-  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px darkblue;
-  font-size: 26px;
-  margin-top: 20px;
-}
-#pink{
-  height:160px;
-  width: 160px;
-  margin: 15px;
-  padding: 40px;
-  border-bottom: solid 1px #eeeeee;
-  background-color: pink;
-  border-radius: 80px;
-  text-align: center;
-}
-#pink #pink2{
-  color:white;
-  text-shadow: 1px 1px 2px black, 0 0 25px pink, 0 0 5px darkblue;
-  font-size: 26px;
-  margin-top: 20px;
 }
 .main{
   background-image: url("../img/love.jpg");
@@ -88,26 +27,192 @@
   background-size: 100%;
   height: 1000px;
 }
-div #testfont{
-  color: red;
+
+.con_title{
+  width: 100%;
+  margin-top: 100px;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px brown, 0 0 5px darkblue;
 }
-div .top{
-  width: 300px;
-  height: 300px;
+.animal2{
+  margin-top: 50px;
+  float: left;
+  width: 25%;
 }
-@media screen and (max-width: 800px) {
-  .color *{
-    text-align: center;
-    margin: 10px;
+.animal3{
+  width: 50%;
+  color:white;
+  text-shadow: 3px 3px 4px black;
+  font-size: 25px;
+  margin: 50px auto;
+  height:160px;
+  width: 160px;
+  border-radius: 80px;
+  text-align: center;
+}
+.animal3 label{
+  bottom: 0;
+}
+.red{
+  background-color: red;
+}
+.blue{
+  background-color: blue;
+}
+.yellow{
+  background-color: yellow;
+}
+.pink{
+  background-color: pink;
+}
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓팝업↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+
+.pop{
+  margin-top: 50px;
+}
+.pop a{
+  cursor: pointer;
+}
+table{
+  border-collapse: collapse;
+}tr{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+}
+table tr:first-child {
+  color: #fff;
+  background-color: rgba(252, 105, 105, 1);
+}
+table tr:first-child td{
+  font-size: 20px;
+}
+@media screen and (max-width: 1700px) {
+  .main {
+    margin-left: 17.5%;
   }
-  .color{
-    padding-right: 0%;
+}
+@media screen and (max-width: 1600px) {
+  .main {
+    margin-left: 19.5%;
   }
-  #blue{
+}
+@media screen and (max-width: 1540px) {
+  .tb_container {
+    margin-bottom: 12px;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .main {
+    margin-left: 21%;
+  }
+  .animal3{
+    height:150px;
+    width: 150px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .main {
+    margin-left: 22.5%;
+  }
+  .sidenav a {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+  }
+  .animal3{
+    height:140px;
+    width: 140px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .main {
+    margin-left: 24%;
+    height: 800px;
+  }
+  .admin_table{
+    float: none;
+    width: 100%;
+  }
+  .title_hr{
+    width: 100%;
+  }
+  .btn_submit{
+    right:0;
+  }
+  .animal3{
+    height:120px;
+    width: 120px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .main {
+    margin-left: 25.5%;
+    height: 600px;
+  }
+  .animal3{
+    height:110px;
+    width: 110px;
+  }
+  h2{
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .main {
+    margin-left: 27%;
+    height: 400px;
+  }
+  .animal3{
     height:100px;
     width: 100px;
   }
-  #blue #blue2{
-    font-size: 18px;
+}
+@media screen and (max-width: 900px) {
+  .main {
+    margin-left: 28.5%;
   }
+  .animal3{
+    height:90px;
+    width: 90px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .con_title{
+    margin-top: 25px;
+  }
+  h2{
+    font-size: 24px;
+  }
+  .animal3{
+    height:80px;
+    width: 80px;
+  }
+  .charts {
+    float: none;
+    height: 400px;
+    width: 100%;
+  }
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+
+  .sidenav a {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidenav a:first-child {
+    padding: 2px 30px;
+  }
+
 }

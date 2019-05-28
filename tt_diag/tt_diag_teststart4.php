@@ -2,6 +2,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/tt_diag.css">
     <title></title>
     <script type="text/javascript">
       function close1(){
@@ -13,7 +14,9 @@
     <div class="">
       <img src="./img/list8.png" alt="">
     </div>
-    <button type="button" onclick="close1()">닫기</button>
-    <button type="button"><a href="tt_diag_list4.php">이전</a> </button>
+    <div class="btn_center">
+      <a href="#" onclick="close1()">닫기</button>
+      <a href="tt_diag_list4.php">이전</a>
+    </div>
   </body>
 </html>

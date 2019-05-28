@@ -344,25 +344,26 @@ CREATE TABLE `prd_a` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `commu` (
-  `board_type` char(1) NOT NULL,
-  `num` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `group_num` int(11) unsigned NOT NULL,
-  `depth` int(11) unsigned NOT NULL,
-  `ord` int(11) unsigned NOT NULL,
-  `id` varchar(22) NOT NULL,
-  `subject` varchar(100) NOT NULL,
-  `content` text NOT NULL,
-  `regist_day` char(20) NOT NULL,
-  `hit` int(11) NOT NULL,
-  `secret` char(1) DEFAULT NULL,
-  `no_ripple` char(1) DEFAULT NULL,
-  `file_name_0` varchar(50) DEFAULT NULL,
-  `file_name_1` varchar(50) DEFAULT NULL,
-  `file_name_2` varchar(50) DEFAULT NULL,
-  `file_copied_0` varchar(50) DEFAULT NULL,
-  `file_copied_1` varchar(50) DEFAULT NULL,
-  `file_copied_2` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`num`)
+                    `board_type` char(1) NOT NULL,
+                    `num` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                    `group_num` int(11) unsigned NOT NULL,
+                    `depth` int(11) unsigned NOT NULL,
+                    `ord` int(11) unsigned NOT NULL,
+                    `id` varchar(22) NOT NULL,
+                    `subject` varchar(100) NOT NULL,
+                    `content` text NOT NULL,
+                    `regist_day` char(20) NOT NULL,
+                    `hit` int(11) NOT NULL,
+                    `secret` char(1) DEFAULT NULL,
+                    `no_ripple` char(1) DEFAULT NULL,
+                    `file_type_0` char(7) DEFAULT NULL,
+                    `file_name_0` varchar(50) DEFAULT NULL,
+                    `file_name_1` varchar(50) DEFAULT NULL,
+                    `file_name_2` varchar(50) DEFAULT NULL,
+                    `file_copied_0` varchar(50) DEFAULT NULL,
+                    `file_copied_1` varchar(50) DEFAULT NULL,
+                    `file_copied_2` varchar(50) DEFAULT NULL,
+                    PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `commu_ripple` (

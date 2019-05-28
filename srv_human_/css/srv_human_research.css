@@ -2,10 +2,14 @@
   max-width: 85%;
   margin-left: 16%;
   margin-top: 200px;
-  font-size: 28px; /* Increased text to enable scrolling */
+  font-size: 16px; /* Increased text to enable scrolling */
   padding: 10px 30px;
 }
+form{
+  padding-left: 5%;
+}
 .admin_title{
+  font-size: 28px; /* Increased text to enable scrolling */
   color:rgb(156, 156, 156);
 }
 .title_hr{
@@ -17,82 +21,36 @@
   font-family: arial, sans-serif;
   border-collapse: collapse;
   float: left;
-  width: 45%;
-}
-.alret_ment{
-  font-size: 6px;
-  color: red;
-}
-.witdh_100{
   width: 90%;
 }
-.mb_bottom{
-  margin-bottom: 10px;
-}
-
 tr{
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 10px;
   font-size: 16px;
   width: 100%;
 }
 td{
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 10px;
   font-size: 16px;
 }
 tr .td_subjet{
-  width: 30%;
-  min-width: 103px;
-}
-.tb_cont{
-  width: 70%;
-}
-td:hover{
-  background-color:#f5f5f5;
-}
-.p_img{
-  text-align: center;
-}
-.p_img img {
-  max-width: 50%;
-  max-height: 300px;
-}
-#check_button{
-  width: 25px;
-  height: 25px;
-}
-.td_subjet{
-  max-width: 200px;
-}
-.witdh_100 .td_subjet{
-  max-width: 200px;
-}
-.td_subjet_star {
-  color:rgb(240, 165, 0);
-  margin: 0 5px 0 10px;
-}
-.tb_cont{
-  min-width: 200px;
-}
-.tb_cont select{
-  max-width: 200px;
-}
-.tb_cont input{
-  max-width: 200px;
-}
-.tb_cont .shorter{
-  max-width: 100px;
-}
-.tb_cont .addr {
-  margin-bottom: 5px;
-}
-
-.tb_cont textarea{
+  background-color: rgba(252, 105, 105, 0.1);
+  color: #555;
   width: 100%;
-  resize: none;
+  min-width: 150px;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+table tr:first-child {
+  color: #fff;
+  background-color: rgba(252, 105, 105, 1);
+}
+.tb_cont{
+  width: 100%;
 }
 /* The container */
 .g_container {
@@ -159,22 +117,19 @@ td:hover{
 }
 .btn_center{
   position:relative;
-  margin: 0;
+  margin: 0 0 15% 0;
 }
 .btn_submit{
   position:absolute;
-  left:0%;
-  right:10%;
+  left:0;
+  right:0;
   margin-left:auto;
   margin-right:auto;
 }
 .btn_3{
-  width: 270px;
+  width: 215px;
 }
-.btn_2{
-  width: 171px;
-}
-.btn_submit input, .btn_submit a{
+.btn_submit button, .btn_submit a{
   display: inline;
   border: none;
   text-decoration: none;
@@ -185,11 +140,11 @@ td:hover{
   cursor: pointer;
   color: white;
 }
-.btn_submit input:hover,.btn_submit a:hover{
+.btn_submit button:hover,.btn_submit a:hover{
   background-color: rgba(252, 105, 105, 0.85);
 }
-.mg_bottom{
-  margin-bottom: 15%;
+.mb_bottom{
+  margin-bottom: 10px;
 }
 @media screen and (max-width: 1700px) {
   .main {
@@ -263,13 +218,6 @@ td:hover{
   }
   .sidenav a:first-child {
     padding: 2px 30px;
-  }
-  table *, .tb_container{
-    font-size: 14px;
-  }
-  .td_subjet_star {
-    color:rgb(240, 165, 0);
-    margin: 0 0 0 0px;
   }
 
 }
