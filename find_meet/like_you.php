@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 $match_time=$flag=$vote_id=$id="";
 $userid=$_SESSION['userid'];
@@ -30,11 +30,9 @@ if(isset($_GET["mode"]) &&$_GET["mode"]=="check"){
         echo "좋아요를 눌렀습니다.".$like;
       }else{
         $match_time=date("Y-m-d");
-        $sql="UPDATE  member_meeting SET
-        `matching`='$vote_id',`matching_day`='$match_time'WHERE `id`='$id'";
+        $sql="UPDATE  member_meeting SET `matching`='$vote_id',`matching_day`='$match_time'WHERE `id`='$id'";
         $result=mysqli_query($conn,$sql);
-        $sql="UPDATE  member_meeting SET
-        `matching`='$id',`matching_day`='$match_time'WHERE `id`='$vote_id'";
+        $sql="UPDATE  member_meeting SET `matching`='$id',`matching_day`='$match_time'WHERE `id`='$vote_id'";
         $result=mysqli_query($conn,$sql);
         echo "매칭이 성사 되었습니다.".$like;
       }

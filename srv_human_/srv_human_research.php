@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";

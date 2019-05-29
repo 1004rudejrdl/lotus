@@ -242,7 +242,7 @@ function create_table($conn, $table_name){
           case 'prd_shop_detail' :
             $sql = "CREATE TABLE `prd_shop_detail` (
                     `shop_num` int(11) NOT NULL,
-                    `prd_num` int NOT NULL AUTO_INCREMENT,
+                    `prd_num` int(11) NOT NULL AUTO_INCREMENT,
                     `prd_regist_day` char(20) NOT NULL,
                     `prd_name` varchar(30) NOT NULL,
                     `prd_type` char(1) NOT NULL,
@@ -250,7 +250,7 @@ function create_table($conn, $table_name){
                     `shop_color` char(1) NOT NULL,
                     `shop_size` char(1) NOT NULL,
                     `shop_best` char(1) DEFAULT NULL,
-                    `shop_stock` char(2) NOT NULL,
+                    `shop_stock` char(3) NOT NULL,
                     `file_name_0` varchar(50) DEFAULT NULL,
                     `file_copied_0` varchar(50) DEFAULT NULL,
                     `file_name_1` varchar(50) DEFAULT NULL,
