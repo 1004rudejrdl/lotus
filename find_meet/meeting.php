@@ -133,7 +133,7 @@ $number = $total_record - $start;
          $result2=mysqli_query($conn,$sql2);
          mysqli_data_seek($result2,$i);
          $row2=mysqli_fetch_array($result2);
-         $like=count($row2['id']);
+         $like=mysqli_num_rows($result2);
          $id_like=$row2['id'];
          $vote_id=$row2['vote_id'];
          ?>
@@ -232,13 +232,13 @@ $number = $total_record - $start;
                       }
                     }
                     if ($total_page==0) {
-                      echo '<a class="next" href="./op_free_bd_main.php?page=1">▶ 다음</a>';
+                      echo '<a class="next" href="./meeting.php?page=1">▶ 다음</a>';
                     }elseif ($page+1>$total_page) {
                       $page_end=$total_page;
-                      echo '<a class="next" href="./op_free_bd_main.php?page='.$page_end.'">▶ 다음</a>';
+                      echo '<a class="next" href="./meeting.php?page='.$page_end.'">▶ 다음</a>';
                     }else{
                       $page_go=$page+1;
-                      echo '<a class="next" href="./op_free_bd_main.php?page='.$page_go.'">▶ 다음</a>';
+                      echo '<a class="next" href="./meeting.php?page='.$page_go.'">▶ 다음</a>';
                     }
                     ?>
           <a href="./op_free_bd_main.php?page=<?=$total_page?>">▶▶</a>
