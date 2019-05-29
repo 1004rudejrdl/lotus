@@ -15,20 +15,20 @@ if (isset($_SESSION['userid'])) {
     $id = $row['id'];
     if ($user_id==$id) {
       ?>
-      <!-- <script type="text/javascript">
+      <script type="text/javascript">
         alert("이미 설문 조사를 참여 하셨습니다.");
         location.href='./srv_human_result.php';
-      </script> -->
+      </script>
       <?php
       break;
     }
   }
 }else{
   ?>
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     alert("로그인 후 이용해 주세요");
     history.go(-1);
-  </script> -->
+  </script>
 
 
   <?php
@@ -97,11 +97,11 @@ if (isset($_SESSION['userid'])) {
      <!-- main_body start -->
      <div id="main_body" class="main_body">
        <div id="sidenav" class="sidenav">
-         <a href="#">연애, 꽃피우다</a>
-         <a href="#">연인찾기</a>
-         <a href="#">쇼핑몰</a>
-         <a href="#">테스트</a>
-         <a href="#">커뮤니티</a>
+         <a href="../find_meet/meeting.php?mode=whole">연인찾기</a>
+         <a href="../find_meet/meeting.php?mode=male" style="color:#1565c0">남</a>
+         <a href="../find_meet/meeting.php?mode=female"style="color:#f64f59">여</a>
+         <a href="../find_meet/match_log.php">데이트로그/회원현황</a>
+         <a href="./srv_human_research.php">이상형 설문조사</a>
        </div><!-- sidenav end -->
 
        <div class="main">
