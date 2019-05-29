@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/img_re.css">
   <link rel="stylesheet" href="./css/main.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
@@ -102,7 +103,7 @@
 <?php } ?>
 
     </div> <!-- topnav end -->
-    <img id="header_img" src="./main_img/lotus_main_img3.png" alt="SEA" style="width:100%;">
+    <img id="header_img" src="./main_img/lotus_main_img3.png" alt="연애 꽃피우다" style="width:100%;">
   </div>
 
   <!-- modal signup form -->
@@ -131,7 +132,7 @@
     <table class="width_60">      <!-- 그림, 남프, 여프, 로그 -->
       <tr>
         <td colspan="2">
-          <img src="./main_img/lotus_main_img.png" alt="" style="width:100%;">
+          <img src="./main_img/lotus_main_img.png" alt="연애 꽃피우다" style="width:100%;">
         </td>
       </tr>
       <?php
@@ -153,7 +154,7 @@
       <tr>
         <td class="width_30 m_pr">
           <div class="profile">             <!-- 남여 프로필카드 -->
-            <div class="profile_img">
+            <div class="profile_img responsive-center">
               <img src="./mb_login/<?=$img_m?>" alt="<?=$id_m?>">
             </div>
             <div class="profile_container">
@@ -164,7 +165,7 @@
         </td>
         <td class="width_30 f_pr">
           <div class="profile ">             <!-- 남여 프로필카드 -->
-            <div class="profile_img">
+            <div class="profile_img responsive-center">
               <img src="./mb_login/<?=$img_f?>" alt="<?=$id_f?>">
             </div>
             <div class="profile_container">
@@ -261,7 +262,12 @@
       ?>
       <form class="" action="./sh_man/sh_man_list.php?mode=<?=$list_name?>&page=1" method="post">
       <input type="hidden" name="prd_num" value="<?=$prd_num[$i]?>">
-    <li class="centerproduct"><input type="image" name="" value="" src="./sh_man/img/<?=$file_copied_0[$i]?>" class="centerproductimg"></li>
+    <li class="centerproduct">
+      <div class="responsive-center">
+       <!-- <input type="image" name="" value="" src="./sh_man/img/<=$file_copied_0[$i]?>"> -->
+       <button type="submit"><img src="./sh_man/img/<?=$file_copied_0[$i]?>"> </button>
+      </div>
+    </li>
     </form>
 
       <?php
