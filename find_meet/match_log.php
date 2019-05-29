@@ -1,11 +1,19 @@
-<?php
+ <?php
 session_start();
 include '../lib/db_connector.php';
-$sql="SELECT * FROM member_meeting where matching_day != '' order by `matching_day` desc limit 8";
+$userid=$_SESSION['userid'];
+$name=$_SESSION['name'];
+$sql="SELECT*FROM member_meeting WHERE `id`='$userid' and `matching` like '%'";
 $result=mysqli_query($conn,$sql);
-$total_record=mysqli_num_rows($result);
-$left_right = "right";
-
+$rowcount=mysqli_num_rows($result);
+$total_record="";
+if(empty($rowcount)){
+  echo "<script>alert('회원님께서는 아직 매칭된 회원이 아직없습니다.');</script>";
+}else{
+  $log_row=mysqli_fetch_array($result);
+  $log_maching=$log_row['matching'];
+  $log_maching_day=$log_row['maching_day'];
+}
 //1.전체페이지, 2.디폴트페이지, 3.현재페이지 시작번호 4.보여줄리스트번호
 //1.전체페이지
 define('SCALE', 10);
@@ -21,75 +29,128 @@ $number = $total_record - $start;
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="./css/match_log.css">
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" href="../css/header_sidenav.css">
-  <title></title>
-</head>
-
-<body>
-  <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../css/header_sidenav.css">
+    <title></title>
+  </head>
+  <body>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
   <!-- header end -->
   <!-- main_body start -->
-  <div id="main_body" class="main_body">
-    <div id="sidenav" class="sidenav">
-      <a href="./meeting.php?mode=whole">연인찾기</a>
-      <a href="./meeting.php?mode=male" style="color:#1565c0">남</a>
-      <a href="./meeting.php?mode=female"style="color:#f64f59">여</a>
-      <a href="./match_log.php">데이트로그/회원현황</a>
-      <a href="../srv_human_/srv_human_research.php">이상형 설문조사</a>
-    </div><!-- sidenav end -->
+  <div class="main_body">
+  <div id="sidenav" class="sidenav">
+    <a href="#about">추천/예약</a>
+    <a href="#services">맛집</a>
+    <a href="#clients">숙박</a>
+    <a href="#contact">렌트카</a>
+  </div><!-- sidenav end -->
+  <div class="main">
+    <?php
+     for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
+       mysqli_data_seek($result,$i);
+       $row=mysqli_fetch_array($result);
+       $id=$row['matching'];
+       $maching_day=$row1['maching_day'];
+       $sql1="SELECT * FROM member WHERE `id`='$id'";
+       $result1=mysqli_query($conn,$sql1);
+       mysqli_data_seek($result1,$i);
+       $row1=mysqli_fetch_array($result1);
+       $name=$row1['name'];
+       $birth=$row1['birth'];
+       $gender=$row1['gender'];
+       $tel=$row1['tel'];
+       $sql2="SELECT * FROM member_meeting WHERE `id`='$id'";
+       $result2=mysqli_query($conn,$sql2);
+       mysqli_data_seek($result2,$i);
+       $row2=mysqli_fetch_array($result2);
+       $img=$row2['img'];
+       $self_info=$row2['self_info'];
+       $height=$row2['height'];
+       $weight=$row2['weight'];
+       $job=$row2['job'];
+       if($job==1){
+         $job="무직";
+       }else if($job==2){
+         $job="공무원";
+       }else if($job==3){
+         $job="학생";
+       }else if($job==4){
+         $job="자영업";
+       }else if($job==5){
+         $job="직장인";
+       }
 
-    <div class="main">
-      <div class="admin_title">
-        데이트 로그
-      </div>
-      <hr class="title_hr">
-      <div class="admin_title_right">
-        현재 까지 연,꽃을 통해 인연을 찾으신 회원님들 입니다
-      </div>
-      <div class="log_img">
-        <table>
-          <img src="./img/log_match.jpg" alt="">
-        </table>
-      </div>
-      <div class="log_text">
-        <div class="timeline">
-          <?php
-           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
-           mysqli_data_seek($result,$i);
-           $row=mysqli_fetch_array($result);
-           $id=$row['id'];
-           $matching=$row['matching'];
-           $matching_day=$row['matching_day'];
-           //좌우 번갈아 가면서 찍도록하는 플래그
-           if ($left_right=="left") {
-             $left_right="right";
-           }else{
-             $left_right="left";
-           }
-           ?>
-            <div class="container <?=$left_right?>">
-              <div class="content">
-                <p><b><?= $matching_day?></b></p>
-                <p><?=$id?> ♥ <?=$matching?></p>
+
+       ?>
+    <div id="list_item">
+      <table class="card" style="margin:5px;">
+        <tr>
+          <td><img src="../mb_login/<?=$img?>" alt="John" style="width:200px;height:200px;"></td>
+        </tr>
+        <tr>
+          <td>  <h1><?=$name?></h1></td>
+        </tr>
+        <tr>
+          <td><p class="title">직업 : <?=$job?></p></td>
+        </tr>
+        <tr>
+          <td><p hidden>성별 : <?=$gender?></p></td>
+        </tr>
+        <tr>
+          <td><p hidden>생일 : <?=$birth?></p></td>
+        </tr>
+        <tr>
+          <td><p hidden>전화번호 : <?=$tel?></p></td>
+        </tr>
+        <tr>
+          <td><p>키 :<?=$height?> 체중 :<?=$weight?></p></td>
+        </tr>
+        <tr>
+          <td><p>만난 날 : <?=$maching_day?></p></td>
+        </tr>
+        <tr>
+          <td><p><?=$self_info?></p></td>
+        </tr>
+        <tr>
+          <td><button class="button" onclick="javascript:send_mail('<?=$id?>');">Contact</button></td>
+        </tr>
+        <tr>
+          <td>매칭<?=$number?></td>
+        </tr>
+      </table>
+          <div class="br_st_text">
+            <div class="timeline">
+
+              <div class="container left">
+                <div class="content">
+                  <h2><?= $log_maching_day[$i]  ?></h2>
+                  <p><?=$log_maching[$i]?></p>
+                  <h2><?= $log_maching_day[$i]  ?></h2>
+                  <p><?=$log_maching[$i]?></p>
+                </div>
+              </div>
+              <div class="container right">
+                <div class="content">
+                  <h2><?= $log_maching_day[$i]  ?></h2>
+                  <p><?=$log_maching[$i]?></p>
+                  <h2><?= $log_maching_day[$i]?></h2>
+                  <p><?=$log_maching[$i]?></p>
+                </div>
               </div>
             </div>
-            <?php
-            $number--;
-            }//end of for
-            ?>
-        </div><!-- timeline end -->
-      </div><!-- log_text end -->
-    </div> <!-- main end -->
-  </div> <!-- main_body end -->
+          </div>
+          <?php
+          $number--;
+        }//end of for
+        ?>
+  </div>  <!-- main end -->
+  </div>  <!-- main_body end -->
   <!-- footer start -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/footer.php"; ?>
-</body>
-
+  </body>
 </html>
