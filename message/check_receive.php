@@ -46,6 +46,7 @@ if(mysqli_num_rows($result) == 0){
 
     echo "<script>
             alert('전송됐습니다.');
+            window.opener.location.reload();
             window.close();
           </script>";
 

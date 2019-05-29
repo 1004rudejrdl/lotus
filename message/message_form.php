@@ -3,8 +3,8 @@ session_start();
 $id = $_SESSION['userid'];
 $name = $_SESSION['name'];
 $m_id="";
-if(!empty($_GET['id'])){
-  $m_id=$_GET['id'];
+if(!empty($_GET['s_id'])){
+  $s_id=$_GET['s_id'];
 }
 
 
@@ -27,7 +27,7 @@ if(!empty($_GET['id'])){
 <b>보내는 메세지</b> <br> <textarea name="msg_cont" rows="10" cols="57" style="resize:none"></textarea>
 </div>
 <div style="margin: 5px; text-align: right;">
-<b>상대방 아이디</b> : <input type="text" size="12px;" name="r_id" value="<?=$m_id?>">
+<b>상대방 아이디</b> : <input type="text" size="12px;" name="r_id" value="<?=$s_id?>">
 </div>
 <br>
 
