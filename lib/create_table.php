@@ -291,13 +291,6 @@ function create_table($conn, $table_name){
                     `id` varchar(22) NOT NULL,
                     `prd_num` char(20) NOT NULL,
                     `order_count` char(2) NOT NULL,
-                    PRIMARY KEY (`order_num`)
-                  );";
-            break;
-          case 'order_takeback' :
-            $sql = "CREATE TABLE `order_takeback` (
-                    `order_type` char(5) NOT NULL,
-                    `order_num` int(11) NOT NULL AUTO_INCREMENT,
                     `tackback_state` char(1) NOT NULL,
                     `takeback_reason` varchar(100) NOT NULL,
                     `tackback_day` char(20) DEFAULT NULL,

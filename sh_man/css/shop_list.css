@@ -152,11 +152,32 @@ margin-right:auto;
   float: right;
   font-size: 20px;
 }
-
-
-
-
-
+.prd_info_div input, .prd_info_div select{
+  padding:5px;
+  border-radius: 5px;
+}
+.file_box{
+  padding-left: 21px;
+}
+.prd_info_div input[type="submit"], .prd_info_div button{
+  float: right;
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 4px 6px 6px 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.prd_info_div button{
+  margin-left: 10px;
+}
+@media screen and (max-width: 1300px) {
+  .prd_info_div button{
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
 
 
 

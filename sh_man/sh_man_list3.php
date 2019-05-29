@@ -185,7 +185,7 @@ function search_com_info(type){
           if (!($file_copied[$i]=="")) {
           ?>
           <div class="p_i_slides">
-            <div class="num_text"><?=$i?> / 10</div>
+            <div class="num_text"><?=$i+1?> / 10</div>
             <img src="./img/<?=$file_copied[$i]?>">
           </div>
           <?php
@@ -216,21 +216,29 @@ function search_com_info(type){
       if ($type=='regist') {
         ?>
         <form class="" action="./insert_shop_prd.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
+        &nbsp;&nbsp;&nbsp;
         <input type="text" name="shop_name" value="<?=$shop_name?>" placeholder="샾이름">
         <!-- <input type="text" name="com_num_name" placeholder="찾기 버튼을 눌러 검색하세요" autofocus value="<=$com_num_name?>" readonly>
         <button type="button" onclick="search_com_info('<=$com_type?>')" name="button">찾기</button> -->
+        <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="text" name="prd_name" value="<?=$prd_name?>" placeholder="상품명">
+        <hr>
         <input type="hidden" name="prd_num" value="<?=$prd_num?>" >
+        &nbsp;&nbsp;&nbsp;
         <select class="" name="type_m_w_s">
           <option value="m">남성의류</option>
           <option value="w" <?=$type2?>>여성의류</option>
           <option value="s" <?=$type3?>>신발</option>
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="number" name="prd_price" value="<?=$shop_price?>" placeholder="상품 가격"> 원
         <hr>
+        &nbsp;&nbsp;&nbsp;
         택배사 : 한진택배
         <hr>
+        &nbsp;&nbsp;&nbsp;
         색상
         <select class="" name="prd_color">
           <option value="1" >흰/검</option>
@@ -243,6 +251,7 @@ function search_com_info(type){
           <option value="8" <?=$option8?>>흰/검/파/빨/초</option>
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         사이즈
         <select class="" name="prd_size">
           <option value="1">S/M/L</option>
@@ -250,26 +259,28 @@ function search_com_info(type){
           <option value="3" <?=$sizeoption3?>>L/XL/XXL</option>
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="checkbox" name="prd_best" value="1" <?=$shop_best?>> 베스트
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="number" name="prd_stock" placeholder="현재 재고" value="<?=$shop_stock?>"> 개
         <hr>
-        <?php for ($i = 0; $i < 10; $i++) {
-
-          ?>
+        <div class="file_box">
+        <?php for ($i = 0; $i < 10; $i++) { ?>
           <input type="file" name="prd_img[]" value="">
-
-          <?php
-          if (!empty($file_name[$i])) {
-            echo "<p>$file_name[$i]이 등록되어 있습니다.</p>";
-          }
-        } ?>
+            <?php
+            if (!empty($file_name[$i])) {
+              echo "<p>$file_name[$i]이 등록되어 있습니다.</p>";
+            }
+          } ?>
+          </div>
         <input type="submit" name="" value="등록하기">
 
       </form>
         <?php
       }else {
         ?>
+        &nbsp;&nbsp;&nbsp;
         <?=$prd_name?>
         <span style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;">★</span>
         <?php
@@ -324,10 +335,14 @@ function search_com_info(type){
         });
         </script>
         <hr>
+        &nbsp;&nbsp;&nbsp;
           <?=$shop_price?>원
         <hr>
-        택배사 : 한진택배
+        &nbsp;&nbsp;&nbsp;
+        한진택배
         <hr>
+        &nbsp;&nbsp;&nbsp;
+        색상&nbsp;&nbsp;&nbsp;
         <select class="" name="" id="color">
           <option value="w">흰색</option>
           <option value="l">검정색</option>
@@ -372,7 +387,9 @@ function search_com_info(type){
         ?>
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         사이즈
+        &nbsp;&nbsp;&nbsp;
         <select class="" name="" id="size">
           <?php
             switch ($shop_size) {
@@ -401,6 +418,7 @@ function search_com_info(type){
 
 
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="number" name="" value="1" min="0" max="99" id="count"> 개
         <hr>
         <button type="button" name="button" id="insert_basket">장바구니 담기</button>
