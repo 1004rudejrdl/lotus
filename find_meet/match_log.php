@@ -77,7 +77,7 @@ $number = $total_record - $start;
             <div class="container <?=$left_right?>">
               <div class="content">
                 <p><b><?= $matching_day?></b></p>
-                <p><?=$id?> ♥ <?=$matching?></p>
+                <p class="cp"><?=$id?> ♥ <?=$matching?></p>
               </div>
             </div>
             <?php

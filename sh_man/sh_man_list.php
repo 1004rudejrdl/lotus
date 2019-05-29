@@ -1,12 +1,6 @@
-
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
   $mode="insert";
   $sese=$type=$selected1=$selected2=$selected3=$selected4="";
   if($_GET['mode']=="man"){
@@ -23,14 +17,14 @@
     $type="s";
   }
 
-  $sql = "SELECT * from prd_shop_detail where prd_type = '$type' order by shop_best desc,prd_num desc;";
+  $sql = "SELECT * from `prd_shop_detail` where `prd_type` = '$type' order by `shop_best` desc, `prd_num` desc;";
   $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
   $total = mysqli_num_rows($result);
   $userid = $_SESSION['userid'];
 
-  $list_count=4;
+  $list_count = 4;
   if (isset($_POST['option_list_count'])) {    //n개씩 보기
-    $list_count=$_POST['option_list_count'];
+    $list_count = $_POST['option_list_count'];
     switch ($list_count) {
       case '4':
         $selected1 = "selected";
@@ -56,8 +50,7 @@
   //1.전체페이지, 2.디폴트페이지, 3.현재페이지 시작번호 4.보여줄리스트번호
   //1.전체페이지
 
-  $total_page=($total % SCALE == 0 )?
-  ($total/SCALE):(ceil($total/SCALE));
+  $total_page=($total % SCALE == 0 )?($total/SCALE):(ceil($total/SCALE));
 
   //2.페이지가 없으면 디폴트 페이지 1페이지
   $page=(isset($_GET['page'])&&!empty($_GET['page']))?(test_input($_GET['page'])):(1);
@@ -67,7 +60,6 @@
 
   //4. 리스트에 보여줄 번호를 최근순으로 부여함.
   $number = $total - $start;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,14 +69,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/header_sidenav.css">
-  <link rel="stylesheet" href="./css/list.css">
+  <link rel="stylesheet" href="../css/img_re.css">
   <link rel="stylesheet" href="./css/shop_list.css">
-  <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-
+<script type="text/javascript">
+function search_com_info(type){
+  var com_type = type;
+  var popupX = (window.screen.width / 2) - (800 / 2);
+  var popupY= (window.screen.height /2) - (500 / 2);
+  window.open("../lib/a_search_com_info.php?com_type="+com_type, 'search_com_info', 'status=no, width=1500, height=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+}
+</script>
 <body>
 <!-- header start -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
@@ -98,14 +95,17 @@
   <a href="./sh_man_list.php?mode=shose">신발</a>
 </div><!-- sidenav end -->
 <div class="main">
+  <div class="admin_title">
+    <?=$name?>
+  </div>
+  <hr class="title_hr">
   <?php
-
     if (!empty($_POST['prd_num'])  ||  isset($_POST['regist'])) {//상품 번호가 있으면 구매   등록이 있으면 수정
       if (isset($_POST['update'])) {
         $mode="update";
       }
     $prd_prd_num=$_POST['prd_num'];
-    $sql1 = "SELECT * from prd_shop_detail where prd_num = '$prd_prd_num';";
+    $sql1 = "SELECT * from `prd_shop_detail` where `prd_num` = '$prd_prd_num';";
     $result1 = mysqli_query($conn, $sql1) or die("실패원인 : " . mysqli_error($conn));
     $row = mysqli_fetch_array($result1);
     //$row_prd_num=$row['prd_num'];
@@ -127,12 +127,10 @@
       $file_copied[$i]=$row["file_copied_$i"];
     }
 
-    $sql6 = "SELECT shop_name from prd_shop where shop_num = '$shop_num';";
+    $sql6 = "SELECT `shop_name` from `prd_shop` where `shop_num` = '$shop_num';";
     $result6 = mysqli_query($conn, $sql6) or die("실패원인 : " . mysqli_error($conn));
     $row = mysqli_fetch_array($result6);
     $shop_name=$row['shop_name'];
-
-
 
     $option1=$option2=$option3=$option4=$option5=$option6=$option7=$option8="";
     $sizeoption2=$sizeoption3="";
@@ -148,145 +146,99 @@
       $option4="selected";
         break;
       case '5':
-    $option5="selected";
+      $option5="selected";
         break;
       case '6':
-    $option6="selected";
+      $option6="selected";
         break;
       case '7':
       $option7="selected";
+        break;
       case '8':
       $option8="selected";
-
         break;
     }
 
     switch ($shop_size) {
-
       case '2':
-    $sizeoption2="selected";
+      $sizeoption2="selected";
         break;
       case '3':
       $sizeoption3="selected";
         break;
     }
     switch ($prd_type) {
-
       case 'w':
-    $type2="selected";
+      $type2="selected";
         break;
       case 's':
       $type3="selected";
         break;
     }
 
-
   if ($_POST['prd_num']==$prd_num) {
-
-
-   ?>
-  <div class="" style="width:100%; height:650px">
-    <div class="upcenter" style="width:50%; float:left; text-align:center">
-      <p>쿠팡폼</p>
-      <div class="container">
+  ?>
+  <div class="prd_img_info">
+    <div class="prd_img_div">
+      <div class="prd_img_cont">
         <?php
         for ($i=0; $i < 10; $i++) {
           if (!($file_copied[$i]=="")) {
           ?>
-          <div class="mySlides">
-            <div class="numbertext"><?=$i?> / 10</div>
-            <img src="./img/<?=$file_copied[$i]?>" style="width:50%; ">
+          <div class="p_i_slides responsive-center" id="p_i_slides">
+            <div class="num_text"><?=$i+1?> / 10</div>
+            <img id="prd_image" src="./img/<?=$file_copied[$i]?>">
           </div>
-
-
           <?php
+          } //if
+        }  //for
+        ?>
+        <a class="p_i_prev" onclick="plusSlides(-1)">❮</a>
+        <a class="p_i_next" onclick="plusSlides(1)">❯</a>
+      </div>  <!-- prd_img_cont end -->
+      <div class="p_i_thumbs">
+      <?php
+        for ($i=0; $i < 10; $i++) {
+          if ($file_copied[$i]!="") {
+            ?>
+            <div class="thumb_img responsive-center">
+              <img class="demo_thumb" src="./img/<?=$file_copied[$i]?>" onclick="currentSlide(<?=$i+1?>)" >
+            </div>
+            <?php
           }
         }
-         ?>
+      ?>
+      </div>    <!-- p_i_thumbs end -->
+    </div>    <!-- prd_img_div end -->
 
-
-
-  <div class="" style="text-align:left;">
-
-
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
-
-
-    <div class="" style="width:100%">
-<?php
-
-for ($i=0; $i < 10; $i++) {
-  if ($file_copied[$i]!="") {
-    ?>
-    <div class="column">
-      <img class="demo cursor" src="./img/<?=$file_copied[$i]?>" style="width:100%" onclick="currentSlide(<?=$i+1?>)" >
-    </div>
-    <?php
-  }
-}
- ?>
-
-    </div>
-  </div>
-  </div>
-
-  <script>
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("demo");
-    var captionText = document.getElementById("caption");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    captionText.innerHTML = dots[slideIndex-1].alt;
-  }
-  </script>
-
-
-    </div>
-    <div class="" style="width:50%; float:right">
+    <div class="prd_info_div" >
       <?php
-
       if ($type=='regist') {
-
         ?>
         <form class="" action="./insert_shop_prd.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
+        &nbsp;&nbsp;&nbsp;
         <input type="text" name="shop_name" value="<?=$shop_name?>" placeholder="샾이름">
-        <input type="text" name="prd_name" value="<?=$prd_name?>" placeholder="상품명">
-        <input type="hidden" name="prd_num" value="<?=$prd_num?>" >
+        <!-- <input type="text" name="com_num_name" placeholder="찾기 버튼을 눌러 검색하세요" autofocus value="<=$com_num_name?>" readonly>
+        <button type="button" onclick="search_com_info('<=$com_type?>')" name="button">찾기</button> -->
         <hr>
+        &nbsp;&nbsp;&nbsp;
+        <input type="text" name="prd_name" value="<?=$prd_name?>" placeholder="상품명">
+        <hr>
+        <input type="hidden" name="prd_num" value="<?=$prd_num?>" >
+        &nbsp;&nbsp;&nbsp;
         <select class="" name="type_m_w_s">
           <option value="m">남성의류</option>
           <option value="w" <?=$type2?>>여성의류</option>
           <option value="s" <?=$type3?>>신발</option>
-
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="number" name="prd_price" value="<?=$shop_price?>" placeholder="상품 가격"> 원
         <hr>
-
+        &nbsp;&nbsp;&nbsp;
         택배사 : 한진택배
         <hr>
+        &nbsp;&nbsp;&nbsp;
         색상
         <select class="" name="prd_color">
           <option value="1" >흰/검</option>
@@ -299,34 +251,36 @@ for ($i=0; $i < 10; $i++) {
           <option value="8" <?=$option8?>>흰/검/파/빨/초</option>
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         사이즈
         <select class="" name="prd_size">
           <option value="1">S/M/L</option>
           <option value="2" <?=$sizeoption2?>>M/L/XL</option>
           <option value="3" <?=$sizeoption3?>>L/XL/XXL</option>
-
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="checkbox" name="prd_best" value="1" <?=$shop_best?>> 베스트
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="number" name="prd_stock" placeholder="현재 재고" value="<?=$shop_stock?>"> 개
         <hr>
-        <?php for ($i = 0; $i < 10; $i++) {
-
-          ?>
-          <input type="file" name="prd_img[]" value="">
-
-          <?php
-          if (!empty($file_name[$i])) {
-            echo "<p>$file_name[$i]이 등록되어 있습니다.</p>";
-          }
-        } ?>
+        <div class="file_box">
+        <?php for ($i = 0; $i < 10; $i++) { ?>
+          <input type="file" name="prd_img[]" value="" onchange="change_img_upload(this)">
+            <?php
+            if (!empty($file_name[$i])) {
+              echo "<p>$file_name[$i]이 등록되어 있습니다.</p>";
+            }
+          } ?>
+          </div>
         <input type="submit" name="" value="등록하기">
 
       </form>
         <?php
       }else {
         ?>
+        &nbsp;&nbsp;&nbsp;
         <?=$prd_name?>
         <span style="color:rgb(255, 222, 0);text-shadow:2px 2px 0.5px gray;">★</span>
         <?php
@@ -381,10 +335,14 @@ for ($i=0; $i < 10; $i++) {
         });
         </script>
         <hr>
+        &nbsp;&nbsp;&nbsp;
           <?=$shop_price?>원
         <hr>
-        택배사 : 한진택배
+        &nbsp;&nbsp;&nbsp;
+        한진택배
         <hr>
+        &nbsp;&nbsp;&nbsp;
+        색상&nbsp;&nbsp;&nbsp;
         <select class="" name="" id="color">
           <option value="w">흰색</option>
           <option value="l">검정색</option>
@@ -429,7 +387,9 @@ for ($i=0; $i < 10; $i++) {
         ?>
         </select>
         <hr>
+        &nbsp;&nbsp;&nbsp;
         사이즈
+        &nbsp;&nbsp;&nbsp;
         <select class="" name="" id="size">
           <?php
             switch ($shop_size) {
@@ -458,9 +418,10 @@ for ($i=0; $i < 10; $i++) {
 
 
         <hr>
+        &nbsp;&nbsp;&nbsp;
         <input type="number" name="" value="1" min="0" max="99" id="count"> 개
         <hr>
-        <button type="button" name="button" id="insert_basket">장바구니 담기</button>
+        <button type="button" id="insert_basket">장바구니 담기</button>
         <script type="text/javascript">
         $(document).ready(function() {
           $("#insert_basket").click(function(event) {
@@ -488,7 +449,7 @@ for ($i=0; $i < 10; $i++) {
           });
         });
         </script>
-        <a href="./shopping_basket.php"> <button type="button" name="button">장바구니 바로가기</button></a>
+        <a href="./shopping_basket.php"> <button type="button">장바구니 바로가기</button></a>
 
         <?php
       }
@@ -497,17 +458,17 @@ for ($i=0; $i < 10; $i++) {
 
 
     </div>
-  </div>
-
-
-
+  </div>  <!-- prd_img_info end -->
 <?php
 }
 }
 ?>
 
-<!-- *************리스트************* -->
 
+
+
+<!-- *************리스트************* -->
+<hr class="title_hr">
 <div class="prd_list" >
   <div class="ord_rg_prd">
     <div class="list_menu_option">
@@ -542,7 +503,6 @@ for ($i=0; $i < 10; $i++) {
   </div>  <!-- ord_rg_prd end -->
 
   <div class="body_prd_list">
-      <ul>
         <?php
         for ($i=$start; $i < $start+$list_count && $i<$total; $i++) {
           mysqli_data_seek($result, $i);
@@ -577,11 +537,11 @@ for ($i=0; $i < 10; $i++) {
           }
           ?>
 
-          <li class="prd_list_cont">
+          <div class="prd_list_cont">
             <form action="./sh_man_list.php?mode=<?=$list_name?>&page=<?=$page?>" method="post">
-              <div class="p_li_img">
+              <div class="p_li_img responsive-center">
                 <input type="hidden" name="prd_num" value="<?=$prd_num?>">
-                <input type="image" name="" value="" src="./img/<?=$file_copied_0?>">
+                <button type="submit" name="button"><img src="./img/<?=$file_copied_0?>" alt="<?=$prd_name?>"></button>
               </div>
               <div class="prd_best">
                 <?php
@@ -590,10 +550,6 @@ for ($i=0; $i < 10; $i++) {
                   <span class="prd_emph">★</span>
                   <span>BEST</span>
                   <span class="prd_emph">★</span>
-                  <?php
-                } else {
-                  ?>
-                  <div class="hei_17px"></div>
                   <?php
                 }
                 ?>
@@ -627,13 +583,36 @@ for ($i=0; $i < 10; $i++) {
               <?php
               }
               ?>
-          </li>
+          </div>
           <?php
         }
          ?>
-      </ul>
   </div>  <!-- body_prd_list end -->
 </div><!-- prd_list end -->
+<script type="text/javascript">
+function change_img_upload(pic) {
+  fileNm = $(pic).val();
+  console.log(fileNm);
+  if (fileNm != "") {
+    var ext = fileNm.slice(fileNm.lastIndexOf(".") + 1).toLowerCase();
+    if (!(ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif" || ext == "bmp" || ext == "pjpeg" || ext == "tiff")) {
+      alert("이미지파일 (.jpg, .jpeg, .png, .gif, .bmp, .pjpeg, .tiff) 만 업로드 가능합니다.");
+      $(pic).val("");
+      return;
+    }
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    $("#prd_image").attr("src", e.target.result);
+  }
+  reader.readAsDataURL(pic.files[0]);
+
+  document.getElementById("p_i_slides").display = "block";
+  document.getElementById("del_file").checked=true;
+  document.getElementById("del_file").disabled=true;
+}
+</script>
+<script src="./js/slider.js"></script>
 <hr class="title_hr">
 <div class="page_to">
   <div class="page_to_in">

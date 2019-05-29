@@ -1,0 +1,147 @@
+a{
+  text-decoration: none;
+}
+.main {
+  max-width: 85%;
+  margin-left: 16%;
+  margin-top: 200px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+.admin_title{
+  color:rgb(156, 156, 156);
+}
+.title_hr{
+  size:1;
+  width:100%;
+  margin: 10px 0;
+}
+.ord_title{
+  background-color: #efefef;
+  color: rgba(252, 105, 105, 1);
+  text-align: center;
+}
+.prd_all_del {
+  padding: 10px;
+  width: 100%;
+}
+.prd_all_del a {
+  float: right;
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 1px 3px 3px 3px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.lsb_msg{
+  margin: 0 10px;
+  font-size: 14px;
+  display: inline;
+}
+.basket_table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 30px;
+}
+tr, td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+}
+td:hover{
+  background-color:#f5f5f5;
+}
+.width_10{
+  width: 10%;
+}
+.width_20{
+  width: 20%;
+}
+.width_50{
+  width: 50%;
+}
+.basket_table img{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 20vh;
+}
+@media screen and (max-width: 1400px) {
+  .sidenav a {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+  .sidenav a {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidenav a:first-child {
+    padding: 2px 30px;
+  }
+  table *, .tb_container{
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .list_header_tb * {
+    font-size: 15px;
+  }
+}
+
+.admin_table a, .btn_write a{
+  text-decoration: none;
+  color: black;
+}
+.btn_write {
+  float:right;
+  margin: 1%;
+}
+.btn_write a {
+  color: white;
+}
+.submain_list_item:nth-child(odd) {
+  background-color: rgba(252, 105, 105, 0.05);
+}
+.submain_list_item:nth-child(even) {
+  background-color: rgba(252, 105, 105, 0.15);
+}
+.li_hd_list_num, .li_hd_num{
+  width: 7%;
+}
+.li_hd_type{
+  width: 10%;
+}
+.li_hd_name{
+  width: 22%;
+}
+.li_hd_addr{
+  width: 30%;
+}
+.li_hd_tel{
+  width: 17%;
+}
+.lsb_btn_srch, .btn_write{
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 1px 3px 3px 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.lsb_btn_srch:hover, .btn_write:hover {
+  background-color: rgba(252, 105, 105, 0.85);
+}

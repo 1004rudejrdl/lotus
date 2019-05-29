@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 include "../lib/db_connector.php";
 if (isset($_SESSION['userid'])) {

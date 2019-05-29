@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 define('SCALE', 4);
 $userid=$_SESSION['userid'];

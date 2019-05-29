@@ -136,6 +136,9 @@ body, h2, h3 {
 .topnav {
   overflow: visible;  /* 메가메뉴 드롭다운 보이게함 */
 }
+#header_img{
+  object-fit: fill;
+}
 .topnav a {
   float: left;
   display: block;
@@ -351,6 +354,10 @@ body, h2, h3 {
 @media screen and (max-width: 800px) {
   .topnav{
     background-color: white;
+  }
+  .topnav .dropbtn a {
+    padding: 2px 0 3px 0;
+    font-size: 17px;
   }
   .dropdown .dropbtn { /*메가메뉴 최상위 버튼*/
     padding: 5px 30px;

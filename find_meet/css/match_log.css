@@ -130,6 +130,12 @@
   color: white;
   text-align: center;
 }
+.content :first-child{
+  font-size: 25px;
+}
+.cp{
+  font-size: 15px;
+}
 .right .content {
   background-image: linear-gradient(to right, rgba(237, 66, 100, 0.9), #f2709c);
 }
@@ -140,26 +146,32 @@
   .main {
     margin-left: 17.5%;
   }
+  .cp{
+    font-size: 14px;
+  }
 }
 @media screen and (max-width: 1600px) {
-  .content *{
-    font-size: 25px;
+  .content :first-child{
+    font-size: 22px;
+  }
+  .cp{
+    font-size: 13px;
   }
   .main {
     margin-left: 19.5%;
   }
 }
 @media screen and (max-width: 1500px) {
-  .content *{
-    font-size: 22px;
+  .content :first-child{
+    font-size: 19px;
   }
   .main {
     margin-left: 21%;
   }
 }
 @media screen and (max-width: 1400px) {
-  .content *{
-    font-size: 19px;
+  .content :first-child{
+    font-size: 16px;
   }
   .main {
     margin-left: 22.5%;
@@ -170,8 +182,8 @@
   }
 }
 @media screen and (max-width: 1200px) {
-  .content *{
-    font-size: 16px;
+  .content :first-child{
+    font-size: 14px;
   }
   .main {
     margin-left: 24%;
@@ -191,8 +203,8 @@
   }
 }
 @media screen and (max-width: 1000px) {
-.content *{
-  font-size: 15px;
+.content :first-child{
+  font-size: 16px;
 }
 .content {
   padding: 10px 15px;
@@ -226,7 +238,7 @@
 
 }
 /* Media queries - Responsive timeline on screens less than 600px wide */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .log_text, .log_img{
     width: 100%;
   }

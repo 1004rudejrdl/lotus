@@ -1,0 +1,97 @@
+/* 출처: https://webdir.tistory.com/485 [WEBDIR] */
+img{
+  object-fit: scale-down;
+}
+.responsive {
+    width: 100%;
+}
+.responsive img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.responsive button{
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  width: inherit;
+  height: inherit;
+}
+.responsive-fixed {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.responsive-fixed img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.responsive-fixed button{
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  width: inherit;
+  height: inherit;
+}
+.responsive-center {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.responsive-center img {
+  position: absolute;
+  max-height: 100%;
+  max-width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.responsive-center button{
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  width: inherit;
+  height: inherit;
+}
+.thumb-crop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.thumb-crop img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+.thumb-crop button{
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  width: inherit;
+  height: inherit;
+}
+.thumb-crop .portrait {
+  width: 100%;
+  height: auto;
+}
+
+.thumb-crop .auto {
+  height: auto;
+}
