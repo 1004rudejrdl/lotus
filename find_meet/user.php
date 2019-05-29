@@ -1,4 +1,4 @@
-﻿<?php
+<?php
   session_start();
   include '../lib/db_connector.php';
   $userid=$_SESSION['userid'];
@@ -10,6 +10,11 @@
   $name=$row['name'];
   $tel=$row['tel'];
   $gender=$row['gender'];
+  if($gender==0){
+    $gender="남성";
+  }else if($gender==1){
+    $gender="여성";
+  }
   $birth=$row['birth'];
   $month=substr($birth, 0,2);
   $day=substr($birth, 2,2);
@@ -51,7 +56,7 @@
   <table>
     <th>MY PAGE</th>
     <tr>
-      <td colspan="4" rowspan="4" ><img src="../mb_login/<?=$img?>" alt="profile_img"> </td>
+      <td colspan="4" rowspan="4" ><img src="../mb_login/<?=$img?>" alt="profile_img" style="width:300px;height:300px;"> </td>
       <td>아이디</td>
       <td><span><?=$id?></span> </td>
       <td>이름</td>
@@ -65,16 +70,17 @@
     </tr>
     <tr>
       <td>신장</td>
-      <td><span><?=$height?></span> </td>
+      <td><span><?=$height?>cm</span> </td>
       <td>체중</td>
-      <td><span><?=$weight?></span> </td>
+      <td><span><?=$weight?>kg</span> </td>
     </tr>
     <tr>
+      <th>자기소개</th>
       <td><span><?=$self_info?></span> </td>
     </tr>
   </table>
   <div class="">
-    <h3></h3>
+    <h3>나와 매칭된 사람</h3>
   </div>
   <?php
   define('SCALE', 4);
@@ -90,11 +96,11 @@
   $start=($page -1) * SCALE;
   //4. 리스트에 보여줄 번호를 최근순으로 부여함.
   $number = $rowcount - $start;
-  for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
-    //mysqli_data_seek($result,$i);
+  for ($i = $start; $i < $start+SCALE && $i<$rowcount; $i++){
+    mysqli_data_seek($result,$i);
     $row=mysqli_fetch_array($result);
-    $id=$row['matching'][$i];
-    $matching_day=$row['matching_day'][$i];
+    $id=$row['matching'];
+    $matching_day=$row['matching_day'];
     $sql="SELECT *FROM member WHERE `id`='$id'";
     $result=mysqli_query($conn,$sql)or die(mysqli_error($conn));
     mysqli_data_seek($result,$i);
@@ -157,12 +163,17 @@ if(!isset($_GET['page'])||$page==1){
 }
 ?>
 <script type="text/javascript">
+function send_mail(m) {
+  var popupX = (window.screen.width/2)-(600/2);
+ var popupY = (window.screen.height/2)-(400/2);
+ window.open('../message/message_form.php?id='+m,'','left='+popupX+',top='+popupY+', width=500, height=400, status=no, scrollbars=no');
+}
 $(document).ready(function() {
   $('#match_left_button').click(function(event) {
     $.ajax({
-      url: './like_member.php?mode=lesslike',
+      url: './like_member.php?mode=match',
       type: 'GET',
-      data: {like_page: '<?=$like_page-1?>'}
+      data: {page: '<?=$page-1?>'}
     })
     .done(function(result) {
       var json = $.parseJSON(result);
@@ -187,9 +198,9 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#match_right_button').click(function(event) {
     $.ajax({
-      url: './like_member.php?mode=morelike',
+      url: './like_member.php?mode=match',
       type: 'GET',
-      data: {like_page: '<?=$like_page+1?>'}
+      data: {page: '<?=$page+1?>'}
     })
     .done(function(result) {
       var json = $.parseJSON(result);
@@ -212,13 +223,13 @@ $(document).ready(function() {
   });
 });
 </script>
-<img id="match_left_button" src="./img/left_button.png" alt="left_button">
-<img id="match_right_button" src="./img/right_button.png" alt="right_button" >
+<!-- <img id="match_left_button" src="./img/left_button.png" alt="left_button">
+<img id="match_right_button" src="./img/right_button.png" alt="right_button" > -->
 <div>
   <h3>나에게 좋아요를 눌러준 사람들</h3>
   <?php
   $sql="SELECT * FROM member_like WHERE `id`='$userid'";
-  $result=mysqli_query($conn,$result)or die(mysqli_error($conn));
+  $result=mysqli_query($conn,$sql)or die(mysqli_error($conn));
   $like_me_count=mysqli_num_rows($result);
   $total_page=($like_me_count % SCALE == 0 )?
   ($like_me_count/SCALE):(ceil($like_me_count/SCALE));
@@ -229,8 +240,36 @@ $(document).ready(function() {
   $like_start=($like_page -1) * SCALE;
   //4. 리스트에 보여줄 번호를 최근순으로 부여함.
   $number = $rowcount - $start;
-  for ($i = $like_start; $i < $like_start+SCALE && $i<$total_record; $i++){
-
+  for ($i = $like_start; $i < $like_start+SCALE && $i<$like_me_count; $i++){
+    //mysqli_data_seek($result,$i);
+    $row=mysqli_fetch_array($result);
+    $like_me=$row['vote_id'];
+    $sql="SELECT * FROM member WHERE `id`='$like_me'";
+    $result=mysqli_query($conn,$sql)or die(mysqli_error($conn));
+    //mysqli_data_seek($result,$i);
+    $row1=mysqli_fetch_array($result);
+    $name=$row1['name'];
+    $tel=$row1['tel'];
+    $sql="SELECT * FROM member_meeting WHERE `id`='$like_me'";
+    $result=mysqli_query($conn,$sql)or die(mysqli_error($conn));
+    //mysqli_data_seek($result,$i);
+    $row2=mysqli_fetch_array($result);
+    $img=$row2['img'];
+    $job=$row2['job'];
+    if($job==1){
+      $job="무직";
+    }else if($job==2){
+      $job="공무원";
+    }else if($job==3){
+      $job="학생";
+    }else if($job==4){
+      $job="자영업";
+    }else if($job==5){
+      $job="직장인";
+    }
+    $height=$row2['height'];
+    $weight=$row2['weight'];
+    $self_info=$row2['self_info'];
     ?>
     <table class="card" style="margin:5px;">
       <tr>
@@ -259,7 +298,7 @@ $(document).ready(function() {
       $(document).ready(function() {
         $('#like_left_button').click(function(event) {
           $.ajax({
-            url: './like_member.php?mode=lesslike',
+            url: './like_member.php?mode=like',
             type: 'GET',
             data: {like_page: '<?=$like_page-1?>'}
           })
@@ -286,7 +325,7 @@ $(document).ready(function() {
       $(document).ready(function() {
         $('#like_right_button').click(function(event) {
           $.ajax({
-            url: './like_member.php?mode=morelike',
+            url: './like_member.php?mode=like',
             type: 'GET',
             data: {like_page: '<?=$like_page+1?>'}
           })
@@ -313,14 +352,21 @@ $(document).ready(function() {
     </script>
     <?php
   }
+  if(!isset($_GET['page'])||$page==1){
+    echo "<img id='match_left_button' src='./img/right_button.png' alt='right_button' >";
+  }else if(isset($_GET['page'])&&$page!=$total_page){
+    echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
+    echo "<img id='match_right_button' src='./img/right_button.png' alt='right_button' >";
+  }else if($page==$total_page){
+    echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
+  }
    ?>
 </div>
-<input type="hidden"id="like_page_hide" name="like_page_hide" value="<?=$like_start?>">
-<img id="like_left_button" src="./img/left_button.png" alt="like_left_button">
-<img id="like_right_button" src="./img/right_button.png" alt="like_right_button">
+<!-- <img id="like_left_button" src="./img/left_button.png" alt="like_left_button">
+<img id="like_right_button" src="./img/right_button.png" alt="like_right_button">  -->
 <div class="">
   <a href="#"><img src="./img/shopping.png" alt="" style="width:500px;height:500px;"></a>
-  <a href="#"><img src="./img/bill/png" alt=""style="width:500px;height:500px;"></a>
+  <a href="#"><img src="./img/bill.png" alt=""style="width:500px;height:500px;"></a>
 </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
