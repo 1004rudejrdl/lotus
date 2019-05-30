@@ -48,9 +48,8 @@ function create_table($conn, $table_name){
                     `weight` char(3) NOT NULL,
                     `self_info` text NOT NULL,
                     `img` varchar(100) NOT NULL,
-                    `mb_type` char(1) NOT NULL DEFAULT '0',
                     `matching` varchar(22) DEFAULT NULL,
-                    `matching_day` char(10) DEFAULT NULL,
+                    `matching_day` char(20) DEFAULT NULL,
                     PRIMARY KEY (`id`)
                   );";
             break;
@@ -96,130 +95,6 @@ function create_table($conn, $table_name){
                     `com_busi_num` char(15) NOT NULL,
                     `com_regist_num` varchar(15) NOT NULL,
                     PRIMARY KEY (`com_num`)
-                  );";
-            break;
-          case 'prd_cplx' :
-            $sql = "CREATE TABLE `prd_cplx` (
-                    `com_type` char(6) NOT NULL,
-                    `com_num` int(11) NOT NULL,
-                    `cplx_type` char(1) NOT NULL,
-                    `cplx_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `cplx_name` char(20) NOT NULL,
-                    `cplx_img` varchar(50) NOT NULL,
-                    `cplx_list_link` varchar(100) NOT NULL,
-                    `cplx_tel` char(11) NOT NULL,
-                    `cplx_postcode` char(6) NOT NULL,
-                    `cplx_address` varchar(45) NOT NULL,
-                    `cplx_detailAddress` varchar(45) NOT NULL,
-                    `cplx_extraAddress` varchar(45) DEFAULT NULL,
-                    `cplx_notice` varchar(260) DEFAULT NULL,
-                    `cplx_prd_notice` text,
-                    `file_name_0` varchar(50) DEFAULT NULL,
-                    `file_copied_0` varchar(50) DEFAULT NULL,
-                    `file_name_1` varchar(50) DEFAULT NULL,
-                    `file_copied_1` varchar(50) DEFAULT NULL,
-                    `file_name_2` varchar(50) DEFAULT NULL,
-                    `file_copied_2` varchar(50) DEFAULT NULL,
-                    `file_name_3` varchar(50) DEFAULT NULL,
-                    `file_copied_3` varchar(50) DEFAULT NULL,
-                    `file_name_4` varchar(50) DEFAULT NULL,
-                    `file_copied_4` varchar(50) DEFAULT NULL,
-                    `file_name_5` varchar(50) DEFAULT NULL,
-                    `file_copied_5` varchar(50) DEFAULT NULL,
-                    `file_name_6` varchar(50) DEFAULT NULL,
-                    `file_copied_6` varchar(50) DEFAULT NULL,
-                    `file_name_7` varchar(50) DEFAULT NULL,
-                    `file_copied_7` varchar(50) DEFAULT NULL,
-                    `file_name_8` varchar(50) DEFAULT NULL,
-                    `file_copied_8` varchar(50) DEFAULT NULL,
-                    `file_name_9` varchar(50) DEFAULT NULL,
-                    `file_copied_9` varchar(50) DEFAULT NULL,
-                    PRIMARY KEY (`cplx_num`)
-                  );";
-            break;
-          case 'prd_cplx_datail' :
-            $sql = "CREATE TABLE `prd_cplx_datail` (
-                    `cplx_type` char(1) NOT NULL,
-                    `cplx_num` int(11) NOT NULL,
-                    `prd_num` char(20) NOT NULL,
-                    `prd_regist_day` char(20) NOT NULL,
-                    `prd_name` varchar(30) NOT NULL,
-                    `cplx_price_n` char(7) NOT NULL,
-                    `cplx_price_w` char(7) DEFAULT NULL,
-                    `cplx_price_a` char(7) DEFAULT NULL,
-                    `cplx_stock` char(2) NOT NULL,
-                    PRIMARY KEY (`prd_num`)
-                  );";
-            break;
-          case 'prd_acm' :
-            $sql = "CREATE TABLE `prd_acm` (
-                    `com_type` char(6) NOT NULL,
-                    `com_num` int(11) NOT NULL,
-                    `acm_type` char(1) NOT NULL,
-                    `acm_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `acm_name` char(20) NOT NULL,
-                    `acm_img` varchar(100) NOT NULL,
-                    `acm_list_link` varchar(100) NOT NULL,
-                    `acm_rsv_tel` char(11) NOT NULL,
-                    `acm_cnc_tel` char(11) NOT NULL,
-                    `acm_postcode` char(6) NOT NULL,
-                    `acm_address` varchar(45) NOT NULL,
-                    `acm_detailAddress` varchar(45) NOT NULL,
-                    `acm_extraAddress` varchar(45) DEFAULT NULL,
-                    `acm_notice` varchar(260) DEFAULT NULL,
-                    `acm_prd_notice` text,
-                    `acm_op` varchar(50) DEFAULT NULL,
-                    PRIMARY KEY (`acm_num`)
-                  );";
-            break;
-          case 'prd_acm_room' :
-            $sql = "CREATE TABLE `prd_acm_room` (
-                    `acm_num` int(11) NOT NULL,
-                    `prd_num` char(20) NOT NULL,
-                    `prd_regist_day` char(20) NOT NULL,
-                    `prd_name` varchar(30) NOT NULL,
-                    `acm_price_n` char(7) NOT NULL,
-                    `acm_price_w` char(7) NOT NULL,
-                    `acm_price_a` char(7) NOT NULL,
-                    `acm_min_p` char(2) NOT NULL,
-                    `acm_max_p` char(2) NOT NULL,
-                    `acm_stock` char(2) NOT NULL,
-                    `acm_fd` varchar(50) DEFAULT NULL,
-                    `acm_sv` varchar(50) DEFAULT NULL,
-                    `acm_ist` varchar(50) DEFAULT NULL,
-                    `acm_meal` char(1) DEFAULT NULL,
-                    `acm_ch_in` char(7) NOT NULL,
-                    `acm_ch_out` char(7) NOT NULL,
-                    `file_name_0` varchar(50) DEFAULT NULL,
-                    `file_copied_0` varchar(50) DEFAULT NULL,
-                    `file_name_1` varchar(50) DEFAULT NULL,
-                    `file_copied_1` varchar(50) DEFAULT NULL,
-                    `file_name_2` varchar(50) DEFAULT NULL,
-                    `file_copied_2` varchar(50) DEFAULT NULL,
-                    `file_name_3` varchar(50) DEFAULT NULL,
-                    `file_copied_3` varchar(50) DEFAULT NULL,
-                    `file_name_4` varchar(50) DEFAULT NULL,
-                    `file_copied_4` varchar(50) DEFAULT NULL,
-                    `file_name_5` varchar(50) DEFAULT NULL,
-                    `file_copied_5` varchar(50) DEFAULT NULL,
-                    `file_name_6` varchar(50) DEFAULT NULL,
-                    `file_copied_6` varchar(50) DEFAULT NULL,
-                    `file_name_7` varchar(50) DEFAULT NULL,
-                    `file_copied_7` varchar(50) DEFAULT NULL,
-                    `file_name_8` varchar(50) DEFAULT NULL,
-                    `file_copied_8` varchar(50) DEFAULT NULL,
-                    `file_name_9` varchar(50) DEFAULT NULL,
-                    `file_copied_9` varchar(50) DEFAULT NULL,
-                    PRIMARY KEY (`prd_num`)
-                  );";
-            break;
-          case 'prd_acm_rsv' :
-            $sql = "CREATE TABLE `prd_acm_rsv` (
-                    `order_type` char(5) NOT NULL,
-                    `order_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `acm_sday` char(20) NOT NULL,
-                    `acm_days` char(3) NOT NULL,
-                    PRIMARY KEY (`order_num`)
                   );";
             break;
           case 'prd_shop' :
@@ -274,16 +149,6 @@ function create_table($conn, $table_name){
                     PRIMARY KEY (`prd_num`)
                   );";
             break;
-          case 'prd_shop_drv' :
-            $sql = "CREATE TABLE `prd_shop_drv` (
-                    `order_type` char(5) NOT NULL,
-                    `order_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `prd_type` char(1) NOT NULL,
-                    `order_state` char(1) NOT NULL,
-                    `order_msg` varchar(30) DEFAULT NULL,
-                    PRIMARY KEY (`order_num`)
-                  );";
-            break;
           case 'order_list' :
             $sql = "CREATE TABLE `order_list` (
                     `order_type` char(5) NOT NULL,
@@ -298,27 +163,10 @@ function create_table($conn, $table_name){
                     PRIMARY KEY (`order_num`)
                   );";
             break;
-          case 'member_point' :
-            $sql = "CREATE TABLE `member_point` (
-                    `id` varchar(22) NOT NULL,
-                    `use_add` char(30) NOT NULL,
-                    `p_m` char(1) NOT NULL,
-                    `point_balance` int(11) NOT NULL,
-                    `use_add_day` char(20) NOT NULL,
-                    PRIMARY KEY (`id`)
-                  );";
-            break;
           case 'prd_like' :
             $sql = "CREATE TABLE `prd_like` (
                     `prd_num` char(20) NOT NULL,
                     `id` varchar(22) NOT NULL
-                  );";
-            break;
-          case 'cart' :
-            $sql = "CREATE TABLE `cart` (
-                    `prd_num` char(20) NOT NULL,
-                    `id` varchar(22) NOT NULL,
-                    `ord_count` char(2) NOT NULL
                   );";
             break;
           case 'wish_list' :
@@ -328,62 +176,6 @@ function create_table($conn, $table_name){
               `count` char(3) DEFAULT NULL,
               `color` char(1) DEFAULT NULL,
               `size` char(1) DEFAULT NULL
-                  );";
-            break;
-          case 'prd_review' :
-            $sql = "CREATE TABLE `prd_review` (
-                    `order_type` char(5) NOT NULL,
-                    `order_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `star0` char(1) NOT NULL,
-                    `star1` char(1) NOT NULL,
-                    `star2` char(1) NOT NULL,
-                    `star3` char(1) NOT NULL,
-                    `star4` char(1) NOT NULL,
-                    `prd_rv_cont` text,
-                    `rv_regist_day` char(20) NOT NULL,
-                    `file_name_0` varchar(50) DEFAULT NULL,
-                    `file_copied_0` varchar(50) DEFAULT NULL,
-                    `file_name_1` varchar(50) DEFAULT NULL,
-                    `file_copied_1` varchar(50) DEFAULT NULL,
-                    `file_name_2` varchar(50) DEFAULT NULL,
-                    `file_copied_2` varchar(50) DEFAULT NULL,
-                    `file_name_3` varchar(50) DEFAULT NULL,
-                    `file_copied_3` varchar(50) DEFAULT NULL,
-                    `file_name_4` varchar(50) DEFAULT NULL,
-                    `file_copied_4` varchar(50) DEFAULT NULL,
-                    `file_name_5` varchar(50) DEFAULT NULL,
-                    `file_copied_5` varchar(50) DEFAULT NULL,
-                    `file_name_6` varchar(50) DEFAULT NULL,
-                    `file_copied_6` varchar(50) DEFAULT NULL,
-                    `file_name_7` varchar(50) DEFAULT NULL,
-                    `file_copied_7` varchar(50) DEFAULT NULL,
-                    `file_name_8` varchar(50) DEFAULT NULL,
-                    `file_copied_8` varchar(50) DEFAULT NULL,
-                    `file_name_9` varchar(50) DEFAULT NULL,
-                    `file_copied_9` varchar(50) DEFAULT NULL,
-                    PRIMARY KEY (`order_num`)
-                  );";
-            break;
-          case 'prd_q' :
-            $sql = "CREATE TABLE `prd_q` (
-              `que_num` int(11) NOT NULL AUTO_INCREMENT,
-              `prd_num` char(20) NOT NULL,
-              `prd_q_cont` text NOT NULL,
-              `secret` char(1) DEFAULT NULL,
-              `ans` char(1) NOT NULL,
-              `id` varchar(22) DEFAULT NULL,
-              `que_day` char(20) NOT NULL,
-              PRIMARY KEY (`que_num`)
-                  );";
-            break;
-          case 'prd_a' :
-            $sql = "CREATE TABLE `prd_a` (
-                    `ans_num` int(11) NOT NULL AUTO_INCREMENT,
-                    `parent` int(11) NOT NULL,
-                    `prd_a_cont` text NOT NULL,
-                    `admin_ath` char(2) NOT NULL,
-                    `ans_day` char(20) NOT NULL,
-                    PRIMARY KEY (`ans_num`)
                   );";
             break;
           case 'commu' :
@@ -481,39 +273,13 @@ function create_table($conn, $table_name){
                     `com_extraAddress` varchar(45) DEFAULT NULL,
                     `com_phone` char(20) NOT NULL,
                     `com_fax` char(20) NOT NULL,
-                    `com_email` char(1) NOT NULL,
+                    `com_email` char(45) NOT NULL,
                     `com_intro` char(60) NOT NULL,
                     `com_bank` char(10) NOT NULL,
                     `com_acc` char(20) NOT NULL,
                     `com_manager` char(10) NOT NULL,
                     `com_time` char(20) NOT NULL,
                     PRIMARY KEY (`com_rg_num`)
-                  );";
-            break;
-          case 'main_banner' :
-            $sql = "CREATE TABLE `main_banner` (
-                    `file_name_0` varchar(50) DEFAULT NULL,
-                    `file_copied_0` varchar(50) DEFAULT NULL,
-                    `file_name_1` varchar(50) DEFAULT NULL,
-                    `file_copied_1` varchar(50) DEFAULT NULL,
-                    `file_name_2` varchar(50) DEFAULT NULL,
-                    `file_copied_2` varchar(50) DEFAULT NULL,
-                    `file_name_3` varchar(50) DEFAULT NULL,
-                    `file_copied_3` varchar(50) DEFAULT NULL,
-                    `file_name_4` varchar(50) DEFAULT NULL,
-                    `file_copied_4` varchar(50) DEFAULT NULL
-                  );";
-            break;
-          case 'prd_anl' :
-            $sql = "CREATE TABLE `prd_anl` (
-                    `member_pro` int(11) NOT NULL,
-                    `cpxl_pro` int(11) NOT NULL,
-                    `acm_pro` int(11) NOT NULL,
-                    `rent_pro` int(11) NOT NULL,
-                    `shop_pro` int(11) NOT NULL,
-                    `total_pro` int(11) NOT NULL,
-                    `comfirm_day` char(20) NOT NULL,
-                    PRIMARY KEY (`comfirm_day`)
                   );";
             break;
       default:

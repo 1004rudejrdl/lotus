@@ -72,8 +72,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="member_join"){
       if (!$result) {
         die('Error: ' . mysqli_error($conn));
       }
-      $sql="INSERT INTO member_meeting (id,job,height,weight,self_info,img,mb_type,matching,matching_day) ";
-      $sql.=" VALUES ('$id','$job','$hei','$wei','$self_info','$upload_file',0,null,null)";
+      $sql="INSERT INTO member_meeting (id,job,height,weight,self_info,img,matching,matching_day) ";
+      $sql.=" VALUES ('$id','$job','$hei','$wei','$self_info','$upload_file',null,null)";
       $result = mysqli_query($conn,$sql);
       if (!$result) {
         die('Error: ' . mysqli_error($conn));

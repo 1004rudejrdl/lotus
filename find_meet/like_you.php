@@ -29,7 +29,7 @@ if(isset($_GET["mode"]) &&$_GET["mode"]=="check"){
       if(empty($rowcount)){
         echo "좋아요를 눌렀습니다.".$like;
       }else{
-        $match_time=date("Y-m-d");
+        $match_time=date("Y-m-d H:i:s");
         $sql="UPDATE  member_meeting SET `matching`='$vote_id',`matching_day`='$match_time'WHERE `id`='$id'";
         $result=mysqli_query($conn,$sql);
         $sql="UPDATE  member_meeting SET `matching`='$id',`matching_day`='$match_time'WHERE `id`='$vote_id'";
