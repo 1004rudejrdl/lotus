@@ -114,6 +114,11 @@
   }
 
 }
+@media screen and (max-width: 600px) {
+  h4{
+    margin: 0;
+  }
+}
 .con_title{
   width: 100%;
   padding-top: 50px;

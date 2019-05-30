@@ -70,7 +70,7 @@
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <link rel="stylesheet" href="../css/img_re.css">
-  <link rel="stylesheet" href="./css/shop_list.css">
+  <link rel="stylesheet" href="./css/shop_list_0503_06_30.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -89,10 +89,10 @@ function search_com_info(type){
 <!-- main_body start -->
 <div class="main_body">
 <div id="sidenav" class="sidenav">
-  <a href="./sh_man_list.php?mode=man">쇼핑몰</a>
-  <a href="./sh_man_list.php?mode=man">남성의류</a>
-  <a href="./sh_man_list.php?mode=woman">여성의류</a>
-  <a href="./sh_man_list.php?mode=shose">신발</a>
+  <a href="./sh_man_list_0503_06_30.php?mode=man">쇼핑몰</a>
+  <a href="./sh_man_list_0503_06_30.php?mode=man">남성의류</a>
+  <a href="./sh_man_list_0503_06_30.php?mode=woman">여성의류</a>
+  <a href="./sh_man_list_0503_06_30.php?mode=shose">신발</a>
 </div><!-- sidenav end -->
 <div class="main">
   <div class="admin_title">
@@ -212,7 +212,6 @@ function search_com_info(type){
     </div>    <!-- prd_img_div end -->
 
     <div class="prd_info_div" >
-      <div class="detail_box">
       <?php
       if ($type=='regist') {
         ?>
@@ -279,7 +278,6 @@ function search_com_info(type){
         &nbsp;&nbsp;&nbsp;
         <input type="number" name="prd_stock" placeholder="현재 재고" value="<?=$shop_stock?>"> 개
         <hr>
-        </div>        <!-- detail_box end -->
         <div class="file_box">
         <?php for ($i = 0; $i < 10; $i++) { ?>
           <input type="file" name="prd_img[]" value="" onchange="change_img_upload(this)">
@@ -318,6 +316,8 @@ function search_com_info(type){
 
           <?php
         }
+
+
          ?>
 
         <script type="text/javascript">
@@ -485,7 +485,7 @@ function search_com_info(type){
 <div class="prd_list" >
   <div class="ord_rg_prd">
     <div class="list_menu_option">
-      <form action="./sh_man_list.php?mode=<?=$list_name?>" method="post">
+      <form action="./sh_man_list_0503_06_30.php?mode=<?=$list_name?>" method="post">
         <input type="hidden" name="prd_num" value="<?=$prd_num?>">
         <input type="submit" name="" value="보기">
         <select class="" name="option_list_count">
@@ -504,7 +504,7 @@ function search_com_info(type){
       $auth_shop = $row8['auth_shop'];
       if (!empty($auth_shop)) {
         ?>
-        <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
+        <form class="" action="./sh_man_list_0503_06_30.php?mode=<?=$list_name?>&type=regist" method="post">
           <input type="submit" name="" value="상품등록" style="float:right">
           <input type="hidden" name="prd_num" value="">
           <input type="hidden" name="regist" value="regist">
@@ -551,7 +551,7 @@ function search_com_info(type){
           ?>
 
           <div class="prd_list_cont">
-            <form action="./sh_man_list.php?mode=<?=$list_name?>&page=<?=$page?>" method="post">
+            <form action="./sh_man_list_0503_06_30.php?mode=<?=$list_name?>&page=<?=$page?>" method="post">
               <div class="p_li_img responsive-center">
                 <input type="hidden" name="prd_num" value="<?=$prd_num?>">
                 <button type="submit" name="button"><img src="./img/<?=$file_copied_0?>" alt="<?=$prd_name?>"></button>
@@ -582,7 +582,7 @@ function search_com_info(type){
               if ($session == "admin") {
               ?>
               <div class="btn_admin">
-                <form class="" action="./sh_man_list.php?mode=<?=$list_name?>&type=regist" method="post">
+                <form class="" action="./sh_man_list_0503_06_30.php?mode=<?=$list_name?>&type=regist" method="post">
                   <input class="admin_btn" type="submit" name="" value="수정">
                   <input type="hidden" name="prd_num" value="<?=$prd_num?>">
                   <input type="hidden" name="update" value="update">
@@ -629,13 +629,13 @@ function change_img_upload(pic) {
 <hr class="title_hr">
 <div class="page_to">
   <div class="page_to_in">
-    <a href="./sh_man_list.php?page=1&mode=<?=$list_name?>">◀◀</a>
+    <a href="./sh_man_list_0503_06_30.php?page=1&mode=<?=$list_name?>">◀◀</a>
     <?php
          if ($page>1) {
                $page_go=$page-1;
-                echo '<a class="previous" href="./sh_man_list.php?page='.$page_go.'&mode='.$list_name.'">이전 ◀</a>';
+                echo '<a class="previous" href="./sh_man_list_0503_06_30.php?page='.$page_go.'&mode='.$list_name.'">이전 ◀</a>';
               }else {
-                echo '<a class="previous" href="./sh_man_list.php?page=1&mode='.$list_name.'">이전 ◀</a>';
+                echo '<a class="previous" href="./sh_man_list_0503_06_30.php?page=1&mode='.$list_name.'">이전 ◀</a>';
               }
               for ($i=1; $i <= $total_page ; $i++) {
                 if($page==$i){
@@ -643,20 +643,20 @@ function change_img_upload(pic) {
                 }else{
                   //싱글쿼테이션은 문자로 인식하지 않는다
                   //더블은 문자로 인식
-                  echo '<a href="./sh_man_list.php?page='.$i.'&mode='.$list_name.'">&nbsp;'.$i.'&nbsp;</a>';
+                  echo "<a href='./sh_man_list_0503_06_30.php?page=$i&mode='.$list_name.''>&nbsp;$i&nbsp;</a>";
                 }
               }
               if ($total_page==0) {
-                echo '<a class="next" href="./sh_man_list.php?page=1&mode='.$list_name.'">▶ 다음</a>';
+                echo '<a class="next" href="./sh_man_list_0503_06_30.php?page=1&mode='.$list_name.'">▶ 다음</a>';
               }elseif ($page+1>$total_page) {
                 $page_end=$total_page;
-                echo '<a class="next" href="./sh_man_list.php?page='.$page_end.'&mode='.$list_name.'">▶ 다음</a>';
+                echo '<a class="next" href="./sh_man_list_0503_06_30.php?page='.$page_end.'&mode='.$list_name.'">▶ 다음</a>';
               }else{
                 $page_go=$page+1;
-                echo '<a class="next" href="./sh_man_list.php?page='.$page_go.'&mode='.$list_name.'">▶ 다음</a>';
+                echo '<a class="next" href="./sh_man_list_0503_06_30.php?page='.$page_go.'&mode='.$list_name.'">▶ 다음</a>';
               }
               ?>
-    <a href="./sh_man_list.php?page=<?=$total_page?>&mode=<?=$list_name?>">▶▶</a>
+    <a href="./sh_man_list_0503_06_30.php?page=<?=$total_page?>&mode=<?=$list_name?>">▶▶</a>
   </div> <!-- page_to in end 페이지 이동 -->
 </div> <!-- page_to end 페이지 이동 -->
 <p>&nbsp;</p>

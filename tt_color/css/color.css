@@ -216,3 +216,22 @@ table tr:first-child td{
   }
 
 }
+
+@media screen and (max-width: 700px) {
+  .animal3{
+    height:70px;
+    width: 70px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .animal3{
+    height:60px;
+    width: 60px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .animal3{
+    height:50px;
+    width: 50px;
+  }
+}

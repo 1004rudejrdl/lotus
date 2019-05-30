@@ -114,3 +114,8 @@
     max-width: 100%;
   }
 }
+@media screen and (max-width: 600px) {
+  /* .sidenav{  모바일 상에서 가능, pc는 깨짐
+    margin-top: 60px;
+  } */
+}

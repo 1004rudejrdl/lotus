@@ -54,9 +54,6 @@
     장바구니
   </div>
   <hr class="title_hr">
-  <div class="ord_title">
-    <h3>일반 구매</h3>
-  </div>
   <div class="lsb_msg">총&nbsp;<?=$total?>&nbsp;개의 상품이 있습니다.</div>
   <div class="prd_all_del">
     <a href="./shopping_basket_delete.php?mode=all_delete">전체 상품 삭제</a>
@@ -137,8 +134,8 @@
       <td class="width_20" rowspan="3">
       <img src="./img/<?=$file_copied_0?>" alt="">
       </td>
-      <td class="width_50">상품정보</td>
-      <td class="width_20">상품금액</td>
+      <td class="width_50"><b>상세정보</b></td>
+      <td class="width_20"><b>금액</b></td>
       <td class="width_10" rowspan="3">
         <form class="" action="./shopping_basket_delete.php" method="post" >
           <input type="hidden" name="prd_num" value="<?=$prd_type_num?>">
@@ -158,18 +155,20 @@
   $prd_price_sum=number_format($prd_price_sum);
   ?>
   </table>
-
-
-
-  <fieldset style="text-align:center">
-  상품가격 <?=$prd_price_sum?>원
-  </fieldset>
-
-<div class="" style="text-align:center">
-  <a href="./sh_man_list.php?mode=man"> <button type="button" name="button" >계속 쇼핑하기</button></a>
-  <a href="./shopping_payment.php"> <button type="button" name="button">구매하기</button></a>
+  <table>
+    <tr>
+      <td class="t_right">
+        <span>상품 <?=$total?>개</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="t_red">총 <?=$prd_price_sum?>원</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+  </table>
+<div class="keep_buy" style="text-align:center">
+  <a href="./sh_man_list.php?mode=man">계속 쇼핑하기</a>
+  <a href="./shopping_payment.php">구매하기</a>
 </div>
-
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
 <!-- footer start -->

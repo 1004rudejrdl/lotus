@@ -365,3 +365,8 @@ left: 15px;
     height: 180px;
   }
 }
+@media screen and (max-width: 400px) {
+  .centerproduct *{
+    height: 150px;
+  }
+}
