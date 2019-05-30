@@ -70,7 +70,7 @@
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <link rel="stylesheet" href="../css/img_re.css">
-  <link rel="stylesheet" href="./css/shop_list.css">
+  <link rel="stylesheet" href="./css/sh_list.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>

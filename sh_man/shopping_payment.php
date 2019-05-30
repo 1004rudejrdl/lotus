@@ -1,4 +1,3 @@
-
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
@@ -7,18 +6,12 @@
     echo "<script>alert('$data');location.href='../index.php';</script>";
     exit;
   }
-
-
-  // include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php"; 로그인 인증이 필요한곳
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_con.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
-  // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
-  // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
   if (!isset($_SESSION['userid'])) {
     alert_back("로그인 후 이용해 주세요");
   }
 $prd_price_sum=0;
 $session=$_SESSION['userid'];
+
   $sql="SELECT prd_num from `wish_list` where id='$session'";
 
   $result = mysqli_query($conn,$sql);
@@ -46,7 +39,6 @@ $session=$_SESSION['userid'];
   $detailAddress=$row['detailAddress'];
   $extraAddress=$row['extraAddress'];
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,8 +47,8 @@ $session=$_SESSION['userid'];
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
-  <!-- <link rel="stylesheet" href="../css/join.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
+  <link rel="stylesheet" href="./css/sh_payment.css">
   <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
@@ -78,64 +70,63 @@ $session=$_SESSION['userid'];
   <a href="./sh_man_list.php?mode=shose">신발</a>
 </div><!-- sidenav end -->
 <div class="main">
-  <h1>주문/결제</h1>
-  <hr>
-  <div class="">
-    <div class="">
-      <h3>구매자 정보</h3>
-      <table style="width:100%">
+  <div class="admin_title">
+    장바구니
+  </div>
+  <hr class="title_hr mg_10">
+    <div class="buyer_info">
+      <h4>구매자 정보</h4>
+      <table>
         <tr>
-          <td style="width:30%">이름</td>
-          <td style="width:70%"><?=$name?></td>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 이 름</td>
+          <td class="tb_cont"><?=$name?></td>
         </tr>
         <tr>
-          <td>이메일</td>
-          <td><?=$email?></td>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 이 메 일</td>
+          <td class="tb_cont"><?=$email?></td>
         </tr>
         <tr>
-          <td>휴대폰 번호</td>
-          <td><?=$tel?></td>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 연 락 처</td>
+          <td class="tb_cont"><?=$tel?></td>
         </tr>
       </table>
-    </div>
-    <div class="">
-      <h3>받는사람 정보</h3>
-      <table style="width:100%">
+    </div><!-- buyer_info end -->
+    <div class="receiver_info">
+      <h4>받는사람 정보</h4>
+      <table>
         <tr>
-          <td style="width:30%">이름</td>
-          <td style="width:70%"><?=$name?></td>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 이 름</td>
+          <td class="tb_cont"><?=$name?></td>
         </tr>
         <?php
         for ($i=0; $i < $total; $i++) {
           if ($prd_type[$i]=='m' ||  $prd_type[$i]=='w'||$prd_type[$i]=='s'){
           ?>
-          <tr>
-            <td>배송주소</td>
-            <td>
-              <?=$address.$detailAddress.$extraAddress?></td>
-            </tr>
-
+        <tr>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 배송주소</td>
+          <td class="tb_cont"><?=$address.$detailAddress.$extraAddress?></td>
+        </tr>
             <?php
             break;
             }
           }
           ?>
-
         <tr>
-          <td>연락처</td>
-          <td><?=$tel?></td>
+        <tr>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 연 락 처</td>
+          <td class="tb_cont"><?=$tel?></td>
         </tr>
         <tr>
-          <td>이메일</td>
-          <td><?=$email?></td>
+          <td class="td_subjet"><span class="td_subjet_star">*</span> 이 메 일</td>
+          <td class="tb_cont"><?=$email?></td>
         </tr>
         <?php
         for ($i=0; $i < $total; $i++) {
           if ($prd_type[$i]=='m' ||  $prd_type[$i]=='w'||$prd_type[$i]=='s'){
           ?>
           <tr>
-            <td>배송요청사항</td>
-            <td>
+            <td class="td_subjet"><span class="td_subjet_star">*</span>배송요청사항</td>
+            <td class="tb_cont">
               <select class="" name="">
                 <option value="">문앞</option>
                 <option value="">직접받기</option>
@@ -144,16 +135,15 @@ $session=$_SESSION['userid'];
               </select>
             </td>
           </tr>
-
             <?php
             break;
             }
           }
           ?>
-
       </table>
     </div>
-    <div class=""><!-- for문 돌려야 하는 div -->
+    <hr class="title_hr">
+    <div class="state_info"><!-- for문 돌려야 하는 div -->
       <?php
       $sql="SELECT * from `wish_list` where id='$session'";
 
@@ -180,39 +170,40 @@ $session=$_SESSION['userid'];
         $prd_price_sum=$prd_price*1+$prd_price_sum*1;
 
         ?>
-        <h3>배송 <?=$total?>건중 <?=$i+1?></h3>
-        <table style="width:100%">
+      <div class="state_detail">
+        <h4>결제 <?=$total?>건중 <?=$i+1?></h4>
+        <table>
           <tr>
-            <td colspan="2">도착 예정</td>
-
+            <td class="td_subjet" colspan="2"><span class="td_subjet_star">*</span>도착 예정</td>
           </tr>
           <tr>
-            <td style="width:30%"><?=$prd_name?></td>
-            <td style="width:70%">수량 <?=$prd_count?>개</td>
+            <td class="tb_cont">&nbsp;&nbsp;&nbsp;&nbsp;<?=$prd_name?></td>
+            <td class="tb_cont ord_count">수량 <?=$prd_count?>개</td>
           </tr>
         </table>
-
+      </div>        <!-- state_detail end -->
         <?php
       }
-
        ?>
-
     </div><!-- for문 돌려야 하는 div -->
-    <div class="">
-      <h3>결제정보</h3>
-      <table style="width:100%">
+    <hr class="title_hr">
+    <div class="pay_info">
+      <h4>결제정보</h4>
+      <table>
         <tr>
-          <td style="width:30%">총 상품가격</td>
-          <td style="width:70%"><?=number_format($prd_price_sum)?>원</td>
+          <td class="tb_cont t_center">
+            <span>상품 <?=$total?>개</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="t_red">총 결제금액<?=number_format($prd_price_sum)?>원</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </td>
         </tr>
-
       </table>
     </div>
-    <div class="" style="text-align:center">
-
+    <hr class="title_hr">
+    <div class="btn_submit">
       <button type="button" name="button" onclick="payment_iamport()">결제하기</button>
     </div>
-  </div>
   <script type="text/javascript">
   function payment_iamport(){
     var IMP = window.IMP; // 생략가능

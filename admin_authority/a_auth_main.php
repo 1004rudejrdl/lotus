@@ -68,6 +68,11 @@
       <hr class="title_hr">
       <div class="list_search_bar">
         <form name="prd_shop_form" action="./a_auth_main.php?mode=order_list_auth" method="post">
+          <?php
+            if ($total_record==null) {
+              $total_record="0";
+            }
+          ?>
             <div class="lsb_msg">총&nbsp;<?=$total_record?>&nbsp;명의 관리자가 있습니다.</div>
             <!-- float right 순서 거꾸로 올려야함 -->
             <button class="lsb_btn_srch" name="order_list" type="submit" value="id">아이디순</button>

@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
 // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
 $prd_num=$_POST['prd_num'];
-$all_delete=$_GET['mode'];
+
 if ($all_delete=='all_delete') {
   $sql="DELETE from `wish_list` where id='$session'";
 }else{

@@ -76,7 +76,7 @@ $number = $total_record - $start;
     function send_mail(m) {
       var popupX = (window.screen.width / 2) - (600 / 2);
       var popupY = (window.screen.height / 2) - (400 / 2);
-      window.open('../message/message_form.php?id=' + m, '', 'left=' + popupX + ',top=' + popupY + ', width=500, height=400, status=no, scrollbars=no');
+      window.open('../message/message_form.php?s_id=' + m, '', 'left=' + popupX + ',top=' + popupY + ', width=500, height=400, status=no, scrollbars=no');
     }
   </script>
   <title>연인찾기</title>

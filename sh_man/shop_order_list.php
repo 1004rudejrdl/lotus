@@ -11,7 +11,11 @@ $result = mysqli_query($conn,$sql);
 if (!$result) {
   die('Error: ' . mysqli_error($conn));
 }
+
 $total = mysqli_num_rows($result);
+
+$ord_time=date("Y-m-d H:i:s");
+
 for ($i=0; $i < $total; $i++) {
   $row1 = mysqli_fetch_array($result);
   $prd_type_num1=$row1['prd_num'];
@@ -19,7 +23,7 @@ for ($i=0; $i < $total; $i++) {
   $prd_type[$i]=substr($prd_type_num1, 0,1);
   $prd_num[$i]=substr($prd_type_num1, 1);
   $sql = "INSERT INTO `order_list`
-  VALUES('s$prd_type_num1',null,'$session','$prd_num[$i]','$count');";
+  VALUES('s$prd_type_num1',null,'$session','$prd_num[$i]','$count','$ord_time','0',null,null,'n');";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));

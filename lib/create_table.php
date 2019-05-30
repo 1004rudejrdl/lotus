@@ -154,10 +154,11 @@ function create_table($conn, $table_name){
                     `order_type` char(5) NOT NULL,
                     `order_num` int(11) NOT NULL AUTO_INCREMENT,
                     `id` varchar(22) NOT NULL,
-                    `prd_num` char(20) NOT NULL,
+                    `prd_num` int(11) NOT NULL,
                     `order_count` char(2) NOT NULL,
+                    `order_day` char(20) DEFAULT NULL,
                     `tackback_state` char(1) NOT NULL,
-                    `takeback_reason` varchar(100) NOT NULL,
+                    `takeback_reason` varchar(100) DEFAULT NULL,
                     `tackback_day` char(20) DEFAULT NULL,
                     `back_acc` char(1) NOT NULL,
                     PRIMARY KEY (`order_num`)

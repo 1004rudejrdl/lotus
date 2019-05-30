@@ -77,6 +77,11 @@
       </div>
       <hr class="title_hr">
       <div class="list_search_bar">
+        <?php
+          if ($total_record==null) {
+            $total_record="0";
+          }
+        ?>
         <div class="lsb_msg">총&nbsp;<?=$total_record?>&nbsp;명의 회원이 있습니다.</div>
         <form name="a_mb_mt_form" action="./a_mb_mt_main.php?mode=search_mb" method="post">
             <select name="find">
