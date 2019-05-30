@@ -212,7 +212,7 @@ function search_com_info(type){
     </div>    <!-- prd_img_div end -->
 
     <div class="prd_info_div" >
-      <div class="detail_box">
+      <!-- <div class="detail_box"> -->
       <?php
       if ($type=='regist') {
         ?>
@@ -279,7 +279,7 @@ function search_com_info(type){
         &nbsp;&nbsp;&nbsp;
         <input type="number" name="prd_stock" placeholder="현재 재고" value="<?=$shop_stock?>"> 개
         <hr>
-        </div>        <!-- detail_box end -->
+        <!-- </div>         -->        <!-- detail_box end -->
         <div class="file_box">
         <?php for ($i = 0; $i < 10; $i++) { ?>
           <input type="file" name="prd_img[]" value="" onchange="change_img_upload(this)">
