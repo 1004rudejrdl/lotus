@@ -111,6 +111,7 @@
         for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
           //i마다 selected를 0~5 까지 검사하므로 한 i 가 돌고나면 초기화 시켜 주어야 한다. 초기화 하지 않으면 최초에 선택된 값이 후의 i에 모두 적용된다.
           $select0=$select1=$select2=$select3=$select4=$select5=$select6="";
+          mysqli_data_seek($result,$i);
           $row = mysqli_fetch_array($result);
           $order_num=$row['order_num'];
           $user_id=$row['id'];
@@ -210,6 +211,7 @@
                   <option value="6" <?=$select6?>>배달완료</option>
                 </select>
                 <input type="hidden" name="order_num" value="<?=$order_num?>">
+                <input type="hidden" name="page" value="<?=$page?>">
                 <input type="submit" name="" value="배송정보변경">
               </form>
             </td>
@@ -228,6 +230,7 @@
 
                   <form class="" action="update_a_od_rt_bkac.php" method="post">
                     <input type="hidden" name="order_num<?=$i?>" value="<?=$order_num?>">
+                    <input type="hidden" name="page" value="<?=$page?>">
                     <input type="submit" name="" value="환불 하기">
                   </form>
 

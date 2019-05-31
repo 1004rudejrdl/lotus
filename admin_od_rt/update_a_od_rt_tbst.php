@@ -5,9 +5,10 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 
 $id = $_SESSION['userid'];
 $order_num=$_POST["order_num"];
+$page = $_POST['page'];
 
 //$sql = "SELECT * from order_list where id = '$id';";
-$sql = "SELECT tackback_state,order_num from order_list;";
+$sql = "SELECT tackback_state,order_num from order_list order by `order_num` desc;";
 $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
 $total=mysqli_num_rows($result);
 // var_dump($total);
@@ -25,6 +26,6 @@ $total=mysqli_num_rows($result);
   }
 
   mysqli_close($conn);
-  echo "<script>location.href='./a_od_rt_main.php';</script>";
+  echo "<script>location.href='./a_od_rt_main.php?page=$page';</script>";
 
  ?>

@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 $id = $_SESSION['userid'];
 
 
-$sql = "SELECT * from order_list;";
+$sql = "SELECT * from order_list where id = '$id';";
 $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
 $total = mysqli_num_rows($result);
 $regist_day=date("Y-m-d (H:i)");

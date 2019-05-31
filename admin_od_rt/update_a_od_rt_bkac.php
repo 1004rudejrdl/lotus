@@ -5,7 +5,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 
 $id = $_SESSION['userid'];
-
+$page = $_POST['page'];
 
 $sql = "SELECT * from order_list order by `order_num` desc;";
 $result = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
@@ -38,7 +38,7 @@ for ($i=0; $i < $total; $i++) {
 
 
   mysqli_close($conn);
-  echo "<script>location.href='./a_od_rt_main.php';</script>";
+  echo "<script>location.href='./a_od_rt_main.php?page=$page';</script>";
 
 
  ?>
