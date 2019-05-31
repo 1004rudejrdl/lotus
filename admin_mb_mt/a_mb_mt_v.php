@@ -195,7 +195,7 @@ if ((isset($_GET['id'])&&!empty($_GET['id']))) {
               <td colspan="2"class="td_subjet"><span class="td_subjet_star">*</span> 회원 이미지</td>
             </tr>
             <tr>
-              <td colspan="2"><img src="../mb_login/profile_img/<?=$img?>" alt="<?=$id?>"></td>
+              <td colspan="2"><img src="../mb_login/<?=$img?>" alt="<?=$id?>"></td>
             </tr>
           </table>
           <table class="admin_table witdh_100 mb_bottom">
