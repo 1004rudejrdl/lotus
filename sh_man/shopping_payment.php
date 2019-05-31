@@ -1,4 +1,4 @@
-<?php
+﻿<?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 
@@ -104,7 +104,7 @@ $session=$_SESSION['userid'];
           ?>
         <tr>
           <td class="td_subjet"><span class="td_subjet_star">*</span> 배송주소</td>
-          <td class="tb_cont"><?=$address.$detailAddress.$extraAddress?></td>
+          <td class="tb_cont"><?=$address.' '.$detailAddress.' '.$extraAddress?></td>
         </tr>
             <?php
             break;
