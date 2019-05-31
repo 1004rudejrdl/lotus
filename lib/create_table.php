@@ -263,26 +263,6 @@ function create_table($conn, $table_name){
                     PRIMARY KEY (`id`)
                   );";
             break;
-          case 'company_information' :
-            $sql = "CREATE TABLE `company_information` (
-                    `com_rg_num` char(15) NOT NULL,
-                    `com_name` char(15) NOT NULL,
-                    `com_ceo` char(10) NOT NULL,
-                    `com_postcode` char(6) NOT NULL,
-                    `com_address` varchar(45) NOT NULL,
-                    `com_detailAddress` varchar(45) NOT NULL,
-                    `com_extraAddress` varchar(45) DEFAULT NULL,
-                    `com_phone` char(20) NOT NULL,
-                    `com_fax` char(20) NOT NULL,
-                    `com_email` char(45) NOT NULL,
-                    `com_intro` char(60) NOT NULL,
-                    `com_bank` char(10) NOT NULL,
-                    `com_acc` char(20) NOT NULL,
-                    `com_manager` char(10) NOT NULL,
-                    `com_time` char(20) NOT NULL,
-                    PRIMARY KEY (`com_rg_num`)
-                  );";
-            break;
       default:
         echo "<script>alert('해당 테이블이름이 없습니다. ');</script>";
         break;

@@ -1,6 +1,6 @@
 ﻿<?php
   session_start();
-  include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector_main.php";
+  include_once $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector_main.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -82,7 +82,7 @@
           <?php
         }else{
           ?>
-          <button class="dropbtn"><a class="username" href="./message/message.php" ><?=$_SESSION['name']?> 님</a></button>
+          <button class="dropbtn"><a class="username" href="./find_meet/user.php" ><?=$_SESSION['name']?> 님</a></button>
           <?php
         }
         ?>
