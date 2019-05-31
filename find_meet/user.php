@@ -38,7 +38,13 @@
   <!-- <link rel="stylesheet" href="../css/join.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-
+  <script type="text/javascript">
+    function delete_id() {
+      var popupX = (window.screen.width/2)-(600/2);
+     var popupY = (window.screen.height/2)-(400/2);
+     window.open('./alert_delete.php','','left='+popupX+',top='+popupY+', width=300, height=200, status=no, scrollbars=no');
+    }
+  </script>
 </head>
 <body>
 <!-- header start -->
@@ -153,14 +159,14 @@
     </table>
   <?php
 }//end of for in php
-if(!isset($_GET['page'])||$page==1){
-  echo "<img id='match_left_button' src='./img/right_button.png' alt='right_button' >";
-}else if(isset($_GET['page'])&&$page!=$total_page){
-  echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
-  echo "<img id='match_right_button' src='./img/right_button.png' alt='right_button' >";
-}else if($page==$total_page){
-  echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
-}
+// if(!isset($_GET['page'])||$page==1){
+//   echo "<img id='match_left_button' src='./img/right_button.png' alt='right_button' >";
+// }else if(isset($_GET['page'])&&$page!=$total_page){
+//   echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
+//   echo "<img id='match_right_button' src='./img/right_button.png' alt='right_button' >";
+// }else if($page==$total_page){
+//   echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
+// }
 ?>
 <script type="text/javascript">
 function send_mail(m) {
@@ -168,60 +174,6 @@ function send_mail(m) {
  var popupY = (window.screen.height/2)-(400/2);
  window.open('../message/message_form.php?id='+m,'','left='+popupX+',top='+popupY+', width=500, height=400, status=no, scrollbars=no');
 }
-$(document).ready(function() {
-  $('#match_left_button').click(function(event) {
-    $.ajax({
-      url: './like_member.php?mode=match',
-      type: 'GET',
-      data: {page: '<?=$page-1?>'}
-    })
-    .done(function(result) {
-      var json = $.parseJSON(result);
-      $('#like_card_img<?=$i?>').attr("src",json[<?=$i?>].img);
-      $('#like_card_name<?=$i?>').html(json[<?=$i?>].name);
-      $('#like_card_job').html(json[<?=$i?>].job);
-      $('#like_card_hei').html(json[<?=$i?>].height);
-      $('#like_card_wei').html(json[<?=$i?>].weight);
-      $('#like_card_self').html(json[<?=$i?>].self_info);
-      $('#like_card_tel').html(json[<?=$i?>].tel);
-      console.log("success");
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-
-  });
-});
-$(document).ready(function() {
-  $('#match_right_button').click(function(event) {
-    $.ajax({
-      url: './like_member.php?mode=match',
-      type: 'GET',
-      data: {page: '<?=$page+1?>'}
-    })
-    .done(function(result) {
-      var json = $.parseJSON(result);
-      $('#like_card_img<?=$i?>').attr("src",json[<?=$i?>].img);
-      $('#like_card_name<?=$i?>').html(json[<?=$i?>].name);
-      $('#like_card_job').html(json[<?=$i?>].job);
-      $('#like_card_hei').html(json[<?=$i?>].height);
-      $('#like_card_wei').html(json[<?=$i?>].weight);
-      $('#like_card_self').html(json[<?=$i?>].self_info);
-      $('#like_card_tel').html(json[<?=$i?>].tel);
-      console.log("success");
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-
-  });
-});
 </script>
 <!-- <img id="match_left_button" src="./img/left_button.png" alt="left_button">
 <img id="match_right_button" src="./img/right_button.png" alt="right_button" > -->
@@ -234,26 +186,32 @@ $(document).ready(function() {
   $total_page=($like_me_count % SCALE == 0 )?
   ($like_me_count/SCALE):(ceil($like_me_count/SCALE));
   //2.페이지가 없으면 디폴트 페이지 1페이지
-  $like_page=(!isset($_GET['like_page']))?(1):(test_input($_GET['like_page']));
+  $like_page=(!isset($_GET['page']))?(1):(test_input($_GET['page']));
 
   //3.현재페이지 시작번호계산함.
   $like_start=($like_page -1) * SCALE;
   //4. 리스트에 보여줄 번호를 최근순으로 부여함.
-  $number = $rowcount - $start;
+  $number = $like_me_count - $like_start;
+  $count1=$count2=0;
   for ($i = $like_start; $i < $like_start+SCALE && $i<$like_me_count; $i++){
-    //mysqli_data_seek($result,$i);
-    $row=mysqli_fetch_array($result);
+    mysqli_data_seek($result,$i);
+      $row=mysqli_fetch_array($result);
     $like_me=$row['vote_id'];
-    $sql="SELECT * FROM member WHERE `id`='$like_me'";
-    $result=mysqli_query($conn,$sql)or die(mysqli_error($conn));
-    //mysqli_data_seek($result,$i);
-    $row1=mysqli_fetch_array($result);
+    $sql1="SELECT * FROM member WHERE `id`='$like_me'";
+    $result1=mysqli_query($conn,$sql1)or die(mysqli_error($conn));
+
+
+
+    $row1=mysqli_fetch_array($result1);
     $name=$row1['name'];
     $tel=$row1['tel'];
-    $sql="SELECT * FROM member_meeting WHERE `id`='$like_me'";
-    $result=mysqli_query($conn,$sql)or die(mysqli_error($conn));
-    //mysqli_data_seek($result,$i);
-    $row2=mysqli_fetch_array($result);
+
+    $sql2="SELECT * FROM member_meeting WHERE `id`='$like_me'";
+    $result2=mysqli_query($conn,$sql2)or die(mysqli_error($conn));
+
+
+
+    $row2=mysqli_fetch_array($result2);
     $img=$row2['img'];
     $job=$row2['job'];
     if($job==1){
@@ -288,85 +246,40 @@ $(document).ready(function() {
         <td><p id="like_card_self<?=$i?>"><?=$self_info?></p></td>
       </tr>
       <tr>
-        <td><button class="button" onclick="javascript:send_mail('<?=$id?>');">Contact</button></td>
+        <td><button class="button" onclick="javascript:send_mail('<?=$like_me?>');">Contact</button></td>
       </tr>
       <tr>
         <td><span>전화번호 :</span> <span id="like_card_tel<?=$i?>"><?=$tel?></span> </td>
       </tr>
     </table>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#like_left_button').click(function(event) {
-          $.ajax({
-            url: './like_member.php?mode=like',
-            type: 'GET',
-            data: {like_page: '<?=$like_page-1?>'}
-          })
-          .done(function(result) {
-            var json = $.parseJSON(result);
-            $('#like_card_img<?=$i?>').attr("src",json[<?=$i?>].img);
-            $('#like_card_name<?=$i?>').html(json[<?=$i?>].name);
-            $('#like_card_job').html(json[<?=$i?>].job);
-            $('#like_card_hei').html(json[<?=$i?>].height);
-            $('#like_card_wei').html(json[<?=$i?>].weight);
-            $('#like_card_self').html(json[<?=$i?>].self_info);
-            $('#like_card_tel').html(json[<?=$i?>].tel);
-            console.log("success");
-          })
-          .fail(function() {
-            console.log("error");
-          })
-          .always(function() {
-            console.log("complete");
-          });
-
-        });
-      });
-      $(document).ready(function() {
-        $('#like_right_button').click(function(event) {
-          $.ajax({
-            url: './like_member.php?mode=like',
-            type: 'GET',
-            data: {like_page: '<?=$like_page+1?>'}
-          })
-          .done(function(result) {
-            var json = $.parseJSON(result);
-            $('#like_card_img<?=$i?>').attr("src",json[<?=$i?>].img);
-            $('#like_card_name<?=$i?>').html(json[<?=$i?>].name);
-            $('#like_card_job').html(json[<?=$i?>].job);
-            $('#like_card_hei').html(json[<?=$i?>].height);
-            $('#like_card_wei').html(json[<?=$i?>].weight);
-            $('#like_card_self').html(json[<?=$i?>].self_info);
-            $('#like_card_tel').html(json[<?=$i?>].tel);
-            console.log("success");
-          })
-          .fail(function() {
-            console.log("error");
-          })
-          .always(function() {
-            console.log("complete");
-          });
-
-        });
-      });
-    </script>
     <?php
   }
   if(!isset($_GET['page'])||$page==1){
-    echo "<img id='match_left_button' src='./img/right_button.png' alt='right_button' >";
+    $next=$page+1;
+    $less=$page-1;
+    echo '<a href="./user.php?page='.$next.'"><img id="like_right_button" src="./img/right_button.png" alt="right_button" ></a>';
   }else if(isset($_GET['page'])&&$page!=$total_page){
-    echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
-    echo "<img id='match_right_button' src='./img/right_button.png' alt='right_button' >";
+    $next=$page+1;
+    $less=$page-1;
+    echo '<a href="./user.php?page='.$less.'"><img id="like_left_button" src="./img/left_button.png" alt="left_button"></a>';
+    echo '<a href="./user.php?page='.$next.'"><img id="like_right_button" src="./img/right_button.png" alt="right_button" ></a>';
   }else if($page==$total_page){
-    echo "<img id='match_left_button' src='./img/left_button.png' alt='left_button'>";
+    $next=$page+1;
+    $less=$page-1;
+    echo '<a href="./user.php?page='.$less.'"><img id="like_left_button" src="./img/left_button.png" alt="left_button"></a>';
   }
    ?>
 </div>
 <!-- <img id="like_left_button" src="./img/left_button.png" alt="like_left_button">
 <img id="like_right_button" src="./img/right_button.png" alt="like_right_button">  -->
 <div class="">
-  <a href="#"><img src="./img/shopping.png" alt="" style="width:500px;height:500px;"></a>
-  <a href="#"><img src="./img/bill.png" alt=""style="width:500px;height:500px;"></a>
+  <iframe src="../sh_man/user_shopping_basket.php" width="40%" height="300px;"></iframe>
+  <iframe src="../work/done/test_orderlist_return.php" width="40%" height="300px;"></iframe>
+  <a href="#"><img src="./img/shopping.png" alt="" style="width:150px;height:150px;"></a>
+  <a href="#"><img src="./img/bill.png" alt=""style="width:150px;height:150px;"></a>
+  <a href="../message/message.php"><img src="../message/img/sendmail.png" alt=""> </a>
+  <a href="../mb_login/mb_modify_form.php"><img src="./img/user_modify.png" alt=""> </a>
+  <img src="./img/user_delete.png" onclick="delete_id()" alt="">
 </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
