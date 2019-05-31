@@ -24,10 +24,19 @@ for ($i=0; $i < $total; $i++) {
   $prd_num[$i]=substr($prd_type_num1, 1);
   $sql = "INSERT INTO `order_list`
   VALUES('s$prd_type_num1',null,'$session','$prd_num[$i]','$count','$ord_time','0',null,null,'n');";
-  $result = mysqli_query($conn,$sql);
-  if (!$result) {
+  $result1 = mysqli_query($conn,$sql);
+  if (!$result1) {
     die('Error: ' . mysqli_error($conn));
   }
+
+  $sql="SELECT shop_stock from `prd_shop_detail` where prd_num='$prd_num[$i]';";
+  $result2 = mysqli_query($conn,$sql)or die("실패원인 : " . mysqli_error($conn));
+  $row = mysqli_fetch_array($result2);
+  $shop_stock = $row['shop_stock'];
+
+  $sql="UPDATE `prd_shop_detail` SET `shop_stock` = $shop_stock*1-$count*1 where prd_num='$prd_num[$i]';";
+  $result3 = mysqli_query($conn, $sql) or die("실패원인 : " . mysqli_error($conn));
+
 
 }
 $sql = "DELETE from wish_list where id = '$session'";
@@ -35,6 +44,8 @@ $result=mysqli_query($conn, $sql);
 if (!$result) {
   die('Error: ' . mysqli_error($conn));
 }
+
+
 
 
 mysqli_close($conn);

@@ -75,14 +75,22 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <script type="text/javascript">
-function search_com_info(type){
+function search_shop_info(type){
   var com_type = type;
   var popupX = (window.screen.width / 2) - (800 / 2);
   var popupY= (window.screen.height /2) - (500 / 2);
-  window.open("../lib/a_search_com_info.php?com_type="+com_type, 'search_com_info', 'status=no, width=1500, height=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+  window.open("../lib/a_search_shop_info.php?com_type="+com_type, 'search_shop_info', 'status=no, width=1500, height=500, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 }
+function search_shop_name(){
+  var shop_num_name = document.getElementById("shop_num_name").value;
+  console.log(shop_num_name);
+  document.getElementById("shop_name").value=shop_num_name;
+  }
 </script>
 <body>
+  <form class="" name="prd_shop_form" action="index.html" method="post">
+    <input type="hidden" name="shop_num_name" id="shop_num_name" value="">
+  </form>
 <!-- header start -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
 <!-- header end -->
@@ -215,12 +223,13 @@ function search_com_info(type){
       <!-- <div class="detail_box"> -->
       <?php
       if ($type=='regist') {
+        $com_type="s_"
         ?>
         <form class="" action="./insert_shop_prd.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
         &nbsp;&nbsp;&nbsp;
-        <input type="text" name="shop_name" value="<?=$shop_name?>" placeholder="샾이름">
-        <!-- <input type="text" name="com_num_name" placeholder="찾기 버튼을 눌러 검색하세요" autofocus value="<=$com_num_name?>" readonly>
-        <button type="button" onclick="search_com_info('<=$com_type?>')" name="button">찾기</button> -->
+
+        <input type="text" name="shop_name" id="shop_name" placeholder="찾기 버튼을 눌러 검색하세요" autofocus value="<?=$shop_name?>" readonly>
+        <button type="button" onclick="search_shop_info('<?=$com_type?>')" name="button">찾기</button>
         <hr>
         &nbsp;&nbsp;&nbsp;
         <input type="text" name="prd_name" value="<?=$prd_name?>" placeholder="상품명">
