@@ -17,7 +17,7 @@ $board_type = "m";
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $content = trim($_POST["content"]);
     $subject = trim($_POST['subject']);
-    
+
     if(empty($content) || empty($subject)){
       echo "<script>alert('내용입력요망!');history.go(-1);</script>";
       exit;

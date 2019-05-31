@@ -164,7 +164,7 @@ $number = $total_record - $start;
         <br><br><br>
         </div>
         <div id="button1">
-          
+
 
           <?php //세션 아이디가 있으면 글쓰기 버튼을 보여준다
           if (!empty($_SESSION['userid'])) {

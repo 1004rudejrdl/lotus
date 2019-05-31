@@ -17,7 +17,7 @@ $board_type = "f";
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $content = trim($_POST["content"]);
     $subject = trim($_POST['subject']);
-    
+
     if(empty($content) || empty($subject)){
       echo "<script>alert('내용입력요망!');history.go(-1);</script>";
       exit;
@@ -189,7 +189,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
   //댓글을 다는 사람은 로그인을 해야한다는 것을 말한것 이다.
   $userid=$_SESSION['userid'];
   $q_userid = mysqli_real_escape_string($conn, $userid);
-  $sql="SELECT * from `lotus_db` where id = '$q_userid'";
+  $sql = "SELECT * from `member` where id = '$q_userid'";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
@@ -200,28 +200,33 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     echo "<script>alert('없는 아이디!!');history.go(-1);</script>";
     exit;
   }else{
+
     $content = test_input($_POST["ripple_content"]);
     $page = test_input($_POST["page"]);
     $parent = test_input($_POST["parent"]);
     $hit = test_input($_POST["hit"]);
 
-    $q_usernick = mysqli_real_escape_string($conn, $_SESSION['usernick']);
-    $q_username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    // $q_usernick = mysqli_real_escape_string($conn, $_SESSION['usernick']);
+    $q_userid = mysqli_real_escape_string($conn, $_SESSION['userid']);
     $q_content = mysqli_real_escape_string($conn, $content);
     $q_parent = mysqli_real_escape_string($conn, $parent);
     $regist_day=date("Y-m-d (H:i)");
+    $group_num=0;
+    $depth=0;
+    $ord=0;
 
-    $sql="INSERT INTO `commu_ripple` VALUES (null,'$q_parent','$q_userid','$q_username', '$q_usernick','$q_content','$regist_day')";
+    $board_type="f";
+
+    $sql="INSERT INTO `commu_ripple` VALUES ('$board_type','$q_parent',null,'$group_num', '$depth','$ord','$q_userid','$q_content','$regist_day')";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
     mysqli_close($conn);
     echo "<script>location.href='./cm_free_view.php?num=$q_parent&page=$page&hit=$hit';</script>";
-}//end of if rowcount
 
 }//end of if insert
-else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
+}else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
   $page= test_input($_GET["page"]);
   $num = test_input($_POST["num"]);
   $parent = test_input($_POST["parent"]);
@@ -238,6 +243,8 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
 }
 
 else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
+
+
   $content = trim($_POST["content"]);
   $subject = trim($_POST['subject']);
   if(empty($content) || empty($subject)){
@@ -272,8 +279,9 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
+    $board_type="f";
 
-    $sql = "INSERT INTO `commu` VALUES('$board_type',null,0,'$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null);";
+    $sql = "INSERT INTO `commu` VALUES('$board_type',null,'$group_num','$depth','$ord','$q_userid','$q_subject','$q_content','$regist_day','$hit',null,null,null,null,null,null,null,null,null);";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -288,7 +296,7 @@ else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
     $max_num=$row['max(num)'];
 
     echo "<script>location.href='./cm_free_view.php?num=$max_num&hit=$hit';</script>";
-}
+  }
 
 mysqli_close($conn);
 
