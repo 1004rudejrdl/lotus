@@ -183,7 +183,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       </div>
   <?php
     }//end of while
-    mysqli_close($conn);
+
   ?>
   <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
     <input type="hidden" name="parent" value="<?=$q_num?>">
@@ -231,6 +231,9 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
        </div><!--end of write_button  -->
       </div><!--end of content -->
     </div><!--end of wrap  -->
+    <?php
+       mysqli_close($conn);
+    ?>
   </body>
 </html>
  <!-- fieldset -->
