@@ -93,7 +93,7 @@ function create_table($conn, $table_name){
                     `com_email` varchar(45) NOT NULL,
                     `com_tel` char(11) NOT NULL,
                     `com_busi_num` char(15) NOT NULL,
-                    `com_regist_num` varchar(15) NOT NULL,
+                    `com_regist_num` varchar(20) NOT NULL,
                     PRIMARY KEY (`com_num`)
                   );";
             break;
