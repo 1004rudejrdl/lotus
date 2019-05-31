@@ -15,11 +15,11 @@
 
 class Sendmail {
     /* smtp 의 호스트 설정 : 아래는 naver 일경우 */
-    var $host="ssl://smtp.naver.com";
+    var $host="smtp.naver.com";
     /* smtp 계정 아이디 입력 */
-    var $smtp_id="androidwebapp6@naver.com";
+    var $smtp_id="yeoneakkot@naver.com";
     /* smtp 계정 비밀번호 입력 */
-    var $smtp_pw="dnpqdoq!";
+    var $smtp_pw="woo-5117";
 
     /* 디버그모드 - 활성 :1, 비활성 : 0; */
     var $debug = 1;
@@ -297,8 +297,8 @@ class Sendmail {
  *   */
 $config=array(
     'host'=>'ssl://smtp.naver.com',
-    'smtp_id'=>'androidwebapp6@naver.com',
-    'smtp_pw'=>'dnpqdoq!',
+    'smtp_id'=>'yeoneakkot@naver.com',
+    'smtp_pw'=>'woo-5117',
     'debug'=>1,
     'charset'=>'utf-8',
     'ctype'=>'text/plain'
