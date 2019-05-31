@@ -71,7 +71,7 @@
           <?php
         }else{
           ?>
-          <button class="dropbtn"><a class="username" href="../message/message.php" ><?=$_SESSION['name']?> 님</a></button>
+          <button class="dropbtn"><a class="username" href="../find_meet/user.php" ><?=$_SESSION['name']?> 님</a></button>
           <?php
         }
         ?>

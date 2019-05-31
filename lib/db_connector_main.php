@@ -17,6 +17,18 @@ create_table($conn, 'commu');
 create_table($conn, 'commu_ripple');
 create_table($conn, 'commu_review');
 create_table($conn, 'admin_authority');
-create_table($conn, 'company_information');
 
- ?>
+insert_init_data($conn, 'member');
+insert_init_data($conn, 'member_meeting');
+insert_init_data($conn, 'member_msg');
+insert_init_data($conn, 'member_type_survey');
+insert_init_data($conn, 'com_info');
+insert_init_data($conn, 'prd_shop');
+insert_init_data($conn, 'prd_shop_detail');
+insert_init_data($conn, 'order_list');
+insert_init_data($conn, 'wish_list');
+insert_init_data($conn, 'commu');
+insert_init_data($conn, 'commu_ripple');
+insert_init_data($conn, 'admin_authority');
+
+?>
