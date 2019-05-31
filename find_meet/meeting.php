@@ -15,7 +15,7 @@ if (isset($_SESSION['userid'])) {
 define('SCALE', 10);
 $sql=$result=$total_record=$total_page=$start=$b_id=$count="";
 $row="";
-$memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
+$memo_id=$memo_num=$memo_date=$memo_nick=$memo_content=$self_info="";
 $total_record=0;
 
 $sql = "show tables from lotus_db";
@@ -78,6 +78,12 @@ $number = $total_record - $start;
       var popupY = (window.screen.height / 2) - (400 / 2);
       window.open('../message/message_form.php?s_id=' + m, '', 'left=' + popupX + ',top=' + popupY + ', width=500, height=400, status=no, scrollbars=no');
     }
+    function show_member(selected_mb_id){
+      var id = selected_mb_id;
+      var popupX = (window.screen.width / 2) - (800 / 2);
+      var popupY= (window.screen.height /2) - (500 / 2);
+      window.open("./lib/mb_info.php?id="+id, 'mb_info', 'status=no, width=800, height=300, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+    }
   </script>
   <title>연인찾기</title>
 </head>
@@ -115,7 +121,14 @@ $number = $total_record - $start;
          $row1=mysqli_fetch_array($result1);
          $id1=$row1['id'];
          $img=$row1['img'];
+
          $self_info=$row1['self_info'];
+         $len_self_info=strlen($row1['self_info']);
+         if($len_self_info>12) {
+           $self_info=mb_substr($row1['self_info'], 0, 10, 'utf-8');
+           $self_info=$self_info."...";
+         }
+
          $height=$row1['height'];
          $job=$row1['job'];
          if($job==1){
@@ -139,7 +152,7 @@ $number = $total_record - $start;
          ?>
       <table class="admin_title">
         <tr>
-          <td class="mt_img"><img src="../mb_login/<?=$img?>" alt="<?=$id?>"></td>
+          <td class="mt_img"><img src="../mb_login/<?=$img?>" alt="<?=$id?>" onclick="show_member('<?=$id?>')"></td>
         </tr>
         <tr>
           <td>
