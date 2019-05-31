@@ -219,11 +219,13 @@
             <td class="">
               <?php
               if (!empty($tackback_day)) {
-                if (!empty($back_acc)) {
+                if ($back_acc=='1') {
 
                   echo "환불 처리 완료";
                 }else {
+                  var_dump($order_num);
                   ?>
+
                   <form class="" action="update_a_od_rt_bkac.php" method="post">
                     <input type="hidden" name="order_num<?=$i?>" value="<?=$order_num?>">
                     <input type="submit" name="" value="환불 하기">
