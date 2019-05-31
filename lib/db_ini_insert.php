@@ -6,12 +6,11 @@ function insert_init_data($conn, $table_name){
 
   $is_set=mysqli_num_rows($result);
 
-  if($is_set !== null){
+  if(!empty($is_set) ){
     $flag="OK";
-    break;
   }
 
-  if($flag==="NO"){
+  if($flag=="NO"){
     switch($table_name){
           case 'member' :
             $sql = "INSERT INTO `member` VALUES (1,'dmsdudwo','1234','은영재','dmsdudwo1002@dddda.com','01023482329','05231993','0','05834','서울 강남구','가 길','45','0',NULL,NULL,NULL,NULL),(2,'dmsdudwo1','1234','이영재','dmsdudwo1003@dass.com','01023432323','05121995','0','05934','서울 동대문구','나 길','12','1',NULL,NULL,NULL,NULL),(3,'dmsdudwo2','1234','조영재','dmsdudwo1004@dass.com','01034345454','05221994','0','05834','서울 성동구','다 길','23','1',NULL,NULL,NULL,NULL),(4,'dmsdudwo3','1234','박영재','dmsdudwo1005@dass.com','01094342233','05211992','0','05834','서울 종로구','라 길','32','0',NULL,NULL,NULL,NULL),(5,'dmsdudwo4','1234','잼미','dmsdudwo1006@dass.com','01045453434','05211991','1','05834','대전 대덕구','마 길','6','0',NULL,NULL,NULL,NULL),(6,'dmsdudwo5','1234','양팡','dmsdudwo1007@dass.com','01023456565','05121994','1','05834','부산 강서구','바 길','94','0',NULL,NULL,NULL,NULL),(7,'dmsdudwo6','1234','유소나','dmsdudwo1008@dass.com','01023443232','05121996','1','05834','광주 광산구','사 길','1','1',NULL,NULL,NULL,NULL),(8,'dmsdudwo7','1234','꽃빈','dmsdudwo1009@dass.com','01034323232','05111992','1','05834','제주특별자치도 제주시','아 길','65','0',NULL,NULL,NULL,NULL),(9,'dmsdudwo8','1234','곽영재','dmsdudwo1010@dass.com','01088554343','05111995','0','05834','인천 부평구','자 길','54','0',NULL,NULL,NULL,NULL),(10,'dmsdudwo9','1234','서강준','dmsdudwo1011@dass.com','01023455454','05111985','0','05834','경기도 평택시','차 길','12','0',NULL,NULL,NULL,NULL);";

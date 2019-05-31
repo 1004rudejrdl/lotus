@@ -1,6 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
+include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_ini_insert.php";
 
 create_table($conn, 'member');
 create_table($conn, 'member_meeting');
