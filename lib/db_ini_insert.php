@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 function insert_init_data($conn, $table_name){
   $flag="NO";
   $sql = "SELECT * from $table_name";
@@ -6,7 +6,7 @@ function insert_init_data($conn, $table_name){
 
   $is_set=mysqli_num_rows($result);
 
-  if($is_set === null){
+  if($is_set !== null){
     $flag="OK";
     break;
   }
