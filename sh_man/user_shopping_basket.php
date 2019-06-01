@@ -40,12 +40,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
-
-  <!-- <script type="text/javascript" src="../js/sign_update_check_html.js?ver=1" ></script> -->
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <!-- <script type="text/javascript" src="../js/sign_update_check_ajax_main.js?ver=1"></script> -->
 </head>
 <body>
+
 <div class="main">
 
 <div class="">
@@ -164,10 +162,19 @@ $prd_price_sum=number_format($prd_price_sum);
 
 
 
-  <fieldset style="text-align:center;width:100%">
+  <fieldset style="text-align:center">
   상품가격 <?=$prd_price_sum?>원
   </fieldset>
 </div>
+
+<div class="" style="text-align:center">
+  <a href="./user_shopping_payment.php"> <button type="button" name="button">구매하기</button></a>
+</div>
+
+
+
+
+
 </div>
 
 

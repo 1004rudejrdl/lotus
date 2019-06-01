@@ -37,6 +37,8 @@
   <link rel="stylesheet" href="../css/common.css">
   <!-- <link rel="stylesheet" href="../css/join.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
+  <link rel="stylesheet" href="./css/meeting.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <script type="text/javascript">
     function delete_id() {
@@ -53,10 +55,12 @@
 <!-- main_body start -->
 <div class="main_body">
 <div id="sidenav" class="sidenav">
-  <a href="#about">추천/예약</a>
-  <a href="#services">맛집</a>
-  <a href="#clients">숙박</a>
-  <a href="#contact">렌트카</a>
+  <a href="#"><h3>회원정보창</h3> </a>
+  <a href="../message/message.php">우편함</a>
+  <a href="../mb_login/mb_modify_form.php">회원정보수정</a>
+  <a href="#"onclick="delete_id()">회원탈퇴</a>
+  <a href="../sh_man/user_shopping_basket.php">장바구니</a>
+  <a href="../work/done/test_orderlist_return.php">결제목록</a>
 </div><!-- sidenav end -->
 <div class="main">
   <table>
@@ -82,7 +86,7 @@
     </tr>
     <tr>
       <th>자기소개</th>
-      <td><span><?=$self_info?></span> </td>
+      <td colspan="3"><span><?=$self_info?></span> </td>
     </tr>
   </table>
   <div class="">
@@ -273,13 +277,8 @@ function send_mail(m) {
 <!-- <img id="like_left_button" src="./img/left_button.png" alt="like_left_button">
 <img id="like_right_button" src="./img/right_button.png" alt="like_right_button">  -->
 <div class="">
-  <iframe src="../sh_man/user_shopping_basket.php" width="40%" height="300px;"></iframe>
-  <iframe src="../work/done/test_orderlist_return.php" width="40%" height="300px;"></iframe>
-  <a href="#"><img src="./img/shopping.png" alt="" style="width:150px;height:150px;"></a>
-  <a href="#"><img src="./img/bill.png" alt=""style="width:150px;height:150px;"></a>
-  <a href="../message/message.php"><img src="../message/img/sendmail.png" alt=""> </a>
-  <a href="../mb_login/mb_modify_form.php"><img src="./img/user_modify.png" alt=""> </a>
-  <img src="./img/user_delete.png" onclick="delete_id()" alt="">
+  <iframe src="../sh_man/user_shopping_basket.php" width="100%" height="300px;"></iframe>
+  <iframe src="../work/done/test_orderlist_return.php" width="100%" height="300px;"></iframe>
 </div>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
