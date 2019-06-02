@@ -57,11 +57,11 @@
 <!-- main_body start -->
 <div class="main_body">
 <div id="sidenav" class="sidenav">
-  <a >회원정보창</a>
+  <a href="../find_meet/user.php">회원정보창</a>
   <a href="../message/message.php">우편함</a>
   <a href="../mb_login/mb_modify_form.php">회원정보수정</a>
   <a href="../sh_man/shopping_basket.php?mode_user=user_page">장바구니</a>
-  <a href="../sh_man/shopping_payment.php?mode_user=user_page">주문/결제목록</a>
+  <a href="../sh_man/test_orderlist_return.php">주문/결제목록</a>
 </div><!-- sidenav end -->
 
 <div class="main">
