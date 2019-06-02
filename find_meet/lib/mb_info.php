@@ -51,6 +51,19 @@
         $img=$row['img'];
         $matching=$row['matching'];
         $matching_day=$row['matching_day'];
+        $height=$row['height'];
+        $job=$row['job'];
+        if($job==1){
+          $job="무직";
+        }else if($job==2){
+          $job="공무원";
+        }else if($job==3){
+          $job="학생";
+        }else if($job==4){
+          $job="자영업";
+        }else if($job==5){
+          $job="직장인";
+        }
 
       $sql="SELECT * from `member_like` where `id` = '$id';";
         $result = mysqli_query($conn,$sql);
@@ -83,41 +96,39 @@
         <?=$id?>
       </div>
       <hr class="title_hr">
-      <table class="admin_table ">
+      <table class="admin_title">
         <tr>
-          <td class="td_subjet"><span class="td_subjet_star">*</span> 아 이 디</td>
-          <td class="tb_cont">
-            <?=$mb_id?>
+          <td class="mt_img"><img src="../../mb_login/<?=$img?>" alt="<?=$id?>" onclick="show_member('<?=$id?>')"></td>
+        </tr>
+        <tr>
+          <td>
+            <h3><?=$name?></h3>
           </td>
         </tr>
         <tr>
-          <td class="td_subjet"><span class="td_subjet_star">*</span> 이  름</td>
-          <td class="tb_cont">
-            <?=$name?>
+          <td>
+            <?=$job?>
           </td>
         </tr>
         <tr>
-          <td class="td_subjet"><span class="td_subjet_star">*</span> 성  별</td>
-          <td class="tb_cont">
-            <?php
-              $g=($gender=="0")?("남"):("여");
-            ?>
-            <?=$g?>
+          <td>
+            키 :<?=$height?><br>
+            좋아요 <label id="like_num<?=$i?>"><?=$like?></label><input type="hidden" id="hidden_like" name="hidden_like" value="<?=$like?>">
+              <input type="hidden" class="vote_who" id="vote_who<?=$i?>" name="vote_who" value="<?=$id?>">
+              <input type="hidden" class="flag_like" id="flag_like" name="flag_like" value="">
+              <input type="image" src="../img/like.png" style="width:25px;height:25px;" onclick="javascript:like(<?=$i?>);" class="button_like" id="button_like<?=$i?>" name="button_like" value="">
           </td>
         </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 좋아요</td>
-            <td class="tb_cont">
-              <?=$like?>
-            </td>
-          </tr>
-          <tr>
-            <td class="td_subjet"><span class="td_subjet_star">*</span> 자기 소개</td>
-            <td class="tb_cont">
-              <?=$self_info?>
-            </td>
-          </tr>
-        </table>
+        <tr>
+          <td>
+            <?=$self_info?>
+          </td>
+        </tr>
+        <tr>
+          <td><button class="button" onclick="javascript:send_mail('<?=$id?>');">Contact</button></td>
+        </tr>
+      </table>
+    
         <hr class="title_hr">
 
       <p>&nbsp;</p>
