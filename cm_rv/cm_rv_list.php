@@ -62,8 +62,8 @@ $number = $total_record - $start;
       <div class="main_body">
         <div id="sidenav" class="sidenav">
           <a>커뮤니티</a>
-          <a href="../cm_free/cm_free_list.php">자유 게시판</a>
-          <a href="../cm_gath/cm_gath_list.php">모임 게시판</a>
+          <a href="../cm_free/cm_free_list.php">자유게시판</a>
+          <a href="../cm_gath/cm_gath_list.php">모임게시판</a>
           <a href="../cm_rv/cm_rv_list.php">성공후기</a>
           <a href="../cm_qna/cm_qna_list.php">QnA</a>
         </div>

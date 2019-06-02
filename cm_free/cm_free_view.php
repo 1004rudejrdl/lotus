@@ -87,8 +87,8 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       <div class="main_body">
         <div id="sidenav" class="sidenav">
           <a>커뮤니티</a>
-          <a href="../cm_free/cm_free_list.php">자유 게시판</a>
-          <a href="../cm_gath/cm_gath_list.php">모임 게시판</a>
+          <a href="../cm_free/cm_free_list.php">자유게시판</a>
+          <a href="../cm_gath/cm_gath_list.php">모임게시판</a>
           <a href="../cm_rv/cm_rv_list.php">성공후기</a>
           <a href="../cm_qna/cm_qna_list.php">QnA</a>
         </div>
@@ -188,7 +188,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
           </div><!-- rippel end -->
           <hr class="title_hr">
           <div class="btn_center">
-            <div class="btn_submit btn_3">
+            <div class="btn_submit btn_5">
            <a href="./cm_free_list.php?page=<?=$page?>" class="write_page1">목 록 </a>
            <?php
            //$sql="SELECT * from `commu_ripple` where parent='$q_num' ";
@@ -199,9 +199,9 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
            if (isset($_SESSION['userid'])) {
              if($_SESSION['userid']==$id){
                echo '<a href="./cm_free_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a>';
-               echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
+               echo '<button onclick = "check_delete('.$num.')">삭 제</button>';
              }else if (!empty($auth_commu)) {
-               echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
+               echo '<button onclick = "check_delete('.$num.')">삭 제</button>';
              }
            }
            if (!empty($_SESSION['userid'])) {

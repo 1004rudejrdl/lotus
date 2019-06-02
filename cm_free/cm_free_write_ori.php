@@ -55,8 +55,10 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="/css/view.css">
     <link rel="stylesheet" href="../css/header_sidenav.css">
-    <link rel="stylesheet" href="../css/board_write.css">
+    <link rel="stylesheet" href="./css/cm_free_write.css">
+    <!-- <link rel="stylesheet" href="./css/cm_gath_view.css"> -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <title></title>
   </head>
@@ -67,16 +69,18 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
       <div class="main_body">
         <div id="sidenav" class="sidenav">
           <a>커뮤니티</a>
-          <a href="../cm_free/cm_free_list.php">자유게시판</a>
-          <a href="../cm_gath/cm_gath_list.php">모임게시판</a>
-          <a href="../cm_rv/cm_rv_list.php">성공후기</a>
-          <a href="../cm_qna/cm_qna_list.php">QnA</a>
+          <a href="../cm_free/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유 게시판</a>
+          <a href="../cm_gath/cm_gath_list.php" style="color: rgba(252, 105, 105, 1);">모임 게시판</a>
+          <a href="../cm_rv/cm_rv_list.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
+          <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
         </div>
-        <div class="main">
-          <div class="admin_title">
-            모임게시판
-          </div>
-          <hr>
+
+      <div class="main">
+
+       <div id="col2">
+         <div id="title1">
+        <span class="write1">WRITE</span>
+         </div> <hr>
 
 
          <div class="clear"></div>

@@ -87,14 +87,14 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
         <div class="main_body">
           <div id="sidenav" class="sidenav">
             <a>커뮤니티</a>
-            <a href="../cm_free/cm_free_list.php">자유 게시판</a>
-            <a href="../cm_gath/cm_gath_list.php">모임 게시판</a>
+            <a href="../cm_free/cm_free_list.php">자유게시판</a>
+            <a href="../cm_gath/cm_gath_list.php">모임게시판</a>
             <a href="../cm_rv/cm_rv_list.php">성공후기</a>
             <a href="../cm_qna/cm_qna_list.php">QnA</a>
           </div>
           <div class="main">
           <div class="admin_title">
-            자유게시판
+            모임게시판
           </div>
              <hr class="title_hr">
              <table class="list_header_tb">
@@ -138,7 +138,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                 </div>
               <hr class="title_hr">
               <div class="btn_center">
-                <div class="btn_submit btn_4">
+                <div class="btn_submit btn_5">
              <?php
              $sql2="SELECT * from `admin_authority` where id = '$userid';";
              $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($conn));

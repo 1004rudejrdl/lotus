@@ -200,6 +200,7 @@ margin-right:auto;
 }
 .rip_id_day{
   float: left;
+  font-weight: bold;
 }
 .rip_del{
   float: right;
@@ -231,6 +232,7 @@ margin-right:auto;
   clear: both;
   position:relative;
   margin: 20px 0 15% 0;
+  text-align: center;
 }
 .btn_submit{
   position:absolute;
@@ -238,12 +240,17 @@ margin-right:auto;
   right:0;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 .btn_3{
   width: 175px;
 }
 .btn_4{
   width: 222px;
+}
+.btn_5{
+  width: 400px;
+
 }
 
 
