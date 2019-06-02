@@ -50,16 +50,15 @@
 }
 
 .main {
-  max-width: 85%;
-  margin-left: 15%;
+  width: 100%;
   margin-top: 200px;
-  font-size: 28px; /* Increased text to enable scrolling */
+  font-size: 28px;
   padding: 10px 30px;
 }
 .footer_bg{
   clear: both;
 }
-@media screen and (max-width: 1400px) {
+/* @media screen and (max-width: 1400px) {
   .main {
     max-width: 84.5%;
     margin-left: 15%;
@@ -88,7 +87,7 @@
     max-width: 83.5%;
     margin-left: 16%;
   }
-}
+} */
 @media screen and (max-width: 800px) {
   .logo img {
     width:225px;

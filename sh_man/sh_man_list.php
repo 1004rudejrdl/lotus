@@ -490,7 +490,11 @@ function search_shop_name(){
 
 
 <!-- *************리스트************* -->
-<hr class="title_hr">
+<?php if (!empty($_POST['prd_num'])  ||  isset($_POST['regist'])) {
+  echo '<hr class="title_hr">';
+}
+  ?>
+
 <div class="prd_list" >
   <div class="ord_rg_prd">
     <div class="list_menu_option">

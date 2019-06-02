@@ -175,6 +175,9 @@
         mysqli_close($conn);
         ?>
       </table> <!-- admin_table end -->
+      <?php
+      if ($total_record!=null) {
+        ?>
       <hr class="title_hr">
       <div class="page_to" >
         <div class="page_to_in" >
@@ -208,6 +211,9 @@
           <a href="./a_mb_mt_main.php?page=<?=$total_page?>">▶▶</a>
       </div> <!-- page_to in end 페이지 이동 -->
       </div> <!-- page_to end 페이지 이동 -->
+      <?php
+    }
+    ?>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
 

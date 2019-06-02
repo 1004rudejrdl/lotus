@@ -174,7 +174,7 @@ td:hover{
 .btn_2{
   width: 171px;
 }
-.btn_submit input, .btn_submit a{
+.btn_submit input, .btn_submit a, .btn_del_mem a{
   display: inline;
   border: none;
   text-decoration: none;
@@ -191,39 +191,24 @@ td:hover{
 .mg_bottom{
   margin-bottom: 15%;
 }
-@media screen and (max-width: 1700px) {
-  .main {
-    margin-left: 17.5%;
-  }
-}
-@media screen and (max-width: 1600px) {
-  .main {
-    margin-left: 19.5%;
-  }
+.btn_del_mem{
+  width: 100%;
+  text-align: right;
+  padding-right: 5%;
+  margin: 50px 0 100px 0;
 }
 @media screen and (max-width: 1540px) {
   .tb_container {
     margin-bottom: 12px;
   }
 }
-@media screen and (max-width: 1500px) {
-  .main {
-    margin-left: 21%;
-  }
-}
 @media screen and (max-width: 1400px) {
-  .main {
-    margin-left: 22.5%;
-  }
   .sidenav a {
     padding-top: 3.5px;
     padding-bottom: 3.5px;
   }
 }
 @media screen and (max-width: 1200px) {
-  .main {
-    margin-left: 24%;
-  }
   .admin_table{
     float: none;
     width: 100%;
@@ -234,20 +219,8 @@ td:hover{
   .btn_submit{
     right:0;
   }
-}
-@media screen and (max-width: 1100px) {
-  .main {
-    margin-left: 25.5%;
-  }
-}
-@media screen and (max-width: 100px) {
-  .main {
-    margin-left: 27%;
-  }
-}
-@media screen and (max-width: 900px) {
-  .main {
-    margin-left: 28.5%;
+  .btn_del_mem{
+    padding: 0;
   }
 }
 @media screen and (max-width: 800px) {
@@ -271,5 +244,4 @@ td:hover{
     color:rgb(240, 165, 0);
     margin: 0 0 0 0px;
   }
-
 }

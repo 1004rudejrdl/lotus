@@ -224,6 +224,10 @@ $number = $total_record - $start;
         }//end of for
        ?>
       <input type="hidden" class="vote_user" id="vote_user" name="vote_user" value="<?=$user_id?>">
+      <?php
+        if ($total_record!=0) {
+        ?>
+
       <hr class="title_hr">
       <div class="page_to">
         <div class="page_to_in">
@@ -257,6 +261,9 @@ $number = $total_record - $start;
           <a href="./op_free_bd_main.php?page=<?=$total_page?>">▶▶</a>
         </div> <!-- page_to in end 페이지 이동 -->
       </div> <!-- page_to end 페이지 이동 -->
+      <?php
+      }
+    ?>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
     </div> <!-- main end -->

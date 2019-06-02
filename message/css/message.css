@@ -1,0 +1,110 @@
+a{
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.admin_title{
+  color:rgb(156, 156, 156);
+  float:left;
+  margin-top: 50px;
+  font-size: 28px;
+}
+.title_hr{
+  size:1;
+  width:100%;
+  margin: 20px 0;
+  clear: both;
+  margin: 0;
+  padding: 0;
+}
+.first_hr{
+  margin-bottom: 20px;
+}
+.main {
+  max-width: 70%;
+  margin-left: 16%;
+  margin-top: 150px;
+  font-size: 16px;
+  padding: 10px 30px;
+}
+@media screen and (max-width: 1400px) {
+  .sidenav a {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+  }
+}
+
+.page_to a{
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  clear: both;
+  width: 100%;
+  margin : 30px 0;
+}
+.page_to_in {
+text-align: center;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
+}
+@media screen and (max-width: 840px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+  .sidenav a {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidenav a:first-child {
+    padding: 2px 30px;
+  }
+  .page_to_in {
+    width: 100%
+  }
+}
+.receive_send_bar{
+  width: 100%;
+  text-align: right;
+  font-size: 18px;
+  padding: 10px 20px 10px 20px;
+}
+.receive_send_bar img {
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+.massage_div{
+  width: 70%;
+  margin-left: 35px;
+}
+.msg_liner{
+  border: none;
+}
+.msg_r_s{
+  background-color: rgba(252, 105, 105, 0.1);
+  color: rgba(252, 105, 105, 1);
+  padding: 10px;
+}
+.msg_title, .msg_date{
+  background-color: rgba(252, 105, 105, 0.1);
+  color: #3e3e3e;
+  padding: 5px 10px;
+}
+.msg_date{
+  text-align: right;
+}

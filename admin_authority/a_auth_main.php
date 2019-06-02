@@ -63,7 +63,7 @@
 
     <div class="main">
       <div class="admin_title">
-        쇼핑몰 관리
+        권한/등록 관리
       </div>
       <hr class="title_hr">
       <div class="list_search_bar">
@@ -149,13 +149,9 @@
       </table> <!-- admin_table end -->
 
       <button class="btn_write"><a href="./a_auth_w_e_d.php">관리자 등록</a></button>
-      <?php //오픈용 로직이므로 불요 //세션 아이디가 있으면 글쓰기 목록을 보여주고 없으면 보여주지 않는다.
-        // if(!empty($_SESSION['userid'])&&!empty($id)){
-        //   echo '<button class="btn_write"><a href="./op_free_bd_wr_ed_dl.php?mode=insert_op_fbd&page='.$page.'">글쓰기</a></button>';
-        // }else{
-        //   alert_back('로그인 후 이용하세요');
-        // }
-      ?>
+      <?php
+        if ($total_record!=null) {
+        ?>
       <hr class="title_hr">
       <div class="page_to" >
         <div class="page_to_in" >
@@ -189,6 +185,9 @@
           <a href="./a_auth_main.php?page=<?=$total_page?>">▶▶</a>
       </div> <!-- page_to in end 페이지 이동 -->
       </div> <!-- page_to end 페이지 이동 -->
+      <?php
+      }
+    ?>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
 

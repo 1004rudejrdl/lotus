@@ -60,7 +60,7 @@
 
     <div class="main">
       <div class="admin_title">
-        쇼핑몰 관리
+        취소/반품/환불 관리
       </div>
       <hr class="title_hr">
       <div class="list_search_bar">
@@ -248,7 +248,9 @@
         mysqli_close($conn);
         ?>
       </table> <!-- admin_table end -->
-
+      <?php
+      if ($total_record!=null) {
+        ?>
       <hr class="title_hr">
       <div class="page_to" >
         <div class="page_to_in" >
@@ -282,6 +284,9 @@
           <a href="./a_od_rt_main.php?page=<?=$total_page?>">▶▶</a>
       </div> <!-- page_to in end 페이지 이동 -->
       </div> <!-- page_to end 페이지 이동 -->
+      <?php
+    }
+    ?>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
 

@@ -1,9 +1,13 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
 * {
   box-sizing: border-box;
+}
+.main{
+  width: 100%;
+  margin-left: 0;
+  padding: 0;
 }
 .logo_login, .sns_login{
   width: 50%;
@@ -21,6 +25,7 @@ body {
 }
 .ll_logo img{
   max-width: 50%;
+  margin-left: 1%;
 }
 .ll_login{
   width: 100%;
@@ -74,7 +79,7 @@ body {
   background-color: #55ACEE;
   color: white;
 }
-.google{
+.google_b{
   padding: 14px 12px;
   width: 50%;
   margin: 0 0 5px 0;
@@ -130,7 +135,7 @@ input[type=submit]:hover {
   #kakao-login-btn{
       width: 100%;
   }
-  .google{
+  .google_b{
     width: 100%;
   }
 }

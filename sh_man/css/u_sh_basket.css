@@ -1,0 +1,95 @@
+a{
+  text-decoration: none;
+}
+.main {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+.admin_title{
+  color:rgb(156, 156, 156);
+}
+.title_hr{
+  size:1;
+  width:100%;
+  margin: 10px 0;
+}
+.prd_all_del {
+  padding: 10px;
+  width: 100%;
+}
+.main a, input[type="submit"] {
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 6px 8px 8px 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.prd_all_del a{
+  float: right;
+  margin-bottom: 10px;
+}
+.lsb_msg{
+  margin: 0 10px;
+  font-size: 14px;
+  display: inline;
+}
+table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+tr, td, fieldset{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+}
+fieldset{
+  margin-top: 20px;
+}
+td:hover{
+  background-color:#f5f5f5;
+}
+.t_right{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+.t_red{
+  color: red;
+}
+.width_10{
+  width: 10%;
+}
+.width_20{
+  width: 20%;
+}
+.width_50{
+  width: 50%;
+}
+.basket_table img{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 10vh;
+}
+.keep_buy{
+  padding: 50px 0;
+  text-align: center;
+
+}
+@media screen and (max-width: 800px) {
+  table *, .tb_container{
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .list_header_tb * {
+    font-size: 15px;
+  }
+}

@@ -55,16 +55,13 @@ img {
 .tb_cont input{
   min-width: 200px;
 }
-.tb_cont textarea{
-  width: 100%;
-  resize: none;
+.tb_cont select{
+  padding: 2px;
 }
 /* The tb_container */
 .tb_container {
   display: inline-block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 5px;
   cursor: pointer;
   font-size: 16px;
   -webkit-user-select: none;
@@ -75,7 +72,6 @@ img {
 
 /* Hide the browser's default checkbox */
 .tb_container input {
-  position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;

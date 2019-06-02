@@ -35,6 +35,22 @@ $height=$row1['height'];
 $weight=$row1['weight'];
 $self_info=$row1['self_info'];
 $img=$row1['img'];
+if ($job=='1') {
+  $job_text="무직";
+}
+if ($job=='2') {
+  $job_text="공무원";
+}
+if ($job=='3') {
+  $job_text="학생";
+}
+if ($job=='4') {
+  $job_text="자영업";
+}
+if ($job=='5') {
+  $job_text="직장인";
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -209,11 +225,11 @@ $img=$row1['img'];
   <!-- main_body start -->
   <div id="main_body" class="main_body">
     <div id="sidenav" class="sidenav">
-      <a href="#">연애, 꽃피우다</a>
-      <a href="#">연인찾기</a>
-      <a href="#">쇼핑몰</a>
-      <a href="#">테스트</a>
-      <a href="#">커뮤니티</a>
+      <a href="../find_meet/user.php">회원정보창</a>
+      <a href="../message/message.php">우편함</a>
+      <a href="../mb_login/mb_modify_form.php">회원정보수정</a>
+      <a href="../sh_man/shopping_basket.php?mode_user=user_page">장바구니</a>
+      <a href="../sh_man/shopping_payment.php?mode_user=user_page">주문/결제목록</a>
     </div><!-- sidenav end -->
 
     <div class="main">
@@ -439,8 +455,8 @@ $img=$row1['img'];
         <hr class="title_hr">
         <div class="btn_center">
           <div class="btn_submit btn_3">
-            <a href="./delete_id.php?mode=delete&id=<?=$userid?>">회원탈퇴</a>
-            <input type="submit" name="button_submit" value="가입하기">
+            <a href="../find_meet/user.php">돌아가기</a>
+            <input type="submit" name="button_submit" value="수정하기">
             <input type="reset" name="button_reset" value="재작성">
           </div>
         </div>
@@ -456,37 +472,37 @@ $img=$row1['img'];
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 이 름</td>
             <td class="tb_cont">
-              <input type="text" id="profile_name">
+              <input type="text" id="profile_name" value="<?=$name?>">
             </td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 나 이</td>
             <td class="tb_cont">
-              <input type="text" id="profile_age" name="profile_age" value="">
+              <input type="text" id="profile_age" name="profile_age" value="<?=$birth?>">
             </td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 직 업</td>
             <td class="tb_cont">
-              <input type="text" id="profile_job" name="profile_job" value="">
+              <input type="text" id="profile_job" name="profile_job" value="<?=$job_text?>">
             </td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 키</td>
             <td class="tb_cont">
-              <input type="text" id="profile_hei" name="profile_hei" value="">
+              <input type="text" id="profile_hei" name="profile_hei" value="<?=$height?>">
             </td>
           </tr>
           <tr>
             <td class="td_subjet"><span class="td_subjet_star">*</span> 체 중</td>
             <td class="tb_cont">
-              <input type="text" id="profile_wei" name="profile_wei" value="">
+              <input type="text" id="profile_wei" name="profile_wei" value="<?=$weight?>">
             </td>
           </tr>
         </table>
         <table class="admin_table">
           <tr>
-            <td class="p_img" colspan="2" rowspan="5"><img id="profile_image1"></td>
+            <td class="p_img" colspan="2" rowspan="5"><img id="profile_image1" src="<?=$img?>"></td>
           </tr>
         </table>
         <table class="admin_table witdh_100 mb_bottom">
@@ -497,6 +513,10 @@ $img=$row1['img'];
           </tr>
         </table>
       </div>      <!-- mg_bottom end -->
+      <hr class="title_hr">
+        <div class="btn_del_mem">
+          <a href="#"onclick="delete_id()">회원탈퇴</a>
+        </div>
     </div> <!-- main end -->
   </div> <!-- main_body end -->
   <!-- footer start -->

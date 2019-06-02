@@ -1,0 +1,165 @@
+.admin_title{
+  color:rgb(156, 156, 156);
+  float:left;
+  margin-top: 50px;
+}
+.title_hr{
+  size:1;
+  width:100%;
+  margin: 20px 0;
+  clear: both;
+  margin: 0;
+  padding: 0;
+}
+.first_hr{
+  margin: 10px 0;
+}
+.main {
+  max-width: 80%;
+  margin-left: 16%;
+  margin-top: 150px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+@media screen and (max-width: 1400px) {
+  .sidenav a {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+  }
+}
+
+.page_to a{
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  clear: both;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.page_to_in {
+text-align: center;
+width:50%;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
+}
+@media screen and (max-width: 840px) {
+  .page_to_in {
+    width: 100%
+  }
+}
+/*↓↓↓↓↓↓↓↓↓↓↓meeting↓↓↓↓↓↓↓↓↓↓↓↓*/
+.usr_img_div{
+  width: 100%;
+  padding: 10px;
+}
+.usr_img_div img{
+  width: 100%;
+  display: none;
+}
+.user_tb, .matched_user_tb{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin: 30px 5px ;
+}
+.user_tb{
+  width: 90%;
+}
+.matched_user_tb{
+  width: 200px;
+}
+.user_img_tb, .user_tb, .matched_user_tb{
+  float: left;
+}
+td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  color: black;
+}
+.img_td{
+  border: none;
+  width: 300px;
+}
+.user_tb img{
+  max-width: 100%;
+  max-height: 300px;
+  overflow: visible;
+}
+.mt_img img{
+  max-width: 100%;
+  max-height: 150px;
+  overflow: visible;
+}
+.td_subjet{
+  width: 120px;
+  text-align: left;
+}
+.td_subjet_star {
+  color:rgb(240, 165, 0);
+  margin: 0 5px 0 10px;
+}
+.bottom_none{
+  border-bottom: none;
+}
+.top_none{
+  border-top: none;
+}
+table button {
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 100%;
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+table button:hover {
+  background-color: rgba(252, 105, 105, 0.85);
+}
+.iframes{
+  padding: 20px 0;
+}
+iframe{
+   width:90%;
+   /* margin-left: 5%; */
+   height:300px;
+   border: 1px solid #dddddd;
+}
+@media screen and (max-width: 800px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+  .sidenav a {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidenav a:first-child {
+    padding: 2px 15px;
+  }
+  table *, .tb_container{
+    font-size: 14px;
+  }
+  .img_td {
+    display: none;
+  }
+  .usr_img_div img{
+    display: block;
+  }
+}

@@ -22,6 +22,7 @@ create_table($conn, 'admin_authority');
 insert_init_data($conn, 'member');
 insert_init_data($conn, 'member_meeting');
 insert_init_data($conn, 'member_msg');
+insert_init_data($conn, 'member_like');
 insert_init_data($conn, 'member_type_survey');
 insert_init_data($conn, 'com_info');
 insert_init_data($conn, 'prd_shop');

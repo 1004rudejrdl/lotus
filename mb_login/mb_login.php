@@ -29,13 +29,6 @@
 <!-- header end -->
 <!-- main_body start -->
 <div class="main_body">
-<div id="sidenav" class="sidenav">
-  <a href="#">연애, 꽃피우다</a>
-  <a href="#">이성찾기</a>
-  <a href="#">쇼핑몰</a>
-  <a href="#">테스트</a>
-  <a href="#">커뮤니티</a>
-</div><!-- sidenav end -->
 <div class="main">
   <div class="logo_login">
     <div class="ll_login">
@@ -105,7 +98,7 @@
          }
       </script>
       <!-- 구글 -->
-      <div class="g-signin2 google" data-onsuccess="onSignIn" data-theme="dark" ></div>
+      <div class="g-signin2 google_b" data-onsuccess="onSignIn" data-theme="dark" ></div>
       <form id="google_login_form" action="./check_login.php?mode=google" method="post">
         <input type="hidden" id="g_id" name="g_id" value="">
         <input type="hidden" id="g_name" name="g_name" value="">
