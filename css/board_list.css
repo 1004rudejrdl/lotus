@@ -1,0 +1,250 @@
+.admin_title{
+  color:rgb(156, 156, 156);
+  float:left;
+}
+.admin_sub_title{
+  float: right;
+  height: 50px;
+  color:rgb(80, 80, 80); font-style:italic; font-size:30px;
+  background-color: rgb(226, 226, 226);
+}
+.title_hr{
+  size:1;
+  width:100%;
+  clear: both;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.main {
+  max-width: 85%;
+  margin-left: 16%;
+  margin-top: 150px;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+  .sidenav{
+    margin-top: 80px;
+  }
+  .sidenav a {
+    display: inline;
+    padding: 2px 30px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  table *, .tb_container{
+    font-size: 14px;
+  }
+}
+
+.page_to a {
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  position:relative;
+  margin: 30px 0 10% 0;
+}
+.page_to_in {
+position:absolute;
+text-align: center;
+width:50%;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
+}
+
+/****** 리스트형 목록 *********************************************************/
+.list_search_bar {
+  width: 100%;
+  padding: 0px 20px 0.2px 20px;
+}
+.list_search_bar * {
+  font-size: 14px;
+}
+.lsb_msg{
+  display: inline;
+}
+.lsb_btn_srch, .lsb_input, .lsb_select, .lsb_title {
+  float: right;
+  margin-left: 5px;
+}
+
+.lsb_input input{
+  padding: 3px;
+}
+.lsb_select select, .lsb_select select option {
+  padding: 3px;
+}
+
+/* 메모표 */
+.list_header_tb{
+  position: inherit;
+  width: 100%;
+  margin: 30px 0 0 0;
+  border-collapse: collapse;
+}
+.list_header_tb * {
+  padding: 1% 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: rgba(252, 105, 105, 1);
+}
+.submain_list_content * {
+  padding: 0.5% 0;
+  text-align: center;
+  font-size: 15px;
+  color: black;
+}
+.submain_list_content{
+  position: inherit;
+  width: 100%;
+}
+/* .submain_list_content tr:nth-child(odd) td {
+  border-right: 1px solid red;
+} */
+.submain_list_item:nth-child(odd) {
+  background-color: rgba(252, 105, 105, 0.1);
+  color: white;
+}
+.submain_list_item:nth-child(even) {
+  background-color: rgba(252, 105, 105, 0.2);
+}
+.submain_list_content tr:hover td, .submain_list_content tr:hover td a{
+  background-color : rgba(241, 80, 80, 1);
+  color: rgb(255, 255, 255);
+}
+.li_hd_num, .li_con_num{
+  width: 3%;
+}
+.li_hd_sbj, .li_con_sbj{
+  width: 20%;
+}
+.li_con_sbj{
+  text-align: left;
+  padding-left: 1%;
+}
+.li_hd_writer{
+  width: 6%;
+}
+@media screen and (max-width: 1200px) {
+  .li_hd_writer{
+    width: 8%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .li_hd_writer{
+    width: 9%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .li_hd_writer{
+    width: 10%;
+  }
+  .list_header_tb * {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .li_hd_writer{
+    width: 12%;
+  }
+}
+.li_con_writer{
+  width: 5%;
+}
+.li_hd_rgt_day, .li_con_rgt_day{
+  width: 6%;
+}
+.li_hd_hit, .li_con_hit{
+  width: 3%;
+}
+
+.submain_list_content a, .btn_write a{
+  text-decoration: none;
+}
+.btn_write {
+  float:right;
+  margin: 1%;
+}
+.btn_write a {
+  color: white;
+}
+
+.lsb_btn_srch, .btn_write{
+  border: none;
+  background-color : rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 1px 3px 3px 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.lsb_btn_srch:hover, .btn_write:hover {
+  background-color : rgba(252, 105, 105, 0.85);
+}
+.page_to a {
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  position:relative;
+  margin: 30px 0 10% 0;
+}
+.page_to_in {
+  position:absolute;
+  text-align: center;
+  width:50%;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media screen and (max-width: 840px) {
+  /* .prd_img_div, .prd_info_div{
+    float: none;
+    width: 100%;
+  }
+  .detail_box, .file_box{
+    width: 100%;
+  } */
+  .p_i_thumbs{
+    padding: 10px 0;
+  }
+  .prd_list_cont{
+    width: 49.5%;
+  }
+  .page_to_in {
+    width: 100%
+}

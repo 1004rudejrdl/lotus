@@ -1,4 +1,4 @@
-<!-- 권한 관리 메인 -->
+﻿<!-- 권한 관리 메인 -->
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
