@@ -7,7 +7,7 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_free/lib/alert_back.php";
 $num = $id = $subject = $content = $day = $hit="";
 $mode = "insert";
 $id = $_SESSION['userid'];
-$board_type = "m";
+$board_type = "f";
 
 
 if((isset($_GET["mode"])&&($_GET["mode"])=='update')
@@ -65,7 +65,7 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
       <script src="../../js/effect_common.js"></script>
 
       <div class="main_body">
-        <div id="sidenav" class="sidenav">
+        <div class="sidenav" class="sidenav">
           <a>커뮤니티</a>
           <a href="../cm_free/cm_free_list.php">자유게시판</a>
           <a href="../cm_gath/cm_gath_list.php">모임게시판</a>
@@ -74,33 +74,28 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
         </div>
         <div class="main">
           <div class="admin_title">
-            모임게시판
+            자유게시판
           </div>
-          <hr>
-
-
-         <div class="clear"></div>
+        <hr class="title_hr">
          <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
            <input type="hidden" name="num" value="<?=$q_num?>">
            <input type="hidden" name="hit" value="<?=$hit?>">
            <input type="hidden" name="board_type" value="<?=$board_type?>">
-           <div id="write_form">
-
-             <table id="write_table">
-               <tr>
-                 <td id="write_row1"><span class="id1">&nbsp;&nbsp;아이디&nbsp;&nbsp;</span></td> <td class="td1"style="font-size:16px;"> &nbsp;&nbsp;<?=$id?></td>
+             <table class="write_table">
+               <tr class="w_f_id">
+                 <td class="td_subjet"><span class="td_subjet_star">*</span> 아이디</td>
+                 <td class="tb_cont"><b><?=$id?></b></td>
+               </tr>
+               <tr class="w_f_title">
+                 <td class="td_subjet"><span class="td_subjet_star">*</span> 제&nbsp;&nbsp;&nbsp;목</td>
+                 <td class="tb_cont"><input type="text" name="subject" value="<?=$subject?>"></td>
                </tr>
                <tr>
-                 <td id="write_row2"> <span class="subject1">&nbsp;&nbsp;제&nbsp;&nbsp;&nbsp;목&nbsp;&nbsp;</span> </td><td class="td2"> <input class="subject2" type="text" name="subject" value="<?=$subject?>" style="width:700px;"></td>
+                 <td colspan="2" class="td_ta"><textarea name="content" rows="15"><?=$content?></textarea></td>
                </tr>
                <tr>
-                 <td id="write_row3"><span class="content1">&nbsp;&nbsp; 내&nbsp;&nbsp;&nbsp;용&nbsp;&nbsp;</span></td><td class="td3"><textarea name="content" rows="15" cols="85"><?=$content?></textarea></td>
-               </tr>
-               <tr>
-                 <td colspan="2">
-                    <div id="write_row4">
-                      <div class="col1"></div>
-                      <div class="col2">
+                 <td colspan="2" class="td_ta">
+                      <div class="file_box">
                         <?php
                         if ($mode=='insert') {
                           echo '<input type="file" name="upfile" (이미지 : 2MB)  (파일 : 0.5MB)>';
@@ -111,42 +106,29 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
                         }
                          ?>
                         </div>
-                      <?php //세션 아이디가 있으면 글쓰기 버튼을 보여준다
+                      <?php
                       if ($mode=="update" && !empty($file_name_0)) {
                         ?>
                         <?=$file_name_0?> 파일이 등록 되어있습니다.
-                         <input type="checkbox" id="del_file" name="del_file" value="1">삭제
-
-                       <div class="clear"> </div>
+                         <input type="checkbox" class="del_file" name="del_file" value="1">삭제
+                       <hr class="title_hr">
                        <?php
                       }
-
                       ?>
-                    </div><!--end of write_row4  -->
                   </td>
                </tr>
              </table>
-
-
-
-
-
-
-             <div class="clear"> </div>
-
-             <div class="write_line"></div>
-
-             <div class="clear"> </div><br>
-           </div><!--end of write_form  -->
-           <!-- <div id="write_button"> -->
-           <button type="button" name="button"><a href="./cm_free_list.php" id="list_page1">목 록</a></button>
-             <button type="submit" id="write_page1" name="button" onclick="document.getElementById('del_file').disabled=false">확 인</button>
-
-           <!-- </div-- ><!--end of write_button  -->
+           <hr class="title_hr">
+           <div class="btn_center">
+             <div class="btn_submit btn_5">
+               <a href="./cm_free_list.php" class="list_page1">목 록</a>
+               <button type="submit" class="write_page1" name="button" onclick="document.getElementById('del_file').disabled=false">확 인</button>
+             </div>           <!-- btn_submit end -->
+           </div><!--end of btn_center -->
          </form>
-       </div><!--end of col2  -->
-      </div><!--end of content -->
-    </div><!--end of wrap  -->
-  </body>
-</html>
- <!-- fieldset -->
+     <p>&nbsp;</p>
+     <p>&nbsp;</p>
+   </div><!--end of main  -->
+   </div><!--end of main_body  -->
+   </body>
+   </html>

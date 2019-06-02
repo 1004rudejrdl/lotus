@@ -145,7 +145,7 @@ $number = $total_record - $start;
         <?php
             //세션 아이디가 있거나 매칭번호가 있으면 글쓰기 버튼을 보여준다
           if (!empty($_SESSION['userid'])) {
-            echo '<button class="btn_write" type="button" name="button"><a href="./cm_qna_write.php?page=<?=$page?>" id="write_page1">글쓰기</a></button>';
+            echo '<button class="btn_write" type="button" name="button"><a href="./cm_qna_write.php?page='.$page.'" id="write_page1">글쓰기</a></button>';
           }
          ?>
       </div>

@@ -1,0 +1,171 @@
+a {
+  text-decoration: none;
+}
+.admin_title{
+  color:rgb(156, 156, 156);
+  float:left;
+  font-size: 28px;
+}
+.title_hr{
+  size:1;
+  width:100%;
+  clear: both;
+  margin: 10px 0;
+  padding: 0;
+}
+.main {
+  max-width: 85%;
+  margin-left: 16%;
+  margin-top: 200px;
+  font-size: 16px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    margin:0;
+    margin-top: 450px;
+    max-width: 100%;
+  }
+  .sidenav{
+    margin-top: 80px;
+  }
+  .sidenav a {
+    display: inline;
+    padding: 2px 30px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  table *, .tb_container{
+    font-size: 14px;
+  }
+}
+.write_table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-left: 10px;
+  background-color : rgba(252, 105, 105, 0.05);
+}
+.w_f_id, .w_f_title{
+  background-color : rgba(252, 105, 105, 0.07);
+}
+tr, td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+  font-size: 16px;
+}
+td:hover{
+  background-color:#f5f5f5;
+}
+
+.td_subjet{
+  width: 120px;
+}
+.td_subjet_star {
+  color:rgb(240, 165, 0);
+  margin: 0 5px 0 10px;
+}
+.tb_cont input{
+  padding: 3px;
+  width: 100%;
+}
+.td_ta{
+  text-align: center;
+}
+.file_box{
+  text-align: left;
+  padding-left: 10px;
+}
+.btn_submit a, .btn_submit button{
+  border: none;
+  background-color : rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 4px 6px 6px 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn_submit a, .btn_submit button{
+  background-color : rgba(252, 105, 105, 0.85);
+}
+textarea{
+  width: 100%;
+  resize: none;
+  border: none;
+}
+.btn_submit *{
+  margin: 2px;
+}
+.btn_center{
+  width: 100%;
+  clear: both;
+  position:relative;
+  margin: 20px 0 15% 0;
+  text-align: center;
+}
+.btn_submit{
+  position:absolute;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+.btn_3{
+  width: 175px;
+}
+.btn_4{
+  width: 222px;
+}
+.btn_5{
+  width: 400px;
+}
+
+
+
+
+
+
+
+.page_to a {
+  text-decoration:none;
+  padding: 5px 8px;
+  font-size: 16px;
+  color: black;
+}
+.page_to .previous, .page_to .next {
+  background-color: rgba(252, 105, 105, 0.85);
+  color: white;
+}
+.page_to a:hover {
+  background-color: rgba(252, 105, 105, 1);
+  color: white;
+}
+.page_to {
+  position:relative;
+  margin: 30px 0 10% 0;
+}
+.page_to_in {
+  position:absolute;
+  text-align: center;
+  width:50%;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+@media screen and (max-width: 840px) {
+  .page_to_in {
+    width: 100%
+  }
+}
+@media screen and (max-width: 1100px) {
+
+}
+@media screen and (max-width: 800px) {
+
+}

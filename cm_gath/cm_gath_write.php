@@ -55,10 +55,8 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="/css/view.css">
     <link rel="stylesheet" href="../css/header_sidenav.css">
-    <link rel="stylesheet" href="./css/cm_gath_write.css">
-    <!-- <link rel="stylesheet" href="./css/cm_gath_view.css"> -->
+    <link rel="stylesheet" href="../css/board_write.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <title></title>
   </head>
@@ -67,42 +65,37 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
       <script src="../../js/effect_common.js"></script>
 
       <div class="main_body">
-        <div id="sidenav" class="sidenav">
+        <div class="sidenav" class="sidenav">
           <a>커뮤니티</a>
-          <a href="../cm_free/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유 게시판</a>
-          <a href="../cm_gath/cm_gath_list.php" style="color: rgba(252, 105, 105, 1);">모임 게시판</a>
-          <a href="../cm_rv/cm_rv_list.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
-          <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
+          <a href="../cm_free/cm_free_list.php">자유게시판</a>
+          <a href="../cm_gath/cm_gath_list.php">모임게시판</a>
+          <a href="../cm_rv/cm_rv_list.php">성공후기</a>
+          <a href="../cm_qna/cm_qna_list.php">QnA</a>
         </div>
-
-      <div class="main">
-
-       <div id="col2">
-         <div id="title1">TOGETHER.글쓰기</div> <hr>
-
-
-         <div class="clear"></div>
-         <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
-           <input type="hidden" name="num" value="<?=$q_num?>">
-           <input type="hidden" name="hit" value="<?=$hit?>">
-           <input type="hidden" name="board_type" value="<?=$board_type?>">
-           <div id="write_form">
-
-             <table id="write_table">
-               <tr>
-                 <td id="write_row1"> 아이디</td> <td style="font-size:16px;"> &nbsp;&nbsp;<?=$id?></td>
-               </tr>
-               <tr>
-                 <td id="write_row2">제&nbsp;&nbsp;&nbsp;목</td><td> <input type="text" name="subject" value="<?=$subject?>" style="width:700px;"></td>
-               </tr>
-               <tr>
-                 <td id="write_row3"> 내&nbsp;&nbsp;&nbsp;용</td><td><textarea name="content" rows="15" cols="79"><?=$content?></textarea></td>
-               </tr>
-               <tr>
-                 <td colspan="2">
-                    <div id="write_row4">
-                      <div class="col1"></div>
-                      <div class="col2">
+        <div class="main">
+          <div class="admin_title">
+            모임게시판
+          </div>
+        <hr class="title_hr">
+        <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="num" value="<?=$q_num?>">
+          <input type="hidden" name="hit" value="<?=$hit?>">
+          <input type="hidden" name="board_type" value="<?=$board_type?>">
+            <table class="write_table">
+              <tr class="w_f_id">
+                <td class="td_subjet"><span class="td_subjet_star">*</span> 아이디</td>
+                <td class="tb_cont"><b><?=$id?></b></td>
+              </tr>
+              <tr class="w_f_title">
+                <td class="td_subjet"><span class="td_subjet_star">*</span> 제&nbsp;&nbsp;&nbsp;목</td>
+                <td class="tb_cont"><input type="text" name="subject" value="<?=$subject?>"></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="td_ta"><textarea name="content" rows="15"><?=$content?></textarea></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="td_ta">
+                     <div class="file_box">
                         <?php
                         if ($mode=='insert') {
                           echo '<input type="file" name="upfile" (이미지 : 2MB)  (파일 : 0.5MB)>';
@@ -118,37 +111,24 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
                         ?>
                         <?=$file_name_0?> 파일이 등록 되어있습니다.
                          <input type="checkbox" id="del_file" name="del_file" value="1">삭제
-
-                       <div class="clear"> </div>
+                       <hr class="title_hr">
                        <?php
                       }
-
                       ?>
-                    </div><!--end of write_row4  -->
-                  </td>
-               </tr>
-             </table>
-
-
-
-
-
-
-             <div class="clear"> </div>
-
-             <div class="write_line"></div>
-
-             <div class="clear"> </div><br>
-           </div><!--end of write_form  -->
-           <!-- <div id="write_button"> -->
-           <button type="button" name="button"><a href="./cm_gath_list.php" id="list_page1">목 록</a></button>
+                    </td>
+                    </tr>
+                    </table>
+                    <hr class="title_hr">
+                    <div class="btn_center">
+                    <div class="btn_submit btn_5">
+           <a href="./cm_gath_list.php" id="list_page1">목 록</a>
              <button type="submit" id="write_page1" name="button" onclick="document.getElementById('del_file').disabled=false">확 인</button>
-
-           <!-- </div-- ><!--end of write_button  -->
-         </form>
-       </div><!--end of col2  -->
-      </div><!--end of content -->
-    </div><!--end of wrap  -->
-  </body>
-</html>
- <!-- fieldset -->
+           </div>           <!-- btn_submit end -->
+           </div><!--end of btn_center -->
+           </form>
+           <p>&nbsp;</p>
+           <p>&nbsp;</p>
+           </div><!--end of main  -->
+           </div><!--end of main_body  -->
+           </body>
+           </html>
