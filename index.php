@@ -227,6 +227,11 @@
       $prd_type[$i]=$row['prd_type'];
       $file_copied_0[$i]=$row['file_copied_0'];
       $prd_name[$i]=$row['prd_name'];
+      $len_prd_name[$i]=strlen($row['prd_name']);
+      if($len_prd_name[$i]>17) {
+        $prd_name_ehco[$i]=mb_substr($row['prd_name'], 0, 7, 'utf-8');
+        $prd_name_ehco[$i]=$prd_name_ehco[$i]."...";
+      }
       ?>
       <?php
     }
@@ -236,7 +241,7 @@
       for ($i=0; $i < 4; $i++) {
         if (!empty($shop_best[$i])) {
         ?>
-        <li class="centerproduct"><?=$prd_name[$i]?></li>
+        <li class="centerproduct"><?=$prd_name_ehco[$i]?></li>
         <?php
       }else {
         ?>
