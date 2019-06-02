@@ -75,7 +75,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
   <link rel="stylesheet" href="../css/common.css">
   <!-- <link rel="stylesheet" href="./css/view.css"> -->
   <link rel="stylesheet" href="../css/header_sidenav.css">
-  <link rel="stylesheet" href="./css/cm_rv_view.css">
+  <link rel="stylesheet" href="../css/board_view.css">
   <script type="text/javascript" src="./js/member_form.js?var=1"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <title></title>

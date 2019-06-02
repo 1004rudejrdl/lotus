@@ -187,10 +187,10 @@ $session=$_SESSION['userid'];
 
         ?>
       <div class="state_detail">
-        <h4>결제 <?=$total?>건중 <?=$i+1?></h4>
+        <h4>결제예정 <?=$total?>건중 <?=$i+1?></h4>
         <table>
           <tr>
-            <td class="td_subjet" colspan="2"><span class="td_subjet_star">*</span>도착 예정</td>
+            <td class="td_subjet" colspan="2"><span class="td_subjet_star">*</span>배송 예정</td>
           </tr>
           <tr>
             <td class="tb_cont">&nbsp;&nbsp;&nbsp;&nbsp;<?=$prd_name?></td>

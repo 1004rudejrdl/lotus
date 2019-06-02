@@ -4,8 +4,6 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_gath/lib/alert_back.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
 
-create_table($conn,'commu');//자유게시판테이블생성
-
 $board_type="m";
 define('SCALE', 10);
 $sql=$result=$total_record=$total_page=$start="";
@@ -76,7 +74,7 @@ $number = $total_record - $start;
           </div>
           <hr class="title_hr">
           <div class="list_search_bar">
-            <form name="board_form" action="cm_free_list.php?mode=search" method="post">
+            <form name="board_form" action="cm_gath_list.php?mode=search" method="post">
               <div class="lsb_msg">총&nbsp;<?=$total_record?>&nbsp;개의 게시물이 있습니다.</div>
                 <!-- float right 순서 거꾸로 올려야함 -->
                 <button class="lsb_btn_srch" type="submit">검색</button>
@@ -129,7 +127,7 @@ $number = $total_record - $start;
           ?>
           <tr class="submain_list_item">
             <td class="li_con_num"><?=$number?></td>
-            <td class="li_con_sbj"><a href="./cm_free_view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a></td>
+            <td class="li_con_sbj"><a href="./cm_gath_view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a></td>
             <td class="li_con_writer"><?=$id?></td>
             <td class="li_con_rgt_day"><?=$date?></td>
             <td class="li_con_hit"><?=$hit?></td>
@@ -140,6 +138,15 @@ $number = $total_record - $start;
         }//end of for
         ?>
         </table> <!-- submain_list_content end -->
+        <div>
+          <!-- <button type="button" name="button"><a href="./cm_gath_list.php?page=<=$page?>" id="list_page1">목  록</a></button> -->
+          <?php
+              //세션 아이디가 있거나 매칭번호가 있으면 글쓰기 버튼을 보여준다
+            if (!empty($_SESSION['userid'])) {
+              echo '<button class="btn_write" type="button" name="button"><a href="./cm_rv_write.php?page=<?=$page?>" id="write_page1">글쓰기</a></button>';
+            }
+           ?>
+        </div>
         <?php
         if ($total_record!=null) {
         ?>

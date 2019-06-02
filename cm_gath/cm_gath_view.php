@@ -75,53 +75,40 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="/css/view.css">
   <link rel="stylesheet" href="../css/header_sidenav.css">
-  <link rel="stylesheet" href="./css/cm_gath_view.css">
+  <link rel="stylesheet" href="../css/board_view.css">
   <script type="text/javascript" src="./js/member_form.js?var=1"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <title></title>
 </head>
   <body>
-    <div class="main_body">
       <?php include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/header_sidenav.php"; ?>
       <script src="../../js/effect_common.js"></script>
-      <div class="main_body">
-        <div id="sidenav" class="sidenav">
-          <a>커뮤니티</a>
-          <a href="../cm_free/cm_free_list.php" style="color: rgba(252, 105, 105, 1);">자유 게시판</a>
-          <a href="../cm_gath/cm_gath_list.php" style="color: rgba(252, 105, 105, 1);">모임 게시판</a>
-          <a href="../cm_rv/cm_rv_list.php" style="color: rgba(252, 105, 105, 1);">성공후기</a>
-          <a href="../cm_qna/cm_qna_list.php" style="color: rgba(252, 105, 105, 1);">QnA</a>
-        </div>
-
-      <div class="main">
-       <div id="col2">
-         <div id="title1">모임 게시판</div> <hr>
-         <div id="write_form">
-
-
-
-             <div id="write_row1">
-               <table id="write_table">
-                 <tr>
-                   <td id="write_row1" style="border:1px solid black;">아이디 : <?=$id?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회 : <?=$hit?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 날짜 : <?=$day?></td>
-                 </tr>
-                 <tr>
-                 </tr>
-                 <tr>
-                   <td id="write_row2" style="border:1px solid black; float:left; width:600px;">제&nbsp;&nbsp;&nbsp;목 : <?=$subject?> </td>
-                 </tr>
-                 <tr>
-                   <td></td>
-                 </tr>
-               </table> <br>
-             </div>
-           </div><!--end of write_row1  -->
-
-             <div  id="view_content">
-
-               <div class="col2">
+        <div class="main_body">
+          <div id="sidenav" class="sidenav">
+            <a>커뮤니티</a>
+            <a href="../cm_free/cm_free_list.php">자유 게시판</a>
+            <a href="../cm_gath/cm_gath_list.php">모임 게시판</a>
+            <a href="../cm_rv/cm_rv_list.php">성공후기</a>
+            <a href="../cm_qna/cm_qna_list.php">QnA</a>
+          </div>
+          <div class="main">
+          <div class="admin_title">
+            자유게시판
+          </div>
+             <hr class="title_hr">
+             <table class="list_header_tb">
+               <tr class="submain_list_content">
+                 <td class="li_hd_writer">아이디 : <?=$id?></td>
+                 <td class="li_hd_hit">조회 : <?=$hit?></td>
+                 <td class="li_hd_rgt_day">날짜 : <?=$day?></td>
+               </tr>
+               <tr>
+                 <td colspan="3" class="li_hd_sbj">제&nbsp;&nbsp;&nbsp;목 : <input type="text" name="subject" value="<?=$subject?>" readonly></td>
+               </tr>
+              </table>
+              <hr class="title_hr c_white">
+               <div  class="view_content">
                  <?php
                  if ($file_type_0 =='image') {
                   echo  "<img src='./data/$file_copied_0'  width='$image_width'><br>";
@@ -146,22 +133,12 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                  }
 
                   ?>
-                  <hr>  <span id="content_span" style="background-color:rgb(237, 237, 237);"> 내&nbsp;&nbsp;&nbsp;용 : <?=$content?> </span> </div>
-
-             </div><!--end of write_row3  -->
-             <div class="write_line"></div>
-           </div><!--end of write_form  --> <br>
-
-<!-- ********************************* -->
-
-
-
-
-<!-- ********************************* -->
-           <div id="write_button">
-             <button type="button" name="button"> <a href="./cm_gath_list.php?page=<?=$page?>" class="write_page1">목 록 </a></button>
-
-
+                  <hr class="title_hr c_white">
+                  <?=$content?>
+                </div>
+              <hr class="title_hr">
+              <div class="btn_center">
+                <div class="btn_submit btn_4">
              <?php
              $sql2="SELECT * from `admin_authority` where id = '$userid';";
              $result2 = mysqli_query($conn, $sql2) or die("실패원인 : " . mysqli_error($conn));
@@ -169,23 +146,24 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
              $auth_commu = $row2['auth_commu'];
                if (isset($_SESSION['userid'])) {
                  if( $_SESSION['userid']==$id){
-                   echo '<button type="button" name="button"><a href="./cm_gath_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a></button>';
-                   echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
+                   echo '<a href="./cm_gath_write.php?mode=update&num='.$num.'" class="write_page1">수 정</a>';
+                   echo '<button onclick = "check_delete('.$num.')" class="list_page1">삭 제</button>';
                  }else if (!empty($auth_commu)) {
-                   echo '<button onclick = "check_delete('.$num.')" class="list_page1" style="margin-left:10px;">삭 제</button>';
+                   echo '<button onclick = "check_delete('.$num.')" class="list_page1">삭 제</button>';
                  }
 
                }
                 if (!empty($_SESSION['userid'])) {
-                  echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_gath_write.php?mode=response&num='.$num.'" class="write_page1">답 변</a></button>';
-                  echo '<button type="button" name="button" style="margin-left:10px;"><a href="./cm_gath_write.php" class="write_page1">글쓰기</a></button>';
+                  echo '<a href="./cm_gath_write.php?mode=response&num='.$num.'" class="write_page1">답 변</a>';
+                  echo '<a href="./cm_gath_write.php" class="write_page1">글쓰기</a>';
                 }
               ?>
-           </div><!--end of write_button  -->
-
-       </div><!--end of col2  -->
-      </div><!--end of content -->
-    </div><!--end of wrap  -->
-  </body>
-</html>
- <!-- fieldset -->
+            </div>           <!-- btn_submit end -->
+            </div><!--end of btn_center -->
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            </div><!--end of main  -->
+          </div><!--end of main_body  -->
+        </body>
+      </html>
+            <!-- fieldset -->

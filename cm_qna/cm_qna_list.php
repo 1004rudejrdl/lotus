@@ -52,9 +52,8 @@ $number = $total_record - $start;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/common.css">
-    <!-- <link rel="stylesheet" href="/css/view.css"> -->
     <link rel="stylesheet" href="../css/header_sidenav.css">
-    <link rel="stylesheet" href="./css/board_list.css">
+    <link rel="stylesheet" href="../css/board_list.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <title></title>
   </head>
@@ -72,14 +71,14 @@ $number = $total_record - $start;
       </div>
       <div class="main">
         <div class="admin_title">
-          자유게시판
+          QnA
         </div>
         <div class="admin_sub_title">
             당신의 ♥ 말 하나하나가 소중합니다.
         </div>
         <hr class="title_hr">
         <div class="list_search_bar">
-          <form name="board_form" action="cm_free_list.php?mode=search" method="post">
+          <form name="board_form" action="cm_qna_list.php?mode=search" method="post">
             <div class="lsb_msg">총&nbsp;<?=$total_record?>&nbsp;개의 게시물이 있습니다.</div>
               <!-- float right 순서 거꾸로 올려야함 -->
               <button class="lsb_btn_srch" type="submit">검색</button>
@@ -130,7 +129,7 @@ $number = $total_record - $start;
         ?>
         <tr class="submain_list_item">
           <td class="li_con_num"><?=$number?></td>
-          <td class="li_con_sbj"><a href="./cm_free_view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a></td>
+          <td class="li_con_sbj"><a href="./cm_qna_view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a></td>
           <td class="li_con_writer"><?=$id?></td>
           <td class="li_con_rgt_day"><?=$date?></td>
           <td class="li_con_hit"><?=$hit?></td>
@@ -141,6 +140,15 @@ $number = $total_record - $start;
          }//end of for
         ?>
       </table> <!-- submain_list_content end -->
+      <div>
+        <!-- <button type="button" name="button"><a href="./cm_gath_list.php?page=<=$page?>" id="list_page1">목  록</a></button> -->
+        <?php
+            //세션 아이디가 있거나 매칭번호가 있으면 글쓰기 버튼을 보여준다
+          if (!empty($_SESSION['userid'])) {
+            echo '<button class="btn_write" type="button" name="button"><a href="./cm_rv_write.php?page=<?=$page?>" id="write_page1">글쓰기</a></button>';
+          }
+         ?>
+      </div>
       <?php
       if ($total_record!=null) {
       ?>

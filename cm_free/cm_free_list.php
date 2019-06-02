@@ -5,8 +5,6 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/cm_free/lib/alert_back.php";
 include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/create_table.php";
 
-create_table($conn,'commu');//자유게시판테이블생성
-
 define('SCALE', 10);
 $sql=$result=$total_record=$total_page=$start="";
 $row="";
@@ -136,6 +134,15 @@ $number = $total_record - $start;
             }//end of for
         ?>
           </table> <!-- submain_list_content end -->
+          <div>
+            <!-- <button type="button" name="button"><a href="./cm_gath_list.php?page=<=$page?>" id="list_page1">목  록</a></button> -->
+            <?php
+                //세션 아이디가 있거나 매칭번호가 있으면 글쓰기 버튼을 보여준다
+              if (!empty($_SESSION['userid'])) {
+                echo '<button class="btn_write" type="button" name="button"><a href="./cm_rv_write.php?page=<?=$page?>" id="write_page1">글쓰기</a></button>';
+              }
+             ?>
+          </div>
           <?php
             if ($total_record!=null) {
             ?>
