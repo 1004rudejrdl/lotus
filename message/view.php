@@ -28,6 +28,12 @@ mysqli_query($conn, $sql);
   <link rel="stylesheet" href="./css/msg_form.css">
 </head>
 <title>연愛, 꽃 피우다</title>
+<script type="text/javascript">
+function receive_message_close(){
+	window.close();
+	window.opener.location.reload(true);
+}
+</script>
 <body>
   <div class="m_f_title">
     <h1>Received Message</h1>

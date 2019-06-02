@@ -104,21 +104,25 @@ $number = $total_record - $start;
         $s_result = mysqli_query($conn, $s_sql) or die(mysqli_error($conn));
         $s_row=mysqli_fetch_array($s_result);
         $s_name=$s_row['name'];
+        $r_sql="SELECT * FROM member where id ='$r_id'";
+        $r_result = mysqli_query($conn, $r_sql) or die(mysqli_error($conn));
+        $r_row=mysqli_fetch_array($r_result);
+        $r_name=$r_row['name'];
         ?>
         <div class="massage_div">
         <?php
         if($mode == "receive"){
           if($read == "0"){
         ?>
-           <div class="msg_r_s"><b><?=$name."님"?>&nbsp;<?=$s_name."( ".$s_id." ) 에게 받은 메세지 "?></b>&nbsp;</a></div>
+           <div class="msg_r_s"><b><?=$s_name?>(<?=$s_id?>) 에게 받은 메세지</b>&nbsp;</a></div>
            <div class="msg_title"><a onclick="chat_view('view.php?msg_num=<?=$msg_num ?>')"><b><?=$msg_cont?></b></a></div>
            <div class="msg_date"><b><?=$send_time?> 안읽음</b></div>
            <hr class="msg_liner">
        <?php
          }else{
          ?>
-           <div class="msg_r_s"><?=$name."님"?>&nbsp;<?="( ".$s_id." ) 에게 받은  메세지 "?>&nbsp;</a></div>
-           <div class="msg_title"><a id="messageLink" href="#" onclick="chat_view('view.php?msg_num=<?=$msg_num ?>')" style="text-decoration: none; color: black;"><?=$msg_cont?></a></div>
+           <div class="msg_r_s"><?=$s_name?>(<?=$s_id?>) 에게 받은 메세지</b>&nbsp;</a></div>
+           <div class="msg_title"><a onclick="chat_view('view.php?msg_num=<?=$msg_num ?>')"><?=$msg_cont?></a></div>
            <div class="msg_date"><?=$send_time?> 읽음 </div>
            <hr class="msg_liner">
        <?php
@@ -126,15 +130,15 @@ $number = $total_record - $start;
          }else{
         if($read == "0"){
             ?>
-           <div class="msg_r_s"><b><?=$r_id."님"?></b>에게 보낸 메세지&nbsp;</a></div>
-           <div class="msg_title"><?=$msg_cont?></div>
-           <div class="msg_date"><?=$send_time?> <b>안읽음</b></div>
+           <div class="msg_r_s"><b><?=$r_name?>(<?=$r_id."님"?>)에게 보낸 메세지&nbsp;</b></div>
+           <div class="msg_title"><a onclick="chat_view('view.php?msg_num=<?=$msg_num ?>')"><b><?=$msg_cont?></b></a></div>
+           <div class="msg_date"><b><?=$send_time?> 안읽음</b></div>
            <hr class="msg_liner">
        <?php
          }else{
          ?>
-           <div class="msg_r_s"><?=$r_id."님"?>에게 보낸 메세지 &nbsp;</a></div>
-           <div class="msg_title"><?=$msg_cont?></div>
+           <div class="msg_r_s"><?=$r_name?>(<?=$r_id."님"?>)에게 보낸 메세지 &nbsp;</a></div>
+           <div class="msg_title"><a onclick="chat_view('view.php?msg_num=<?=$msg_num ?>')"><?=$msg_cont?></a></div>
            <div class="msg_date"><?=$send_time?> 읽음</div>
            <hr class="msg_liner">
            <?php
