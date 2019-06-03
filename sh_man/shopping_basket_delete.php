@@ -10,8 +10,9 @@ include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/db_connector.php";
 // include $_SERVER['DOCUMENT_ROOT']."/lotus/lib/func_main.php";
 // include __DIR__."/../lib/create_table.php"; 자기 폴더 까지 찍으므로 상대경로의 문제점을 고치지는 못함
 $all_delete=$_GET['mode'];
+$user_delete=$_GET['mode_user'];
 
-if ($all_delete=='all_delete') {
+if ($all_delete=='all_delete'||$user_delete=='all_delete') {
   $sql="DELETE from `wish_list` where id='$session'";
 }else{
   $prd_num=$_POST['prd_num'];
@@ -25,6 +26,10 @@ if (!$result) {
 
 
   mysqli_close($conn);
-echo "<script>location.href='./shopping_basket.php';</script>";
+  if ($_GET['mode_user']) {
+    echo "<script>location.href='./user_shopping_basket.php';</script>";
+  }else{
+    echo "<script>location.href='./shopping_basket.php';</script>";
+  }
 
  ?>

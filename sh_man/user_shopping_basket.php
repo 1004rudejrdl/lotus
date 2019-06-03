@@ -48,7 +48,7 @@
   <hr class="title_hr">
   <div class="lsb_msg">총&nbsp;<?=$total?>&nbsp;개의 상품이 있습니다.</div>
   <div class="prd_all_del">
-    <a href="./shopping_basket_delete.php?mode=all_delete">전체 상품 삭제</a>
+    <a href="./shopping_basket_delete.php?mode_user=all_delete">전체 상품 삭제</a>
   </div>
   <?php for ($i=0; $i < $total; $i++) {
     $row = mysqli_fetch_array($result);
@@ -129,7 +129,7 @@
       <td class="width_50"><b>상세정보</b></td>
       <td class="width_20"><b>금액</b></td>
       <td class="width_10" rowspan="3">
-        <form class="" action="./shopping_basket_delete.php" method="post" >
+        <form class="" action="./shopping_basket_delete.php?mode_user=prd_del" method="post" >
           <input type="hidden" name="prd_num" value="<?=$prd_type_num?>">
           <input type="submit" name="" value="품목 지우기">
       </form>
