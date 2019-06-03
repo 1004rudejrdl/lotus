@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 function insert_init_data($conn, $table_name){
   $flag="NO";
   $sql = "SELECT * from $table_name";
