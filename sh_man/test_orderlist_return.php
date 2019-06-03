@@ -71,35 +71,34 @@ $total = mysqli_num_rows($result);
             <?php
         }else if($tackback_state==0){
             ?>
-            집하
+            결제완료
             <form class="" action="return_order_list.php" method="post">
-
               <input type="hidden" name="order_num<?=$i?>" value="<?=$order_num?>">
-
-
               <input type="submit" name="" value="환불 신청">
             </form>
             <?php
         }else if(!empty($tackback_day)){
             ?>
-
             반품신청 완료
             <?php
         }else {
           switch ($tackback_state) {
             case '1':
-              $select="배송중(입고)";
+              $select="집하";
               break;
             case '2':
-              $select="배송중(출고)";
+              $select="배송중(입고)";
               break;
             case '3':
-              $select="배송중";
+              $select="배송중(출고)";
               break;
             case '4':
-              $select="배달중";
+              $select="배송중";
               break;
             case '5':
+              $select="배달중";
+              break;
+            case '6':
               $select="배달완료";
               break;
           }

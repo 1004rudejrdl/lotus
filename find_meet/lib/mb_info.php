@@ -79,7 +79,7 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../../css/common.css">
-  <link rel="stylesheet" href="../css/a_c_info_v_w_e_d.css">
+  <link rel="stylesheet" href="../css/meeting_pop.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -128,11 +128,9 @@
           <td><button class="button" onclick="javascript:send_mail('<?=$id?>');">Contact</button></td>
         </tr>
       </table>
-    
+
         <hr class="title_hr">
 
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
 
     </div> <!-- main end -->
   </div> <!-- main_body end -->

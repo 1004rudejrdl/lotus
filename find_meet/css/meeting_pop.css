@@ -1,0 +1,48 @@
+.admin_title{
+  color:rgb(156, 156, 156);
+  float:left;
+}
+.title_hr{
+  size:1;
+  width:100%;
+  margin: 10px 0;
+  clear: both;
+  margin: 0;
+  padding: 0;
+}
+.main {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 10px 30px;
+}
+/*↓↓↓↓↓↓↓↓↓↓↓meeting↓↓↓↓↓↓↓↓↓↓↓↓*/
+table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 500px;
+}
+tr, td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  color: black;
+}
+.mt_img img{
+  max-width: 450px;
+  overflow: hidden;
+}
+table button {
+  border: none;
+  background-color: rgba(252, 105, 105, 1);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 100%;
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+table button:hover {
+  background-color: rgba(252, 105, 105, 0.85);
+}

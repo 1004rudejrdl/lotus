@@ -36,9 +36,10 @@ if((isset($_GET["mode"])&&($_GET["mode"])=='update')
   $hit=$row['hit'];
 
   if ($mode == "response") {
-    $subject=$subject."의 [답변]";
-    // $content = $content."리플>>";
-    $content=str_replace("<br>", "<br>▶",$content);
+    $subject="[답변] ".$subject;
+    // $content = "리플>> ".$content;
+    // $content=str_replace("<br>", "<br>▶",$content);
+    $content="";
     $disabled="disabled";
   }
 

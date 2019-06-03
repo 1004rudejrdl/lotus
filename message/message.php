@@ -188,6 +188,10 @@ $number = $total_record - $start;
     echo '<hr class="title_hr">';
   }
  ?>
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
 </div>  <!-- main end -->
 </div>  <!-- main_body end -->
 <!-- footer start -->

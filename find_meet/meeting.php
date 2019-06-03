@@ -80,9 +80,9 @@ $number = $total_record - $start;
     }
     function show_member(selected_mb_id){
       var id = selected_mb_id;
-      var popupX = (window.screen.width / 2) - (800 / 2);
-      var popupY= (window.screen.height /2) - (500 / 2);
-      window.open("./lib/mb_info.php?id="+id, 'mb_info', 'status=no, width=800, height=300, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+      var popupX = (window.screen.width / 2)-100 - (800 / 2);
+      var popupY= (window.screen.height /2)-600 - (500 / 2);
+      window.open("./lib/mb_info.php?id="+id, 'mb_info', 'status=no, width=560, height=800, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
     }
   </script>
   <title>연인찾기</title>

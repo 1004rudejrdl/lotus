@@ -225,7 +225,6 @@
 
                   echo "환불 처리 완료";
                 }else {
-                  var_dump($order_num);
                   ?>
 
                   <form class="" action="update_a_od_rt_bkac.php" method="post">
